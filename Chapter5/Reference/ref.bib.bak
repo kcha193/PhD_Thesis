@@ -1,0 +1,1430 @@
+% This file was created with JabRef 2.5.
+% Encoding: MS950
+
+@MANUAL{Applied20071,
+  title = {ProteinPilot$^{TM}$ Software 2.0.1 Online Help},
+  author = {{Applied Biosystems and MDS Sciex}},
+  organization = {Applied Biosystems and MDS Sciex},
+  year = {2007},
+  owner = {Kevin},
+  timestamp = {2008.05.27}
+}
+
+@MANUAL{Applied20072,
+  title = {Understanding the Pro Group$^{TM}$ Algorithm},
+  author = {{Applied Biosystems and MDS Sciex}},
+  organization = {Applied Biosystems and MDS Sciex},
+  year = {2007},
+  owner = {Kevin},
+  timestamp = {2008.05.27}
+}
+
+@MANUAL{Applied2004,
+  title = {QSTAR\textnormal{\textsuperscript{\textregistered}} XL Hybrid LC/MS/MS
+	System},
+  author = {{Applied Biosystems and MDS Sciex}},
+  organization = {Applied Biosystems and MDS Sciex},
+  year = {2004},
+  owner = {Kevin},
+  timestamp = {2008.05.27}
+}
+
+@BOOK{Bailey2008,
+  title = {Design of comparative experiment},
+  publisher = {Cambridge University Press},
+  year = {2008},
+  author = {R. A. Bailey},
+  owner = {css},
+  timestamp = {2008.09.10}
+}
+
+@ARTICLE{Benjamini1995,
+  author = {Benjamini, Yoav and Hochberg, Yosef},
+  title = {Controlling the False Discovery Rate: A Practical and Powerful Approach
+	to Multiple Testing},
+  journal = {Journal of the Royal Statistical Society Series B (Methodological)},
+  year = {1995},
+  volume = {57},
+  pages = {289-300},
+  number = {1},
+  abstract = {The common approach to the multiplicity problem calls for controlling
+	the familywise error rate (FWER). This approach, though, has faults,
+	and we point out a few. A different approach to problems of multiple
+	significance testing is presented. It calls for controlling the expected
+	proportion of falsely rejected hypotheses-the false discovery rate.
+	This error rate is equivalent to the FWER when all hypotheses are
+	true but is smaller otherwise. Therefore, in problems where the control
+	of the false discovery rate rather than that of the FWER is desired,
+	there is potential for a gain in power. A simple sequential Bonferroni-type
+	procedure is proved to control the false discovery rate for independent
+	test statistics, and a simulation study shows that the gain in power
+	is substantial. The use of the new procedure and the appropriateness
+	of the criterion are illustrated with examples.},
+  citeulike-article-id = {1042553},
+  doi = {http://dx.doi.org/10.2307/2346101},
+  keywords = {discovery, false, fdr, multiple, rate, testing},
+  posted-at = {2008-02-29 10:56:34},
+  url = {http://dx.doi.org/10.2307/2346101}
+}
+
+@ARTICLE{Bland1995,
+  author = {Bland, J. M. and Altman, D. G.},
+  title = {Multiple significance tests: the Bonferroni method.},
+  journal = {BMJ},
+  year = {1995},
+  volume = {310},
+  pages = {170},
+  number = {6973},
+  month = {January},
+  address = {Department of Public Health Sciences, St George's Hospital Medical
+	School, London.},
+  citeulike-article-id = {276826},
+  issn = {0959-8138},
+  keywords = {microarray},
+  posted-at = {2005-08-08 14:44:36},
+  priority = {1},
+  url = {http://bmj.bmjjournals.com/cgi/content/reprint/310/6973/170}
+}
+
+@BOOK{Blow2002,
+  title = {Outline of crystallography for biologists},
+  publisher = {Oxford University Press},
+  year = {2002},
+  author = {Blow, D. M.},
+  owner = {css},
+  timestamp = {2008.07.15}
+}
+
+@ARTICLE{Boehm2007,
+  author = {Boehm, A M and P{\"u}tz, S and Altenh{\"o}fer, D and Sickmann, A
+	and Falk, M},
+  title = {Precise protein quantification based on peptide quantification using
+	iTRAQ},
+  journal = {BMC Bioinformatics},
+  year = {2007},
+  volume = {8},
+  pages = {214-214},
+  abstract = {BACKGROUND: Mass spectrometry based quantification of peptides can
+	be performed using the iTRAQ reagent in conjunction with mass spectrometry.
+	This technology yields information about the relative abundance of
+	single peptides. A method for the calculation of reliable quantification
+	information is required in order to obtain biologically relevant
+	data at the protein expression level. RESULTS: A method comprising
+	sound error estimation and statistical methods is presented that
+	allows precise abundance analysis plus error calculation at the peptide
+	as well as at the protein level. This yields the relevant information
+	that is required for quantitative proteomics. Comparing the performance
+	of our method named Quant with existing approaches the error estimation
+	is reliable and offers information for precise bioinformatic models.
+	Quant is shown to generate results that are consistent with those
+	produced by ProQuant, thus validating both systems. Moreover, the
+	results are consistent with that of Mascot 2.2. The MATLAB scripts
+	of Quant are freely available via http://www.protein-ms.de and http://sourceforge.net/projects/protms/,
+	each under the GNU Lesser General Public License. CONCLUSION: The
+	software Quant demonstrates improvements in protein quantification
+	using iTRAQ. Precise quantification data can be obtained at the protein
+	level when using error propagation and adequate visualization. Quant
+	integrates both and additionally provides the possibility to obtain
+	more reliable results by calculation of wise quality measures. Peak
+	area integration has been replaced by sum of intensities, yielding
+	more reliable quantification results. Additionally, Quant allows
+	the combination of quantitative information obtained by iTRAQ with
+	peptide and protein identifications from popular tandem MS identification
+	tools. Hence Quant is a useful tool for the proteomics community
+	and may help improving analysis of proteomic experimental data. In
+	addition, we have shown that a lognormal distribution fits the data
+	of mass spectrometry based relative peptide quantification.},
+  doi = {10.1186/1471-2105-8-214},
+  pmid = {17584939},
+  url = {http://www.hubmed.org/display.cgi?uids=17584939}
+}
+
+@ARTICLE{Brien1999,
+  author = {Brien, C. J. and Payne, R. W.},
+  title = {Tiers, structure formulae and the analysis of complicated experiments},
+  journal = {Journal of the Royal Statistical Society Series D: The Statistician},
+  year = {1999},
+  volume = {48},
+  pages = {41-52},
+  number = {1},
+  abstract = {The use of several structure formulae has many advantages for specifying
+	the models for comparative experiments. In many experiments, two
+	formulae are sufficient to ensure that the analysis-of-variance table
+	correctly represents the confounding relationships in the design.
+	The first formula usually defines the systematic (or treatment) terms,
+	and the second the error terms (or strata). This allows the correct
+	error to be determined for each term and enables the full information
+	to be obtained on terms that are estimated in more than one stratum.
+	The formulae should be derived from sets of factors, based on the
+	randomization, and termed tiers. A detailed discussion of data from
+	a tasting trial of produce from a viticultural experiment shows that
+	sometimes more than two tiers, and hence structure formulae, may
+	be needed. A new algorithm is developed to determine the structure
+	of such multiphase experiments, and to generate their correct analysis.},
+  keywords = {Analysis of variance Experimental structure Multitiered experiments
+	Randomized experiments Sensory experiments Structure formulae Tiers
+	Two-phase experiments},
+  owner = {Kevin},
+  timestamp = {2009.09.18}
+}
+
+@ARTICLE{Choe2007,
+  author = {Choe, L and D'Ascenzo, M and Relkin, N R and Pappin, D and Ross,
+	P and Williamson, B and Guertin, S and Pribil, P and Lee, K H},
+  title = {8-plex quantitation of changes in cerebrospinal fluid protein expression
+	in subjects undergoing intravenous immunoglobulin treatment for Alzheimer's
+	disease},
+  journal = {Proteomics},
+  year = {2007},
+  volume = {7},
+  pages = {3651-3660},
+  number = {20},
+  month = {Oct},
+  doi = {10.1002/pmic.200700316},
+  pmid = {17880003},
+  url = {http://www.hubmed.org/display.cgi?uids=17880003}
+}
+
+@ARTICLE{Colinge2007,
+  author = {Colinge, J and Bennett, K L},
+  title = {Introduction to computational proteomics},
+  journal = {PLoS Comput Biol},
+  year = {2007},
+  volume = {3},
+  pages = {1151-1160},
+  number = {7},
+  month = {Jul},
+  doi = {10.1371/journal.pcbi.0030114},
+  pmid = {17676979},
+  url = {http://www.hubmed.org/display.cgi?uids=17676979}
+}
+
+@ARTICLE{Cooper2004,
+  author = {Cooper, Garth J.S. and Phillips, Anthony R.J. and Choong, Soon Y.
+	and Leonard, Bridget L. and Crossman, David J. and Brunton, Dianne
+	H. and Saafi, 'Etuate L. and Dissanayake, Ajith M. and Cowan, Brett
+	R. and Young, Alistair A. and Occleshaw, Christopher J. and Chan,
+	Yih-Kai and Leahy, Fiona E. and Keogh, Geraldine F. and Gamble, Gregory
+	D. and Allen, Grant R. and Pope, Adele J. and Boyd, Peter D.W. and
+	Poppitt, Sally D. and Borg, Thomas K. and Doughty, Robert N. and
+	Baker, John R.},
+  title = {Regeneration of the Heart in Diabetes by Selective Copper Chelation},
+  journal = {Diabetes},
+  year = {2004},
+  volume = {53},
+  pages = {2501-2508},
+  number = {9},
+  abstract = {Heart disease is the major cause of death in diabetes, a disorder
+	characterized by chronic hyperglycemia and cardiovascular complications.
+	Although altered systemic regulation of transition metals in diabetes
+	has been the subject of previous investigation, it is not known whether
+	changed transition metal metabolism results in heart disease in common
+	forms of diabetes and whether metal chelation can reverse the condition.
+	We found that administration of the Cu-selective transition metal
+	chelator trientine to rats with streptozotocin-induced diabetes caused
+	increased urinary Cu excretion compared with matched controls. A
+	CuII-trientine complex was demonstrated in the urine of treated rats.
+	In diabetic animals with established heart failure, we show here
+	for the first time that 7 weeks of oral trientine therapy significantly
+	alleviated heart failure without lowering blood glucose, substantially
+	improved cardiomyocyte structure, and reversed elevations in left
+	ventricular collagen and {beta}1 integrin. Oral trientine treatment
+	also caused elevated Cu excretion in humans with type 2 diabetes,
+	in whom 6 months of treatment caused elevated left ventricular mass
+	to decline significantly toward normal. These data implicate accumulation
+	of elevated loosely bound Cu in the mechanism of cardiac damage in
+	diabetes and support the use of selective Cu chelation in the treatment
+	of this condition.},
+  doi = {10.2337/diabetes.53.9.2501},
+  eprint = {http://diabetes.diabetesjournals.org/cgi/reprint/53/9/2501.pdf},
+  url = {http://diabetes.diabetesjournals.org/cgi/content/abstract/53/9/2501}
+}
+
+@ARTICLE{Cullis2003,
+  author = {Cullis, B. R. and Smith, A. B. and Panozzo, J. F. and Lim, P.},
+  title = {Barley malting quality: Are we selecting the best?},
+  journal = {Australian Journal of Agricultural Research},
+  year = {2003},
+  volume = {54},
+  pages = {1261-1275},
+  number = {11-12},
+  abstract = {This paper presents an analysis of several key barley malting traits
+	from 2 mapping populations grown as a series of multi-environment
+	field trials. The analysis is based on a mixed model that includes
+	terms for all sources of variation in the trait data, namely varieties,
+	variety by trial interaction, variation between plots in the field,
+	and variation between samples in the laboratory processes required
+	to measure the traits. The base-line model is extended to accommodate
+	variance heterogeneity and correlated effects for many of the terms
+	in the model. The results show that accounting for these phenomena
+	may cause substantial changes in variety rankings. The methods of
+	design and analysis proposed in this paper for barley quality trait
+	data do not have common usage so if adopted in future there is an
+	opportunity for substantial improvements in response to selection.},
+  keywords = {barley Hordeum vulgare subsp. vulgare},
+  owner = {Kevin},
+  timestamp = {2009.09.18}
+}
+
+@BOOK{Eidhammer2008,
+  title = {Computational Methods for Mass Spectrometry Proteomics},
+  publisher = {Wiley-Interscience},
+  year = {2007},
+  author = {Ingvar Eidhammer and Kristian Flikka and Lennart Martens and Svein-Ole
+	Mikalsen},
+  owner = {Kevin},
+  timestamp = {2008.10.31}
+}
+
+@ARTICLE{Fein1994,
+  author = {Frederick S. Fein and Edmund H. Sonnenblick},
+  title = {Diabetic Cardiomyopathy},
+  journal = {Cardiovascular Drugs and Therapy},
+  year = {1994},
+  volume = {8},
+  pages = {65-73},
+  owner = {Kevin},
+  timestamp = {2008.05.29}
+}
+
+@ARTICLE{Fields1989,
+  author = {Fields, S and Song, O},
+  title = {A novel genetic system to detect protein-protein interactions},
+  journal = {Nature},
+  year = {1989},
+  volume = {340},
+  pages = {245-246},
+  number = {6230},
+  month = {Jul},
+  abstract = {Protein-protein interactions between two proteins have generally been
+	studied using biochemical techniques such as crosslinking, co-immunoprecipitation
+	and co-fractionation by chromatography. We have generated a novel
+	genetic system to study these interactions by taking advantage of
+	the properties of the GAL4 protein of the yeast Saccharomyces cerevisiae.
+	This protein is a transcriptional activator required for the expression
+	of genes encoding enzymes of galactose utilization. It consists of
+	two separable and functionally essential domains: an N-terminal domain
+	which binds to specific DNA sequences (UASG); and a C-terminal domain
+	containing acidic regions, which is necessary to activate transcription.
+	We have generated a system of two hybrid proteins containing parts
+	of GAL4: the GAL4 DNA-binding domain fused to a protein 'X' and a
+	GAL4 activating region fused to a protein 'Y'. If X and Y can form
+	a protein-protein complex and reconstitute proximity of the GAL4
+	domains, transcription of a gene regulated by UASG occurs. We have
+	tested this system using two yeast proteins that are known to interact--SNF1
+	and SNF4. High transcriptional activity is obtained only when both
+	hybrids are present in a cell. This system may be applicable as a
+	general method to identify proteins that interact with a known protein
+	by the use of a simple galactose selection.},
+  doi = {10.1038/340245a0},
+  pmid = {2547163},
+  url = {http://www.hubmed.org/display.cgi?uids=2547163}
+}
+
+@ARTICLE{Florens2006a,
+  author = {Laurence Florens and Michael P Washburn},
+  title = {Proteomic analysis by multidimensional protein identification technology.},
+  journal = {Methods Mol Biol},
+  year = {2006},
+  volume = {328},
+  pages = {159--175},
+  abstract = {Multidimensional chromatography coupled to mass spectrometry is an
+	emerging technique for the analysis of complex protein mixtures.
+	One approach in this general category, multidimensional protein identification
+	technology (MudPIT), couples biphasic or triphasic microcapillary
+	columns to high-performance liquid chromatography, tandem mass spectrometry,
+	and database searching. The integration of each of these components
+	is critical to the implementation of MudPIT in a laboratory. MudPIT
+	can be used for the analysis of complex peptide mixtures generated
+	from biofluids, tissues, cells, organelles, or protein complexes.
+	The information described in this chapter will provide researchers
+	with details for sample preparation, column assembly, and chromatography
+	parameters for complex peptide mixture analysis.},
+  doi = {10.1385/1-59745-026-X:159},
+  institution = {Stowers Institute for Medical Research, Kansas City, MO, USA.},
+  keywords = {Animals; Chromatography; Chromatography, High Pressure Liquid; Computational
+	Biology; Databases, Protein; Humans; Mass Spectrometry; Proteins;
+	Proteome; Proteomics; Spectrometry, Mass, Electrospray Ionization;
+	Time Factors},
+  owner = {Kevin},
+  pii = {1-59745-026-X:159},
+  pmid = {16785648},
+  timestamp = {2008.05.27},
+  url = {http://dx.doi.org/10.1385/1-59745-026-X:159}
+}
+
+@BOOK{Gelman2007,
+  title = {Data analysis using regression and mutilevel/hierachical models},
+  publisher = {Cambridge University Press},
+  year = {2007},
+  author = {A. Gelman and J. Hill},
+  owner = {Kevin},
+  timestamp = {2008.09.12}
+}
+
+@ARTICLE{Good1973,
+  author = {Good, I. J.},
+  title = {What Are Degrees of Freedom?},
+  journal = {The American Statistician},
+  year = {1973},
+  volume = {27},
+  pages = {227--228},
+  number = {5},
+  issn = {00031305},
+  jstor_articletype = {primary_article},
+  jstor_formatteddate = {Dec., 1973},
+  publisher = {American Statistical Association},
+  url = {http://www.jstor.org/stable/3087407}
+}
+
+@BOOK{Hadi1996,
+  title = {Matrix Algebra as a tool},
+  publisher = {Duxbury Press at Wadsworth Publishing Company},
+  year = {1996},
+  author = {Ali S. Hadi},
+  owner = {css},
+  timestamp = {2008.05.16}
+}
+
+@ARTICLE{Hill2008,
+  author = {Hill, E G and Schwacke, J H and Comte-Walters, S and Slate, E H and
+	Oberg, A L and Eckel-Passow, J E and Therneau, T M and Schey, K L},
+  title = {A statistical model for iTRAQ data analysis},
+  journal = {J Proteome Res},
+  year = {2008},
+  volume = {7},
+  pages = {3091-3101},
+  number = {8},
+  month = {Aug},
+  abstract = {We describe biological and experimental factors that induce variability
+	in reporter ion peak areas obtained from iTRAQ experiments. We demonstrate
+	how these factors can be incorporated into a statistical model for
+	use in evaluating differential protein expression and highlight the
+	benefits of using analysis of variance to quantify fold change. We
+	demonstrate the model's utility based on an analysis of iTRAQ data
+	derived from a spike-in study.},
+  doi = {10.1021/pr070520u},
+  pmid = {18578521},
+  url = {http://www.hubmed.org/display.cgi?uids=18578521}
+}
+
+@ARTICLE{Jullig2007,
+  author = {Mia J\"{u}llig and Anthony J. Hickey and Martin J. Middleditch and
+	David J. Crossman and Stanley C. Lee and Garth J. S. Cooper},
+  title = {Characterization of proteomic changes in cardiac mitochondria in
+	streptozotocin-diabetic rats using iTRAQ$^{TM}$ isobaric tags},
+  journal = {PROTEOMICS - Clinical Applications},
+  year = {2007},
+  volume = {1},
+  pages = {565-576},
+  owner = {Kevin},
+  timestamp = {2008.05.28}
+}
+
+@ARTICLE{Jarrett2008,
+  author = {Jarrett, R G and Ruggiero, K},
+  title = {Design and analysis of two-phase experiments for gene expression
+	microarrays-part \textnormal{I}},
+  journal = {Biometrics},
+  year = {2008},
+  volume = {64},
+  pages = {208-216},
+  number = {1},
+  month = {Mar},
+  abstract = {Gene expression microarray experiments are intrinsically two-phase
+	experiments. Messenger RNA (mRNA), required for the microarray experiment,
+	must first be derived from plants or animals that are exposed to
+	a set of treatments in a previous experiment (Phase 1). The mRNA
+	is then used in the subsequent laboratory-based microarray experiment
+	(Phase 2) from which gene expression is measured and ultimately analyzed.
+	We show that obtaining a valid test for the effects of treatments
+	on gene expression depends on the design of both the Phase 1 and
+	Phase 2 experiments. Examples show that the multiple dye-swap design
+	at Phase 2 is more robust than the alternating loop design in the
+	absence of prior knowledge of the relative size of variation in the
+	Phase 1 and Phase 2 experiments.},
+  doi = {10.1111/j.1541-0420.2007.00835.x},
+  pmid = {17651456},
+  url = {http://www.hubmed.org/display.cgi?uids=17651456}
+}
+
+@BOOK{John1987,
+  title = {Cyclic and computer generated Designs},
+  publisher = {Chapman \& Hall},
+  year = {1987},
+  author = {J.A. John and E.R. Williams},
+  edition = {Second},
+  owner = {Kevin},
+  timestamp = {2009.04.16}
+}
+
+@ARTICLE{Karp2007,
+  author = {Karp, N A and Lilley, K S},
+  title = {Design and analysis issues in quantitative proteomics studies},
+  journal = {Proteomics},
+  year = {2007},
+  volume = {7 Suppl 1},
+  pages = {42-50},
+  month = {Sep},
+  abstract = {Quantitative proteomics is the comparison of distinct proteomes which
+	enables the identification of protein species which exhibit changes
+	in expression or post-translational state in response to a given
+	stimulus. Many different quantitative techniques are being utilized
+	and generate large datasets. Independent of the technique used, these
+	large datasets need robust data analysis to ensure valid conclusions
+	are drawn from such studies. Approaches to address the problems that
+	arise with large datasets are discussed to give insight into the
+	types of statistical analyses of data appropriate for the various
+	experimental strategies that can be employed by quantitative proteomic
+	studies. This review also highlights the importance of employing
+	a robust experimental design and highlights various issues surrounding
+	the design of experiments. The concepts and examples discussed within
+	will show how robust design and analysis will lead to confident results
+	that will ensure quantitative proteomics delivers.},
+  doi = {10.1002/pmic.200700683},
+  pmid = {17893850},
+  url = {http://www.hubmed.org/display.cgi?uids=17893850}
+}
+
+@ARTICLE{Kerr2003,
+  author = {Kerr, M. K.},
+  title = {Design Considerations for Efficient and Effective Microarray Studies},
+  journal = {Biometrics},
+  year = {2003},
+  volume = {59},
+  pages = {822-828},
+  number = {4},
+  abstract = {This article describes the theoretical and practical issues in experimental
+	design for gene expression microarrays. Specifically, this article
+	1) discusses the basic principles of design (randomization, replication,
+	and blocking) as they pertain to microarrays, and 2) provides some
+	general guidelines for statisticians designing microarray studies.},
+  keywords = {Block design Composite sampling Experimental design Gene expression
+	Microarray Replication dye RNA article DNA microarray genomics human
+	molecular genetics RNA hybridization sampling statistical analysis
+	Biometry Humans Models, Genetic Models, Statistical Observer Variation
+	Oligonucleotide Array Sequence Analysis Reproducibility of Results
+	Research Design},
+  owner = {Kevin},
+  timestamp = {2009.09.18}
+}
+
+@ARTICLE{Li2003,
+  author = {Li, G.L. and Feng, Z.H.},
+  title = {Mirror-transformations of matrices and their application on odd/even
+	modal decomposition of mirror-symmetric multiconductor transmission
+	line equations},
+  journal = {IEEE Transactions on Advanced Packaging},
+  year = {2003},
+  volume = {26},
+  pages = {172--181},
+  number = {2}
+}
+
+@ARTICLE{Lohr1995,
+  author = {Sharon L. Lohr},
+  title = {Hasse Diagrams in Statistical Consulting and Teaching},
+  journal = {The American Statistician},
+  year = {1995},
+  volume = {49},
+  pages = {376--381},
+  number = {4},
+  abstract = {Hasse diagrams summarize the structure of mixed models and can be
+	used by a statistical consultant to help design a complicated experiment
+	or to help clarify the structure of data to be analyzed. They are
+	also useful in the classroom as an aid for obtaining expected mean
+	squares or deciding which denominator should be used in an F statistic.},
+  copyright = {Copyright 1995 American Statistical Association},
+  issn = {00031305},
+  jstor_articletype = {primary_article},
+  jstor_formatteddate = {Nov., 1995},
+  publisher = {American Statistical Association},
+  url = {http://www.jstor.org/stable/2684579}
+}
+
+@BOOK{Mead1988,
+  title = {The Design of Experiments: Statistical Principles for Practical},
+  publisher = {Cambridge University Press},
+  year = {1988},
+  author = {Roger Mead},
+  owner = {css},
+  timestamp = {2008.05.16}
+}
+
+@BOOK{Montgomery1996,
+  title = {Introduction to Statistical Quality Control},
+  publisher = {John Wiley \& Sons},
+  year = {1996},
+  editor = {Charity Robey},
+  author = {Douglas C. Montgomery},
+  owner = {Kevin},
+  timestamp = {2008.08.20}
+}
+
+@ARTICLE{Nelder1965A,
+  author = {Nelder, J. A.},
+  title = {The Analysis of Randomized Experiments with Orthogonal Block Structure.
+	I. Block Structure and the Null Analysis of Variance},
+  journal = {Proceedings of the Royal Society of London. Series A. Mathematical
+	and Physical Sciences},
+  year = {1965},
+  volume = {283},
+  pages = {147-162},
+  number = {1393},
+  abstract = {Nearly all the experimental designs so far proposed assume that the
+	experimental units are or can be grouped together in blocks in ways
+	that can be described in terms of nested and cross-classifications.
+	When every nesting classification employed has equal numbers of subunits
+	nested in each unit, then the experimental units are said to have
+	a simple block structure. Every simple block structure has a complete
+	randomization theory. Any permutation of the labelling of the units
+	is permissible which preserves the block structure, and this defines
+	a valid randomization procedure. In a null experiment all units receive
+	the same treatment, and the population of all possible vectors of
+	yields generated by the randomization procedure gives the null randomization
+	distribution. The covariance matrix of this distribution, the null
+	analysis of variance, and the expectations of the various mean squares
+	in it are all derivable from the initial description of the block
+	structure. All simple block structures can be characterized by a
+	set of mutually orthogonal idempotent matrices C$_i$. Such sets of
+	matrices may also exist for non-simple block structures (e.g. those
+	having unequal numbers of plots in a block), and the existence of
+	such a set defines an orthogonal block structure. Non-simple orthogonal
+	block structures do not have a complete randomization theory and
+	inferences from them require further assumptions.},
+  doi = {10.1098/rspa.1965.0012},
+  eprint = {http://rspa.royalsocietypublishing.org/content/283/1393/147.full.pdf+html},
+  url = {http://rspa.royalsocietypublishing.org/content/283/1393/147.abstract}
+}
+
+@ARTICLE{Nelder1965B,
+  author = {Nelder, J. A.},
+  title = {The Analysis of Randomized Experiments with Orthogonal Block Structure.
+	II. Treatment Structure and the General Analysis of Variance},
+  journal = {Proceedings of the Royal Society of London. Series A, Mathematical
+	and Physical Sciences},
+  year = {1965},
+  volume = {283},
+  pages = {163-178},
+  number = {1393},
+  abstract = {Any orthogonal block structure for a set of experimental units has
+	been previously shown to be expressible by a set of mutually orthogonal,
+	idempotent matrices C<sub>i</sub>. When differential treatments are
+	applied to the units, any linear model of treatment effects is expressible
+	by another set of mutually orthogonal idempotent matrices T<sub>j</sub>.
+	The analysis of any experiment having any set of treatments applied
+	in any pattern whatever to units with an orthogonal block structure,
+	is expressible in terms of the matrices C<sub>i</sub>, T<sub>j</sub>
+	and the design matrix N, which lists the treatments applied to each
+	unit. A unit-treatment additivity assumption and a valid randomization
+	are essential to the validity of the analysis. The relevant estimation
+	equations are developed for this general situation, and the idea
+	of balance is given a generalized definition, which is illustrated
+	by several examples. An outline is sketched for a general computer
+	program to deal with the analysis of all experiments with an orthogonal
+	block structure and linear treatment model.},
+  copyright = {Copyright ?? 1965 The Royal Society},
+  issn = {00804630},
+  jstor_articletype = {primary_article},
+  jstor_formatteddate = {Jan. 6, 1965},
+  publisher = {The Royal Society},
+  url = {http://www.jstor.org/stable/2415112}
+}
+
+@ARTICLE{Nesvizhskii2005,
+  author = {Nesvizhskii, A I and Aebersold, R},
+  title = {Interpretation of shotgun proteomic data: the protein inference problem},
+  journal = {Mol Cell Proteomics},
+  year = {2005},
+  volume = {4},
+  pages = {1419-1440},
+  number = {10},
+  month = {Oct},
+  abstract = {The shotgun proteomic strategy based on digesting proteins into peptides
+	and sequencing them using tandem mass spectrometry and automated
+	database searching has become the method of choice for identifying
+	proteins in most large scale studies. However, the peptide-centric
+	nature of shotgun proteomics complicates the analysis and biological
+	interpretation of the data especially in the case of higher eukaryote
+	organisms. The same peptide sequence can be present in multiple different
+	proteins or protein isoforms. Such shared peptides therefore can
+	lead to ambiguities in determining the identities of sample proteins.
+	In this article we illustrate the difficulties of interpreting shotgun
+	proteomic data and discuss the need for common nomenclature and transparent
+	informatic approaches. We also discuss related issues such as the
+	state of protein sequence databases and their role in shotgun proteomic
+	analysis, interpretation of relative peptide quantification data
+	in the presence of multiple protein isoforms, the integration of
+	proteomic and transcriptional data, and the development of a computational
+	infrastructure for the integration of multiple diverse datasets.},
+  doi = {10.1074/mcp.R500012-MCP200},
+  pmid = {16009968},
+  url = {http://www.hubmed.org/display.cgi?uids=16009968}
+}
+
+@ARTICLE{Nunn2007,
+  author = {Nunn, Brook L. and Timperman, Aaron T.},
+  title = {Marine proteomics},
+  journal = {Marine Ecology Progress Series},
+  year = {2007},
+  volume = {332},
+  pages = {281-289},
+  owner = {Kevin},
+  timestamp = {2008.05.27},
+  url = {http://www.int-res.com/abstracts/meps/v332/p281-289/}
+}
+
+@ARTICLE{Payne1998,
+  author = {Roger W. Payne},
+  title = {Design keys, pseudo-factors and general balance},
+  journal = {Computational Statistics \& Data Analysis},
+  year = {1998},
+  volume = {29},
+  pages = {217 - 229},
+  number = {2},
+  doi = {DOI: 10.1016/S0167-9473(98)00061-9},
+  issn = {0167-9473},
+  keywords = {Experimental design},
+  url = {http://www.sciencedirect.com/science/article/B6V8V-3WWCCYF-7/2/5c933fbfc4a4c673ffcf81340fa93c18}
+}
+
+@ARTICLE{Pierce2008,
+  author = {Pierce, Andrew and Unwin, Richard D. and Evans, Caroline A. and Griffiths,
+	Stephen and Carney, Louise and Zhang, Liqun and Jaworska, Ewa and
+	Lee, Chia-Fang and Blinco, David and Okoniewski, Michal J. and Miller,
+	Crispin J. and Bitton, Danny A. and Spooncer, Elaine and Whetton,
+	Anthony D.},
+  title = {{Eight-channel iTRAQ Enables Comparison of the Activity of Six Leukemogenic
+	Tyrosine Kinases}},
+  journal = {Mol Cell Proteomics},
+  year = {2008},
+  volume = {7},
+  pages = {853-863},
+  number = {5},
+  abstract = {There are a number of leukemogenic protein-tyrosine kinases (PTKs)
+	associated with leukemic transformation. Although each is linked
+	with a specific disease their functional activity poses the question
+	whether they have a degree of commonality in their effects upon target
+	cells. Exon array analysis of the effects of six leukemogenic PTKs
+	(BCR/ABL, TEL/PDGFR, FIP1/PDGFR{alpha}, D816V KIT, NPM/ALK, and FLT3ITD)
+	revealed few common effects on the transcriptome. It is apparent,
+	however, that proteome changes are not directly governed by transcriptome
+	changes. Therefore, we assessed and used a new generation of iTRAQ
+	tagging, enabling eight-channel relative quantification discovery
+	proteomics, to analyze the effects of these six leukemogenic PTKs.
+	Again these were found to have disparate effects on the proteome
+	with few common targets. BCR/ABL had the greatest effect on the proteome
+	and had more effects in common with FIP1/PDGFR{alpha}. The proteomic
+	effects of the four type III receptor kinases were relatively remotely
+	related. The only protein commonly affected was eosinophil-associated
+	ribonuclease 7. Five of six PTKs affected the motility-related proteins
+	CAPG and vimentin, although this did not correspond to changes in
+	motility. However, correlation of the proteomics data with that from
+	the exon microarray not only showed poor levels of correlation between
+	transcript and protein levels but also revealed alternative patterns
+	of regulation of the CAPG protein by different oncogenes, illustrating
+	the utility of such a combined approach.},
+  doi = {10.1074/mcp.M700251-MCP200},
+  eprint = {http://www.mcponline.org/cgi/reprint/7/5/853.pdf},
+  url = {http://www.mcponline.org/cgi/content/abstract/7/5/853}
+}
+
+@MISC{Wapcaplet2006,
+  author = {Eric Piercing},
+  title = {Image:Diagram of the human heart (cropped).svg},
+  howpublished = {\url{http://upload.wikimedia.org/wikipedia/commons/e/e5/Diagram_of_the_human_heart_%28cropped%29.svg}},
+  month = {June},
+  year = {2006},
+  owner = {Kevin},
+  timestamp = {2008.08.26},
+  url = {http://upload.wikimedia.org/wikipedia/commons/e/e5/Diagram_of_the_human_heart_%28cropped%29.svg}
+}
+
+@MISC{R2008,
+  author = {{R Development Core Team}},
+  title = {R: A Language and Environment for Statistical Computing},
+  howpublished = {\url{http://www.R-project.org}},
+  year = {2008},
+  note = {{ISBN} 3-900051-07-0},
+  address = {Vienna, Austria},
+  organization = {R Foundation for Statistical Computing},
+  url = {http://www.R-project.org}
+}
+
+@ARTICLE{Ross2004,
+  author = {Philip L Ross and Yulin N Huang and Jason N Marchese and Brian Williamson
+	and Kenneth Parker and Stephen Hattan and Nikita Khainovski and Sasi
+	Pillai and Subhakar Dey and Scott Daniels and Subhasish Purkayastha
+	and Peter Juhasz and Stephen Martin and Michael Bartlet-Jones and
+	Feng He and Allan Jacobson and Darryl J Pappin},
+  title = {Multiplexed protein quantitation in Saccharomyces cerevisiae using
+	amine-reactive isobaric tagging reagents.},
+  journal = {Mol Cell Proteomics},
+  year = {2004},
+  volume = {3},
+  pages = {1154--1169},
+  number = {12},
+  month = {Dec},
+  abstract = {We describe here a multiplexed protein quantitation strategy that
+	provides relative and absolute measurements of proteins in complex
+	mixtures. At the core of this methodology is a multiplexed set of
+	isobaric reagents that yield amine-derivatized peptides. The derivatized
+	peptides are indistinguishable in MS, but exhibit intense low-mass
+	MS/MS signature ions that support quantitation. In this study, we
+	have examined the global protein expression of a wild-type yeast
+	strain and the isogenic upf1Delta and xrn1Delta mutant strains that
+	are defective in the nonsense-mediated mRNA decay and the general
+	5' to 3' decay pathways, respectively. We also demonstrate the use
+	of 4-fold multiplexing to enable relative protein measurements simultaneously
+	with determination of absolute levels of a target protein using synthetic
+	isobaric peptide standards. We find that inactivation of Upf1p and
+	Xrn1p causes common as well as unique effects on protein expression.},
+  doi = {10.1074/mcp.M400129-MCP200},
+  file = {:C\:\\Users\\Kevin\\Ross2004.pdf:PDF},
+  institution = {Applied Biosystems, Framingham, MA 01701, USA.},
+  keywords = {Cations; Chromatography, Ion Exchange; Chromatography, Liquid; Down-Regulation;
+	Exoribonucleases; Fungal Proteins; Indicators and Reagents; Ions;
+	Mass Spectrometry; Models, Chemical; Peptides; Phenotype; Proteomics;
+	RNA Helicases; RNA, Messenger; Saccharomyces cerevisiae; Saccharomyces
+	cerevisiae Proteins; Succinimides},
+  owner = {css},
+  pii = {M400129-MCP200},
+  pmid = {15385600},
+  timestamp = {2008.05.15},
+  url = {http://dx.doi.org/10.1074/mcp.M400129-MCP200}
+}
+
+@ARTICLE{Sadygov2004,
+  author = {Sadygov, R G and Cociorva, D and Yates, J R},
+  title = {Large-scale database searching using tandem mass spectra: looking
+	up the answer in the back of the book},
+  journal = {Nat Methods},
+  year = {2004},
+  volume = {1},
+  pages = {195-202},
+  number = {3},
+  month = {Dec},
+  abstract = {Database searching is an essential element of large-scale proteomics.
+	Because these methods are widely used, it is important to understand
+	the rationale of the algorithms. Most algorithms are based on concepts
+	first developed in SEQUEST and PeptideSearch. Four basic approaches
+	are used to determine a match between a spectrum and sequence: descriptive,
+	interpretative, stochastic and probability-based matching. We review
+	the basic concepts used by most search algorithms, the computational
+	modeling of peptide identification and current challenges and limitations
+	of this approach for protein identification.},
+  doi = {10.1038/nmeth725},
+  pmid = {15789030},
+  url = {http://www.hubmed.org/display.cgi?uids=15789030}
+}
+
+@ARTICLE{Shen2004,
+  author = {Shen, X and Zheng, S and Thongboonkerd, V and Xu, M and Pierce, W
+	M and Klein, J B and Epstein, P N},
+  title = {Cardiac mitochondrial damage and biogenesis in a chronic model of
+	type 1 diabetes},
+  journal = {Am J Physiol Endocrinol Metab},
+  year = {2004},
+  volume = {287},
+  pages = {896-905},
+  number = {5},
+  month = {Nov},
+  abstract = {Diabetic cardiomyopathy is a common complication leading to heightened
+	risk of heart failure and death. In the present report, we performed
+	proteomic analysis on total cardiac proteins from the OVE26 mouse
+	model of type 1 diabetes to identify protein changes that may contribute
+	to diabetic cardiomyopathy. This analysis revealed that a surprising
+	high proportion (12 of 20) of the altered proteins that could be
+	identified by mass spectrometry were of mitochondrial origin. All
+	but one of these proteins were upregulated by diabetes. Quantitative
+	RT-PCR, performed for two of these proteins, indicated that part
+	of the upregulation was attributed to increased messenger RNA levels.
+	Morphological study of diabetic hearts showed significantly increased
+	mitochondrial area and number as well as focal regions with severe
+	damage to mitochondria. Diabetic mitochondria also showed reduced
+	respiratory control ratio (9.63 +/- 0.20 vs. 6.13 +/- 0.41, P < 0.0001),
+	apparently due to reduced state 3 rate, and diminished GSH level
+	(5.5 +/- 0.9 vs. 8.2 +/- 2.5 micromol/mg protein, P < 0.05), indicating
+	impaired mitochondrial function and increased oxidative stress. Further
+	examination revealed increased mitochondrial DNA (1.03 +/- 0.18 vs.
+	0.69 +/- 0.13 relative copy number, P < 0.001) and a tendency to
+	higher protein yield in OVE26 cardiac mitochondria, as well as increased
+	mRNA level for mitochondrial transcription factor A and two mitochondrial
+	encoded proteins. Taken together, these results show that mitochondria
+	are a primary target in the diabetic heart, probably due to oxidative
+	stress, and that this damage coincides with and may stimulate mitochondrial
+	biogenesis.},
+  doi = {10.1152/ajpendo.00047.2004},
+  pmid = {15280150},
+  url = {http://www.hubmed.org/display.cgi?uids=15280150}
+}
+
+@ARTICLE{Shilov2007,
+  author = {Shilov, Ignat V. and Seymour, Sean L. and Patel, Alpesh A. and Loboda,
+	Alex and Tang, Wilfred H. and Keating, Sean P. and Hunter, Christie
+	L. and Nuwaysir, Lydia M. and Schaeffer, Daniel A.},
+  title = {The Paragon Algorithm, a Next Generation Search Engine That Uses
+	Sequence Temperature Values and Feature Probabilities to Identify
+	Peptides from Tandem Mass Spectra},
+  journal = {Mol Cell Proteomics},
+  year = {2007},
+  volume = {6},
+  pages = {1638-1655},
+  number = {9},
+  abstract = {The ParagonTM Algorithm, a novel database search engine for the identification
+	of peptides from tandem mass spectrometry data, is presented. Sequence
+	Temperature Values are computed using a sequence tag algorithm, allowing
+	the degree of implication by an MS/MS spectrum of each region of
+	a database to be determined on a continuum. Counter to conventional
+	approaches, features such as modifications, substitutions, and cleavage
+	events are modeled with probabilities rather than by discrete user-controlled
+	settings to consider or not consider a feature. The use of feature
+	probabilities in conjunction with Sequence Temperature Values allows
+	for a very large increase in the effective search space with only
+	a very small increase in the actual number of hypotheses that must
+	be scored. The algorithm has a new kind of user interface that removes
+	the user expertise requirement, presenting control settings in the
+	language of the laboratory that are translated to optimal algorithmic
+	settings. To validate this new algorithm, a comparison with Mascot
+	is presented for a series of analogous searches to explore the relative
+	impact of increasing search space probed with Mascot by relaxing
+	the tryptic digestion conformance requirements from trypsin to semitrypsin
+	to no enzyme and with the Paragon Algorithm using its Rapid mode
+	and Thorough mode with and without tryptic specificity. Although
+	they performed similarly for small search space, dramatic differences
+	were observed in large search space. With the Paragon Algorithm,
+	hundreds of biological and artifact modifications, all possible substitutions,
+	and all levels of conformance to the expected digestion pattern can
+	be searched in a single search step, yet the typical cost in search
+	time is only 2-5 times that of conventional small search space. Despite
+	this large increase in effective search space, there is no drastic
+	loss of discrimination that typically accompanies the exploration
+	of large search space.},
+  doi = {10.1074/mcp.T600050-MCP200},
+  eprint = {http://www.mcponline.org/cgi/reprint/6/9/1638.pdf},
+  url = {http://www.mcponline.org/cgi/content/abstract/6/9/1638}
+}
+
+@ARTICLE{Smith2001,
+  author = {Smith, A. B. and Cullis, B. R. and Appels, R. and Campbell, A. W.
+	and Cornish, G. B. and Martin, D. and Allen, H. M.},
+  title = {The statistical analysis of quality traits in plant improvement programs
+	with application to the mapping of milling yield in wheat},
+  journal = {Australian Journal of Agricultural Research},
+  year = {2001},
+  volume = {52},
+  pages = {1207-1219},
+  number = {11-12},
+  note = {Cited By (since 1996): 19 Export Date: 17 September 2009 Source:
+	Scopus CODEN: AJAEA Language of Original Document: English Correspondence
+	Address: Smith, A.B.; Wagga Wagga Agricultural Institute, Private
+	Mail Bag, Wagga Wagga, NSW 2650, Australia; email: alison.smith@agric.nsw.gov.au
+	References: Besag, J., Kempton, R.A., Statistical analysis of field
+	experiments using neighbouring plots (1986) Biometrics, 42, pp. 231-251;
+	Brien, C.J., Analysis of variance tables based on experimental structure
+	(1983) Biometrics, 39, pp. 53-59; Butler, D., Gilmour, A.R., (2001)
+	'samm reference manual.' Biometric Bulletin No. 3, , QDPI, Toowoomba,
+	Qld; Chalmers, K.J., Campbell, A.W., Kretschmer, J., Karakousis,
+	A., Henschke, P.H., Pierens, S., Harker, N., Langridge, P., Construction
+	of three linkage maps in bread wheat, Triticum aestivum (2001) Australian
+	Journal of Agricultural Research, 52, pp. 1089-1119; Cullis, B.R.,
+	Gleeson, A.C., Spatial analysis of field experiments - An extension
+	to two dimensions (1991) Biometrics, 47, pp. 1449-1460; Cullis, B.R.,
+	Gogel, B.J., Verbyla, A.P., Thompson, R., Spatial analysis of multi-environment
+	early generation trials (1998) Biometrics, 54, pp. 1-18; Eckermann,
+	P.J., Verbyla, A.P., Cullis, B.R., Thompson, R., The analysis of
+	quantitative traits in wheat mapping populations (2001) Australian
+	Journal of Agricultural Research, 52, pp. 1195-1206; Gilmour, A.R.,
+	Cullis, B.R., Verbyla, A.P., Accounting for natural and extraneous
+	variation in the analysis of field experiments (1997) Journal of
+	Agricultural, Biological, and Environmental Statistics, 2, pp. 269-273;
+	Gilmour, A.R., Cullis, B.R., Welham, S.J., Thompson, R., (1999) 'ASREML
+	reference manual.' Biometric Bulletin, No 3, , NSW Agriculture, Orange,
+	NSW; Gleeson, A.C., Cullis, B.R., Residual maximum likelihood (REML)
+	estimation of a neighbour model for field experiments (1987) Biometrics,
+	43, pp. 277-288; Hackett, C.A., Meyer, R.C., Thomas, W.T.B., Multi-trait
+	QTL mapping in barley using multivariate regression (2001) Genetical
+	Research Cambridge, 77, pp. 95-106; Henderson, C.R., Estimation of
+	genetic parameters (1950) Annals of Mathematical Statistics, 21,
+	pp. 309-310; Kammholz, S.J., Campbell, A.W., Sutherland, M.W., Hollamby,
+	G.J., Martin, P.J., Eastwood, R.F., Barclay, I., Sheppard, J.A.,
+	Establishment and characterisation of wheat genetic mapping populations
+	(2001) Australian Journal of Agricultural Research, 52, pp. 1079-1088;
+	Manly, K.E., Meer, J.M., Cudmor, R.H., (2000) User manual for Map
+	Manager QTX, , Technical report. Roswell Park Cancer Institute; (1999)
+	S-PLUS 2000 User's Guide 1999, , Data Analysis Products Division,
+	Mathsoft: Seattle, WA; McIntyre, G.A., Design and analysis of two-phase
+	experiments (1955) Biometrics, 11, pp. 324-334; Moreau, L., Monod,
+	H., Charcosset, A., Gallais, A., Marker-assisted selection with spatial
+	analysis of unreplicated field trials (1999) Theoretical and Applied
+	Genetics, 98, pp. 234-242; Patterson, H.D., Thompson, R., Recovery
+	of interblock information when block sizes are unequal (1971) Biometrika,
+	31, pp. 100-109; Whittaker, J.C., Thompson, R., Visscher, P.M., On
+	the mapping of QTL by regression of phenotype on marker-type (1996)
+	Heredity, 77, pp. 23-32; Wilkinson, G.N., Eckert, S.R., Hancock,
+	T.W., Mayo, O., Nearest neighbour (NN) analysis of field experiments
+	(1983) Journal of the Royal Statistical Society, Series B, 45, pp.
+	151-211; Wood, J.T., Williams, E.R., Speed, T.P., Non-orthogonal
+	block structure in two-phase designs (1988) Australian Journal of
+	Statistics, 30 A, pp. 225-237},
+  abstract = {It is well known that the response to selection for grain yield is
+	improved with the use of appropriate experimental designs and statistical
+	analyses. The issues are more complex for quality traits since the
+	data are obtained from a 2-phase process in which samples are collected
+	from the field then processed in the laboratory. This paper presents
+	a method of analysis for quality trait data that allows for variation
+	arising from both the field and laboratory phases. Initially, an
+	analysis suitable for standard varietal selection is presented. This
+	is extended to include molecular genetic marker information for the
+	purpose of detecting quantitative trait loci. The technique is illustrated
+	using two doubled haploid wheat (Triticum aestivum L.) populations
+	in which the trait of interest is milling yield.},
+  keywords = {2-phase experiment Milling QTL Mixed model Molecular genetic map Statistical
+	analyses Wheat statistical analysis Embryophyta Triticum aestivum},
+  owner = {Kevin},
+  timestamp = {2009.09.18}
+}
+
+@ARTICLE{Smith2006,
+  author = {Smith, A. B. and Lim, P. and Cullis, B. R.},
+  title = {The design and analysis of multi-phase plant breeding experiments},
+  journal = {Journal of Agricultural Science},
+  year = {2006},
+  volume = {144},
+  pages = {393-409},
+  number = {5},
+  note = {Cited By (since 1996): 5 Export Date: 17 September 2009 Source: Scopus
+	CODEN: JASIA doi: 10.1017/S0021859606006319 Language of Original
+	Document: English Correspondence Address: Smith, A.B.; Wagga Wagga
+	Agricultural Institute, Private Mail Bag, Wagga Wagga, NSW 2650,
+	Australia; email: alison.smith@dpi.nsw.gov.au References: Bainbridge,
+	T., Staggered, nested designs for estimating variance components
+	(1965) Industrial Quality Control, 22, pp. 12-20; Becker, R.A., Chambers,
+	J.M., Wilks, A.R., (1988) The New S Language, , Pacific Grove, CA,
+	USA: Wadsworth and Brooks/Cole; Brien, C.J., Analysis of variance
+	tables based on experimental structure (1983) Biometrics, 39, pp.
+	53-59; Brien, C.J., Bailey, R.A., Multiple randomizations Journal
+	of the Royal Statistical Society, Series B, 68, pp. 1-29. , in press;
+	Butler, D.G., Cullis, B.R., Gilmour, A.R., Gogel, B.J., (2003) Samm
+	Reference Manual, , Training series, No QE02001. Brisbane, QLD, Australia:
+	QLD Department of Primary Industries and Fisheries; Coombes, N.E.,
+	(2002) The Reactive Tabu Search for Efficient Correlated Experimental
+	Designs, , Ph.D. thesis, Liverpool John Moores University, Liverpool,
+	U.K; Cullis, B.R., Gleeson, A.C., Spatial analysis of field experiments
+	- An extension to two dimensions (1991) Biometrics, 47, pp. 1449-1460;
+	Cullis, B., Smith, A., Panozzo, J., Lim, P., Barley malting quality:
+	Are we selecting the best? (2003) Australian Journal of Agricultural
+	Research, 54, pp. 1261-1275; Cullis, B.R., Smith, A.B., Coombes,
+	N.E., On the design of early generation variety trials with correlated
+	data Journal of Agricultural, Biological and Environmental Statistics,
+	, in press; Eckermann, P.J., Verbyla, A.P., Cullis, B.R., Thompson,
+	R., The analysis of quantitative traits in wheat mapping populations
+	(2001) Australian Journal of Agricultural Research, 52, pp. 1195-1206;
+	Gilmour, A.R., Cullis, B.R., Verbyla, A.P., Accounting for natural
+	and extraneous variation in the analysis of field experiments (1997)
+	Journal of Agricultural, Biological, and Environmental Statistics,
+	2, pp. 269-293; Gilmour, A.R., Gogel, B.J., Cullis, B.R., Welham,
+	S.J., Thompson, R., (2002) ASReml User Guide, , Release 1.0. Hemel
+	Hempstead, UK: VSN International Ltd; Kempton, R.A., The design and
+	analysis of unreplicated field trials (1984) Vortrage fur Pflanzenzuchtung,
+	7, pp. 219-242; Kenward, M.G., Roger, J.H., Small sample inference
+	for fixed effects estimates from restricted maximum likelihood (1997)
+	Biometrics, 53, pp. 983-997; Mann, G., Allen, H., Morell, M.K., Nath,
+	Z., Martin, P., Oliver, J., Cullis, B., Smith, A., Comparison of
+	small scale and large scale extensibility of dough produced from
+	wheat flour (2006) Australian Journal of Agricultural Research, 56,
+	pp. 1387-1394; Mcintyre, G.A., Design and analysis of two-phase experiments
+	(1955) Biometrics, 11, pp. 324-334; Nelder, J.A., The analysis of
+	randomized experiments with orthogonal block structure. I. Block
+	structure and the null analysis of variance (1965) Proceedings of
+	the Royal Society, A, 283, pp. 147-162; Patterson, H.D., Thompson,
+	R., Recovery of interblock information when block sizes are unequal
+	(1971) Biometrika, 55, pp. 545-555; Smith, A.B., Cullis, B.R., Appels,
+	R., Campbell, A.W., Cornish, G.B., Martin, D., Allen, H.M., The statistical
+	analysis of quality traits in plant improvement programs with application
+	to the mapping of milling yield in wheat (2001) Australian Journal
+	of Agricultural Research, 52, pp. 1207-1219; Smith, A.B., Cullis,
+	B.R., Thompson, R., Analyzing variety by environment data using multiplicative
+	mixed models and adjustments for spatial field trend (2001) Biometrics,
+	57, pp. 1138-1147; Smith, A.B., Cullis, B.R., Thompson, R., The analysis
+	of crop cultivar breeding and evaluation trials: An overview of current
+	mixed model approaches (2005) Journal of Agricultural Science, Cambridge,
+	143, pp. 449-462; Stram, D.O., Lee, J.W., Variance components testing
+	in the longitudinal mixed effects model (1994) Biometrics, 50, pp.
+	1171-1177; Verbyla, A.P., Eckermann, P.J., Thompson, R., Cullis,
+	B.R., The analysis of quantitative trait loci in multi-environment
+	trials using a multiplicative mixed model (2003) Australian Journal
+	of Agricultural Research, 54, pp. 1395-1408; Wilk, M.B., Gnanadeskan,
+	R., Probability plotting methods for the analysis of data (1968)
+	Biometrika, 55, pp. 1-17; Wood, J.T., Williams, E.R., Speed, T.P.,
+	Non-orthogonal block structure in two-phase designs (1988) Australian
+	Journal of Statistics, 30 A, pp. 225-237},
+  abstract = {Despite the importance of selection for quality characteristics in
+	plant improvement programmes, literature on experimental design and
+	statistical analysis for these traits is scarce. Most quality traits
+	are obtained from multi-phase experiments in which plant varieties
+	are first grown in a field trial then further processed in the laboratory.
+	In the present paper a general mixed model approach for the analysis
+	of multi-phase data is described, with particular emphasis on quality
+	trait data that are often highly unbalanced and involve substantial
+	sources of non-genetic variation and correlation. Also detailed is
+	a new approach for experimental design that employs partial replication
+	in all phases. The motivation for this was the high cost of obtaining
+	quality trait data, thus the need to limit the total number of samples
+	tested, but still allow use of the mixed model analysis. A simulation
+	study is used to show that the combined use of the new designs and
+	mixed model analysis has substantial benefits in terms of the genetic
+	gain from selection. ???? 2006 Cambridge University Press.},
+  keywords = {cost-benefit analysis experimental design plant community reproductive
+	strategy statistical analysis},
+  owner = {Kevin},
+  timestamp = {2009.09.18}
+}
+
+@ARTICLE{Smyth2004,
+  author = {Smyth, G K},
+  title = {Linear models and empirical bayes methods for assessing differential
+	expression in microarray experiments},
+  journal = {Stat Appl Genet Mol Biol},
+  year = {2004},
+  volume = {3},
+  pages = {Article 3},
+  number = {1},
+  abstract = {The problem of identifying differentially expressed genes in designed
+	microarray experiments is considered. Lonnstedt and Speed (2002)
+	derived an expression for the posterior odds of differential expression
+	in a replicated two-color experiment using a simple hierarchical
+	parametric model. The purpose of this paper is to develop the hierarchical
+	model of Lonnstedt and Speed (2002) into a practical approach for
+	general microarray experiments with arbitrary numbers of treatments
+	and RNA samples. The model is reset in the context of general linear
+	models with arbitrary coefficients and contrasts of interest. The
+	approach applies equally well to both single channel and two color
+	microarray experiments. Consistent, closed form estimators are derived
+	for the hyperparameters in the model. The estimators proposed have
+	robust behavior even for small numbers of arrays and allow for incomplete
+	data arising from spot filtering or spot quality weights. The posterior
+	odds statistic is reformulated in terms of a moderated t-statistic
+	in which posterior residual standard deviations are used in place
+	of ordinary standard deviations. The empirical Bayes approach is
+	equivalent to shrinkage of the estimated sample variances towards
+	a pooled estimate, resulting in far more stable inference when the
+	number of arrays is small. The use of moderated t-statistics has
+	the advantage over the posterior odds that the number of hyperparameters
+	which need to estimated is reduced; in particular, knowledge of the
+	non-null prior for the fold changes are not required. The moderated
+	t-statistic is shown to follow a t-distribution with augmented degrees
+	of freedom. The moderated t inferential approach extends to accommodate
+	tests of composite null hypotheses through the use of moderated F-statistics.
+	The performance of the methods is demonstrated in a simulation study.
+	Results are presented for two publicly available data sets.},
+  doi = {10.2202/1544-6115.1027},
+  pmid = {16646809},
+  url = {http://www.hubmed.org/display.cgi?uids=16646809}
+}
+
+@ARTICLE{Thelen2007,
+  author = {Thelen, J J and Peck, S C},
+  title = {Quantitative proteomics in plants: choices in abundance},
+  journal = {Plant Cell},
+  year = {2007},
+  volume = {19},
+  pages = {3339-3346},
+  number = {11},
+  month = {Nov},
+  doi = {10.1105/tpc.107.053991},
+  pmid = {18055608},
+  url = {http://www.hubmed.org/display.cgi?uids=18055608}
+}
+
+@BOOK{Tortora2006,
+  title = {Principles of anatomy and physiology},
+  publisher = {Wiley \& Sons,},
+  year = {2006},
+  author = {Tortora, Gerard J. and Derrickson, Bryan.},
+  edition = {11th ed.},
+  owner = {css},
+  timestamp = {2008.05.15}
+}
+
+@ARTICLE{Turko2003,
+  author = {Turko, I V and Murad, F},
+  title = {Quantitative protein profiling in heart mitochondria from diabetic
+	rats},
+  journal = {J Biol Chem},
+  year = {2003},
+  volume = {278},
+  pages = {35844-35849},
+  number = {37},
+  month = {Sep},
+  abstract = {Quantitative protein profiling based on in vitro stable isotope labeling,
+	two-dimensional polyacrylamide gel electrophoresis, and mass spectrometry
+	is an accurate and reliable approach to measure simultaneously the
+	relative abundance of many individual proteins within two different
+	samples. In the present study, it was used to define a set of alterations
+	caused by diabetes in heart mitochondria from streptozotocin-treated
+	rats. We demonstrated that the expression of proteins from the myocardial
+	tricarboxylic acid cycle was not altered in diabetes. However, up-regulation
+	of the fatty acid beta-oxidation favored fatty acids over glucose
+	as a source of acetyl CoA for the tricarboxylic acid cycle. Protein
+	levels for several proteins involved in electron transport were modestly
+	decreased. Whether this may depress overall ATP production remains
+	to be established, since the protein level of ATP synthase seems
+	to be unchanged. Other changes include down-regulation of protein
+	levels for creatine kinase, voltage-dependent anion channel 1 (VDAC-1),
+	HSP60, and Grp75. The mitochondria-associated level of albumin was
+	decreased, while the level of catalase was substantially increased.
+	All of the changes were evident as early as 1 week after streptozotocin
+	administration. Taken together, these data point to a rapid and highly
+	coordinated regulation of mitochondrial protein expression that occurs
+	during the heart adaptation to diabetes.},
+  doi = {10.1074/jbc.M303139200},
+  pmid = {12851409},
+  url = {http://www.hubmed.org/display.cgi?uids=12851409}
+}
+
+@ARTICLE{Turrens2003,
+  author = {Turrens, Julio F.},
+  title = {Mitochondrial formation of reactive oxygen species},
+  journal = {J Physiol},
+  year = {2003},
+  volume = {552},
+  pages = {335-344},
+  number = {2},
+  doi = {10.1113/jphysiol.2003.049478},
+  eprint = {http://jp.physoc.org/cgi/reprint/552/2/335.pdf},
+  url = {http://jp.physoc.org/cgi/content/abstract/552/2/335}
+}
+
+@ARTICLE{Washburn2001,
+  author = {Washburn, M P and Wolters, D and Yates, J R},
+  title = {Large-scale analysis of the yeast proteome by multidimensional protein
+	identification technology},
+  journal = {Nat Biotechnol},
+  year = {2001},
+  volume = {19},
+  pages = {242-247},
+  number = {3},
+  month = {Mar},
+  abstract = {We describe a largely unbiased method for rapid and large-scale proteome
+	analysis by multidimensional liquid chromatography, tandem mass spectrometry,
+	and database searching by the SEQUEST algorithm, named multidimensional
+	protein identification technology (MudPIT). MudPIT was applied to
+	the proteome of the Saccharomyces cerevisiae strain BJ5460 grown
+	to mid-log phase and yielded the largest proteome analysis to date.
+	A total of 1,484 proteins were detected and identified. Categorization
+	of these hits demonstrated the ability of this technology to detect
+	and identify proteins rarely seen in proteome analysis, including
+	low-abundance proteins like transcription factors and protein kinases.
+	Furthermore, we identified 131 proteins with three or more predicted
+	transmembrane domains, which allowed us to map the soluble domains
+	of many of the integral membrane proteins. MudPIT is useful for proteome
+	analysis and may be specifically applied to integral membrane proteins
+	to obtain detailed biochemical information on this unwieldy class
+	of proteins.},
+  doi = {10.1038/85686},
+  pmid = {11231557},
+  url = {http://www.hubmed.org/display.cgi?uids=11231557}
+}
+
+@ARTICLE{Wiese2006,
+  author = {Wiese, S. and Reidegeld, K. A. and Meyer, H. E. and Warscheid, B.},
+  title = {Protein labeling by iTRAQ: a new tool for quantitative mass spectrometry
+	in proteome research.},
+  journal = {Proteomics},
+  year = {2007},
+  volume = {7},
+  pages = {340--350},
+  number = {3},
+  month = {February},
+  abstract = {A novel, MS-based approach for the relative quantification of proteins,
+	relying on the derivatization of primary amino groups in intact proteins
+	using isobaric tag for relative and absolute quantitation (iTRAQ)
+	is presented. Due to the isobaric mass design of the iTRAQ reagents,
+	differentially labeled proteins do not differ in mass; accordingly,
+	their corresponding proteolytic peptides appear as single peaks in
+	MS scans. Because quantitative information is provided by isotope-encoded
+	reporter ions that can only be observed in MS/MS spectra, we analyzed
+	the fragmentation behavior of ESI and MALDI ions of peptides generated
+	from iTRAQ-labeled proteins using a TOF/TOF and/or a QTOF instrument.
+	We observed efficient liberation of reporter ions for singly protonated
+	peptides at low-energy collision conditions. In contrast, increased
+	collision energies were required to liberate the iTRAQ label from
+	lysine side chains of doubly charged peptides and, thus, to observe
+	reporter ions suitable for relative quantification of proteins with
+	high accuracy. We then developed a quantitative strategy that comprises
+	labeling of intact proteins by iTRAQ followed by gel electrophoresis
+	and peptide MS/MS analyses. As proof of principle, mixtures of five
+	different proteins in various concentration ratios were quantified,
+	demonstrating the general applicability of the approach presented
+	here to quantitative MS-based proteomics.},
+  address = {Medizinisches Proteom-Center, Ruhr-Universit\"{a}t Bochum, Bochum,
+	Germany.},
+  citeulike-article-id = {1453218},
+  doi = {10.1002/pmic.200600422},
+  issn = {1615-9853},
+  posted-at = {2008-07-15 04:49:13},
+  priority = {2},
+  url = {http://dx.doi.org/10.1002/pmic.200600422}
+}
+
+@ARTICLE{Wilkinson1973,
+  author = {Wilkinson, G. N. and Rogers, C. E.},
+  title = {Symbolic Description of Factorial Models for Analysis of Variance},
+  journal = {Applied Statistics},
+  year = {1973},
+  volume = {22},
+  pages = {392--399},
+  number = {3},
+  abstract = {The paper describes the symbolic notation and syntax for specifying
+	factorial models for analysis of variance in the control language
+	of the GENSTAT statistical program system at Rothamsted. The notation
+	generalizes that of Nelder (1965). Algorithm AS 65 (Rogers, 1973)
+	converts factorial model formulae in this notation to a list of model
+	terms represented as binary integers. A further extension of the
+	syntax is discussed for specifying models generally (including non-linear
+	forms).},
+  copyright = {Copyright 1973 Royal Statistical Society},
+  issn = {00359254},
+  jstor_articletype = {primary_article},
+  jstor_formatteddate = {1973},
+  publisher = {Blackwell Publishing for the Royal Statistical Society},
+  url = {http://www.jstor.org/stable/2346786}
+}
+
+@ARTICLE{Willis2000,
+  author = {Willis, A. J. and Memmott, J. and Forrester, R. I.},
+  title = {Is there evidence for the post-invasion evolution of increased size
+	among invasive plant species?},
+  journal = {Ecology Letters},
+  year = {2000},
+  volume = {3},
+  pages = {275-283},
+  number = {4},
+  note = {Cited By (since 1996): 82 Export Date: 17 September 2009 Source:
+	Scopus CODEN: ECLEF doi: 10.1046/j.1461-0248.2000.00149.x Language
+	of Original Document: English Correspondence Address: Willis, A.J.;
+	CRC for Weed Management Systems, CSIRO Plant Industry, Imperial College,
+	GPO Box 1600, Canberra, ACT 2601, Australia; email: Tony.Willis@pi.csiro.au
+	References: Blossey, B., Kamil, J., What determines the increased
+	competitive ability of non-indigenous plants? (1996) Proceedings
+	of the IX International Symposium on Biological Control, of Weeds,
+	Stellenbosch, South Africa, 1996, pp. 3-9. , eds V.C. Moran \& J.H.
+	Hoffmann. University of Cape Town, Cape Town; Blossey, B., N????tzold,
+	R., Evolution of increased competitive ability in invasive non-indigenous
+	plants: A hypothesis (1995) J. Ecol, 83, pp. 887-889; Brien, C.J.,
+	Payne, R.W., Tiers, structure formulae and the analysis of complicated
+	experiments (1999) Statistician, 48, pp. 41-52; Burke, M.J.W., Grime,
+	J.P., An experimental study of plant community invasibility (1996)
+	Ecology, 77, pp. 776-790; Crawley, M.J., What makes a community invasible?
+	(1987) Colonization, Succession and Stability-the 26th Symposium
+	of the British Ecological Society Held Jointly with the Linnean Society
+	of London, pp. 429-453. , eds A.J. Gray, M.J. Crawley \& P.J. Edwards.
+	Blackwell Scientific Publications, Oxford; Crawley, M.J., Harvey,
+	P.H., Purvis, A., Comparative ecology of the native and alien floras
+	of the British Isles (1996) Philosoph Trans. Ray. Soc. London, Ser.
+	B-Biology, 351, pp. 1251-1259; Daehler, C.C., Strong, D.R., Prediction
+	and biological invasions (1993) Trends Ecol. Evol., 8, p. 380; Fowler,
+	S.V., Harman, H.M., Memmott, J., Paynter, Q., Shaw, R., Sheppard,
+	A.W., Syrett, P., Comparing the population dynamics of broom, Cytisus
+	scoparius, as a native plant in the United Kingdom and France, and
+	as an invasive alien weed in Australia and New Zealand (1996) Proceedings
+	of the IX International Symposium on Biological Control, of Weeds,
+	Stellenbosch, South Africa, 1996, pp. 19-26. , eds V.C. Moran \&
+	J.H. Hoffmann. University of Cape Town, Cape Town; Hendry, A.P.,
+	Kinnison, M.K., The pace of modern life: Measuring rates of conteporary
+	microevolution (1999) Evolution, 53, pp. 1637-1653; Hopper, K.R.,
+	Roush, R.T., Powell, W., Management of genetics of biological control
+	introductions (1993) Annu. Rev. Entomology, 38, pp. 27-51; Huey,
+	R.B., Gilchrist, G.W., Carlson, M.G., Berrigan, D., Serra, L.S.,
+	Rapid evolution of a geographic cline in size in an introduced fly
+	(2000) Science, 287, pp. 308-309; Juvik, J.O., Juvik, S.P., Mullein
+	(Verbascum thapsus): The spread and adaptation of a temperate weed
+	in the montane tropics (1992) Alien Plant Invasions in Native Ecosystems
+	of Hawai'i: Management and Research, pp. 254-270. , eds C.P. Stone,
+	C.W. Smith \& J.T. Tunison. University of Hawaii Cooperative National
+	Park Resources Study Unit, Honolulu; Lonsdale, M., Global patterns
+	of plant invasions and the concept of invasibility (1999) Ecology,
+	80, pp. 1522-1536; Mazer, S.J., Gorchov, D.L., Parental effects on
+	progeny phenotype in plants: Distinguishing genetic and environmental
+	causes (1996) Evolution, 50, pp. 44-53; McIntyre, G.A., Design and
+	analysis of two-phase experiments (1955) Biometrics, 11, pp. 324-334;
+	McNeely, J., IUCN (International Union for Conservation of Nature
+	and Natural Resources) alien invasive species: A framework for action
+	(1997) Conserving Vitality and Diversity: Proceedings of the World
+	Conservation Congress Workshop on Alien Invasive Species, pp. 3-9.
+	, eds C.D.A. Rubec \& G.O. Lee. IUCN and Environment Canada, Ottawa;
+	Noble, I., Attributes of invaders and the invading process: Terrestrial
+	and vascular plants (1989) Biological Invasions: A Global Perspective-SCOPE,
+	37, pp. 301-313. , eds J.A. Drake, H.A. Mooney, F. di Castri, R.H.
+	Groves, F.J. Kruger, M. Rejm????nek \& M. Williamson. John Wiley,
+	Chichester; Parsons, W.T., Cuthbertson, E.G., (1992) Noxious Weeds
+	of Australia, , Inkata Press, Melbourne; Payne, R.W., (1993) Genstat
+	5 Release 3 Reference Manual, , Oxford University Press, Oxford;
+	Paynter, Q., Fowler, S.V., Hinz, H.L., Memmott, J., Shaw, R., Sheppard,
+	A.W., Syrett, P., Are seed-feeding insects of use for the biological
+	control of broom? (1996) Proceedings of the IX International Symposium
+	on Biological Control, of Weeds, Stellenbosch, South Africa, 1996,
+	pp. 495-501. , eds V.C. Moran \& J.H. Hoffmann. University of Cape
+	Town, Cape Town; Pritchard, T., Race formation in weedy species with
+	special reference to Euphorbia cyparissias L. \& Hypericum perforatum
+	L (1960) The Biology of Weeds: A Symposium of the British Ecological
+	Society, Oxford 2nd-4th April, 1959, pp. 61-66. , ed. J.L. Harper.
+	Blackwell Scientific Publications, Oxford; Rees, M., Paynter, Q.,
+	Biological control of Scotch broom: Modelling the determinants of
+	abundance and the potential impact of introduced insect herbivores
+	(1997) J. Appl. Ecology, 34, pp. 1203-1221; Roberts, M.J., Long,
+	S.P., Tiezen, L.L., Beadle, C.L., Measurement of plant biomass and
+	net primary prodcution (1985) Techniques in Bioproductivity and Photosynthesis,
+	pp. 1-19. , eds J. Coombs, D.O. Hall, S.P. Long \& J.M.O. Scurlock.
+	Pergamon Press, Oxford; Robinson, G.R., Quinn, J.F., Stanton, M.L.,
+	Invasibility of experimental habitat islands in a California winter
+	annual grassland (1995) Ecology, 76, pp. 786-794; Stuckey, R.L.,
+	Distributional history of Lythrum salicaria (purple loosestrife)
+	in North America (1980) Bartonia, 47, pp. 3-20; Thomas, M.B., Willis,
+	A.J., Biocontrol-risky but necessary? (1998) Trends Ecol. Evolution,
+	13, pp. 325-329; Walker, B., Steffen, W., An overview of the implications
+	of global change for natural and managed terrestrial ecosystems (1997)
+	Conservation Ecology [Online], 1. , http://www.consecol.org/vol1/iss2/art2,
+	Available from the Internet; Webb, C.J., Sykes, W.R., Garnock-Jones,
+	P.J., (1988) Flora of New Zealand, IV: Naturalised Pteridophytes,
+	Gymnosperms, Dicotyledons, , Botany Division, DSIR, Christchurch;
+	Williamson, M., (1996) Biological Invasions, , Chapman \& Hall, London;
+	Willis, A.J., Blossey, B., Benign climates don't explain the increased
+	plant size of non-indigenous plants: A cross-continental transplant
+	experiment (1999) Biocontrol. Sci. Technology, 9, pp. 567-577; Zangerl,
+	A.R., Bazzaz, F.A., Theory and pattern in plant defense allocation
+	(1992) Plant Resistance to Herbivores and Pathogens: Ecology, Evolution
+	and Genetics, pp. 363-391. , eds R.S. Fritz \& E.L. Simms. University
+	of Chicago Press, Chicago},
+  abstract = {Many plant species grow taller and have higher reproductive capacity
+	where they are nonindigenous invaders than were they are native components
+	of the flora. Traditionally, it has been accepted that this is a
+	plastic response to a benign environment, though recently this assumption
+	has been challenged and a genetic basis for increased plant size
+	has been invoked. We tested the hypothesis that the increased size
+	of certain weed species is genetically, rather than environmentally,
+	based. A common environment growth experiment revealed no significant
+	differences in the size of Carduus nutans, Digitalis purpurea, Echium
+	vulgare or Senecio jacobaea sampled from alien (Australia and New
+	Zealand) or native (Britain and continental Europe) habitats. We
+	conclude that post-invasion genetic changes associated with increased
+	size may be unusual and that the phenomenon, where it occurs, generally
+	reflects a plastic response to a novel environment.},
+  keywords = {Carduus Digitalis Echium Evolution Invasion Plant growth Senecio Weed
+	genetics growth response introduced species phenotypic plasticity
+	reproductive success Carduus nutans Digitalis purpurea Echium vulgare
+	Senecio jacobaea},
+  owner = {Kevin},
+  timestamp = {2009.09.18}
+}
+
+@BOOK{Winer1970,
+  title = {Statistical Principles in Experimental design},
+  publisher = {McGraw-Hill},
+  year = {1970},
+  author = {B. J. Winer},
+  owner = {css},
+  timestamp = {2008.08.17}
+}
+

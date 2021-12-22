@@ -1,0 +1,168 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033\paperw11907\paperh16840\margl1417\margr1417\margt1417\margb1417{\fonttbl{\f0\fnil Arial;}{\f1\fnil Courier New;}{\f2\fswiss\fprq2\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue255;\red0\green0\blue0;\red0\green128\blue0;\red0\green0\blue192;}
+\viewkind4\uc1\pard\keep\cf1\f0\fs24 GenStat 64-bit Release 15.2 ( PC/Windows 7) 17 June 2013 10:56:21\par
+Copyright 2012, VSN International Ltd.  \cf2\fs20\par
+Registered to: University of Auckland\par
+ \par
+\pard\tx0\tx2106  \tab ________________________________________\par
+ \par
+ \tab GenStat Fifteenth Edition\par
+ \tab GenStat Procedure Library Release PL23.2\par
+ \tab ________________________________________\par
+ \par
+\pard\keep\cf3\f1    1  SET [WORKINGDIRECTORY='C:/Users/ctri003/Documents/_Files/Research/Kathy Ruggiero/Mixed Models']\line    2  UNITS [NVALUES=72]\line    3  FACTOR [LEVELS=6] Blocks\line    4  & [LEVELS=3] Wplots\line    5  & [LEVELS=4] Subplots\line    6  GENERATE Blocks,Wplots,Subplots\line    7\line    8  FACTOR [LABELS=!T(Victory,'Golden rain',Marvellous)] Variety\line    9  & [LABELS=!T('0 cwt','0.2 cwt','0.4 cwt','0.6 cwt')] Nitrogen\line   10  VARIATE Yield; EXTRA=' of oats'\line   11\line   12  READ [SERIAL=yes] Nitrogen,Variety,Yield\line\cf2\f0  \par
+\pard\tqr\tx1638\tqr\tx2808\tqr\tx3978\tqr\tx5148\tqr\tx6318\tqr\tx7488\tx7605\tab  Identifier\tab  Minimum\tab  Mean\tab  Maximum\tab  Values\tab  Missing\tab  \par
+\tab Yield\tab  53.00\tab  104.0\tab  174.0\tab  72\tab  0\tab  \par
+ \par
+\pard\tqr\tx1638\tqr\tx2808\tqr\tx3978\tqr\tx5148\tab  Identifier\tab  Values\tab  Missing\tab  Levels\par
+\tab Nitrogen\tab  72\tab  0\tab  4\par
+\tab Variety\tab  72\tab  0\tab  3\par
+ \par
+\pard\keep\tqr\tx1638\tqr\tx2808\tqr\tx3978\tqr\tx5148\cf3\f1   25\line   26  TREATMENTSTRUCTURE Variety*Nitrogen\line   27  BLOCKSTRUCTURE Blocks/Wplots/Subplots\line   28  ANOVA  [FPROBABILITY=yes; PSE=differences,lsd] Yield\line\cf2\f0\page\cf1\fs32 Analysis of variance\cf2\fs20\par
+ \par
+Variate: Yield of oats\par
+ \par
+\pard\tx0\tqr\tx3393\tqr\tx4680\tqr\tx5967\tqr\tx6903\tqr\tx7722 Source of variation\tab d.f.\tab s.s.\tab m.s.\tab v.r.\tab F pr.\par
+ \par
+Blocks stratum\tab 5\tab  15875.3\tab  3175.1\tab  5.28\tab  \par
+ \par
+Blocks.Wplots stratum\par
+Variety\tab 2\tab  1786.4\tab  893.2\tab  1.49\tab  0.272\par
+Residual\tab 10\tab  6013.3\tab  601.3\tab  3.40\tab  \par
+ \par
+Blocks.Wplots.Subplots stratum\par
+Nitrogen\tab 3\tab  20020.5\tab  6673.5\tab  37.69\tab <.001\par
+Variety.Nitrogen\tab 6\tab  321.8\tab  53.6\tab  0.30\tab  0.932\par
+Residual\tab 45\tab  7968.8\tab  177.1\tab  \tab  \par
+ \par
+Total\tab 71\tab  51985.9\tab  \tab  \tab  \par
+ \par
+ \par
+\cf4\i\fs24 Message: the following units have large residuals.\cf2\i0\fs20\par
+ \par
+\pard\tx0\tqr\tx5850\tqr\tx7722 Blocks 1\tab    31.4\tab  s.e.   14.8\par
+ \par
+ \par
+\cf1\fs32 Tables of means\cf2\fs20\par
+ \par
+Variate: Yield of oats\par
+ \par
+Grand mean  104.0 \par
+ \par
+\pard\tqr\tx1053\tqr\tx2457\tqr\tx3861\tqr\tx5265\tab Variety\tab  Victory\tab  Golden rain\tab  Marvellous\par
+\tab\tab  97.6\tab  104.5\tab  109.8\par
+ \par
+\pard\tqr\tx1053\tqr\tx2106\tqr\tx3159\tqr\tx4212\tqr\tx5265\tab Nitrogen\tab  0 cwt\tab  0.2 cwt\tab  0.4 cwt\tab  0.6 cwt\par
+\tab\tab  79.4\tab  98.9\tab  114.2\tab  123.4\par
+ \par
+\pard\tqr\tx1404\tqr\tx2457\tqr\tx3510\tqr\tx4563\tqr\tx5616\tqr\tx6669\tab Variety\tab Nitrogen\tab  0 cwt\tab  0.2 cwt\tab  0.4 cwt\tab  0.6 cwt\par
+\tab Victory\tab\tab  71.5\tab  89.7\tab  110.8\tab  118.5\par
+\tab Golden rain\tab\tab  80.0\tab  98.5\tab  114.7\tab  124.8\par
+\tab Marvellous\tab\tab  86.7\tab  108.5\tab  117.2\tab  126.8\par
+ \par
+ \par
+\cf1\fs28 Standard errors of differences of means\cf2\fs20\par
+ \par
+\pard\tx0\tqr\tx3159\tqr\tx4563\tqr\tx5967\tqr\tx7371 Table\tab Variety\tab Nitrogen\tab Variety\tab  \par
+\tab\tab\tab Nitrogen\tab  \par
+rep.\tab  24\tab  18\tab  6\tab  \par
+s.e.d.\tab  7.08\tab  4.44\tab  9.72\tab  \par
+d.f.\tab  10\tab  45\tab  30.23\tab  \par
+Except when comparing means with the same level(s) of\par
+Variety\tab\tab\tab  7.68\tab  \par
+d.f.\tab\tab\tab  45\tab  \par
+ \par
+ \par
+ \par
+\cf1\fs28 Least significant differences of means (5% level)\cf2\fs20\par
+ \par
+Table\tab Variety\tab Nitrogen\tab Variety\tab  \par
+\tab\tab\tab Nitrogen\tab  \par
+rep.\tab  24\tab  18\tab  6\tab  \par
+l.s.d.\tab  15.77\tab  8.93\tab  19.83\tab  \par
+d.f.\tab  10\tab  45\tab  30.23\tab  \par
+Except when comparing means with the same level(s) of\par
+Variety\tab\tab\tab  15.47\tab  \par
+d.f.\tab\tab\tab  45\tab  \par
+ \par
+ \par
+ \par
+ \par
+\pard\keep\tx0\tqr\tx3159\tqr\tx4563\tqr\tx5967\tqr\tx7371\cf3\f1   29\line\pard\keep   30\line   31  PRINT Blocks,Wplots,Subplots,Variety,Nitrogen, Yield\line\cf2\f0  \par
+\pard\tqr\tx1404\tqr\tx2808\tqr\tx4212\tqr\tx5616\tqr\tx7020\tqr\tx8424\tab Blocks\tab  Wplots\tab  Subplots\tab  Variety\tab  Nitrogen\tab  Yield\par
+\tab 1\tab  1\tab  1\tab  Marvellous\tab  0.6 cwt\tab  156.0\par
+\tab 1\tab  1\tab  2\tab  Marvellous\tab  0.4 cwt\tab  118.0\par
+\tab 1\tab  1\tab  3\tab  Marvellous\tab  0.2 cwt\tab  140.0\par
+\tab 1\tab  1\tab  4\tab  Marvellous\tab  0 cwt\tab  105.0\par
+\tab 1\tab  2\tab  1\tab  Victory\tab  0 cwt\tab  111.0\par
+\tab 1\tab  2\tab  2\tab  Victory\tab  0.2 cwt\tab  130.0\par
+\tab 1\tab  2\tab  3\tab  Victory\tab  0.6 cwt\tab  174.0\par
+\tab 1\tab  2\tab  4\tab  Victory\tab  0.4 cwt\tab  157.0\par
+\tab 1\tab  3\tab  1\tab  Golden rain\tab  0 cwt\tab  117.0\par
+\tab 1\tab  3\tab  2\tab  Golden rain\tab  0.2 cwt\tab  114.0\par
+\tab 1\tab  3\tab  3\tab  Golden rain\tab  0.4 cwt\tab  161.0\par
+\tab 1\tab  3\tab  4\tab  Golden rain\tab  0.6 cwt\tab  141.0\par
+\tab 2\tab  1\tab  1\tab  Marvellous\tab  0.4 cwt\tab  104.0\par
+\tab 2\tab  1\tab  2\tab  Marvellous\tab  0 cwt\tab  70.0\par
+\tab 2\tab  1\tab  3\tab  Marvellous\tab  0.2 cwt\tab  89.0\par
+\tab 2\tab  1\tab  4\tab  Marvellous\tab  0.6 cwt\tab  117.0\par
+\tab 2\tab  2\tab  1\tab  Victory\tab  0.6 cwt\tab  122.0\par
+\tab 2\tab  2\tab  2\tab  Victory\tab  0 cwt\tab  74.0\par
+\tab 2\tab  2\tab  3\tab  Victory\tab  0.2 cwt\tab  89.0\par
+\tab 2\tab  2\tab  4\tab  Victory\tab  0.4 cwt\tab  81.0\par
+\tab 2\tab  3\tab  1\tab  Golden rain\tab  0.2 cwt\tab  103.0\par
+\tab 2\tab  3\tab  2\tab  Golden rain\tab  0 cwt\tab  64.0\par
+\tab 2\tab  3\tab  3\tab  Golden rain\tab  0.4 cwt\tab  132.0\par
+\tab 2\tab  3\tab  4\tab  Golden rain\tab  0.6 cwt\tab  133.0\par
+\tab 3\tab  1\tab  1\tab  Golden rain\tab  0.2 cwt\tab  108.0\par
+\tab 3\tab  1\tab  2\tab  Golden rain\tab  0.4 cwt\tab  126.0\par
+\tab 3\tab  1\tab  3\tab  Golden rain\tab  0.6 cwt\tab  149.0\par
+\tab 3\tab  1\tab  4\tab  Golden rain\tab  0 cwt\tab  70.0\par
+\tab 3\tab  2\tab  1\tab  Marvellous\tab  0.6 cwt\tab  144.0\par
+\tab 3\tab  2\tab  2\tab  Marvellous\tab  0.2 cwt\tab  124.0\par
+\tab 3\tab  2\tab  3\tab  Marvellous\tab  0.4 cwt\tab  121.0\par
+\tab 3\tab  2\tab  4\tab  Marvellous\tab  0 cwt\tab  96.0\par
+\tab 3\tab  3\tab  1\tab  Victory\tab  0 cwt\tab  61.0\par
+\tab 3\tab  3\tab  2\tab  Victory\tab  0.6 cwt\tab  100.0\par
+\tab 3\tab  3\tab  3\tab  Victory\tab  0.2 cwt\tab  91.0\par
+\tab 3\tab  3\tab  4\tab  Victory\tab  0.4 cwt\tab  97.0\par
+\tab 4\tab  1\tab  1\tab  Marvellous\tab  0.4 cwt\tab  109.0\par
+\tab 4\tab  1\tab  2\tab  Marvellous\tab  0.6 cwt\tab  99.0\par
+\tab 4\tab  1\tab  3\tab  Marvellous\tab  0 cwt\tab  63.0\par
+\tab 4\tab  1\tab  4\tab  Marvellous\tab  0.2 cwt\tab  70.0\par
+\tab 4\tab  2\tab  1\tab  Golden rain\tab  0 cwt\tab  80.0\par
+\tab 4\tab  2\tab  2\tab  Golden rain\tab  0.4 cwt\tab  94.0\par
+\tab 4\tab  2\tab  3\tab  Golden rain\tab  0.6 cwt\tab  126.0\par
+\tab 4\tab  2\tab  4\tab  Golden rain\tab  0.2 cwt\tab  82.0\par
+\tab 4\tab  3\tab  1\tab  Victory\tab  0.2 cwt\tab  90.0\par
+\tab 4\tab  3\tab  2\tab  Victory\tab  0.4 cwt\tab  100.0\par
+\tab 4\tab  3\tab  3\tab  Victory\tab  0.6 cwt\tab  116.0\par
+\tab 4\tab  3\tab  4\tab  Victory\tab  0 cwt\tab  62.0\par
+\tab 5\tab  1\tab  1\tab  Golden rain\tab  0.6 cwt\tab  96.0\par
+\tab 5\tab  1\tab  2\tab  Golden rain\tab  0 cwt\tab  60.0\par
+\tab 5\tab  1\tab  3\tab  Golden rain\tab  0.4 cwt\tab  89.0\par
+\tab 5\tab  1\tab  4\tab  Golden rain\tab  0.2 cwt\tab  102.0\par
+\tab 5\tab  2\tab  1\tab  Victory\tab  0.4 cwt\tab  112.0\par
+\tab 5\tab  2\tab  2\tab  Victory\tab  0.6 cwt\tab  86.0\par
+\tab 5\tab  2\tab  3\tab  Victory\tab  0 cwt\tab  68.0\par
+\tab 5\tab  2\tab  4\tab  Victory\tab  0.2 cwt\tab  64.0\par
+\tab 5\tab  3\tab  1\tab  Marvellous\tab  0.4 cwt\tab  132.0\par
+\tab 5\tab  3\tab  2\tab  Marvellous\tab  0.6 cwt\tab  124.0\par
+\tab 5\tab  3\tab  3\tab  Marvellous\tab  0.2 cwt\tab  129.0\par
+\tab 5\tab  3\tab  4\tab  Marvellous\tab  0 cwt\tab  89.0\par
+\tab 6\tab  1\tab  1\tab  Victory\tab  0.4 cwt\tab  118.0\par
+\tab 6\tab  1\tab  2\tab  Victory\tab  0 cwt\tab  53.0\par
+\tab 6\tab  1\tab  3\tab  Victory\tab  0.6 cwt\tab  113.0\par
+\tab 6\tab  1\tab  4\tab  Victory\tab  0.2 cwt\tab  74.0\par
+\tab 6\tab  2\tab  1\tab  Golden rain\tab  0.6 cwt\tab  104.0\par
+\tab 6\tab  2\tab  2\tab  Golden rain\tab  0.4 cwt\tab  86.0\par
+\tab 6\tab  2\tab  3\tab  Golden rain\tab  0 cwt\tab  89.0\par
+\tab 6\tab  2\tab  4\tab  Golden rain\tab  0.2 cwt\tab  82.0\par
+\tab 6\tab  3\tab  1\tab  Marvellous\tab  0 cwt\tab  97.0\par
+\tab 6\tab  3\tab  2\tab  Marvellous\tab  0.2 cwt\tab  99.0\par
+\tab 6\tab  3\tab  3\tab  Marvellous\tab  0.4 cwt\tab  119.0\par
+\tab 6\tab  3\tab  4\tab  Marvellous\tab  0.6 cwt\tab  121.0\par
+ \par
+\pard\keep\cf3\f1   32\line\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6720\tx7680\tx8640\tx9600\tx10560\tx11520\tx12480\tx13440\tx14400\tx15360\tx16320\tx17280\tx18240\tx19200\tx20160\tx21120\tx22080\tx23040\tx24000\tx24960\tx25920\tx26880\tx27840\tx28800\tx29760\tx30720\cf2\protect\f2\par
+}
+ 

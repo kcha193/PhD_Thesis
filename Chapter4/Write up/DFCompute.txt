@@ -1,0 +1,25 @@
+
+\section{Degrees of freedom for runs and animals}
+\label{sec:computDFRBD}
+Recall the previous chapter, the DF associated with the Between Animals Between Runs and Between Animals Within Runs strata can be computed directly as
+\begin{equation}\label{eq:aniDFbwRun}
+\left\lceil \frac{n_A}{n_\gamma}\right\rceil -1
+\end{equation} 
+and
+\begin{equation}\label{eq:aniDFwRun}
+n_A- \left\lceil \frac{n_A}{n_\gamma}\right\rceil,
+\end{equation}  
+respectively, where $\lceil \; \rceil$ denotes the ceiling operator.  
+
+Since the Between Animals stratum is now split to Between Cages and Between Animals Within Cages stratum, the DF associated with the Between Animals Within Cages Between Runs stratum is transformed from Equation~(\ref{eq:aniDFbwRun}) to 
+\begin{equation}\label{eq:aniWiCagDFbwRun}
+\left(\left\lceil \frac{n_A}{n_\gamma}\right\rceil -1 \right) + \left(\left\lceil \frac{n_B}{n_\gamma}\right\rceil - 1\right),
+\end{equation} 
+where $\left\lceil \frac{n_B}{n_\gamma}\right\rceil - 1$ calculates the DF of the Between Cages Between Runs stratum. 
+
+Given that total DF of Between Animals Within Cages stratum is $n_B(n_{A(B)} - 1)$, the DF associated with Between Animals Within Cages Within Runs stratum is $n_B(n_{A(B)} - 1)$ subtract Equation~(\ref{eq:aniWiCagDFbwRun}), i.e.\
+\begin{equation}\label{eq:aniWiCagDFwiRun}
+n_B(n_{A(B)} - 1) - \left(\left\lceil \frac{n_A}{n_\gamma}\right\rceil -1 \right) + \left(\left\lceil \frac{n_B}{n_\gamma}\right\rceil - 1\right).
+\end{equation}  
+
+If the initial design where the cage is confounded more with run is used, the residual DF in the Between Animals Within Cages Within Runs stratum can be computed from the Equation~(\ref{eq:aniWiCagDFwiRun}) and further subtract $v$ and $v + 2$ for 4-plex and 8-plex experiments, respectively. If the initial design where the cage is confounded more with tag is used, it depends on how many DF associated with tag effects is in the Between Cages stratum. 

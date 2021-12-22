@@ -1,0 +1,228 @@
+---
+title: "Writeup 2"
+author: "Kevin Chang"
+date: "9 February 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(optimTE)
+
+
+displayDes <- function(des){
+  
+  des <- matrix(paste0(des$Tray, des$Plant, des$Trt), ncol = 4, nrow = 6, byrow = TRUE)
+  rownames(des) <- 1:6
+  colnames(des) <- 114:117
+  
+  knitr::kable(des,  row.names = TRUE)
+}
+
+initalDes <- 
+  data.frame(Run = rep(1:6, each = 4), 
+             Tag = rep(114:117, 6), 
+             Tray = rep(1:2, each = 12), 
+             Plant = rep(LETTERS[1:12], each= 2), 
+             Trt = rep(letters[1:3], each = 2))
+
+initalDes1 <- 
+  cbind(initalDes[,1:2], initalDes[as.numeric(t(matrix(1:24, ncol = 2))) , 3:5])
+
+```
+
+
+Three sets of designs were generated. The main differences between these three sets of designs are the relationship between the allocation of Trays to Runs and Tags. The first set of desiges has Trays intentionally confounded with Tags.
+
+
+# Tray effects are confounded with Tag effects 
+
+The initial allocation is presented below 
+```{r}
+initalDes2 <- 
+  cbind(initalDes1[,1:2], 
+        initalDes1[as.numeric(t(matrix(1:24, ncol = 4, byrow = TRUE)[,c(1,3,2,4)])) , 3:5])
+
+displayDes(initalDes2)
+```
+
+
+```{r}
+load("designTag2.Rdata")
+
+length(designTag1.list)
+
+avePlantEffs <- as.numeric(sapply(designTag1.list, function(x) x$avePlantEff ))
+
+trtDFs <- as.numeric(sapply(designTag1.list, function(x) x$trtDF) )
+
+resDFs <- as.numeric(sapply(designTag1.list, function(x) x$resDF))
+
+aveTrtEffs <- as.numeric(sapply(designTag1.list, function(x) x$aveTrtEff) )
+```
+
+
+```{r, echo = TRUE}
+sum(avePlantEffs == 1)/2000000
+
+table(trtDFs[avePlantEffs == 1])
+
+table(round(resDFs))
+
+table(round(resDFs[avePlantEffs == 1 & trtDFs == 2]))
+
+which(avePlantEffs == 1 & trtDFs == 2 & resDFs >= 6)
+
+aveTrtEffs[which(avePlantEffs == 1 & trtDFs == 2 & resDFs >= 6)]
+
+displayDes(designTag1.list[[854022]]$design)
+
+```
+
+
+```{r, echo = TRUE}
+
+summaryAovTwoPhase(
+  designTag1.list[[854022]]$design,
+  blk.str1 = "Tray/Plant",
+  blk.str2 = "Run",
+  trt.str = "Tag + Trt"
+)
+```
+
+
+```{r}
+rm(designTag1.list)
+```
+
+
+
+## Tray effects are confounded with Run effects 
+
+The initial allocation is presented below 
+```{r}
+initalDes2 <- 
+  cbind(initalDes1[,1:2], 
+        initalDes[as.numeric(t(matrix(1:24, ncol = 4, byrow = TRUE)[c(1,2,3,4,5,6) ,])) , 3:5])
+displayDes(initalDes2)
+```
+
+
+
+```{r}
+load("designRun1.Rdata")
+
+length(designRun1.list)
+
+avePlantEffs <- as.numeric(sapply(designRun1.list, function(x) x$avePlantEff ))
+
+trtDFs <- as.numeric(sapply(designRun1.list, function(x) x$trtDF) )
+
+resDFs <- as.numeric(sapply(designRun1.list, function(x) x$resDF))
+
+aveTrtEffs <- as.numeric(sapply(designRun1.list, function(x) x$aveTrtEff) )
+```
+
+
+```{r, echo = TRUE}
+sum(avePlantEffs == 1)
+
+sum(avePlantEffs == 1)/2000000
+
+table(trtDFs[avePlantEffs == 1])
+
+table(round(resDFs))
+
+table(round(resDFs[avePlantEffs == 1 & trtDFs == 2]))
+
+
+which(avePlantEffs == 1 & trtDFs == 2 & resDFs >= 5)
+
+aveTrtEffs[which(avePlantEffs == 1 & trtDFs == 2 & resDFs >= 5)]
+
+displayDes(designRun1.list[[1357108]]$design)
+```
+
+
+```{r}
+summaryAovTwoPhase(
+  designRun1.list[[1357108]]$design,
+  blk.str1 = "Tray/Plant",
+  blk.str2 = "Run",
+  trt.str = "Tag + Trt"
+)
+
+```
+
+
+```{r}
+rm(designRun1.list)
+```
+
+## Tray effects are orthogonal to Runs and  Tag effects 
+
+The initial allocation is presented below 
+```{r}
+initalDes2 <- 
+  cbind(initalDes1[,1:2], 
+        initalDes1[as.numeric(t(matrix(1:24, ncol = 4, byrow = TRUE)[,c(1,2,3,4)]))[
+          c(1:4, 8:5, 9:12, 16:13, 17:20, 24:21)] , 3:5])
+
+
+displayDes(initalDes2)
+```
+
+
+```{r}
+load("designRunTag.Rdata")
+
+length(designRunTag.list)
+
+avePlantEffs <- as.numeric(sapply(designRunTag.list, function(x) x$avePlantEff ))
+
+trtDFs <- as.numeric(sapply(designRunTag.list, function(x) x$trtDF) )
+
+resDFs <- as.numeric(sapply(designRunTag.list, function(x) x$resDF))
+
+aveTrtEffs <- as.numeric(sapply(designRunTag.list, function(x) x$aveTrtEff) )
+```
+
+
+```{r, echo = TRUE}
+sum(avePlantEffs == 1)
+
+sum(avePlantEffs == 1)/2000000
+
+table(trtDFs[avePlantEffs == 1])
+
+table(round(resDFs))
+
+table(round(resDFs[avePlantEffs == 1 & trtDFs == 2]))
+
+
+which(avePlantEffs == 1 & trtDFs == 2 & resDFs >= 5)
+
+aveTrtEffs[which(avePlantEffs == 1 & trtDFs == 2 & resDFs >= 5)]
+
+displayDes(designRunTag.list[[673808]]$design)
+```
+
+
+```{r}
+summaryAovTwoPhase(
+  designRunTag.list[[673808]]$design,
+  blk.str1 = "Tray/Plant",
+  blk.str2 = "Run",
+  trt.str = "Tag + Trt"
+)
+```
+
+
+```{r, echo = TRUE}
+table(designRunTag.list[[673808]]$design$Tag, designRunTag.list[[673808]]$design$Trt)
+```
+
+
+```{r}
+rm(designRunTag.list)
+```

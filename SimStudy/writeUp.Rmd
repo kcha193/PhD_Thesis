@@ -1,0 +1,166 @@
+---
+title: "Simulation study"
+author: "Kevin Chang"
+date: "30 January 2018"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Allocation of Trays to Runs and Tags 
+
+### Allocation of Trays to Tags 
+
+```{r tag, echo=FALSE}
+Tray_Tag <- 
+expand.grid(Tag114= c(1,2),
+            Tag115= c(1,2),
+            Tag116= c(1,2),
+            Tag117= c(1,2))
+
+Tray_Tag <- Tray_Tag[-c(1,nrow(Tray_Tag)),]
+
+
+Tray_Tag <- 
+  Tray_Tag[apply(Tray_Tag, 1, 
+               function(x) 
+                 table(x)[1] == table(x)[2]  ),]
+
+Tray_Tag <- Tray_Tag[Tray_Tag[,1]==1,]
+rownames(Tray_Tag) <- 1:nrow(Tray_Tag)
+
+```
+
+There are `r nrow(Tray_Tag)` ways to allocate two Trays to four Tags These allocations are presented as below: 
+```{r, echo=FALSE}
+knitr::kable(Tray_Tag, row.names = TRUE)
+```
+
+### Allocation of Trays to Runs
+
+```{r run, echo=FALSE}
+Tray_Run <- 
+expand.grid(Run1= c(1,2),
+            Run2= c(1,2),
+            Run3= c(1,2),
+            Run4= c(1,2),
+            Run5= c(1,2),
+            Run6= c(1,2))
+
+Tray_Run <- Tray_Run[-c(1,nrow(Tray_Run)),]
+
+Tray_Run <- 
+  Tray_Run[apply(Tray_Run, 1, 
+                 function(x) 
+                   table(x)[1] == table(x)[2]  ),]
+
+Tray_Run <- Tray_Run[Tray_Run[,1]==1,]
+
+rownames(Tray_Run) <- 1:nrow(Tray_Run)
+
+```
+
+There are `r nrow(Tray_Run)` ways to allocate two Trays to six Runs. These allocations are presented as below: 
+```{r, echo=FALSE}
+knitr::kable(Tray_Run, row.names = TRUE)
+```
+
+Thus, there are `r nrow(Tray_Tag) + nrow(Tray_Run)` ways in total to allocate two Trays to six runs and four tags. 
+
+
+## Allocation of three Treatments to 12 plots within each Tray
+
+```{r trt, echo=FALSE, cache=TRUE}
+
+Trt_Tray <- 
+  expand.grid(Plt1= letters[c(1,2,3)],
+              Plt2= letters[c(1,2,3)],
+              Plt3= letters[c(1,2,3)],
+              Plt4= letters[c(1,2,3)],
+              Plt5= letters[c(1,2,3)],
+              Plt6= letters[c(1,2,3)],
+              Plt7= letters[c(1,2,3)],
+              Plt8= letters[c(1,2,3)],
+              Plt9= letters[c(1,2,3)],
+              Plt10= letters[c(1,2,3)],
+              Plt11= letters[c(1,2,3)],
+              Plt12= letters[c(1,2,3)])
+
+index <- apply(Trt_Tray, 1, function(x) length(table(x)) == 3)
+
+Trt_Tray <-   Trt_Tray[index,]
+
+index2 <- apply(Trt_Tray, 1, 
+                function(x) 
+                  table(x)[1] == table(x)[2] & 
+                  table(x)[1] ==table(x)[3] & 
+                  table(x)[2] == table(x)[3])
+
+Trt_Tray <-   Trt_Tray[index2,]
+
+
+Trt_Tray <- 
+  Trt_Tray[order(Trt_Tray[,1], Trt_Tray[,2], Trt_Tray[,3], 
+               Trt_Tray[,4], Trt_Tray[,5], Trt_Tray[,6], 
+               Trt_Tray[,7], Trt_Tray[,8], Trt_Tray[,9], 
+               Trt_Tray[,10], Trt_Tray[,11], Trt_Tray[,12]), ]
+
+rownames(Trt_Tray) <- 1:nrow(Trt_Tray)
+
+```
+
+There are `r nrow(Trt_Tray)` ways to allocate three Treatments to 12 plots within a Tray. The first 10 and last 10 allocations are presented as below: 
+```{r, echo=FALSE}
+knitr::kable(head(Trt_Tray, 10), row.names = TRUE)
+
+knitr::kable(tail(Trt_Tray, 10), row.names = TRUE)
+
+```
+
+## Allocation of two Plants to each Treatment, i.e. expermetnal units
+
+```{r plant, echo=FALSE}
+Plant_Trt <- 
+expand.grid(Unit1= LETTERS[c(1,4)],
+            Unit2= LETTERS[c(1,4)],
+            Unit3= LETTERS[c(1,4)],
+            Unit4= LETTERS[c(1,4)])
+
+Plant_Trt <- Plant_Trt[-c(1,nrow(Plant_Trt)),]
+
+
+Plant_Trt <- 
+  Plant_Trt[apply(Plant_Trt, 1, 
+               function(x) 
+                 table(x)[1] == table(x)[2]  ),]
+
+Plant_Trt <- Plant_Trt[Plant_Trt[,1]== "A",]
+rownames(Plant_Trt) <- 1:nrow(Plant_Trt)
+
+```
+
+There are `r nrow(Plant_Trt)` ways to allocate two plants to the four experimetnal units of each treatment group. These allocations are presented as below: 
+```{r, echo=FALSE}
+
+knitr::kable(Plant_Trt, row.names = TRUE)
+
+
+```
+
+However, there is then `r choose(nrow(Trt_Tray) ,2)` way to allocate `r nrow(Trt_Tray)` different allocations to two trays. This is still too many. 
+
+
+<!-- Thus, there are `r (nrow(Tray_Tag) + nrow(Tray_Run)) * nrow(Trt_Tray)  * nrow(Plant_Trt)` ways to uniquely allocate the 24 samples from the Phase 1 experiment to 6 runs and labelled by 4 tags of the Phase 2 experiment. Instead of `r format(factorial(24), scientific = TRUE)`  ways.   -->
+
+
+
+
+
+
+
+
+
+
+

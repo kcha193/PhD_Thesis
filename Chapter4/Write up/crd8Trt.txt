@@ -1,0 +1,1035 @@
+\section{Illustrate a special examples with 8 treatments} 
+\label{sec:exampleWith8Trt}
+For the experiment design parameters consist of $v = 8, r_b = 4, n_B = 4, n_{A(B)} = 8, r_t = 2, n_R = 64 \; \mathrm{and} \; n_\gamma = 4$, 8 of 32 animals are assigned to each of 4 cages, denoted by Cage 1 to 4, each of 8 animals, denoted by A to H, are randomly assigned to each of 8 treatments, denoted by a to h. The Phase 1 theoretical ANOVA is expressed in Table~\ref{tab:Phase1ANOVAEX5}. All treatment information is in the Between Animals Within Cages stratum. The DF associated with the Between Cages and Between Animals Within Cages are 3 and 28, respectively. Since there are 7 DF associated with the treatment effects, the DF of the residual MS for the Between Animals stratum becomes 21.
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for the Phase 1 experiment with $v = 8, r_b = 4, n_B = 4$ and $n_{A(B)} = 8$.}
+ \begin{tabular}{lrll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{
+\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\
+ \midrule
+ Between Cages & $3$ & $\sigma_{A}^2+8\sigma_{B}^2$ &\\    \hline
+ Between Animals Within Cages &  &  &\\
+ \quad Treatment & $7$ & $\sigma_{A}^2+4\theta_{\gamma}$ &$1$\\
+ \quad Residual & $21$ & $\sigma_{A}^2$ &\\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase1ANOVAEX5}
+\end{table}
+
+This section presents two optimal designs where the first optimal design has the highest residual DF and the second optimal design has highest residual DF but lower residual DF.  
+
+\subsection{Optimal design with higher residual DF}
+Since the both the numbers of cage and treatment are even, based on the method in constructing the initial design described in Section~\ref{sec:allocateCage}, the two initial designs where the cage is confounded more with runs and tags need to be examine.
+ 
+Using the two-step optimisation procedure, using the initial design where the cage is confounded more with runs has shown to have higher residual DF of 16. This allocation of cages and animals to runs and tags are presented in Table~\ref{tab:aniDesEX5}. The first observation this allocation is that Cage 1 is only assigned to Run 1 to 4, Cage 2 is only assigned to Run 5 to 8, Cage 3 is only assigned to Run 9 to 12 and Cage 4 is only assigned to Run 13 to 16. Hence, the allocation of cages is disconnected. There are still 24 canonical efficiency factors associated with animals effects in the Within Cages Within Runs stratum generated from this design. These 24 canonical efficiency factors are all unity, which means the tests for the treatment effects can be conducted in Between Animals Within Cages Within Runs stratum. 
+
+\begin{table}[ht]                                           
+\centering 
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with $v = 8, r_b = 4, n_B = 4, n_{A(B)} = 8, r_t = 2, n_R = 64 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}{c|cccc} 
+ & \multicolumn{4}{c}{{\bf Tag}} \\ 
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & 1D & 1C & 1A & 1H \\      
+2  & 1C & 1D & 1H & 1A \\      
+3  & 1F & 1E & 1B & 1G \\      
+4  & 1E & 1F & 1G & 1B \\      
+5  & 2E & 2H & 2C & 2F \\      
+6  & 2H & 2E & 2F & 2C \\      
+7  & 2A & 2B & 2D & 2G \\      
+8  & 2B & 2A & 2G & 2D \\      
+9  & 3B & 3A & 3C & 3F \\      
+10 & 3A & 3B & 3F & 3C \\      
+11 & 3G & 3H & 3D & 3E \\      
+12 & 3H & 3G & 3E & 3D \\      
+13 & 4D & 4F & 4A & 4E \\      
+14 & 4F & 4D & 4E & 4A \\      
+15 & 4C & 4G & 4B & 4H \\      
+16 & 4G & 4C & 4H & 4B \\      
+\end{tabular}
+\label{tab:trtDesEX3}
+\end{table}         
+
+Base on the assignments of treatments to animals in the Phase 1 experiment, the allocation of treatments to runs and tags can be shown in Table~\ref{tab:trtDesEX6}. This design generated 8 treatment canonical efficiency factors, which are $1, 1, 1, 3/4, 3/4, 3/4$ and $3/4$. The treatment average efficiency factor is then $0.84$, which is lower than the previous design of $0.8498$. The seven basic treatment contrasts which are associated with each of the treatment canonical efficiency factors can then be derived from the eigenvectors. Each of seven treatment contrasts are presented as each column of a matrix as follows, 
+\[                                                                                             
+\begin{bmatrix}                                                                                
+ 0.49652561 & -0.05884148 & -0.4888209 & -0.1051385 &  0.33975280 & -0.36683516 &  0.3535534\\ 
+-0.05884148 & -0.49652561 &  0.4888209 &  0.1051385 & -0.36683516 & -0.33975280 &  0.3535534\\ 
+-0.39270384 & -0.30948941 & -0.1051385 &  0.4888209 &  0.49963314 & -0.01915012 & -0.3535534\\ 
+ 0.30948941 & -0.39270384 &  0.1051385 & -0.4888209 &  0.01915012 &  0.49963314 & -0.3535534\\ 
+-0.30948941 &  0.39270384 &  0.1051385 & -0.4888209 & -0.01915012 & -0.49963314 & -0.3535534\\ 
+ 0.39270384 &  0.30948941 & -0.1051385 &  0.4888209 & -0.49963314 &  0.01915012 & -0.3535534\\ 
+-0.49652561 &  0.05884148 & -0.4888209 & -0.1051385 & -0.33975280 &  0.36683516 &  0.3535534\\ 
+ 0.05884148 &  0.49652561 &  0.4888209 &  0.1051385 &  0.36683516 &  0.33975280 &  0.3535534\\ 
+\end{bmatrix}                                                                                  
+\]                                                                                             
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with $v = 8, r_b = 4, n_B = 4, n_{A(B)} = 8, r_t = 2, n_R = 64 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & d & c & a & h \\   
+2  & c & d & h & a \\   
+3  & f & e & b & g \\   
+4  & e & f & g & b \\   
+5  & e & h & c & f \\   
+6  & h & e & f & c \\   
+7  & a & b & d & g \\   
+8  & b & a & g & d \\   
+9  & b & a & c & f \\   
+10 & a & b & f & c \\   
+11 & g & h & d & e \\   
+12 & h & g & e & d \\   
+13 & d & f & a & e \\   
+14 & f & d & e & a \\   
+15 & c & g & b & h \\   
+16 & g & c & h & b \\   
+\end{tabular}                                               
+\label{tab:trtDesEX5}                                      
+\end{table}         
+
+The Phase 2 theoretical ANOVA table is expressed as in Table~\ref{tab:Phase2ANOVAEX5}. Compared this ANOVA table in Table~\ref{tab:Phase1ANOVAEX5} of the Phase 1 experiment to the Phase 2 theoretical ANOVA table, there are 8 DF associated with the animal effects are lost to Between Runs stratum (7 DF) and tag effects (1 DF). There are still 16 DF associated with residual MS for conducting the test for the treatment effects. The amount of treatment information in the Between Runs and Within Runs strata are shown to be $\dfrac{1}{4}$ and $0.84$, respectively. 
+ 
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for Phase 2 experiment with $v = 8, r_b = 4, n_B = 4, n_{A(B)} = 8, r_t = 2, n_R = 64 \; \mathrm{and} \; n_\gamma = 4$.}
+ \begin{tabular}{lrlll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{
+\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\
+ \midrule
+ Between Runs &  &  & & \\
+ \quad Between Cages & $3$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{C}^2+4\sigma_{R}^2$ & & \\\hline
+ \quad Between Animals Within Cages &  &  & & \\
+ \quad \quad Treatment & $4$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau}$ & & $\frac{1}{4}$\\
+ \quad Residual & $8$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+ Within Runs&  &  & & \\
+ \quad Between Animals Within Cages &  &  & & \\
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\theta_{\gamma}$ &$1$ & \\
+ \quad \quad Treatment & $7$ & $\sigma^2+2\sigma_{A}^2+\frac{168}{25}\theta_{\tau}$ & & $\frac{21}{25}$\\
+ \quad \quad Residual & $16$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals Within Cages &  &  & & \\
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\gamma}$ &$1$ & \\
+ \quad \quad Residual & $22$ & $\sigma^2$ & & \\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase2ANOVAEX5}
+\end{table}
+
+Fitting the seven basic contrasts into the model, the new theoretical ANOVA table is presented in Table~\ref{tab:Phase2ANOVAEX5trtContr}. This new table shows how much of the information for each treatment contrast are split in the Between Runs and Within Runs stratum. The 3 out of 7 contrasts has $100\%$ of the treatment information in the Within Runs stratum. The remaining 4 contrasts has $\dfrac{1}{4}$ and $\dfrac{3}{4}$ of treatment information in the Between Runs and Within Runs strata, repetitively. Thus, the average treatment efficiency factor in the Between Runs stratum is compute to be $\dfrac{1}{4}$.  
+
+\begin{landscape}
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for Phase 2 experiment with treatment contrasts and consists $v = 8, r_b = 4, n_B = 4, n_{A(B)} = 8, r_t = 2, n_R = 64 \; \mathrm{and} \; n_\gamma = 4$.}
+ \begin{tabular}{lrlllllllll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}}        & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&    
+ \multicolumn{1}{l}{$\bm{E_{\tau_1}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_2}}$}&\multicolumn{1}{l}                     {$\bm{E_{\tau_3}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_4}}$}&\multicolumn{1}{l}{$\bm{E_                     {\tau_5}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_6}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_7}}$}\\
+ \midrule
+ Between Runs &  &  & &  &  &  &  &  &  & \\
+ \quad Between Cages & $3$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{B}^2+4\sigma_{R}^2$ & &                       &  &  &  &  &  & \\ \hline
+ \quad Between Animals Within Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_4}$ &                      &  &  &  & $\frac{1}{4}$ &  &  & \\
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_5}$ &                      &  &  &  &  & $\frac{1}{4}$ &  & \\
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_6}$ &                      &  &  &  &  &  & $\frac{1}{4}$ & \\
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_7}$ &                      &  &  &  &  &  &  & $\frac{1}{4}$\\
+ \quad Residual & $8$ & $\sigma^2+4\sigma_{R}^2$ & &  &  &  &  &  &  & \\ \hline
+ Within Runs &  &  & &  &  &  &  &  &  & \\
+ \quad Between Animals Within Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\theta_{\gamma}$ &$1$ &  &  &  &                       &  &  & \\
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau_1}$ & & $1$ &  &  &                       &  &  & \\
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau_2}$ & &  & $1$ &  &                       &  &  & \\
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau_3}$ & &  &  & $1$ &                       &  &  & \\
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_4}$ & &  &  &  & $\frac{3}{4}$ &  &  & \\
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_5}$ & &  &  &  &  &                      $\frac{3}{4}$ &  & \\
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_6}$ & &  &  &  &  &                       & $\frac{3}{4}$ & \\
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_7}$ & &  &  &  &  &                       &  & $\frac{3}{4}$\\
+ \quad \quad Residual & $16$ & $\sigma^2+2\sigma_{A}^2$ & &  &  &  &  &  &  & \\ \hline
+ \quad Within Animals Within Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\gamma}$ &$1$ &  &  &  &  &  &  & \\
+ \quad \quad Residual & $22$ & $\sigma^2$ & &  &  &  &  &  &  & \\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase2ANOVAEX5trtContr}
+\end{table}
+\end{landscape}                                                                                                           
+                                                                                                           
+\subsection{Optimal design with higher treatment average efficiency factor}
+Recall the extra optimisation procedure described in Section~\ref{sec:exampleWith6Trt}, where the second objective function is re-optimised while the residual DF is reduced. Note that there are two initial designs available where first initial design has cage confounded more with runs and second initial design has cage confounded more with tags. The first initial design yield a design with the highest residual DF of 16 as presented previously. It is only until the residual DF is reduced to 13 when a design with the highest treatment efficiency factor of $0.8497616$ is found. With the second initial design, the residual DF is optimised to be 15; however, the design with treatment efficiency factor of $0.8497616$ can be obtained with the residual DF of 14. Thus, the second design with treatment efficiency factor of $0.8497616$ and residual DF of 14 is presented in here. 
+
+The allocation of cages and animals to runs and tags are presented in Table~\ref{tab:aniDesEX6}. Note that cage allocation is now connected to runs, because every run contains each of four cages. However, there are 21 canonical efficiency factors associated with animals effects in the Within Cages Within Runs stratum generated from this design. These 21 canonical efficiency factors are all unity, which means the tests for the treatment effects can be conducted in Between Animals Within Cages Within Runs stratum. 
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & 2D & 1G & 4H & 3A \\           
+2  & 1G & 2D & 3A & 4H \\           
+3  & 2E & 1B & 4F & 3D \\           
+4  & 1B & 2E & 3D & 4F \\           
+5  & 1D & 2C & 3H & 4E \\           
+6  & 2C & 1D & 4E & 3H \\           
+7  & 2H & 1C & 3B & 4A \\           
+8  & 1C & 2H & 4A & 3B \\           
+9  & 1E & 2A & 3F & 4C \\           
+10 & 2A & 1E & 4C & 3F \\           
+11 & 2G & 1F & 3C & 4D \\           
+12 & 1F & 2G & 4D & 3C \\           
+13 & 1A & 2B & 3E & 4G \\           
+14 & 2B & 1A & 4G & 3E \\           
+15 & 2F & 1H & 4B & 3G \\           
+16 & 1H & 2F & 3G & 4B \\           
+\end{tabular}                                               
+\label{tab:aniDesEX6}                                      
+\end{table}         
+
+Base on the assignments of treatments to animals in the Phase 1 experiment, the allocation of treatments to runs and tags can be shown in Table~\ref{tab:trtDesEX6}. This design generated 8 treatment canonical efficiency factors, which are $0.963, 0.963, 7/8, 7/8, 0.787, 0.787$ and $3/4$. The treatment average efficiency factor is then $0.8498$, which is the same as the first design. The seven basic treatment contrasts which are associated with each of the treatment canonical efficiency factors can then be derived from the eigenvectors. Each of seven treatment contrasts are presented as each column of a matrix as follows,
+\[                                                                                                  
+\begin{bmatrix}                                                                                     
+ 0.49652561 & -0.05884148 & -0.4888209 & -0.1051385 &  0.33975280 -& -0.36683516 &  0.3535534\\     
+-0.05884148 & -0.49652561 &  0.4888209 &  0.1051385 & -0.36683516 -& -0.33975280 &  0.3535534\\     
+-0.39270384 & -0.30948941 & -0.1051385 &  0.4888209 &  0.49963314 -& -0.01915012 & -0.3535534\\     
+ 0.30948941 & -0.39270384 &  0.1051385 & -0.4888209 &  0.01915012  &  0.49963314 & -0.3535534\\     
+-0.30948941 &  0.39270384 &  0.1051385 & -0.4888209 & -0.01915012 -& -0.49963314 & -0.3535534\\     
+ 0.39270384 &  0.30948941 & -0.1051385 &  0.4888209 & -0.49963314  &  0.01915012 & -0.3535534\\     
+-0.49652561 &  0.05884148 & -0.4888209 & -0.1051385 & -0.33975280  &  0.36683516 &  0.3535534\\     
+ 0.05884148 &  0.49652561 &  0.4888209 &  0.1051385 &  0.36683516  &  0.33975280 &  0.3535534\\     
+ \end{bmatrix}.                                                                                     
+\]                                                                                                  
+                                                                                                    
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & d & g & h & a \\   
+2  & g & d & a & h \\   
+3  & e & b & f & d \\   
+4  & b & e & d & f \\   
+5  & d & c & h & e \\   
+6  & c & d & e & h \\   
+7  & h & c & b & a \\   
+8  & c & h & a & b \\   
+9  & e & a & f & c \\   
+10 & a & e & c & f \\   
+11 & g & f & c & d \\   
+12 & f & g & d & c \\   
+13 & a & b & e & g \\   
+14 & b & a & g & e \\   
+15 & f & h & b & g \\   
+16 & h & f & g & b \\       
+\end{tabular}                                               
+\label{tab:trtDesEX6}                                      
+\end{table}         
+
+The Phase 2 theoretical ANOVA table is expressed as in Table~\ref{tab:Phase2ANOVAEX6}. Compared this ANOVA table in Table~\ref{tab:Phase1ANOVAEX6} of the Phase 1 experiment to the Phase 2 theoretical ANOVA table, there are 8 DF associated with the animal effects are lost to Between Runs stratum (7 DF). There are still 14 DF associated with residual MS for conducting the test for the treatment effects, which is 2 less compared to the previous two design. However, the amount of treatment information remains becomes $0.8498$, which higher than the previous design and the same as the first design. The main reason that the optimal design found here has the same treatment efficiency factor as the design found from CRD is that the treatment effects are completely orthogonal to cages. Hence, the separation of the treatment information only associated with the Between Animals Within Cages stratum.
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for Phase 2 experiment with $v = 8, r_b = 4, n_B = 4, n_{A(B)} = 8, r_t = 2, n_R = 64 \; \mathrm{and} \; n_\gamma = 4$.}
+ \begin{tabular}{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\tau}}$}&\multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatment  & $7$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2/3\theta_{\gamma}$ & & $\frac{1}{12}$\\ \hline 
+ \quad Within Animals Within Cages & $8$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline 
+ Within Runs &  &  & & \\ 
+ \quad Between Cages &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{B}^2+16\theta_{\tau}$ &$1$ & \\ 
+ \quad \quad Residual & $2$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{B}^2$ & & \\ \hline 
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatment  & $7$ & $\sigma^2+2\sigma_{A}^2+6.798\theta_{\gamma}$ & & $0.84976$\\ 
+ \quad \quad Residual & $14$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline 
+ \quad Within Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\tau}$ &$1$ & \\ 
+ \quad \quad Residual & $22$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVAEX6} 
+\end{table} 
+
+Fitting the seven basic contrasts described into the model, the new theoretical ANOVA table is presented in Table~\ref{tab:Phase2ANOVAEX6trtContr}. This new table shows how much of the information for each treatment contrast are split in the Between Runs and Within Runs strata. For this design, all seven contrasts has some treatment information in both Between Runs and Within Runs strata. The treatment contrast 1 and 2 has $0.0366$ and $0.963$ of treatment information in Between Runs and Within Runs strata, respectively.  The treatment contrast 3 and 4 has $\dfrac{1}{8}$ and $\dfrac{7}{8}$ of treatment information in Between Runs and Within Runs strata, respectively. The treatment contrast 5 and 6 has $0.213$ and $0.787$ of treatment information in Between Runs and Within Runs strata, respectively. Thus. the treatment information of $\dfrac{1}{12}$ in the Between Runs stratum is computed from the harmonic mean of $0.0366$, $0.0366$, $\dfrac{1}{8}$, $\dfrac{1}{8}$, $0.213$ and $0.213$. 
+
+\begin{landscape}
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for Phase 2 experiment with treatment contrasts and consists of $v = 8, r_b = 4, n_B = 4, n_{A(B)} = 8, r_t = 2, n_R = 64 \; \mathrm{and} \; n_\gamma = 4$.}
+ \begin{tabular}{lrlllllllll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_1}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_2}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_3}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_4}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_5}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_6}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_7}}$}\\ 
+ \midrule 
+ Between Runs &  &  & &  &  &  &  &  &  & \\ 
+ \quad Between Animals Within Cages &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+0.2929\theta_{\tau_1}$ & & $ 0.0366$ &  &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+0.293\theta_{\tau_2}$ & &  & $0.0366$ &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_3}$ & &  &  & $\frac{1}{8}$ &  &  &  & \\ 
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_4}$ & &  &  &  & $\frac{1}{8}$ &  &  & \\ 
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+1.707\theta_{\tau_5}$ & &  &  &  &  & $0.213$ &  & \\ 
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+1.707\theta_{\tau_6}$ & &  &  &  &  &  & $0.213$ & \\ 
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_7}$ & &  &  &  &  &  &  & $\frac{1}{4}$\\ \hline 
+ \quad Within Animals Within Cages & $8$ & $\sigma^2+4\sigma_{R}^2$ & &  &  &  &  &  &  & \\ \hline 
+ Within Run &  &  & &  &  &  &  &  &  & \\ 
+ \quad Between Cages &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{B}^2+16\theta_{\gamma}$ &$1$ &  &  &  &  &  &  & \\ 
+ \quad \quad Residual & $2$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{B}^2$ & &  &  &  &  &  &  & \\ \hline 
+ \quad Between Animals Within Cages &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+7.707\theta_{\tau_1}$ & & $0.963$ &  &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+7.707\theta_{\tau_2}$ & &  & $0.963$ &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+7\theta_{\tau_3}$ & &  &  & $\frac{7}{8}$ &  &  &  & \\ 
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+7\theta_{\tau_4}$ & &  &  &  & $\frac{7}{8}$ &  &  & \\ 
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+ 6.292\theta_{\tau_5}$ & &  &  &  &  & $0.787$ &  & \\ 
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+ 6.293\theta_{\tau_6}$ & &  &  &  &  &  & $0.787$ & \\ 
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{CA}^2+6\theta_{\tau_7}$ & &  &  &  &  &  &  & $\frac{3}{4}$\\ 
+ \quad \quad Residual & $14$ & $\sigma^2+2\sigma_{A}^2$ & &  &  &  &  &  &  & \\ \hline 
+ \quad Within Animals Within Cages &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\gamma}$ &$1$ &  &  &  &  &  &  & \\ 
+ \quad \quad Residual & $22$ & $\sigma^2$ & &  &  &  &  &  &  & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVAEX6trtContr} 
+\end{table} 
+\end{landscape} 
+
+This section again shows that design with reduced DF, but also with different initial design can yield a design with a higher treatment average efficiency factor. Next section will further compare this two design using some simulated datasets. 
+
+\subsection{Phase 1 experiment arranged in CRD}
+For the Phase 1 experiment arranged in CRD, the design parameters for this example consists of $v = 8, r_b = 4, n_{A} = 32, r_t = 2, n_R = 16 \; \mathrm{and} \; n_\gamma = 4$. For such experiment, 8 of 32 animals, denoted by AA to BF, are randomly assigned to each of eight treatments, denoted by a to h. The first phase theoretical ANOVA is expressed in Table~\ref{tab:Phase1ANOVAEX2}. All treatment information is in the Between Animals stratum. The DF associated with the Between Animals Stratum and Within Animals stratum are 31 and 32, respectively. Since there are 7 DF associated with the treatment effects, the DF of the residual MS for the Between Animals stratum becomes 24.
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table of Phase 1 experiment with $v = 8, r_b = 4,  n_{A} = 32 \; \mathrm{and} \; r_t = 2$}
+ \begin{tabular}[t]{lrll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\ 
+ \midrule 
+ Between Animals &  &  &\\ 
+ \quad Treatment & $7$ & $\sigma_{A}^2+4\theta_{\gamma}$ &$1$\\ 
+ \quad Residual & $24$ & $\sigma_{A}^2$ &\\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase1ANOVAEX4} 
+\end{table}
+
+The allocation of animals to runs and tags are presented in Table~\ref{tab:aniDesEX4}. There are 24 canonical efficiency factors associated with animals effects in the Within Runs stratum generated from this design. These 24 canonical efficiency factors are all unity, which means the tests for the treatment effects can be conducted in Between Animals Within Runs stratum. 
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Animal allocation to runs and tags found for Phase 2 experiment with $v = 8, r_b = 4,  n_{A} = 32, r_t = 2, n_R = 16 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & AD & AJ & AW & AC \\ 
+2  & AJ & AD & AC & AW \\ 
+3  & BD & AQ & AS & AZ \\ 
+4  & AQ & BD & AZ & AS \\ 
+5  & AF & AO & AM & AP \\ 
+6  & AO & AF & AP & AM \\ 
+7  & AX & AG & AA & AB \\ 
+8  & AG & AX & AB & AA \\ 
+9  & AK & BB & AU & BF \\ 
+10 & BB & AK & BF & AU \\ 
+11 & BA & AE & AY & BE \\ 
+12 & AE & BA & BE & AY \\ 
+13 & BC & AR & AL & AV \\ 
+14 & AR & BC & AV & AL \\ 
+15 & AH & AI & AT & AN \\ 
+16 & AI & AH & AN & AT \\ 
+\end{tabular}                                               
+\label{tab:aniDesEX4}                                      
+\end{table}         
+
+Base on the assignments of treatments to animals in the Phase 1 experiment, the allocation of treatments to runs and tags can be shown in Table~\ref{tab:trtDesEX4}. This design generated 8 treatment canonical efficiency factors, which are $0.963, 0.963, 7/8, 7/8, 0.787, 0.787$ and $3/4$. The treatment average efficiency factor is then $0.8498$. The seven basic treatment contrasts which are associated with each of the treatment canonical efficiency factors can then be derived from the eigenvectors. Each of seven treatment contrasts are presented as each column of a matrix as follows, 
+\[                                                                        
+\begin{bmatrix}                                                           
+-0.3889 &  0.3143 &  0.1187  & -0.4857 &  0.5000 &  0.0050 & -0.3536\\    
+-0.4972 & -0.0527 &  0.4857  &  0.1187 & -0.3571 &  0.3500 &  0.3536\\    
+-0.3143 & -0.3889 & -0.1187  &  0.4857 &  0.0050 & -0.5000 & -0.3536\\    
+ 0.0527 & -0.4972 & -0.4857  & -0.1187 &  0.3500 &  0.3571 &  0.3536\\    
+ 0.3889 & -0.3143 &  0.1187  & -0.4857 & -0.5000 & -0.0050 & -0.3536\\    
+-0.0527 &  0.4972 & -0.4857  & -0.1187 & -0.3500 & -0.3571 &  0.3536\\    
+ 0.4972 &  0.0527 &  0.4857  &  0.1187 &  0.3571 & -0.3500 &  0.3536\\    
+ 0.3143 &  0.3889 & -0.1187  &  0.4857 & -0.0050 &  0.5000 & -0.3536\\    
+ \end{bmatrix}.                             
+\]                                                                        
+                                                                          
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with $v = 8, r_b = 4,  n_{A} = 32, r_t = 2, n_R = 16 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & d & b & g & c \\   
+2  & b & d & c & g \\   
+3  & f & a & c & b \\   
+4  & a & f & b & c \\   
+5  & f & g & e & h \\   
+6  & g & f & h & e \\   
+7  & h & g & a & b \\   
+8  & g & h & b & a \\   
+9  & c & d & e & h \\   
+10 & d & c & h & e \\   
+11 & c & e & a & g \\   
+12 & e & c & g & a \\   
+13 & e & b & d & f \\   
+14 & b & e & f & d \\   
+15 & h & a & d & f \\   
+16 & a & h & f & d \\   
+\end{tabular}                                               
+\label{tab:trtDesEX4}                                      
+\end{table}         
+
+The Phase 2 theoretical ANOVA table is expressed as in Table~\ref{tab:Phase2ANOVAEX4}. Compared this ANOVA table in Table~\ref{tab:Phase1ANOVAEX4} of the Phase 1 experiment to the Phase 2 theoretical ANOVA table, there are 8 DF associated with the animal effects are lost to Between Runs stratum (7 DF) and tag effects (1 DF). There are still 16 DF associated with residual MS for conducting the test for the treatment effects. In addition, the amount of treatment information remains for conducting the test is now $0.8498$. The amount of treatment information in the Between Animals Between Runs stratum is shown to be $\frac{1}{12}$, which is deduced from the treatment canonical efficiency factor in the Between Animals Between Runs stratum. These treatment canonical efficiency factors can be derived from 1 minus the treatment canonical efficiency factors of Between Animals Within Runs stratum, which are $1/4, 0.213, 0.213, 1/8, 1/8, 0.0366$ and $0.0366$. 
+ 
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table of Phase 2 experiment with $v = 8, r_b = 4, n_{A} = 32, r_t = 2, n_R = 16 \; \mathrm{and} \; n_\gamma = 4$}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Animals &  &  & & \\ 
+ \quad \quad Treatment & $7$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\frac{2}{3}\theta_{\tau}$ & & $\frac{1}{12}$\\ 
+ \quad Residual & $8$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+ Within Runs &  &  & & \\ 
+ \quad Between Animals &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Treatment & $7$ & $\sigma^2+2\sigma_{A}^2+6.798\theta_{\tau}$ & & $0.8498$\\ 
+ \quad \quad Residual & $16$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $22$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVAEX4} 
+\end{table} 
+
+Fitting the seven basic contrasts described into the model, the new theoretical ANOVA table is 
+presented in Table~\ref{tab:Phase2ANOVAEX4trtContr}. This new table shows how much of the information for each treatment contrast are split in the Between Runs and Within Runs stratum. These amount of treatment information are the treatment canonical efficiency factors as described previously.
+ 
+\begin{landscape}
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table of Phase 2 experiment with $v = 8, r_b = 4, n_{A} = 32, r_t = 2, n_R = 64 \; \mathrm{and} \; n_\gamma = 4$}
+ \begin{tabular}[t]{lrlllllllll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_1}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_2}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_3}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_4}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_5}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_6}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_7}}$}\\ 
+ \midrule 
+ Between Runs &  &  & &  &  &  &  &  &  & \\ 
+ \quad Between Animals &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+0.293\theta_{\tau_1}$ & & $0.0366$ &  &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+0.293\theta_{\tau_2}$ & &  & $0.0366$ &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_3}$ & &  &  & $\frac{1}{8}$ &  &  &  & \\ 
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_4}$ & &  &  &  & $\frac{1}{8}$ &  &  & \\ 
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+1.707\theta_{\tau_5}$ & &  &  &  &  & $0.213$ &  & \\ 
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+1.707\theta_{\tau_6}$ & &  &  &  &  &  & $0.213$ & \\ 
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_7}$ & &  &  &  &  &  &  & $\frac{1}{4}$\\ 
+ \quad Residual & $8$ & $\sigma^2+4\sigma_{R}^2$ & &  &  &  &  &  &  & \\ \hline
+ Within Runs &  &  & &  &  &  &  &  &  & \\ 
+ \quad Between Animals &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\theta_{\gamma}$ &$1$ &  &  &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+7.707\theta_{\tau_1}$ & & $0.963$ &  &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+7.707\theta_{\tau_2}$ & &  & $0.963$ &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+7\theta_{\tau_3}$ & &  &  & $\frac{7}{8}$ &  &  &  & \\ 
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+7\theta_{\tau_4}$ & &  &  &  & $\frac{7}{8}$ &  &  & \\ 
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+6.293\theta_{\tau_5}$ & &  &  &  &  & $0.787$ &  & \\ 
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+6.292\theta_{\tau_6}$ & &  &  &  &  &  & $0.787$ & \\ 
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_7}$ & &  &  &  &  &  &  & $\frac{3}{4}$\\ 
+ \quad \quad Residual & $16$ & $\sigma^2+2\sigma_{A}^2$ & &  &  &  &  &  &  & \\ \hline
+ \quad Within Animals &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\gamma}$ &$1$ &  &  &  &  &  &  & \\ 
+ \quad \quad Residual & $22$ & $\sigma^2$ & &  &  &  &  &  &  & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVAEX4trtContr} 
+\end{table} 
+\end{landscape}
+
+\section{Illustrate a special examples with 8 treatments} 
+\label{sec:exampleWith8Trt}
+For the experiment design parameters consist of $v = 8, r_b = 4, n_B = 4, n_{A(B)} = 8, r_t = 2, n_R = 64 \; \mathrm{and} \; n_\gamma = 4$, 8 of 32 animals are assigned to each of 4 cages, denoted by Cage 1 to 4, each of 8 animals, denoted by A to H, are randomly assigned to each of 8 treatments, denoted by a to h. The Phase 1 theoretical ANOVA is expressed in Table~\ref{tab:Phase1ANOVAEX5}. All treatment information is in the Between Animals Within Cages stratum. The DF associated with the Between Cages and Between Animals Within Cages are 3 and 28, respectively. Since there are 7 DF associated with the treatment effects, the DF of the residual MS for the Between Animals stratum becomes 21.
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table}
+ \begin{tabular}[t]{lrll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{
+\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\
+ \midrule
+ Between Cages & $3$ & $\sigma_{A}^2+8\sigma_{B}^2$ &\\    \hline
+ Between Animals Within Cages &  &  &\\
+ \quad Treatment & $7$ & $\sigma_{A}^2+4\theta_{\gamma}$ &$1$\\
+ \quad Residual & $21$ & $\sigma_{A}^2$ &\\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase1ANOVAEX5}
+\end{table}
+
+This section presents two optimal designs where the first optimal design has the highest residual DF and the second optimal design has highest residual DF but lower residual DF.  
+
+\subsection{Optimal design with higher residual DF}
+Since the both the numbers of cage and treatment are even, based on the method in constructing the initial design is Section~\ref{sec:allocateCage}, the two initial designs where the cage is confounded more with runs and tags need to be examine.
+ 
+Using the two-step optimisation procedure, the allocation of cages and animals to runs and tags are presented in Table~\ref{tab:aniDesEX5}. 
+
+
+The first observation this allocation is that Cage 1 is only assigned to Run 1 to 4, Cage 2 is only assigned to Run 5 to 8, Cage 3 is only assigned to Run 9 to 12 and Cage 4 is only assigned to Run 13 to 16. Hence, the allocation of cages is disconnected. There are still 24 canonical efficiency factors associated with animals effects in the Within Cages Within Runs stratum generated from this design. These 24 canonical efficiency factors are all unity, which means the tests for the treatment effects can be conducted in Between Animals Within Cages Within Runs stratum. 
+
+\begin{table}[ht]                                           
+\centering 
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc} 
+ & \multicolumn{4}{c}{{\bf Tag}} \\ 
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & 1D & 1C & 1A & 1H \\      
+2  & 1C & 1D & 1H & 1A \\      
+3  & 1F & 1E & 1B & 1G \\      
+4  & 1E & 1F & 1G & 1B \\      
+5  & 2E & 2H & 2C & 2F \\      
+6  & 2H & 2E & 2F & 2C \\      
+7  & 2A & 2B & 2D & 2G \\      
+8  & 2B & 2A & 2G & 2D \\      
+9  & 3B & 3A & 3C & 3F \\      
+10 & 3A & 3B & 3F & 3C \\      
+11 & 3G & 3H & 3D & 3E \\      
+12 & 3H & 3G & 3E & 3D \\      
+13 & 4D & 4F & 4A & 4E \\      
+14 & 4F & 4D & 4E & 4A \\      
+15 & 4C & 4G & 4B & 4H \\      
+16 & 4G & 4C & 4H & 4B \\      
+\end{tabular}
+\label{tab:trtDesEX3}
+\end{table}         
+
+Base on the assignments of treatments to animals in the Phase 1 experiment, the allocation of treatments to runs and tags can be shown in Table~\ref{tab:trtDesEX6}. This design generated 8 treatment canonical efficiency factors, which are $1, 1, 1, 3/4, 3/4, 3/4$ and $3/4$. The treatment average efficiency factor is then $0.84$, which is lower than the previous design of $0.8498$. The seven basic treatment contrasts which are associated with each of the treatment canonical efficiency factors can then be derived from the eigenvectors. Each of seven treatment contrasts are presented as each column of a matrix as follows, 
+\[                                                                            
+\begin{bmatrix}                                                               
+ 0.0000 &  0.6124 &  0.0000 &  0.0000 &  0.0000 &  0.0000 &  0.7071\\         
+ 0.5383 & -0.2041 &  0.2088 &  0.6473 &  0.1817 &  0.2191 &  0.0000\\         
+ 0.5383 & -0.2041 &  0.2088 & -0.6473 & -0.1817 & -0.2191 &  0.0000\\         
+ 0.0000 &  0.6124 &  0.0000 &  0.0000 &  0.0000 &  0.0000 & -0.7071\\         
+-0.0883 & -0.2041 & -0.5706 &  0.2693 & -0.2148 & -0.6175 &  0.0000\\         
+-0.4500 & -0.2041 &  0.3617 & -0.0921 &  0.6487 & -0.2659 &  0.0000\\         
+-0.4500 & -0.2041 &  0.3617 &  0.0921 & -0.6487 &  0.2659 &  0.0000\\         
+-0.0883 & -0.2041 & -0.5706 & -0.2693 &  0.2148 &  0.6175 &  0.0000\\         
+ \end{bmatrix}.
+\]                                                                            
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with $v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & d & c & a & h \\   
+2  & c & d & h & a \\   
+3  & f & e & b & g \\   
+4  & e & f & g & b \\   
+5  & e & h & c & f \\   
+6  & h & e & f & c \\   
+7  & a & b & d & g \\   
+8  & b & a & g & d \\   
+9  & b & a & c & f \\   
+10 & a & b & f & c \\   
+11 & g & h & d & e \\   
+12 & h & g & e & d \\   
+13 & d & f & a & e \\   
+14 & f & d & e & a \\   
+15 & c & g & b & h \\   
+16 & g & c & h & b \\   
+\end{tabular}                                               
+\label{tab:trtDesEX5}                                      
+\end{table}         
+
+The Phase 2 theoretical ANOVA table is expressed as in Table~\ref{tab:Phase2ANOVAEX5}. Compared this ANOVA table in Table~\ref{tab:Phase1ANOVAEX5} of the Phase 1 experiment to the Phase 2 theoretical ANOVA table, there are 8 DF associated with the animal effects are lost to Between Runs stratum (7 DF) and tag effects (1 DF). There are still 16 DF associated with residual MS for conducting the test for the treatment effects. In addition, the amount of treatment information remains for conducting the test is now $0.84$. The amount of treatment information in the Between Animals Between Runs stratum is shown to be $\frac{1}{4}$, which is deduced from the treatment canonical efficiency factor in the Between Animals Between Runs stratum. These treatment canonical efficiency factors can be derived from 1 minus the treatment canonical efficiency factors of Between Animals Within Runs stratum, which are $\frac{1}{4}, \frac{1}{4},\frac{1}{4}$ and $\frac{1}{4}$. 
+ 
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table}
+ \begin{tabular}[t]{lrlll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{
+\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\
+ \midrule
+ Between Runs &  &  & & \\
+ \quad Between Cages & $3$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{C}^2+4\sigma_{R}^2$ & & \\\hline
+ \quad Between Animals Within Cages &  &  & & \\
+ \quad \quad Treatment & $4$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau}$ & & $\frac{1}{4}$\\
+ \quad Residual & $8$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+ Within Runs&  &  & & \\
+ \quad Between Animals Within Cages &  &  & & \\
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\theta_{\gamma}$ &$1$ & \\
+ \quad \quad Treatment & $7$ & $\sigma^2+2\sigma_{A}^2+\frac{168}{25}\theta_{\tau}$ & & $\frac{21}{25}$\\
+ \quad \quad Residual & $16$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals Within Cages &  &  & & \\
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\gamma}$ &$1$ & \\
+ \quad \quad Residual & $22$ & $\sigma^2$ & & \\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase2ANOVAEX6}
+\end{table}
+
+Fitting the seven basic contrasts described into the model, the new theoretical ANOVA table is presented in Table~\ref{tab:Phase2ANOVAEX5trtContr}. This new table shows how much of the information for each treatment contrast are split in the Between Runs and Within Runs stratum. These amount of treatment information are the treatment canonical efficiency factors as described previously.
+
+\begin{landscape}
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table}
+ \begin{tabular}[t]{lrlllllllll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}}        & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&    
+ \multicolumn{1}{l}{$\bm{E_{\tau_1}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_2}}$}&\multicolumn{1}{l}                     {$\bm{E_{\tau_3}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_4}}$}&\multicolumn{1}{l}{$\bm{E_                     {\tau_5}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_6}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_7}}$}\\
+ \midrule
+ Between Runs &  &  & &  &  &  &  &  &  & \\
+ \quad Between Cages & $3$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{B}^2+4\sigma_{R}^2$ & &                       &  &  &  &  &  & \\ \hline
+ \quad Between Animals Within Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_4}$ &                      &  &  &  & $\frac{1}{4}$ &  &  & \\
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_5}$ &                      &  &  &  &  & $\frac{1}{4}$ &  & \\
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_6}$ &                      &  &  &  &  &  & $\frac{1}{4}$ & \\
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_7}$ &                      &  &  &  &  &  &  & $\frac{1}{4}$\\
+ \quad Residual & $8$ & $\sigma^2+4\sigma_{R}^2$ & &  &  &  &  &  &  & \\ \hline
+ Within Runs &  &  & &  &  &  &  &  &  & \\
+ \quad Between Animals Within Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\theta_{\gamma}$ &$1$ &  &  &  &                       &  &  & \\
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau_1}$ & & $1$ &  &  &                       &  &  & \\
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau_2}$ & &  & $1$ &  &                       &  &  & \\
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau_3}$ & &  &  & $1$ &                       &  &  & \\
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_4}$ & &  &  &  & $\frac{3}{4}$ &  &  & \\
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_5}$ & &  &  &  &  &                      $\frac{3}{4}$ &  & \\
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_6}$ & &  &  &  &  &                       & $\frac{3}{4}$ & \\
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_7}$ & &  &  &  &  &                       &  & $\frac{3}{4}$\\
+ \quad \quad Residual & $16$ & $\sigma^2+2\sigma_{A}^2$ & &  &  &  &  &  &  & \\ \hline
+ \quad Within Animals Within Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\gamma}$ &$1$ &  &  &  &  &  &  & \\
+ \quad \quad Residual & $22$ & $\sigma^2$ & &  &  &  &  &  &  & \\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase2ANOVAEX5trtContr}
+\end{table}
+\end{landscape}                                                                                                           
+                                                                                                           
+\subsection{Further improvement for the Phase 1 experiment arranged in RBD}
+From the previous design, there are 3 DF associated with Cages effects in the Between Runs stratum. 
+To make the allocation of cages to runs to be connected, the residual DF associated with the 
+Between Animals Within Cages stratum should reduced by 3 to compensate those 3 DF for 
+the Bewteen Cages stratum to be in the Within Runs stratum.
+
+Using the two-step optimisation procedure, the allocation of cages and 
+animals to runs and tags are presented in Table~\ref{tab:aniDesEX6}. 
+Note that cage allocation is now connected to runs, because every run contains 
+each of four cages. However, there are 21 canonical efficiency factors associated 
+with animals effects in the Within Cages Within Runs stratum generated from this design. 
+These 21 canonical efficiency factors are all unity, which means the tests for the treatment 
+effects can be conducted in Between Animals Within Cages Within Runs stratum. 
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & 4E & 1A & 2C & 3F \\   
+2  & 1A & 4E & 3F & 2C \\   
+3  & 4F & 2G & 1D & 3H \\   
+4  & 2G & 4F & 3H & 1D \\   
+5  & 4H & 1E & 3D & 2B \\   
+6  & 1E & 4H & 2B & 3D \\   
+7  & 1F & 4D & 3B & 2A \\   
+8  & 4D & 1F & 2A & 3B \\   
+9  & 2H & 1B & 4C & 3A \\   
+10 & 1B & 2H & 3A & 4C \\   
+11 & 3G & 4A & 2E & 1H \\   
+12 & 4A & 3G & 1H & 2E \\   
+13 & 4B & 3C & 1G & 2F \\   
+14 & 3C & 4B & 2F & 1G \\   
+15 & 1C & 2D & 3E & 4G \\   
+16 & 2D & 1C & 4G & 3E \\   
+\end{tabular}                                               
+\label{tab:aniDesEX6}                                      
+\end{table}         
+
+Base on the assignments of treatments to animals in the Phase 1 experiment, the allocation of treatments to runs and tags can be shown in Table~\ref{tab:trtDesEX6}. This design generated 8 treatment canonical efficiency factors, which are $0.963, 0.963, 7/8, 7/8, 0.787, 0.787$ and $3/4$. The treatment average efficiency factor is then $0.8498$, which is the same as the first design. The seven basic treatment contrasts which are associated with each of the treatment canonical efficiency factors can then be derived from the eigenvectors. Each of seven treatment contrasts are presented as each column of a matrix as follows,
+\[                                                                          
+\begin{bmatrix}                                                             
+ 0.0126 &  0.4998 &  0.3472  & -0.3598 & -0.3277 &  0.3777 &  0.3536\\      
+-0.4998 &  0.0126 & -0.3472  &  0.3598 &  0.3777 &  0.3277 &  0.3536\\      
+ 0.4998 & -0.0126 & -0.3472  &  0.3598 & -0.3777 & -0.3277 &  0.3536\\      
+ 0.3623 &  0.3446 & -0.3598  & -0.3472 &  0.4987 & -0.0354 & -0.3536\\      
+-0.3623 & -0.3446 & -0.3598  & -0.3472 & -0.4987 &  0.0354 & -0.3536\\      
+-0.0126 & -0.4998 &  0.3472  & -0.3598 &  0.3277 & -0.3777 &  0.3536\\      
+-0.3446 &  0.3623 &  0.3598  &  0.3472 & -0.0354 & -0.4987 & -0.3536\\      
+ 0.3446 & -0.3623 &  0.3598  &  0.3472 &  0.0354 &  0.4987 & -0.3536\\      
+ \end{bmatrix}.
+\]                                      
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & e & a & c & f \\ 
+2  & a & e & f & c \\ 
+3  & f & g & d & h \\ 
+4  & g & f & h & d \\ 
+5  & h & e & d & b \\ 
+6  & e & h & b & d \\ 
+7  & f & d & b & a \\ 
+8  & d & f & a & b \\ 
+9  & h & b & c & a \\ 
+10 & b & h & a & c \\ 
+11 & g & a & e & h \\ 
+12 & a & g & h & e \\ 
+13 & b & c & g & f \\ 
+14 & c & b & f & g \\ 
+15 & c & d & e & g \\ 
+16 & d & c & g & e \\       
+\end{tabular}                                               
+\label{tab:trtDesEX6}                                      
+\end{table}         
+
+The Phase 2 theoretical ANOVA table is expressed as in Table~\ref{tab:Phase2ANOVAEX6}. Compared this ANOVA table in Table~\ref{tab:Phase1ANOVAEX6} of the Phase 1 experiment to the Phase 2 theoretical ANOVA table, there are 8 DF associated with the animal effects are lost to Between Runs stratum (7 DF) and tag effects (1 DF). There are still 13 DF associated with residual MS for conducting the test for the treatment effects, which is 3 less compared to the previous two design. However, the amount of treatment information remains becomes  $0.8498$, which higher than the previous design and the same as the first design. The main reason that the optimal design found here has the same treatment efficiency factor as the design found from CRD is that the treatment effects are completely orthogonal to cages. Hence, the separation of the treatment information only associated with the Between Animals Within Cages stratum.
+
+\begin{table}[ht]                                                                                             
+\centering                                                                                                    
+ \caption{Theoretical ANOVA table}                                                                            
+ \begin{tabular}[t]{lrlll}                                                                                    
+ \toprule                                                                                                     
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{
+\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\                    
+ \midrule                                                                                                     
+ Between Runs &  &  & & \\                                                                                     
+ \quad Between Animals Within Cages &  &  & & \\                                                                           
+ \quad \quad Treatment & $7$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2/3\theta_{\tau}$ & & $\frac{1}{12}$\\                 
+ \quad Residual & $8$ & $\sigma^2+4\sigma_{R}^2$ & & \\                                                       \hline
+ Within Runs &  &  & & \\                                                                                          
+ \quad Between Cages &  &  & & \\                                                                               
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{C}^2+ \frac{5}{2}\theta_{\gamma}$ &$\frac{5}{32}$ & \\              
+ \quad \quad Residual & $2$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{C}^2$ & & \\ \hline                       
+ \quad Between Animals Within Cages &  &  & & \\                                                                           
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+\frac{27}{2}\theta_{\gamma}$ &$\frac{27}{32}$ & \\                           
+ \quad \quad Treatment & $7$ & $\sigma^2+2\sigma_{A}^2+6.798\theta_{\tau}$ & & $0.8498$\\                   
+ \quad \quad Residual & $13$ & $\sigma^2+2\sigma_{A}^2$ & & \\                                                 \hline
+ \quad Within Animals Within Cages &  &  & & \\                                                                                  
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\gamma}$ &$1$ & \\                                               
+ \quad \quad Residual & $22$ & $\sigma^2$ & & \\                                                              
+ \bottomrule                                                                                                  
+ \end{tabular}                                                                                                
+ \label{tab:Phase2ANOVAEX6}                                                                                                 
+\end{table}                                                                                                   
+                                                                                                              
+Fitting the seven basic contrasts described into the model, the new theoretical ANOVA table is presented in Table~\ref{tab:Phase2ANOVAEX6trtContr}. This new table shows how much of the information for each treatment contrast are split in the Between Runs and Within Runs stratum. These amount of treatment information are the treatment canonical efficiency factors as described previously. The amount of separation of the treatment information for each treatment contrast is identical to the first design as shown in Table~\ref{tab:Phase2ANOVAEX4trtContr}.
+
+\begin{landscape}
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table}
+ \begin{tabular}[t]{lrlllllllll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_1}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_2}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_3}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_4}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_5}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_6}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_7}}$}\\
+ \midrule
+ Between Runs &  &  & &  &  &  &  &  &  & \\
+ \quad Between Animals Within Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+0.293\theta_{\tau_1}$ & & $0.0366$ &  &  &  &  &  & \\
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+0.293\theta_{\tau_2}$ & &  & $0.0366$ &  &  &  &  & \\
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_3}$ & &  &  & $\frac{1}{8}$ &  &  &  & \\
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_4}$ & &  &  &  & $\frac{1}{8}$ &  &  & \\
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+1.707\theta_{\tau_5}$ & &  &  &  &  & $0.213$ &  & \\
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+ 1.707\theta_{\tau_6}$ & &  &  &  &  &  & $0.213$ & \\
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_7}$ & &  &  &  &  &  &  & $\frac{1}{4}$\\
+ \quad Residual & $8$ & $\sigma^2+4\sigma_{R}^2$ & &  &  &  &  &  &  & \\ \hline
+ Within Runs &  &  & &  &  &  &  &  &  & \\
+ \quad Between Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{C}^2+\frac{5}{2}\theta_{\gamma}$ &$\frac{5}{32}$ &  &  &  &  &  &  & \\
+ \quad \quad Residual & $2$ & $\sigma^2+2\sigma_{A}^2+16\sigma_{C}^2$ & &  &  &  &  &  &  & \\ \hline
+ \quad Between Animals Within Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+\frac{27}{2}\theta_{\gamma}$ &$\frac{27}{32}$ &  &  &  &  &  &  & \\
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+7.707\theta_{\tau_1}$ & & $0.963$ &  &  &  &  &  & \\
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+7.707\theta_{\tau_2}$ & &  & $0.963$ &  &  &  &  & \\
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+7\theta_{\tau_3}$ & &  &  & $\frac{7}{8}$ &  &  &  & \\
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+7\theta_{\tau_4}$ & &  &  &  & $\frac{7}{8}$ &  &  & \\
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+6.293\theta_{\tau_5}$ & &  &  &  &  & $0.787$ &  & \\
+ \quad \quad Treatment contrast 6 & $1$ & $\sigma^2+2\sigma_{A}^2+6.293\theta_{\tau_6}$ & &  &  &  &  &  & $0.787$ & \\
+ \quad \quad Treatment contrast 7 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_7}$ & &  &  &  &  &  &  & $\frac{3}{4}$\\
+ \quad \quad Residual & $13$ & $\sigma^2+2\sigma_{A}^2$ & &  &  &  &  &  &  & \\ \hline
+ \quad Within Animals Within Cages &  &  & &  &  &  &  &  &  & \\
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\gamma}$ &$1$ &  &  &  &  &  &  & \\
+ \quad \quad Residual & $22$ & $\sigma^2$ & &  &  &  &  &  &  & \\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase2ANOVAEX6trtContr}
+\end{table}
+\end{landscape}
+
+\subsection{Phase 1 experiment arranged in RBD where the initial design the cage is confounded more with tag}
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & 1D & 1C & 3F & 3B \\        
+2  & 1C & 1D & 3B & 3F \\        
+3  & 1A & 1G & 3C & 3E \\        
+4  & 1G & 1A & 3E & 3C \\        
+5  & 1B & 1H & 3G & 3D \\        
+6  & 1H & 1B & 3D & 3G \\        
+7  & 1F & 1E & 3H & 3A \\        
+8  & 1E & 1F & 3A & 3H \\        
+9  & 2B & 2G & 4E & 4F \\        
+10 & 2G & 2B & 4F & 4E \\        
+11 & 2E & 2D & 4H & 4C \\        
+12 & 2D & 2E & 4C & 4H \\        
+13 & 2H & 2C & 4B & 4A \\        
+14 & 2C & 2H & 4A & 4B \\        
+15 & 2A & 2F & 4G & 4D \\        
+16 & 2F & 2A & 4D & 4G \\        
+\end{tabular}                                               
+\label{tab:aniDesEX6}                                      
+\end{table}         
+
+Base on the assignments of treatments to animals in the Phase 1 experiment, the allocation of treatments to runs and tags can be shown in Table~\ref{tab:trtDesEX6}. This design generated 8 treatment canonical efficiency factors, which are $0.963, 0.963, 7/8, 7/8, 0.787, 0.787$ and $3/4$. The treatment average efficiency factor is then $0.8498$, which is the same as the first design. The seven basic treatment contrasts which are associated with each of the treatment canonical efficiency factors can then be derived from the eigenvectors. Each of seven treatment contrasts are presented as each column of a matrix as follows,
+\[                                                                                                    
+\begin{bmatrix}                                                                                       
+ 0.35355 & -0.43868723 & -0.1811510  &  0.000000e+00 &  0.5241544 & -0.49983960 &  0.01266396\\       
+ 0.35355 &  0.34683002 &  0.2036810  & -4.562236e-01 &  0.3606703 &  0.49983960 & -0.01266396\\       
+-0.35355 & -0.42393688 &  0.2289472  & -4.380163e-01 & -0.2756853 &  0.01266396 &  0.49983960\\       
+ 0.35355 & -0.34683002 & -0.2036810  &  4.562236e-01 & -0.3606703 &  0.49983960 & -0.01266396\\       
+ 0.35355 &  0.43868723 &  0.1811510  & -1.665335e-15 & -0.5241544 & -0.49983960 &  0.01266396\\       
+-0.35355 & -0.08683301 &  0.6109677  &  3.162306e-01 &  0.1384800 & -0.01266396 & -0.49983960\\       
+-0.35355 &  0.08683301 & -0.6109677  & -3.162306e-01 & -0.1384800 & -0.01266396 & -0.49983960\\       
+-0.35355 &  0.42393688 & -0.2289472  &  4.380163e-01 &  0.2756853 &  0.01266396 &  0.49983960\\       
+ \end{bmatrix}.                                                                                       
+\]                                                                                                    
+                                                                                                      
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & d & c & f & b \\              
+2  & c & d & b & f \\              
+3  & a & g & c & e \\              
+4  & g & a & e & c \\              
+5  & b & h & g & d \\              
+6  & h & b & d & g \\              
+7  & f & e & h & a \\              
+8  & e & f & a & h \\              
+9  & b & g & e & f \\              
+10 & g & b & f & e \\              
+11 & e & d & h & c \\              
+12 & d & e & c & h \\              
+13 & h & c & b & a \\              
+14 & c & h & a & b \\              
+15 & a & f & g & d \\              
+16 & f & a & d & g \\              
+\end{tabular}                                               
+\label{tab:trtDesEX6}                                      
+\end{table}         
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\tau}}$}&\multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\ 
+ \midrule 
+ Between Run &  &  & & \\ 
+ \quad Between Cag & $1$ & $\sigma^2+2\sigma_{CA}^2+16\sigma_{C}^2+4\sigma_{R}^2$ & & \\ \hline 
+ \quad Between Cag:Ani &  &  & & \\ 
+ \quad \quad Trt & $6$ & $\sigma^2+2\sigma_{CA}^2+4\sigma_{R}^2+6/5\theta_{\gamma}$ & & $3/20$\\ \hline 
+ \quad Within Cag.Ani & $8$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline 
+ Within Run &  &  & & \\ 
+ \quad Between Cag &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{CA}^2+16\sigma_{C}^2+16\theta_{\tau}$ &$1$ & \\ 
+ \quad \quad Residual & $1$ & $\sigma^2+2\sigma_{CA}^2+16\sigma_{C}^2$ & & \\ \hline 
+ \quad Between Cag:Ani &  &  & & \\ 
+ \quad \quad Trt & $7$ & $\sigma^2+2\sigma_{CA}^2+1176/173\theta_{\gamma}$ & & $147/173$\\ 
+ \quad \quad Residual & $15$ & $\sigma^2+2\sigma_{CA}^2$ & & \\ \hline 
+ \quad Within Cag.Ani &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\tau}$ &$1$ & \\ 
+ \quad \quad Residual & $22$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:} 
+\end{table} 
+ NULL
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table}
+ \begin{tabular}[t]{lrlllllllll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_1}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_2}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_3}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_4}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_5}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_6}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_7}}$}\\ 
+ \midrule 
+ Between Run &  &  & &  &  &  &  &  &  & \\ 
+ \quad Between Ani &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Trt.2 & $1$ & $\sigma^2+\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_2}$ & &  & $1/8$ &  &  &  &  & \\ 
+ \quad \quad Trt.3 & $1$ & $\sigma^2+\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_3}$ & &  &  & $1/8$ &  &  &  & \\ 
+ \quad \quad Trt.4 & $1$ & $\sigma^2+\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_4}$ & &  &  &  & $1/8$ &  &  & \\ 
+ \quad \quad Trt.5 & $1$ & $\sigma^2+\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_5}$ & &  &  &  &  & $1/8$ &  & \\ 
+ \quad \quad Trt.6 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_6}$ & &  &  &  &  &  & $1/4$ & \\ 
+ \quad \quad Trt.7 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_7}$ & &  &  &  &  &  &  & $1/4$\\ \hline 
+ \quad Within Ani & $9$ & $\sigma^2+4\sigma_{R}^2$ & &  &  &  &  &  &  & \\ \hline 
+ Within Run &  &  & &  &  &  &  &  &  & \\ 
+ \quad Between Ani &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Trt.1 & $1$ & $\sigma^2+8\sigma_{A}^2+8\theta_{\tau_1}$ & & $1$ &  &  &  &  &  & \\ 
+ \quad \quad Trt.2 & $1$ & $\sigma^2+7\sigma_{A}^2+7\theta_{\tau_2}$ & &  & $7/8$ &  &  &  &  & \\ 
+ \quad \quad Trt.3 & $1$ & $\sigma^2+7\sigma_{A}^2+7\theta_{\tau_3}$ & &  &  & $7/8$ &  &  &  & \\ 
+ \quad \quad Trt.4 & $1$ & $\sigma^2+7\sigma_{A}^2+7\theta_{\tau_4}$ & &  &  &  & $7/8$ &  &  & \\ 
+ \quad \quad Trt.5 & $1$ & $\sigma^2+7\sigma_{A}^2+7\theta_{\tau_5}$ & &  &  &  &  & $7/8$ &  & \\ 
+ \quad \quad Trt.6 & $1$ & $\sigma^2+6\sigma_{A}^2+6\theta_{\tau_6}$ & &  &  &  &  &  & $3/4$ & \\ 
+ \quad \quad Trt.7 & $1$ & $\sigma^2+6\sigma_{A}^2+6\theta_{\tau_7}$ & &  &  &  &  &  &  & $3/4$\\ \hline 
+ \quad Within Ani &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Tag & $3$ & $\sigma^2+16\theta_{\gamma}$ &$1$ &  &  &  &  &  &  & \\ 
+ \quad \quad Residual & $38$ & $\sigma^2$ & &  &  &  &  &  &  & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:} 
+\end{table} 
+
+\subsection{Further improvement for the Phase 1 experiment arranged in RBD}
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & 2D & 1G & 4H & 3A \\           
+2  & 1G & 2D & 3A & 4H \\           
+3  & 2E & 1B & 4F & 3D \\           
+4  & 1B & 2E & 3D & 4F \\           
+5  & 1D & 2C & 3H & 4E \\           
+6  & 2C & 1D & 4E & 3H \\           
+7  & 2H & 1C & 3B & 4A \\           
+8  & 1C & 2H & 4A & 3B \\           
+9  & 1E & 2A & 3F & 4C \\           
+10 & 2A & 1E & 4C & 3F \\           
+11 & 2G & 1F & 3C & 4D \\           
+12 & 1F & 2G & 4D & 3C \\           
+13 & 1A & 2B & 3E & 4G \\           
+14 & 2B & 1A & 4G & 3E \\           
+15 & 2F & 1H & 4B & 3G \\           
+16 & 1H & 2F & 3G & 4B \\           
+\end{tabular}                                               
+\label{tab:aniDesEX6}                                      
+\end{table}         
+
+Base on the assignments of treatments to animals in the Phase 1 experiment, the allocation of treatments to runs and tags can be shown in Table~\ref{tab:trtDesEX6}. This design generated 8 treatment canonical efficiency factors, which are $0.963, 0.963, 7/8, 7/8, 0.787, 0.787$ and $3/4$. The treatment average efficiency factor is then $0.8498$, which is the same as the first design. The seven basic treatment contrasts which are associated with each of the treatment canonical efficiency factors can then be derived from the eigenvectors. Each of seven treatment contrasts are presented as each column of a matrix as follows,
+\[                                                                                                  
+\begin{bmatrix}                                                                                     
+ 0.49652561 & -0.05884148 & -0.4888209 & -0.1051385 &  0.33975280 -& -0.36683516 &  0.3535534\\     
+-0.05884148 & -0.49652561 &  0.4888209 &  0.1051385 & -0.36683516 -& -0.33975280 &  0.3535534\\     
+-0.39270384 & -0.30948941 & -0.1051385 &  0.4888209 &  0.49963314 -& -0.01915012 & -0.3535534\\     
+ 0.30948941 & -0.39270384 &  0.1051385 & -0.4888209 &  0.01915012  &  0.49963314 & -0.3535534\\     
+-0.30948941 &  0.39270384 &  0.1051385 & -0.4888209 & -0.01915012 -& -0.49963314 & -0.3535534\\     
+ 0.39270384 &  0.30948941 & -0.1051385 &  0.4888209 & -0.49963314  &  0.01915012 & -0.3535534\\     
+-0.49652561 &  0.05884148 & -0.4888209 & -0.1051385 & -0.33975280  &  0.36683516 &  0.3535534\\     
+ 0.05884148 &  0.49652561 &  0.4888209 &  0.1051385 &  0.36683516  &  0.33975280 &  0.3535534\\     
+ \end{bmatrix}.                                                                                     
+\]                                                                                                  
+                                                                                                    
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1  & d & g & h & a \\   
+2  & g & d & a & h \\   
+3  & e & b & f & d \\   
+4  & b & e & d & f \\   
+5  & d & c & h & e \\   
+6  & c & d & e & h \\   
+7  & h & c & b & a \\   
+8  & c & h & a & b \\   
+9  & e & a & f & c \\   
+10 & a & e & c & f \\   
+11 & g & f & c & d \\   
+12 & f & g & d & c \\   
+13 & a & b & e & g \\   
+14 & b & a & g & e \\   
+15 & f & h & b & g \\   
+16 & h & f & g & b \\       
+\end{tabular}                                               
+\label{tab:trtDesEX6}                                      
+\end{table}         
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\tau}}$}&\multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\ 
+ \midrule 
+ Between Run &  &  & & \\ 
+ \quad Between Cag:Ani &  &  & & \\ 
+ \quad \quad Trt & $7$ & $\sigma^2+2\sigma_{CA}^2+4\sigma_{R}^2+2/3\theta_{\gamma}$ & & $1/12$\\ \hline 
+ \quad Within Cag.Ani & $8$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline 
+ Within Run &  &  & & \\ 
+ \quad Between Cag &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{CA}^2+16\sigma_{C}^2+16\theta_{\tau}$ &$1$ & \\ 
+ \quad \quad Residual & $2$ & $\sigma^2+2\sigma_{CA}^2+16\sigma_{C}^2$ & & \\ \hline 
+ \quad Between Cag:Ani &  &  & & \\ 
+ \quad \quad Trt & $7$ & $\sigma^2+2\sigma_{CA}^2+28518/4195\theta_{\gamma}$ & & $14259/16780$\\ 
+ \quad \quad Residual & $14$ & $\sigma^2+2\sigma_{CA}^2$ & & \\ \hline 
+ \quad Within Cag.Ani &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+16\theta_{\tau}$ &$1$ & \\ 
+ \quad \quad Residual & $22$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:} 
+\end{table} 
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table}
+ \begin{tabular}[t]{lrlllllllll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_1}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_2}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_3}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_4}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_5}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_6}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_7}}$}\\ 
+ \midrule 
+ Between Run &  &  & &  &  &  &  &  &  & \\ 
+ \quad Between Ani &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Trt.1 & $1$ & $\sigma^2+2378/8119\sigma_{A}^2+4\sigma_{R}^2+2378/8119\theta_{\tau_1}$ & & $1372105/37477276$ &  &  &  &  &  & \\ 
+ \quad \quad Trt.2 & $1$ & $\sigma^2+2378/8119\sigma_{A}^2+4\sigma_{R}^2+2378/8119\theta_{\tau_2}$ & &  & $1372105/37477276$ &  &  &  &  & \\ 
+ \quad \quad Trt.3 & $1$ & $\sigma^2+\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_3}$ & &  &  & $1/8$ &  &  &  & \\ 
+ \quad \quad Trt.4 & $1$ & $\sigma^2+\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_4}$ & &  &  &  & $1/8$ &  &  & \\ 
+ \quad \quad Trt.5 & $1$ & $\sigma^2+5741/3363\sigma_{A}^2+4\sigma_{R}^2+5741/3363\theta_{\tau_5}$ & &  &  &  &  & $1254397/5878470$ &  & \\ 
+ \quad \quad Trt.6 & $1$ & $\sigma^2+5741/3363\sigma_{A}^2+4\sigma_{R}^2+5741/3363\theta_{\tau_6}$ & &  &  &  &  &  & $1254397/5878470$ & \\ 
+ \quad \quad Trt.7 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+2\theta_{\tau_7}$ & &  &  &  &  &  &  & $1/4$\\ \hline 
+ \quad Within Ani & $8$ & $\sigma^2+4\sigma_{R}^2$ & &  &  &  &  &  &  & \\ \hline 
+ Within Run &  &  & &  &  &  &  &  &  & \\ 
+ \quad Between Ani &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Trt.1 & $1$ & $\sigma^2+25919/3363\sigma_{A}^2+25919/3363\theta_{\tau_1}$ & & $33007837/34262234$ &  &  &  &  &  & \\ 
+ \quad \quad Trt.2 & $1$ & $\sigma^2+25919/3363\sigma_{A}^2+25919/3363\theta_{\tau_2}$ & &  & $37653838/39084797$ &  &  &  &  & \\ 
+ \quad \quad Trt.3 & $1$ & $\sigma^2+7\sigma_{A}^2+7\theta_{\tau_3}$ & &  &  & $7/8$ &  &  &  & \\ 
+ \quad \quad Trt.4 & $1$ & $\sigma^2+7\sigma_{A}^2+7\theta_{\tau_4}$ & &  &  &  & $7/8$ &  &  & \\ 
+ \quad \quad Trt.5 & $1$ & $\sigma^2+51092/8119\sigma_{A}^2+51092/8119\theta_{\tau_5}$ & &  &  &  &  & $216953/275807$ &  & \\ 
+ \quad \quad Trt.6 & $1$ & $\sigma^2+51092/8119\sigma_{A}^2+51092/8119\theta_{\tau_6}$ & &  &  &  &  &  & $216953/275807$ & \\ 
+ \quad \quad Trt.7 & $1$ & $\sigma^2+6\sigma_{A}^2+6\theta_{\tau_7}$ & &  &  &  &  &  &  & $3/4$\\ \hline 
+ \quad Within Ani &  &  & &  &  &  &  &  &  & \\ 
+ \quad \quad Tag & $3$ & $\sigma^2+16\theta_{\gamma}$ &$1$ &  &  &  &  &  &  & \\ 
+ \quad \quad Residual & $38$ & $\sigma^2$ & &  &  &  &  &  &  & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:} 
+\end{table} 
+
+This section again shows that design with one lesser DF associated with the residual mean square for conducting the test of the treatment effects can have higher treatment average efficiency factor. 
+
+\section{Further comparison between the optimal designs}

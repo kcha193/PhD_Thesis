@@ -1,0 +1,195 @@
+\begin{thebibliography}{}
+
+\bibitem[Bailey, 2008]{Bailey2008}
+Bailey, R.~A. (2008).
+\newblock {\em {Design of comparative experiment}}.
+\newblock Cambridge University Press.
+
+\bibitem[Blow, 2002]{Blow2002}
+Blow, D.~M. (2002).
+\newblock {\em {Outline of crystallography for biologists}}.
+\newblock Oxford University Press.
+
+\bibitem[Boehm et~al., 2007]{Boehm2007}
+Boehm, A.~M., P\"{u}tz, S., Altenh\"{o}fer, D., Sickmann, A., and Falk, M.
+  (2007).
+\newblock {Precise protein quantification based on peptide quantification using
+  iTRAQ}.
+\newblock {\em BMC Bioinformatics}, 8:214.
+
+\bibitem[Brien, 1983]{Brien1983}
+Brien, C.~J. (1983).
+\newblock {Analysis of Variance Tables Based on Experimental Structure}.
+\newblock {\em Biometrics}, 39(1):53--59.
+
+\bibitem[Brien and Bailey, 2006]{Brien2006b}
+Brien, C.~J. and Bailey, R.~A. (2006).
+\newblock {Multiple randomizations}.
+\newblock {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 68(4):571--609.
+
+\bibitem[Brien and Bailey, 2009]{Brien2009}
+Brien, C.~J. and Bailey, R.~A. (2009).
+\newblock {Decomposition tables for experiments I. A chain of randomizations}.
+\newblock {\em The Annals of Statistics}, 37(6B):4184--4213.
+
+\bibitem[Brien and Bailey, 2010]{Brien2010}
+Brien, C.~J. and Bailey, R.~A. (2010).
+\newblock {Decomposition tables for experiments. II. Two--one randomizations}.
+\newblock {\em The Annals of Statistics}, 38(5):3164--3190.
+
+\bibitem[Brien et~al., 2011]{Brien2011}
+Brien, C.~J., Harch, B.~D., Correll, R.~L., and Bailey, R.~a. (2011).
+\newblock {Multiphase Experiments with at Least One Later Laboratory Phase. I.
+  Orthogonal Designs}.
+\newblock {\em Journal of Agricultural, Biological, and Environmental
+  Statistics}, 16(3):422--450.
+
+\bibitem[Brien and Payne, 1999]{Brien1999}
+Brien, C.~J. and Payne, R.~W. (1999).
+\newblock {Tiers, structure formulae and the analysis of complicated
+  experiments}.
+\newblock {\em Journal of the Royal Statistical Society Series D: The
+  Statistician}, 48(1):41--52.
+
+\bibitem[Choe et~al., 2007]{Choe2007}
+Choe, L., D'Ascenzo, M., Relkin, N.~R., Pappin, D., Ross, P., Williamson, B.,
+  Guertin, S., Pribil, P., and Lee, K.~H. (2007).
+\newblock {8-plex quantitation of changes in cerebrospinal fluid protein
+  expression in subjects undergoing intravenous immunoglobulin treatment for
+  Alzheimer's disease}.
+\newblock {\em Proteomics}, 7(20):3651--3660.
+
+\bibitem[Churchill, 2002]{Churchill2002}
+Churchill, G.~A. (2002).
+\newblock Fundamentals of experimental design for cdna microarrays.
+\newblock {\em nature genetics}, 32:490--495.
+
+\bibitem[Curnow, 1959]{Curnow1959}
+Curnow, R.~N. (1959).
+\newblock {The analysis of a two phase experiment}.
+\newblock {\em Biometrics}, 15(1):60--73.
+
+\bibitem[Doyle, 2009]{Doyle2009}
+Doyle, S.~A. (2009).
+\newblock {\em High throughput protein expression and purification: methods and
+  protocols}.
+\newblock Totowa, N.J. : Humana Press ; London : Springer.
+
+\bibitem[Eidhammer et~al., 2007]{Eidhammer2008}
+Eidhammer, I., Flikka, K., Martens, L., and Mikalsen, S.-O. (2007).
+\newblock {\em {Computational Methods for Mass Spectrometry Proteomics}}.
+\newblock Wiley-Interscience.
+
+\bibitem[Fields and Song, 1989]{Fields1989}
+Fields, S. and Song, O. (1989).
+\newblock {A novel genetic system to detect protein-protein interactions}.
+\newblock {\em Nature}, 340(6230):245--246.
+
+\bibitem[Fisher, 1935]{Fisher1935}
+Fisher, R. (1935).
+\newblock {\em The Design of Experiments}.
+\newblock Oliver and Boyd.
+
+\bibitem[Janzen, 2002]{Janzen2002}
+Janzen, W.~P. (2002).
+\newblock {\em High Throughput Screening: Methods and Protocols}.
+\newblock Totowa, N.J. : Humana Press.
+
+\bibitem[Jarrett and Ruggiero, 2008]{Jarrett2008}
+Jarrett, R.~G. and Ruggiero, K. (2008).
+\newblock {Design and analysis of two-phase experiments for gene expression
+  microarrays-part $\backslash$textnormal\{I\}}.
+\newblock {\em Biometrics}, 64(1):208--216.
+
+\bibitem[Maxwell and Delaney, 2004]{Maxwell2004}
+Maxwell, S.~E. and Delaney, H.~D. (2004).
+\newblock {\em Designing experiments and analyzing data: A model comparison
+  perspective}.
+\newblock Psychology Press.
+
+\bibitem[McIntyre, 1955]{McIntyre1955}
+McIntyre, G.~A. (1955).
+\newblock {Design and Analysis of Two Phase Experiments}.
+\newblock {\em Biometrics}, 11(3):324--334.
+
+\bibitem[Nelder, 1965a]{Nelder1965A}
+Nelder, J.~A. (1965a).
+\newblock {The Analysis of Randomized Experiments with Orthogonal Block
+  Structure. I. Block Structure and the Null Analysis of Variance}.
+\newblock {\em Proceedings of the Royal Society of London. Series A,
+  Mathematical and Physical Sciences}, 283(1393):pp. 147--162.
+
+\bibitem[Nelder, 1965b]{Nelder1965B}
+Nelder, J.~A. (1965b).
+\newblock {The Analysis of Randomized Experiments with Orthogonal Block
+  Structure. II. Treatment Structure and the General Analysis of Variance}.
+\newblock {\em Proceedings of the Royal Society of London. Series A,
+  Mathematical and Physical Sciences}, 283(1393):163--178.
+
+\bibitem[Oberg and Mahoney, 2012]{Oberg2012}
+Oberg, A. and Mahoney, D. (2012).
+\newblock Statistical methods for quantitative mass spectrometry proteomic
+  experiments with labeling.
+\newblock {\em BMC Bioinformatics}, 13(Suppl 16):S7.
+
+\bibitem[Oberg and Vitek, 2009]{Oberg2009}
+Oberg, A.~L. and Vitek, O. (2009).
+\newblock {Statistical design of quantitative mass spectrometry-based proteomic
+  experiments.}
+\newblock {\em Journal of proteome research}, 8(5):2144--56.
+
+\bibitem[Payne and Wilkinson, 1977]{Payne1977}
+Payne, R.~W. and Wilkinson, G.~N. (1977).
+\newblock {A general algorithm for analysis of variance}.
+\newblock {\em Applied Statistics}.
+
+\bibitem[Pierce et~al., 2008]{Pierce2008}
+Pierce, A., Unwin, R.~D., Evans, C.~A., Griffiths, S., Carney, L., Zhang, L.,
+  Jaworska, E., Lee, C.-F., Blinco, D., Okoniewski, M.~J., Miller, C.~J.,
+  Bitton, D.~A., Spooncer, E., and Whetton, A.~D. (2008).
+\newblock {Eight-channel iTRAQ Enables Comparison of the Activity of Six
+  Leukemogenic Tyrosine Kinases}.
+\newblock {\em Mol Cell Proteomics}, 7(5):853--863.
+
+\bibitem[Ross et~al., 2004]{Ross2004}
+Ross, P.~L., Huang, Y.~N., Marchese, J.~N., Williamson, B., Parker, K., Hattan,
+  S., Khainovski, N., Pillai, S., Dey, S., Daniels, S., Purkayastha, S.,
+  Juhasz, P., Martin, S., Bartlet-Jones, M., He, F., Jacobson, A., and Pappin,
+  D.~J. (2004).
+\newblock {Multiplexed protein quantitation in Saccharomyces cerevisiae using
+  amine-reactive isobaric tagging reagents.}
+\newblock {\em Mol Cell Proteomics}, 3(12):1154--1169.
+
+\bibitem[Satterthwaite, 1946]{Satterthwaite1946}
+Satterthwaite, F.~E. (1946).
+\newblock {An Approximate Distribution of Estimates of Variance Components}.
+\newblock {\em Biometrics Bulletin}, 2(6):pp. 110--114.
+
+\bibitem[Washburn et~al., 2001]{Washburn2001}
+Washburn, M.~P., Wolters, D., and Yates, J.~R. (2001).
+\newblock {Large-scale analysis of the yeast proteome by multidimensional
+  protein identification technology}.
+\newblock {\em Nat Biotechnol}, 19(3):242--247.
+
+\bibitem[Wilkinson, 1970]{Wilkinson1970}
+Wilkinson, G.~N. (1970).
+\newblock {A General Recursive Procedure for Analysis of Variance}.
+\newblock {\em Biometrika}, 57(1):19.
+
+\bibitem[Wilkinson and Rogers, 1973]{Wilkinson1973}
+Wilkinson, G.~N. and Rogers, C.~E. (1973).
+\newblock {Symbolic description of factorial models for analysis of variance}.
+\newblock {\em Applied Statistics}, 22(3):392--399.
+
+\bibitem[Wood et~al., 1988]{Wood1988}
+Wood, J.~T., William, E.~R., and Speed, T.~P. (1988).
+\newblock {Non-orthogonal block structure in two-phase designs}.
+\newblock {\em Australian \& New Zealand Journal of Statistics}, 30A:225--237.
+
+\bibitem[Yates, 1936]{Yates1936}
+Yates, F. (1936).
+\newblock {Incomplete Randomized Blocks}.
+\newblock {\em Annals of Human Genetics}, 7(2):121--140.
+
+\end{thebibliography}

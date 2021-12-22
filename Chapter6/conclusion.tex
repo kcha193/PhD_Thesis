@@ -1,0 +1,239 @@
+\chapter{Discussion}
+\section{Summary}
+The primary purpose of this study was to develop a method for the computer generation of optimal designs of two-phase multiplex proteomics experiments. This method for generating optimal designs uses a combination of theory to define objective functions and computing, to improve the simulated annealing (SA) algorithm. Since designs are computer generated, there is no restriction on the design parameters (of the Phase 1 experiment), and end-users do not need to be expert in designing experiments to use this tool to generate their design.    
+
+The first part of this thesis applied the method of information decomposition to the design of any single- and two-phase experiment, and automated the construction of theoretical ANOVA tables. For single-phase experiments, the decomposition method was straightforward, as once the strata were defined based on the block structure, the treatment structure was then decomposed within each stratum. In two-phase experiments, however, decomposition began with the strata corresponding to the block structure in the Phase 2 experiment, followed by decomposition of the treatment structure into the strata corresponding to the Phase 1 experiment block structure. The procedure for the Phase~1 block-information decomposition was undertaken by regarding the Phase~1 block factors just as we would treatment factors. 
+
+The method for applying information decomposition to designs of any single- and two-phase experiments is implemented in a newly developed \textsf{R} package called \pkg{infoDecompuTE} which is available on the Comprehensive \textsf{R} Archive Network (CRAN). This \textsf{R} Package allows the user to automate the construction of theoretical ANOVA tables to enable fast assessment of the attributes of designs. These attributes are the degrees of freedom (DF), expected mean squares (EMS), along with the variance components, fixed effects components, and the treatment average efficiency factor for every source of variation. 
+
+For researchers who have no \textsf{R} experience, a Shiny application for the \pkg{infoDecompuTE} package is hosted at:
+\url{https://kcha193.shinyapps.io/infoDecompuTE_Shiny/}. There are three type of outputs that can be generated from this Shiny application: 1) output from the \proglang{R} console as a text file, 2) latex code as a text file, and 3) latex compiled portable document format file. 
+
+The second part of this thesis described a computational approach for finding optimal designs for Phase 2 proteomics experiments using MudPIT-iTRAQ$^{\rm TM}$ technologies. Chapter 3 presented the Phase 1 experiment arranged in a completely randomised design (CRD). The objective function was constructed to minimise confounding between Phase 1 Experiment units and Treatment effects with Phase 2 Run and Tag effects. The information matrix was constructed with an orthogonal projection matrix which projects $\bm{y}$ onto the Within Runs and Tags vector subspace, by assuming that Tag effects are random.
+
+A three-criterion objective function was derived for generating the optimal design with three properties: 
+\begin{enumerate}
+\item information of the Phase 1 Experimental Units is maximised in the Within Runs stratum, based on A-optimal criteria,
+\item treatment information is maximised in the Between Experimental Units Within Runs stratum, based on A-optimal criteria, and 
+\item DF of the Treatment effects must still be intact in the Between Experimental Units Within Runs stratum.
+\end{enumerate}
+
+The modified nested SA algorithm presented consisted of two further improvements. The first improvement was applying the swapping method to only two of the experimental units of the Phase 1 experiment instead of the observational units. The second improvement was the three-stage swapping procedure, which divides a single large search space into three smaller search spaces, swapping the experiment units: 1) within the same runs, 2) within the same tags, and 3) not within the same runs and tags. These improvements were aimed at speeding up the process by optimising the objective function and then obtaining the optimal design. 
+
+Chapter 4 extended the concept to finding the optimal design when the Phase 1 experiment is arranged in blocks, more specifically, a randomised complete block design (RCBD), or a balanced incomplete block design (BIBD). Having this additional Block factor from the Phase 1 experiment required us to adjust the objective function to have another criterion in maximising the Residual DF in the Between Plots Within Blocks Within Runs stratum. In addition, instead of having a single equation combining these four criteria with some weights, we optimise this new four-criterion objective function with three incremental steps:
+\begin{enumerate}
+\item The first step is to locate designs in which the Phase 1 Plots average efficiency factor in the Within Blocks Within Runs and Tags vector subspace equals 1, and the DF associated with Treatment effects in the Between Plots Within Blocks Within Runs stratum are intact.
+\item Then from among the designs located in the first step, the second step uses the modified nested SA algorithm to find optimal designs in which the Residual DF in the Between Plots Within Blocks Within Runs stratum are maximised.
+\item From among the designs found in the second step, the third step is to find the optimal design in which the treatment average efficiency factor in the Between Plots Within Blocks Within Runs and Tags vector subspace is maximised.
+\end{enumerate}
+
+Furthermore, two different types of confounding schemes were investigated, where Phase 1 Block effects are intentionally confounded with Tag effects, and where Phase 1 Block effects were intentionally confounded with Run effects. In general, designs in which Phase 1 Block effects were intentionally confounded with Tag effects were shown to have higher Residual DF in the Between Plots Within Blocks Within Runs stratum, because some DF associated with Tag effects were then estimated in the Between Block stratum. 
+
+From the optimal designs generated, it was found that, if the Phase 1 experiment was arranged in a CRD with fewer than 16 animals (experimental units), it was better to use the four-plex system instead of the eight-plex system, due to the two extra DF available in the Between Animals Within Runs stratum. However, when more Phase 1 animals (experimental units) were used, the degrees of confounding between Animal effects and Run effects increased in the Phase 2 experiment; thus, it became preferable to use the eight-plex system over the four-plex system. In general, if the Phase 1 experiment is arranged in Blocks, it is recommended that the four-plex system should still be used when there are fewer than 16 animals (experimental units). However, no clear cut-off number of experimental units was identified, at which the eight-plex system become better than the four-plex system. This is because having the additional Block component could generate designs with higher Residual DF when Blocks effects that confounded with Tag effects. 
+
+The main purpose of Chapters 3 and 4 was to describe the development of an automated process for finding the optimal design for a wide range of two-phase multiplexing experiments. Even though the main examples were comprise of four- and eight-plex experiments, the methods presented were more general and could be applied to all two-phase designs. This allows researchers using these technologies to design their experiments without requiring expert knowledge in experimental design. In addition, having this tool available also allows the consulting statisticians to present a quick solution to their client. (A set of resulting optimal designs were presented in Appendices~\ref{append:optimalCRDDes}, \ref{append:optimalRBDDes} and \ref{append:optimalBIBDDes}, and their properties were presented as tables in Appendices~\ref{append:optimalCRD}, \ref{append:optimalRBD} and \ref{append:optimalBIBD}.) 
+
+The last part of the thesis showed how to estimate the variance components (VCs) using a restricted maximum likelihood (REML) when the Phase 2 Run effects are assumed to be random. We then showed how to approximate the effective degrees of freedom (EDF), which indicated how well we estimate the variances of Treatment effects, i.e. the residual MS of the stratum associated with the experimental unit. A design with higher EDF provided a better estimated of the variance of Treatment effects. However, the REML method described here did not improve the approximation of the EDF from the optimal designs found in Chapters 3 and 4. This was due to these optimal designs having the characteristic of balanced arrangement for Phase 1 experimental units to the Phase 2 Blocks, which ensured that we always had a valid F-test for testing Treatment effects. Thus, these optimal designs were robust to the VCs estimation procedure. 
+ 
+\section{Future lines of research}
+\subsection{Shiny application for generating optimal designs of Phase 2 experiments}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Optimal designs 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Scientists are very adaptive at using these technologies, and they also have a good intuitive sense of needing to design their experiments to protect against unwanted systematic sources of variation. The introduction of labelling technologies in multiplexing for the ``omics'' experiments is evidence of this.
+
+In Appendices~\ref{append:optimalCRDDes}, \ref{append:optimalRBDDes} and \ref{append:optimalBIBDDes}, we provided a set of designs that were generated from the work in Chapters 3 and 4. Researchers can used these to match their design parameters and select a design for their two-phase experiment.
+
+Some additional \textsf{R} functions for the optimisation algorithm have been written, which will be published as a publicly available package on CRAN. Furthermore, this \textsf{R} package will also be turned into a Shiny application, so that it is easily accessible to end-users from a wide range of scientific disciplines. Thus, even scientists who are unfamiliar with \textsf{R} will feel comfortable using this application with user-friendly interface, and our design methods will become publicly available to all researchers.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Effective degrees of freedom versus average treatment efficiency factor}
+Chapter 5 included an example of a Phase 1 experiment involving $\nu = 8$ treatments assigned to $n_a = 16$ animals. We compared the theoretical ANOVA from the designs of the Phase 2 experiment using four-plex and eight-plex in Tables~\ref{tab:EDFDiscuss1} and \ref{tab:EDFDiscuss2}. 
+
+In Table~\ref{tab:EDFDiscuss1}, when the Phase 2 experiment used the four-plex system, there were 3 DF associated with the Treatment effects estimated in the Between Runs stratum, with a treatment efficiency factors of $0.3$. Thus, the Run effects were assumed to be fixed, because we could not recover the extra information on Between Animals VC, $\sigma_a^2$,from the MS in the Between Animals Between Run stratum for estimating the variance of the Treatment effects. Hence, the EDF of the Between Animal Within Run stratum in this case were always 4 DF. As in Table~\ref{tab:EDFDiscuss1} when the Phase 2 experiment used the eight-plex system, confounding occurred between Treatment and Tag effects, with Tag effects containing $0.3$ of the treatment information. Since the Run effects were assumed as random, we could recover the extra information from the Between Animals Between Runs stratum for estimating the variance of Treatment effects, thus the EDF could be as high as 5 DF.   
+
+\begin{table}[!ht]
+\centering
+ \caption{Theoretical ANOVA table from the Phase 1 experiment arranged in CRD with $\nu = 8$ and $r_b = 2$, and from the Phase 2 experiment using the four-plex system.}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Animals &  &  & & \\ 
+ \quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{a}^2+4\sigma_{r}^2+1.2\theta_{\tau}$ & & $0.3$\\ 
+ \quad Within Animals & $4$ & $\sigma^2+4\sigma_{r}^2$ & & \\ \hline 
+ Within Run &  &  & & \\ 
+ \quad Between Animals &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{a}^2+8\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Treatment & $7$ & $\sigma^2+2\sigma_{a}^2+ 3.23\theta_{\tau}$ & & $0.8077$\\ 
+ \quad \quad Residual & $4$ & $\sigma^2+2\sigma_{a}^2$ & & \\ \hline 
+ \quad Within Animals &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+8\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $10$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:EDFDiscuss1}
+\end{table} 
+
+\begin{table}[!ht]
+\centering
+ \caption{Theoretical ANOVA table from the Phase 1 experiment arranged in CRD with $\nu = 8$ and $r_b = 2$ and the Phase 2 experiment using the eight-plex system.}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Animals & $1$ & $\sigma^2+2\sigma_{a}^2+8\sigma_{r}^2$ & & \\ 
+ \quad Within Animals & $2$ & $\sigma^2+8\sigma_{r}^2$ & & \\ \hline 
+ Within Runs &  &  & & \\ 
+ \quad Between Animals &  &  & & \\ 
+ \quad \quad Tag & $3$ & $\sigma^2+2\sigma_{a}^2+4\theta_{\gamma}+1.2\theta_{\tau}$ &$1$ &  $0.3$\\ 
+ \quad \quad Treatment & $7$ & $\sigma^2+2\sigma_{a}^2+3.23\theta_{\tau}$ & & $0.8077$\\ 
+ \quad \quad Residual & $4$ & $\sigma^2+2\sigma_{a}^2$ & & \\ \hline 
+ \quad Within Animals &  &  & & \\ 
+ \quad \quad Tag & $4$ & $\sigma^2+4\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $10$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:EDFDiscuss2}
+\end{table} 
+
+Additional work can be done in comparing between recovering the treatment information across runs, and recovering the extra DF in EDF to get a better estimate of the variance. To achieve this, it would mean performing more extensive simulation studies to understand which of these two designs would be preferable and under which circumstances. These circumstances are not just different ranges of values of VCs, but also different ranges of values in the fixed effects for the simulation study. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Missing values}
+One of the issues that arises with high-throughput multiplexing experiments is that of missing data. For a single protein, there are various ways in which missing values can arise in a MudPIT-iTRAQ$^{\rm TM}$ proteomics experiment. One form of missing data in which we are most interested, is when a unique peptide, which only belongs to a specific protein, is simply not found in one run of the experiment, but can be found on the other runs of the experiment. Thus, during database searching, bioinformatics software cannot re-construct this specific protein; and this protein would then be considered as missing for one entire run of the Phase 2 experiment. This can be problematic in the analysis stage, as the design is likely to become unbalanced due to unequal replication of the treatment group or the experimental units from the Phase 1 experiment.  
+ 
+For example, consider the Phase 2 experiment with the Phase~1 experiment consisting of $\nu = 4$ treatments assigned to $n_a = 12$ animals. Each animal is then further split into $n_s = 2$ sub-samples and measured in the Phase 2 MudPIT-iTRAQ$^{\rm TM}$ experiment comprising $n_r = 6$ runs and $n_\gamma = 4$ tags. An optimal design of Phase 2 experiment or this scenario is presented in Table ~\ref{tab:DesCon}. 
+
+\begin{table}[ht]
+\centering
+\itshape
+\caption{Optimal design for Phase 2 experiment showing the allocation of sub-samples from treatments assigned to animals, when the Phase~1 experiment consists of $\nu = 4$ treatments assigned to $n_a = 12$ animals, $n_s = 2$ sub-samples are then taken from each animals and measured in the Phase 2 MudPIT-iTRAQ$^{\rm TM}$ experiment comprising $n_r = 6$ runs and $n_\gamma = 4$ tags.}
+\begin{tabular}[t]{c|cc:cc}
+ & \multicolumn{4}{c}{{\bf Tag}} \\
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\  
+\hline 
+\textnormal{1} & Jb & Ld & Ea & Cc \\ 
+\textnormal{2} & Ld & Jb & Cc & Ea \\ 
+\textnormal{3} & Aa & Gc & Fb & Dd \\ 
+\textnormal{4} & Gc & Aa & Dd & Fb \\ 
+\textnormal{5} & Hd & Ia & Kc & Bb \\ 
+\textnormal{6} & Ia & Hd & Bb & Kc \\ 
+\end{tabular}
+ \label{tab:DesCon} 
+\end{table}
+
+The theoretical ANOVA of the full design in Table~\ref{tab:DesCon} is presented in Table~\ref{tab:Full}. The total of 23 DF were partitioned to 5 DF for Between Runs stratum and 18 DF for Within Runs stratum. In the Between Animals Within Runs stratum, Treatment effects could be estimated with $0.96$ amount of the treatment information with 5 Residual DF for estimating the variance of Treatment effects. In addition, there was a valid F-test for comparing between treatments, because the coefficients of VCs were the same for the Treatment and Residual EMS in the Between Animals Within Runs stratum.
+
+\begin{table}[!ht]
+\centering
+ \caption{Theoretical ANOVA table of design in Table~\ref{tab:DesCon}. }
+\begin{tabular}[t]{lrlll} 
+\toprule 
+\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}&\multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+\midrule 
+Between Runs &  &  & & \\ 
+\quad Between Animals & $2$ & $\sigma^2+2\sigma_{a}^2+4\sigma_{r}^2$ & & \\ 
+\quad Within Animals & $3$ & $\sigma^2+4\sigma_{r}^2$ & & \\ \hline 
+Within Runs &  &  & & \\ 
+\quad Between Animals &  &  & & \\ 
+\quad \quad Tag & $1$ & $\sigma^2+2\sigma_{a}^2+6\theta_{\gamma}+0.67\theta_{\tau}$ &$1$ & $0.1111$\\ 
+\quad \quad Treatment  & $3$ & $\sigma^2+2\sigma_{a}^2+5.76\theta_{\tau}$ & & $0.96$\\ 
+\quad \quad Residual & $5$ & $\sigma^2+2\sigma_{a}^2$ & & \\ \hline 
+\quad Within Animals &  &  & & \\ 
+\quad \quad Tag & $2$ & $\sigma^2+6\theta_{\gamma}$ &$1$ & \\ 
+\quad \quad Residual & $7$ & $\sigma^2$ & & \\ 
+\bottomrule 
+ \end{tabular} 
+ \label{tab:Full} 
+\end{table}
+
+If a given protein was not detected in Run 6, then there would be four observations missing for the Phase 2 experiment. The theoretical ANOVA is presented Table~\ref{tab:MissingOneRun}, which shows that the total DF are reduced to 19 DF. The Residual DF in the Between Animals Within Runs stratum are also reduced to 3 DF, which is 2 DF less than the full design. Furthermore, there is no direct valid F-test for this design, as coefficients of the VCs from the Treatment and Residual EMS are different in the Between Animals Within Runs stratum. Finally, the amount of the treatment information is also reduced from $0.96$ to $0.8$. 
+
+\begin{table}[!ht]
+\centering
+ \caption{Theoretical ANOVA table of design in Table~\ref{tab:DesCon} with Run 6 missing.}
+\begin{tabular}[t]{lrlll} 
+\toprule 
+\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}&\multicolumn{1}{l}{$\bm{E_{\gamma }}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+\midrule 
+Between Run &  &  & & \\ 
+\quad Between Animals & $2$ & $\sigma^2+ 1.6\sigma_{a}^2+4\sigma_{r}^2$ & & \\ 
+\quad Within Animals & $2$ & $\sigma^2+4\sigma_{r}^2$ & & \\ \hline 
+Within Run &  &  & & \\ 
+\quad Between Animals &  &  & & \\ 
+\quad \quad Tag & $3$ & $\sigma^2+1.27\sigma_{a}^2+1.36\theta_{\gamma}+0.43\theta_{\tau}$ &$0.2727$ & $0.0857$\\ 
+\quad \quad Treatment & $3$ & $\sigma^2+1.96\sigma_{a}^2+4.23\theta_{\tau}$ & & $0.8471$\\ 
+\quad \quad Residual & $3$ & $\sigma^2+1.78\sigma_{a}^2$ & & \\ \hline 
+\quad Within Animals &  &  & & \\ 
+\quad \quad Tag & $2$ & $\sigma^2+4\theta_{\gamma}$ &$0.8$ & \\ 
+\quad \quad Residual & $4$ & $\sigma^2$ & & \\ 
+\bottomrule 
+ \end{tabular} 
+ \label{tab:MissingOneRun} 
+\end{table}
+
+If a given protein is not detected in Runs 5 and 6, we then are left with 16 observations for the Phase 2 experiment. The theoretical ANOVA of the new design is presented in Table~\ref{tab:MissingTwoRuns}. The Residual DF in the Between Animals Within Runs stratum is reduced to 2 DF, which is 3 DF less than the full design. However, there is a valid F-test for Treatment effects, with Treatment effects being fully estimable in the Between Animals Within Runs stratum. This is due to the way that we structured our initial designs with a 2-run-by-2-tag array system. Hence, if the last two runs of the experiment were to be missing, we basically lose one biological replicate, i.e.\ there would now be 8 animals from the Phase 1 experiments, so that the allocation of sub-samples of animals and treatments, to be labelled with tags and analysed with runs still would have a balanced arrangement. Hence, the optimal design presented in Table~\ref{tab:DesCon} is shown to be robust in dealing with certain patterns of missing data, i.e.\ when Runs 1 and 2, or Runs 3 and 4, or Runs 5 and 6 are missing. Other different patterns of missing data will result in designs that have no valid F-test for treatment effects, or will make it difficult to estimate the VCs from the theoretical ANOVA.   
+
+\begin{table}[!ht]
+\centering
+ \caption{Theoretical ANOVA table of design in Table~\ref{tab:DesCon} with Runs 5 and 6 missing.}
+\begin{tabular}[t]{lrlll} 
+\toprule 
+\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}&\multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+\midrule 
+Between Run &  &  & & \\ 
+\quad Between Animals & $1$ & $\sigma^2+2\sigma_{a}^2+4\sigma_{r}^2$ & & \\ 
+\quad Within Animals & $2$ & $\sigma^2+4\sigma_{r}^2$ & & \\ \hline 
+Within Run &  &  & & \\ 
+\quad Between Animals &  &  & & \\ 
+\quad \quad Tag & $1$ & $\sigma^2+2\sigma_{a}^2+4\theta_{\gamma}$ &$1$ & \\ 
+\quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{a}^2+4\theta_{\tau}$ & & $1$\\ 
+\quad \quad Residual & $2$ & $\sigma^2+2\sigma_{a}^2$ & & \\ \hline 
+\quad Within Animals &  &  & & \\ 
+\quad \quad Tag & $2$ & $\sigma^2+4\theta_{\gamma}$ &$1$ & \\ 
+\quad \quad Residual & $4$ & $\sigma^2$ & & \\ 
+\bottomrule 
+ \end{tabular} 
+ \label{tab:MissingTwoRuns} 
+\end{table} 
+ 
+Further simulation studies can be done to explore what happens to the properties of the designs considered in Chapters 3 and 4 with different patterns of missingness. We may investigate how the design can start to break down as observed in Table~\ref{tab:MissingOneRun}, when there is one run of the experiment that is missing. We can further examine any alternative designs which have more desirable properties in terms of their robustness for downstream statistical analyses when we have missing values.
+
+An alternative approach would be to construct an imputation model under a Bayesian multivariate and multilevel inference framework \citep{Zeng2017}. This model would use the information from experimental factors, such as the physical properties of the peptides, the effects from iTRAQ$^{\rm TM}$ tags and MudPIT runs, along with the clinical factors of each patient to construct a likelihood model. Each parameter in the likelihood model would be estimated using an Empirical Bayesian Hamiltonian MC algorithm, which integrates prior information for missing data and the distribution of missing values. The resultant posterior distribution of these parameters, including parameters of interest, would therefore be estimated utilising both the pattern of missing data and information for missing values. We could incorporate this framework into how to better design the Phase 2 experiment, which would enable us to impute reliable values for the final analysis.
+
+\section{More general future research directions}
+Another multiplexing technology, which started to become popular only a few years ago is \emph{Next-Generation Sequencing} (NGS). This multi-plexing technology can be carried out by attaching unique index sequences, namely \emph{barcodes}, onto the end of each DNA or RNA fragment \citep{smith2010}. Therefore, different barcodes are attached to different biological samples, allowing an NGS instrument to sequence multiple samples simultaneously. The abundance levels of sequences are then measured based on the number of barcodes present in each sample. These barcodes are very similar to the iTRAQ$^{\rm TM}$ tags used when measuring protein abundances. Note that MudPIT runs of the proteomics experiments are referred to as \emph{lanes} of the NGS experiments. Thus, the methods of optimal designs described in this thesis also apply to this technology. 
+
+We can currently obtain a kit with 96 and 384 barcodes, meaning that we can quantify up to 96 or 384 unique samples at the same time \citep{smith2010, Shapland2015}. However, using more barcodes is not always ideal, because as more barcodes are used the number of DNA or RNA sequences for each barcode decreases \citep{campbell2015}. Hence, deciding on the number of barcodes is more practical than theoretical. 
+
+Let us consider a Phase 1 experiment arranged in a CRD with $\nu = 8$ treatments assigned to $n_a = 48$ animals, and the sample from each animal split into $n_s = 2$ sub-samples, which gives us a total of $n = 96$ sub-samples to be measured using the NGS technology. If a researcher decides to use the kit with 96 barcodes for just one lane of the experiment, then the Treatment effects are completely confounded with Tag effects. 
+
+Using the objective function and SA algorithm derived in this thesis, we can quickly generate four optimal designs with multiple lanes, where all have a valid F-test for Treatment effects, with different numbers of barcodes used in the Phase 2 experiment. The Residual DF and the treatment average efficiency factors of these four designs are presented in Table~\ref{tab:NGS}. This shows that the best option is to use $8$ lanes of the experiment with $12$ barcodes, which generates the highest Residual DF (32 DF) and the treatment average efficiency factors ($0.9837$) in the Between Animals Within Runs stratum. However, given that each lane of experiment costs about five thousand dollars, it may be ideal to advise the researcher to use 4 lanes with $24$ barcodes, because there would not a lot of improvement compared to using $8$ lanes of the experiment with $12$ barcodes. Therefore, more work can be done in examining the efficiency of using different numbers of barcodes for generating a better optimal design of the Phase 2 experiment.
+
+\begin{table}[!h]
+\centering
+\caption{Residual DF and treatment average efficiency factors from the optimal design with different number of lanes and barcodes for Next-Generation Sequencing technology.}
+\begin{tabular}{|l|l|l|l|}
+\hline 
+Number of lanes	& Number of barcodes & Residual DF & $E_\tau$  \\ 
+\hline 
+$2$ 	& $48$ & $17$ & $0.56$ \\ 
+\hline 
+$4$ 	& $24$ & $28$ & $0.8532$  \\ 
+\hline 
+$8$ & $12$ & $32$ & $0.9837$  \\ 
+\hline 
+$16$ & $6$ & $31$ & $0.9510$  \\ 
+\hline 
+\end{tabular} 
+\label{tab:NGS}
+\end{table}
+ 
+Finally, the NGS experiment returns counts as the response. The method in this thesis assumes that the response, once log transformed, is normally distributed; thus, all of the designs we have generated assume unit-treatment additivity. Having a count as the response violates this assumption, and so further research could be undertaken on how to obtain optimal designs of the two-phase experiment where the response exhibits a non-normal distribution.
+
+Further research outlined here will help to maximise the benefits of new technologies, such as NGS, while at the same time extending the capabilities of our method, for generating optimal designs, to a wider range of settings in two-phase multiplex proteomics experiments. 
+
+

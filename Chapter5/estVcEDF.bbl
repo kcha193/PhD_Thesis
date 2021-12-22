@@ -1,0 +1,31 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Jarrett and Ruggiero(2008)]{Jarrett2008}
+R~G Jarrett and K~Ruggiero.
+\newblock Design and analysis of two-phase experiments for gene expression
+  microarrays-part \textnormal{I}.
+\newblock \emph{Biometrics}, 64\penalty0 (1):\penalty0 208--216, March 2008.
+\newblock \doi{10.1111/j.1541-0420.2007.00835.x}.
+\newblock URL \url{http://www.hubmed.org/display.cgi?uids=17651456}.
+
+\bibitem[Patterson and Thompson(1971)]{Patterson1971}
+H.~D. Patterson and R.~Thompson.
+\newblock Recovery of inter-block information when block sizes are unequal.
+\newblock \emph{Biometrika}, 58\penalty0 (3):\penalty0 pp. 545--554, 1971.
+\newblock ISSN 00063444.
+\newblock URL \url{http://www.jstor.org/stable/2334389}.
+
+\bibitem[Satterthwaite(1946)]{Satterthwaite1946}
+F.~E. Satterthwaite.
+\newblock An approximate distribution of estimates of variance components.
+\newblock \emph{Biometrics Bulletin}, 2\penalty0 (6):\penalty0 pp. 110--114,
+  1946.
+\newblock ISSN 00994987.
+\newblock URL \url{http://www.jstor.org/stable/3002019}.
+
+\end{thebibliography}

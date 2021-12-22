@@ -1,0 +1,242 @@
+\section{Improve in treatment average efficiency factor of the design by reducing the residual DF}
+\label{sec:reduceResDF}
+Record the the structure of second objective function is to fix the residual DF while finding the design that the treatment average efficiency factor is maximised. This section presents an example which shows that by optimising the second objective function with one lesser residual DF, a design with slightly treatment average efficiency factor can be obtained. 
+
+This additional procedure is presented with an example experiment with $v = 7, r_b = 6, n_B = 3, n_{A(B)} = 14, r_t = 2, n_R = 21 \; \mathrm{and} \; n_\gamma = 4$. In the Phase 1 experiment, 14 of 42 animals are assigned to each of three cages and 7 of 14 animals within each cages are assigned to each of 6 treatments. The theoretical ANOVA table is shown in Table~\ref{tab:Phase1ANOVA5}. Total of $83$ DF are split to 2 DF and 39 DF for Between Cages and Between Animals Within Cages strata. Since there are 6 DF associated with treatment effects, there are 33 DF associated residual MS in the Between Animals Within Cages stratum. 
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for Phase 1 experiment with $v = 7, r_b = 6, n_B = 3, n_{A(B)} = 14\; \mathrm{and} \; r_t = 2$.}
+ \begin{tabular}[t]{lrll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\
+ \midrule
+ Between Cages & $2$ & $\sigma_{A}^2+14\sigma_{B}^2$ &\\ \hline
+ Between Animals Within Cages &  &  &\\
+ \quad Treatment & $6$ & $\sigma_{A}^2+6\theta_{\tau}$ &$1$\\
+ \quad Residual & $33$ & $\sigma_{A}^2$ &\\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase1ANOVA5}
+\end{table}
+
+After optimising the first objective function, the DF associated with residual MS in the Between Animals Within Cages Within Runs is maximised to be 23 DF. While fixing the residual DF at 23, the second objective function is optimised at 0.8586. The optimal allocation of cages and animals can be shown in Table~\ref{tab:cagAniDes10}. From observing this design, the allocation of cages to runs is appeared to be disconnected where Run 1 to 14 consists of Cage 1 and 2 and Run 15 to Run 21 consists of only Cage 3. This design generated 30 canonical efficiency factors associated with animals within cages effects in the Within Runs stratum. These 30 canonical efficiency factors are all unity which suggesting the test for the treatment effects in the Between Animals Within Cages Within Runs stratum should be possible.
+
+\begin{table}[ht]                                       
+\centering                                              
+\caption{Animals and cages allocation to runs and tags found using two-step optimisation method for Phase 2 experiment with $v = 7, r_b = 6, n_B = 3, n_{A(B)} = 14, r_t = 2, n_R = 21 \; \mathrm{and} \; n_\gamma = 4$.}           
+\begin{tabular}[t]{c|cccc}                                 
+ & \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & 114 & 115 & 116 & 117 \\                   
+\hline                                                  
+1  & 1J & 2H & 1I & 2L \\  
+2  & 2H & 1J & 2L & 1I \\  
+3  & 2E & 1C & 2M & 1A \\  
+4  & 1C & 2E & 1A & 2M \\  
+5  & 1M & 1H & 2N & 2K \\  
+6  & 1H & 1M & 2K & 2N \\  
+7  & 1E & 2G & 1K & 2C \\  
+8  & 2G & 1E & 2C & 1K \\  
+9  & 2A & 1B & 1N & 2F \\  
+10 & 1B & 2A & 2F & 1N \\  
+11 & 1G & 2D & 1L & 2B \\  
+12 & 2D & 1G & 2B & 1L \\  
+13 & 1D & 2I & 1F & 2J \\  
+14 & 2I & 1D & 2J & 1F \\  
+15 & 3F & 3E & 3I & 3G \\  
+16 & 3E & 3F & 3G & 3I \\  
+17 & 3M & 3K & 3A & 3L \\  
+18 & 3K & 3M & 3L & 3A \\  
+19 & 3B & 3J & 3D & 3H \\  
+20 & 3J & 3B & 3H & 3D \\  
+21 & 3N & 3N & 3C & 3C \\                                 
+\end{tabular}                                           
+\label{tab:cagAniDes9}                                  
+\end{table}    
+
+Based on the assignment of treatments to animals within cages in the Phase 1 experiment, the treatment allocation to runs and tags is presented in Table~\ref{tab:trtDes9}. The treatment canonical efficiency factor from this design are $0.9339, 7/8, 7/8, 7/8, 0.8161$ and $0.7917$. Hence, the treatment average efficiency factor is $0.8586$. The treatment concurrence matrix with respect to runs is given by 
+\[
+\begin{bmatrix}
+12 &  6 &  6 &  6 &  6&  8&  4\\ 
+ 6 & 12 &  6 &  6 &  6&  6&  6\\ 
+ 6 &  6 & 14 &  6 &  6&  4&  6\\ 
+ 6 &  6 &  6 & 12 &  6&  6&  6\\ 
+ 6 &  6 &  6 &  6 & 12&  6&  6\\ 
+ 8 &  6 &  4 &  6 &  6& 12&  6\\ 
+ 4 &  6 &  6 &  6 &  6&  6& 14\\ 
+\end{bmatrix}.
+\]
+This treatment concurrence matrix is to be compared to the treatment concurrence matrix of the next design and to be discussed later.
+
+\begin{table}[ht]                                       
+\centering                                              
+\caption{Treatment allocation to runs and tags found using two-step optimisation method for Phase 2 experiment with $v = 7, r_b = 6, n_B = 3, n_{A(B)} = 14, r_t = 2, n_R = 21 \; \mathrm{and} \; n_\gamma = 4$.}           
+\begin{tabular}[t]{c|cccc}                                 
+ & \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & 114 & 115 & 116 & 117 \\                   
+\hline                                                  
+1  & c & c & b & e \\  
+2  & a & a & e & b \\  
+3  & e & e & f & a \\  
+4  & c & c & a & f \\  
+5  & f & f & g & d \\  
+6  & a & a & d & g \\  
+7  & e & e & d & c \\  
+8  & g & g & c & d \\  
+9  & a & a & g & f \\  
+10 & b & b & f & g \\  
+11 & g & g & e & b \\  
+12 & d & d & b & e \\  
+13 & d & d & f & c \\  
+14 & b & b & c & f \\  
+15 & f & f & b & g \\  
+16 & e & e & g & b \\  
+17 & f & f & a & e \\  
+18 & d & d & e & a \\  
+19 & b & b & d & a \\  
+20 & c & c & a & d \\  
+21 & g & g & c & c \\                                   
+\end{tabular}                                           
+\label{tab:trtDes9}                                  
+\end{table}    
+
+The theoretical ANOVA table for Phase 2 experiment is shown in Table~\ref{tab:Phase2ANOVA9}. The 2 DF associated with Between Cages stratum from the Phase 1 experiment are in the Between Runs and Within Runs strata. This is due to the disconnectedness in the allocation of cages to runs as shown in Table~\ref{tab:cagAniDes9}. In the Between Runs stratum, there is $\frac{35}{288}$ of treatment information and is computed from the harmonic mean of the treatment canonical efficiency factor in the Between Runs stratum which are $0.2083, 0.1839, 1/8, 1/8, 1/8$ and $0.0661$. In the Within Runs stratum, there is $0.8586$ of treatment information and is computed from the harmonic mean of the treatment canonical efficiency factor in the Within Runs stratum which are $0.9339, 7/8, 7/8, 7/8, 0.8161$ and $0.7917$. In the Between Animals Within Cages Within Runs stratum, there is 1 and 6 DF associated with tag effects and treatment effects, respectively. Hence, there is 23 DF remain associated with residual MS in the Between Animals Within Cages Within Runs stratum. 
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for Phase 2 experiment with $v = 7, r_b = 6, n_B = 3, n_{A(B)} = 14, r_t = 2, n_R = 21 \; \mathrm{and} \; n_\gamma = 4$ using two-step optimisation method.}
+ \begin{tabular}[t]{lrlll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\
+ \midrule
+ Between Runs &  &  & & \\
+ \quad Between Cages & $1$ & $\sigma^2+2\sigma_{A}^2+28\sigma_{B}^2+4\sigma_{R}^2$ & & \\ \hline
+ \quad Between Animals Within Cages &  &  & & \\
+ \quad \quad Treatment & $6$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\frac{35}{24}\theta_{\tau}$ & & $\frac{35}{288}$\\
+ \quad \quad Residual & $3$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2$ & & \\
+ \quad Residual & $10$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+ Within Runs&  &  & & \\
+ \quad Between Cages &  &  & & \\
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+28\sigma_{B}^2+\frac{2}{7}\theta_{\gamma}$ &$\frac{2}{147}$ & \\ \hline
+ \quad Between Animals Within Cages &  &  & & \\
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+\frac{145}{7}\theta_{\gamma}$ &$\frac{145}{147}$ & \\
+ \quad \quad Treatment & $6$ & $\sigma^2+2\sigma_{A}^2+ 10.304\theta_{\tau}$ & & $0.8586$\\
+ \quad \quad Residual & $23$ & $\sigma^2+2\sigma_{A}^2$ & & \\\hline
+ \quad Within Animals Within Cages &  &  & & \\
+ \quad \quad Tag & $2$ & $\sigma^2+21\theta_{\gamma}$ &$1$ & \\
+ \quad \quad Residual & $30$ & $\sigma^2$ & & \\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase2ANOVA9}
+\end{table}
+
+Record the residual DF is maximised to be 23 for this set of design parameter, instead of optimising the second objective function while fixing residual DF at 23, the residual DF is fixed at 22. While fixing the residual DF at 22, the second objective function is optimised to 0.8588, which is slightly better than the previous design of 0.8586. This optimal allocation of cages and animals can be shown in Table~\ref{tab:cagAniDes11}. From observing this design, the allocation of cages to runs is connected, because each run contains at least each of 3 cages. However, this design generated 29 canonical efficiency factors associated with animals within cages effects in the Within Runs stratum, which is one less than the previous design. These 29 canonical efficiency factors are also all unity which suggesting the test for the treatment effects in the Between Animals Within Cages Within Runs stratum should be possible.
+
+\begin{table}[ht]                                       
+\centering                                              
+\caption{Animals and cages allocation to runs and tags found using two-step optimisation method and reduce the residual DF by 1 for Phase 2 experiment with $v = 7, r_b = 6, n_B = 3, n_{A(B)} = 14, r_t = 2, n_R = 21 \; \mathrm{and} \; n_\gamma = 4$.}           
+\begin{tabular}[t]{c|cccc}                                 
+ & \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & 114 & 115 & 116 & 117 \\                   
+\hline                                                  
+1  & 3L & 2F & 3B & 1K \\   
+2  & 2F & 3L & 1K & 3B \\   
+3  & 1L & 2I & 1N & 3H \\   
+4  & 2I & 1L & 3H & 1N \\   
+5  & 2K & 2N & 3E & 1C \\   
+6  & 2N & 2K & 1C & 3E \\   
+7  & 1G & 2A & 3D & 2E \\   
+8  & 2A & 1G & 2E & 3D \\   
+9  & 3M & 1B & 2L & 2C \\   
+10 & 1B & 3M & 2C & 2L \\   
+11 & 3C & 3N & 2B & 1H \\   
+12 & 3N & 3C & 1H & 2B \\   
+13 & 1D & 3J & 1I & 2G \\   
+14 & 3J & 1D & 2G & 1I \\   
+15 & 1J & 2H & 3K & 1M \\   
+16 & 2H & 1J & 1M & 3K \\   
+17 & 2D & 3I & 2M & 1A \\   
+18 & 3I & 2D & 1A & 2M \\   
+19 & 1E & 3A & 3F & 2J \\   
+20 & 3A & 1E & 2J & 3F \\   
+21 & 1F & 1F & 3G & 3G \\                              
+\end{tabular}                                           
+\label{tab:cagAniDes10}                                  
+\end{table}    
+
+Based on the assignment of treatments to animals within cages in the Phase 1 experiment, the treatment allocation to runs and tags is presented in Table~\ref{tab:trtDes11}. The treatment canonical efficiency factors from this design are $7/8, 7/8, 7/8, 0.874, 0.870$ and $0.791$. Hence, the treatment average efficiency factor is $0.8588$. The treatment concurrence matrix with respect to runs is given by 
+\[
+\begin{bmatrix}
+12 &  6 &  6 &  6 &  6&  6&  6\\  
+ 6 & 12 &  6 &  6 &  6&  6&  6\\  
+ 6 &  6 & 12 &  6 &  6&  6&  6\\  
+ 6 &  6 &  6 & 12 &  6&  6&  6\\  
+ 6 &  6 &  6 &  6 & 12&  6&  6\\  
+ 6 &  6 &  6 &  6 &  6& 14&  4\\  
+ 6 &  6 &  6 &  6 &  6&  4& 14\\  
+\end{bmatrix}.
+\]
+Comparing this treatment concurrence matrix to the previous, the diagonal elements of these two matrices are the same as both consist of 5 12's and 2 14's. The main differences is in the off-diagonal elements of these two matrices, where the first matrix contains elements of $4, 6$ and $8$, but the second matrix only contains elements of $4$ and $6$. Hence, the treatment allocation to runs for this design is more balanced or S-optimal than the previous design. This is also confirmed by the  treatment canonical efficiency factors as shown where the first design consists of $0.9339, 7/8, 7/8, 7/8, 0.8161$ and $0.7917$ and the second design consists of $7/8, 7/8, 7/8, 0.874, 0.870$ and $0.791$.
+
+\begin{table}[ht]                                       
+\centering                                              
+\caption{Treatment allocation to runs and tags found using two-step optimisation method and reduce the residual DF by 1 for Phase 2 experiment with $v = 7, r_b = 6, n_B = 3, n_{A(B)} = 14, r_t = 2, n_R = 21 \; \mathrm{and} \; n_\gamma = 4$.}           
+\begin{tabular}[t]{c|cccc}                                 
+ & \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & 114 & 115 & 116 & 117 \\                   
+\hline                                                  
+1  & e & f & b & d \\    
+2  & f & e & d & b \\    
+3  & e & b & g & a \\    
+4  & b & e & a & g \\    
+5  & d & g & e & c \\    
+6  & g & d & c & e \\    
+7  & g & a & d & e \\    
+8  & a & g & e & d \\    
+9  & f & b & e & c \\    
+10 & b & f & c & e \\    
+11 & c & g & b & a \\    
+12 & g & c & a & b \\    
+13 & d & c & b & g \\    
+14 & c & d & g & b \\    
+15 & c & a & d & f \\    
+16 & a & c & f & d \\    
+17 & d & b & f & a \\    
+18 & b & d & a & f \\    
+19 & e & a & f & c \\    
+20 & a & e & c & f \\    
+21 & f & f & g & g \\                                  
+\end{tabular}                                           
+\label{tab:trtDes11}                                  
+\end{table}    
+
+The theoretical ANOVA table for Phase 2 experiment is shown in Table~\ref{tab:Phase2ANOVA10}. Since the cage allocation to runs is connected, there are 2 DF associated with Between Cages stratum in both Between Runs and Within Runs stratum. In addition, all 2 DF of the Between Cages stratum are contributed by the treatment effects. Note that this does not make initial sense, because, based on the theoretical ANOVA table of the Phase 1 experiment, the treatment effects are orthogonal to cages. This is because when comparing between different cages in between different and the same runs, different treatment groups can be observed. For example, within the first run, all cages are present. Comparing between different cages in the first run is the same as comparing between Treatment e, b and Treatment f and Treatment d. Hence, the treatment effects are confounded with the Between Cages stratum. The treatment information are present in Between Cages Between Runs, Between Animals Within Cages Between Runs, Between Cages Within Runs and Between Animals Within Cages Within Runs strata and each stratum with $\displaystyle \frac{1}{28}, 0.1163, \frac{1}{240}$ and $0.8588$ of treatment information, respectively. Furthermore, there are still 22 DF remain associated with residual MS in the Between Animals Within Cages Within Runs stratum for conducting the test for the treatment effects based on $0.8588$ of the treatment information. 
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for Phase 2 experiment with $v = 7, r_b = 6, n_B = 3, n_{A(B)} = 14, r_t = 2, n_R = 21 \; \mathrm{and} \; n_\gamma = 4$ using two-step optimisation method and reduce the residual DF by 1.}
+ \begin{tabular}[t]{lrlll}
+ \toprule
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\
+ \midrule
+ Between Runs &  &  & & \\
+ \quad Between Cages &  &  & & \\
+ \quad \quad Treatment & $2$ & $\sigma^2+2\sigma_{A}^2+2\sigma_{B}^2+4\sigma_{R}^2+ \frac{3}{7}\theta_{\tau}$ & & $\frac{1}{28}$\\ \hline
+ \quad Between Animals Within Cages &  &  & & \\
+ \quad \quad Treatment & $6$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+ 1.395\theta_{\tau}$ & & $0.1163$\\
+ \quad \quad Residual & $2$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2$ & & \\
+ \quad Residual & $10$ & $\sigma^2+4\sigma_{R}^2$ & & \\\hline
+ Within Runs &  &  & & \\
+ \quad Between Cages &  &  & & \\
+ \quad \quad Treatment & $2$ & $\sigma^2+2\sigma_{A}^2+26\sigma_{B}^2+ \frac{1}{35}\theta_{\tau}$ & & $\frac{1}{420}$\\ \hline
+ \quad Between Animals Within Cages &  &  & & \\
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+21\theta_{\gamma}$ &$1$ & \\
+ \quad \quad Treatment & $6$ & $\sigma^2+2\sigma_{A}^2+10.306\theta_{\tau}$ & & $0.8588$\\
+ \quad \quad Residual & $22$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals Within Cages &  &  & & \\
+ \quad \quad Tag & $2$ & $\sigma^2+21\theta_{\gamma}$ &$1$ & \\
+ \quad \quad Residual & $30$ & $\sigma^2$ & & \\
+ \bottomrule
+ \end{tabular}
+ \label{tab:Phase2ANOVA10}
+\end{table}

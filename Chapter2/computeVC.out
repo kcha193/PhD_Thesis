@@ -1,0 +1,26 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Information decomposition of designed experiments}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{The linear mixed-effects model}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Null ANOVA using projection matrices}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Computing the treatment SS}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Computing the residual SS}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Information decomposition for two-phase experiments}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{The linear mixed-effects model}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Null ANOVA of Phase 2 block structure}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Null ANOVA of Phase 1 block structure}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.4}{Computing the treatment SS}{section.3}% 11
+\BOOKMARK [1][-]{section.4}{Application to quantitative proteomics experiments}{}% 12
+\BOOKMARK [2][-]{subsection.4.1}{Phase 1 experiment}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.2}{Phase 2 experiment}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{InfoDecompuTE}{}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Installation instructions}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.2}{Functions}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.3}{Design data frame}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.4}{Block and treatment structures}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.5}{Crossed or nested}{section.5}% 20
+\BOOKMARK [2][-]{subsection.5.6}{Artificial strata}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.7}{Manually defined contrasts}{section.5}% 22
+\BOOKMARK [2][-]{subsection.5.8}{Mean squares computation}{section.5}% 23
+\BOOKMARK [2][-]{subsection.5.9}{Latex output}{section.5}% 24
+\BOOKMARK [1][-]{section.6}{Example}{}% 25
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 26

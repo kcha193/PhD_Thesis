@@ -1,0 +1,353 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Masters/Doctoral Thesis
+% LaTeX Template
+% Version 1.43 (17/5/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original authors:
+% Steven Gunn
+% http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/
+% and
+% Sunil Patel
+% http://www.sunilpatel.co.uk/thesis-template/
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Note:
+% Make sure to edit document variables in the Thesis.cls file
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\documentclass[12pt, oneside]{/home/bsee002/PhD-thesis/Misc/Thesis}
+
+
+\graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
+
+\usepackage[round]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers'
+\usepackage{gensymb} % For celsius C
+%\usepackage{textcomp} % For \degree (celsius)
+\usepackage{amsmath}
+\usepackage{placeins} % For \FloatBarrier, instead of \clearpage
+\usepackage{multirow}
+\usepackage{pdflscape}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+
+\newcommand{\chapquote}[3]{\begin{quotation} \textit{#1} \end{quotation} \begin{flushright} - #2, \textit{#3}\end{flushright} }
+
+\renewcommand\bibname{References}
+\renewcommand{\refname}{References}
+
+% \usepackage{epigraph}
+% \renewcommand{\epigraphrule}{0pt}
+% \renewcommand{\epigraphsize}{\small}
+% \setlength{\epigraphwidth}{0.4\textwidth}
+% \newcommand{\epitextfont}{\itshape}
+% \newcommand{\episourcefont}{\scshape}
+
+\hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
+\title{\ttitle} % Defines the thesis title - don't touch this
+
+\begin{document}
+
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\setstretch{1.5} % Line spacing of 1.5
+
+% Define the page headers using the FancyHdr package and set up for one-sided printing
+\fancyhead{} % Clears all page headers and footers
+%\rhead{\thepage} % Sets the right side header to show the page number
+\rhead{}
+\lhead{} % Clears the left side page header
+\cfoot{\thepage}
+
+\pagestyle{fancy} % Finally, use the "fancy" page style to implement the FancyHdr headers
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
+
+% PDF meta-data
+\hypersetup{pdftitle={\ttitle}}
+\hypersetup{pdfsubject=\subjectname}
+\hypersetup{pdfauthor=\authornames}
+\hypersetup{pdfkeywords=\keywordnames}
+
+%-----------------------------------------------------------------------------
+% Include Library consent form
+\setlength{\voffset}{0cm}
+\setlength{\hoffset}{0cm}
+\includepdf{Misc/consent.pdf}
+\setlength{\voffset}{-2.54cm}
+\setlength{\hoffset}{-2.54cm}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\begin{center}
+
+\textsc{\LARGE \univname}\\[1.5cm] % University name
+\textsc{\Large Doctoral Thesis}\\[0.5cm] % Thesis type
+
+\HRule \\[0.4cm] % Horizontal line
+{\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
+\HRule \\[1.5cm] % Horizontal line
+
+\LARGE \href{https://unidirectory.auckland.ac.nz/profile/blake}{\authornames} \\[3cm]
+
+\large \textit{A thesis submitted in fulfilment of the requirements for \\the
+degree of Doctor of Philosophy in % University requirement text
+\href{https://www.stat.auckland.ac.nz/en.html}{Statistics} and
+\href{http://www.marine.auckland.ac.nz/en.html}{Marine Science},\\
+\univname, 2016.}\\[2.5cm]
+\large \textit{This thesis is for examination purposes only and is confidential to the examination process.}
+
+{\large \today}\\[4cm] % Date
+
+\vfill
+\end{center}
+
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	DECLARATION PAGE
+%	Your institution may give you a different text to place here
+%----------------------------------------------------------------------------------------
+
+% \Declaration{
+%
+% \addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+%
+% I, \authornames, declare that this thesis titled, '\ttitle' and the work presented in it are my own. I confirm that:
+%
+% \begin{itemize}
+% \item[\tiny{$\blacksquare$}] This work was done wholly while in candidature for a research degree at this University.
+% \item[\tiny{$\blacksquare$}] Where any part of this thesis (in form or substance) has previously been submitted or accepted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
+% \item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
+% \item[\tiny{$\blacksquare$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
+% \item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
+% \item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
+% \end{itemize}
+%
+% Signed:\\
+% \rule[1em]{25em}{0.5pt} % This prints a line for the signature
+%
+% Date:\\
+% \rule[1em]{25em}{0.5pt} % This prints a line to write the date
+% }
+%
+% \clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	QUOTATION PAGE
+%----------------------------------------------------------------------------------------
+
+\pagestyle{plain} % No headers or footers for the following pages
+
+\null\vfill % Add some space to move the quote down the page a bit
+
+\textit{``And crawling on this planet's face, some insects called the human race. Lost in time. And lost in space."}
+
+\begin{flushright}
+The Rocky Horror Picture Show (1975)
+\end{flushright}
+
+% \textit{``No water, no life; no blue, no green"}
+%
+% \begin{flushright}
+% Sylvia Earle (2009)
+% \end{flushright}
+
+\vfill\vfill\vfill\vfill\vfill\vfill\null % Add some space at the bottom to position the quote just right
+
+\clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+
+\addtotoc{Abstract} % Add the "Abstract" page entry to the Contents
+
+\abstract{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+
+Turbidity and sediment input in the coastal environment are greatly affected by human activities on land. Understanding the climatic, oceanographic and environmental drivers of temporal and spatial variability in coastal turbidity and sediment flux is key to understanding these processes and predicting how they may be affected by climate change. This thesis analysed monitoring data on coastal turbidity and sediment trap rates in the Hauraki Gulf to investigate how these spatio-temporal patterns relate to meteorological and oceanographic variables along an estuarine to open-coast gradient. These relationships were initially explored using a multivariate approach, and then quantified using a bayesian hierarchical framework with spline components. This model was developed along with two software packages to provide a predictive framework for analysing environmental monitoring data, with an emphasis on reproducibility and transparency.
+
+Turbidity declined along the estuarine to open-coast gradient. The primary driver of turbidity at the exposed open-coast regions was recent wave conditions that resuspend sediment, whereas tidal currents and daily rainfall are the primary drivers of turbidity at the harbour and estuarine sites respectively. The rate of fine sediment ($<63\mu$) accumulation in traps was largely governed by processes that resuspend bottom sediments, primarily wind-generated waves and tides within harbour regions, and ocean swells on the open coast. Surprisingly, there was little to no relationship with rainfall suggesting that sediment traps should not be used to document terrestrial sediment introduction on subtidal reefs.
+
+The strong coupling found between meteorological and oceanographic factors, and coastal turbidity and sediment flux highlight a number of mechanisms whereby coastal turbidity will likely change as a result of climate change. While turbidity is likely to decrease due to future predictions that include increased offshore winds and drier conditions throughout this region. More extreme weather and storm events will likely result in unprecedented, transient increases in turbidity, creating a highly variable coastal turbidity environment. These effects will likely be exacerbated by sea level rise, therefore improvements in land management practices and coastal protection are essential to offset the likely impacts of climate change on coastal turbidity.
+}
+\clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+\setstretch{1.5} % Reset the line-spacing to 1.5 for body text (if it has changed)
+
+\acknowledgements{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+First and foremost, I would like to express my sincere gratitude to my primary supervisor Dr. Nick Shears for his continual support and patience throughout my PhD study and related research interests. Nick has enabled me to further my scientific knowledge and contribution on something I am passionate about, and for this, I am forever grateful.
+
+Besides my primary supervisor, I would like to extend a heartfelt acknowledgement to my co-supervisors Prof.\ Chris Triggs and Assoc.\ Prof.\ Russell Millar. Both Chris and Russell have been highly influential in my statistical education and thinking, and they both provided crucial support, expertise and important considerations throughout my PhD project.
+
+I would like to acknowledge the kind and helpful input of my good friend and inspirational young scientist Dr.\ Rashi Karunasinghe. Rashi provided valuable feedback on my written scientific prose, and showed me how to make a sentence `pop'.
+
+Finally, I am truly appreciative that I have such a wonderful, supportive partner. Natasha has been by my side every step of the way through this journey, and I couldn't be more thankful to have her in my life.
+}
+\clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+
+\pagestyle{fancy} % The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
+
+\lhead{\emph{Contents}} % Set the left side page header to "Contents"
+\tableofcontents % Write out the Table of Contents
+
+\lhead{\emph{List of Figures}} % Set the left side page header to "List of Figures"
+\listoffigures % Write out the List of Figures
+
+% \lhead{\emph{List of Tables}} % Set the left side page header to "List of Tables"
+% \listoftables % Write out the List of Tables
+
+%-----------------------------------------------------------------------------
+% Include Library consent form
+\setlength{\voffset}{0cm}
+\setlength{\hoffset}{.2cm}
+\includepdf[scale=.9]{Misc/coauth.pdf}
+\setlength{\voffset}{-2.54cm}
+\setlength{\hoffset}{-2.54cm}
+%----------------------------------------------------------------------------------------
+
+% %----------------------------------------------------------------------------------------
+% %	ABBREVIATIONS
+% %----------------------------------------------------------------------------------------
+%
+% \clearpage % Start a new page
+%
+% \setstretch{1.5} % Set the line spacing to 1.5, this makes the following tables easier to read
+%
+% \lhead{\emph{Abbreviations}} % Set the left side page header to "Abbreviations"
+% \listofsymbols{ll} % Include a list of Abbreviations (a table of two columns)
+% {
+% \textbf{NTU} & \textbf{N}ephelometric \textbf{T}urbidity \textbf{U}nits \\
+% \textbf{NW} & \textbf{N}orth\textbf{w}est \\
+% \textbf{RMA} & \textbf{R}esource \textbf{M}anagement \textbf{A}ct \\
+% \textbf{SSC} & \textbf{S}uspended-\textbf{S}ediment \textbf{C}oncentration \\
+% \textbf{SW} & \textbf{S}outh\textbf{w}est \\
+% \textbf{TSS} & \textbf{T}otal \textbf{S}uspended \textbf{S}olids \\
+% }
+
+%----------------------------------------------------------------------------------------
+%	SYMBOLS
+%----------------------------------------------------------------------------------------
+%
+% \clearpage % Start a new page
+%
+% \lhead{\emph{Symbols}} % Set the left side page header to "Symbols"
+%
+% \listofnomenclature{lll} % Include a list of Symbols (a three column table)
+% {
+% $a$ & distance & m \\
+% $P$ & power & W (Js$^{-1}$) \\
+% % Symbol & Name & Unit \\
+%
+% & & \\ % Gap to separate the Roman symbols from the Greek
+%
+% $\omega$ & angular frequency & rads$^{-1}$ \\
+% % Symbol & Name & Unit \\
+% }
+
+%----------------------------------------------------------------------------------------
+%	DEDICATION
+%----------------------------------------------------------------------------------------
+
+% \setstretch{1.3} % Return the line spacing back to 1.3
+%
+% \pagestyle{empty} % Page style needs to be empty for this page
+%
+% \dedicatory{For/Dedicated to/To my\ldots} % Dedication text
+%
+% \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+
+\mainmatter % Begin numeric (1,2,3...) page numbering
+\pagestyle{fancy} % Return the page headers back to the "fancy" style
+
+% Include the chapters of the thesis as separate files from the Chapters folder
+% Uncomment the lines as you write the chapters
+
+% General Introduction
+<<chapter1, child='Chapters/Chapter 1/Chapter1.Rnw'>>=
+@
+
+% clifro
+<<chapter2, child='Chapters/Chapter 2/Chapter2.Rnw'>>=
+@
+
+% ENSO, SAM and IPO
+<<chapter3, child='Chapters/Chapter 3/Chapter3.Rnw'>>=
+@
+
+% Exploring the trends and drivers of coastal turbidity
+<<chapter4, child='Chapters/Chapter 4/Chapter4.Rnw'>>=
+@
+
+% Spatio-temporal modelling (including splines)
+<<chapter5, child='Chapters/Chapter 5/Chapter5.Rnw'>>=
+@
+
+% Sediment flux on subtidal reefs
+<<chapter6, child='Chapters/Chapter 6/Chapter6.Rnw'>>=
+@
+
+% Conclusions and implications for management
+<<chapter7, child='Chapters/Chapter 7/Chapter7.Rnw'>>=
+@
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+
+% Include the appendices of the thesis as separate files from the Appendices folder
+% Uncomment the lines as you write the Appendices
+
+% Hauraki Gulf weather
+<<AppendixA, child='Appendices/Appendix A/AppendixA.Rnw'>>=
+@
+
+% fetchR
+<<AppendixB, child='Appendices/Appendix B/AppendixB.Rnw'>>=
+@
+
+% Simulation
+<<AppendixC, child='Appendices/Appendix C/AppendixC.Rnw'>>=
+@
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+\backmatter
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\label{References}
+
+\lhead{\emph{References}} % Change the page header to say "References"
+
+\bibliographystyle{abbrvnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliography{/home/bsee002/PhD-thesis/Bibliography} % The references(bibliography) information are stored in the file named "Bibliography.bib"
+
+\end{document}

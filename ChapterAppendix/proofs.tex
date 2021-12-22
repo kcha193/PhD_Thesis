@@ -1,0 +1,126 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[margin=19mm]{geometry}
+\usepackage{natbib}
+\usepackage{bm}
+\usepackage[toc,page]{appendix}
+\usepackage{booktabs}
+%\usepackage{url}
+%\usepackage{fancyhdr}
+%\usepackage{fancyvrb}
+\usepackage{lscape}
+%\usepackage{pdfsync}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage[nodisplayskipstretch]{setspace} \setstretch{1.5}
+\let\oldv\verbatim
+\def\verbatim{\par\setstretch{0.9}\oldv}
+\usepackage[table]{xcolor}
+\usepackage{algorithm,algorithmic}
+
+%\renewcommand{\headrulewidth}{0.5pt} %Do not print a rule below the header
+%\renewcommand{\footrulewidth}{0pt} %Do not print a rule above the footer
+
+\bibpunct{(}{)}{;}{a}{,}{,}
+
+%\renewenvironment{tabbing}{\linebreak \texttt \sl}{\linebreak}
+
+\newcommand{\undertilde}[1]{\underset{\widetilde{}}{#1}}
+\newcommand{\threeScript}[3]{
+	\!\begin{smarray}{l}
+  		{#1}\\ \hlx{s[-5pt]}
+  		{#2}\\ \hlx{s[-5pt]}
+  		{#3}
+ 	 \end{smarray}
+}
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\abovecaptionskip}{5pt}
+\setlength{\belowcaptionskip}{-1pt}
+
+\newtheorem{mydef}{Definition}
+
+\floatname{algorithm}{Pseudocode}
+
+\newcommand{\disfrac}{\displaystyle \frac}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={My title},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    linktoc = page,
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links
+    citecolor=blue,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+\begin{document}
+
+Treatment sum of squares in the Within Blocks stratum is $\bm{q}' \Omega \bm{q}$, where $\Omega$ is the inverse of the treatment information matrix, i.e.\ $X'(I - P_{B})X$ which can be expand as
+\begin{eqnarray}
+X'(I - P_{B})X 	&=& X'X - X'Z(Z'Z)^{-1}Z'X\\
+				&=& rI - N\left(\frac{1}{k} I \right)N'\\
+				&=& rI -\frac{1}{k}[(r-\lambda)I + \lambda J] \\
+				&=& rI -\frac{r-\lambda}{k} I -\frac{\lambda}{k}\\	
+				&=&  \frac{rv(k-1)}{k(v-1)}	(I - K)\\
+				&=& rE(I-K)		
+\end{eqnarray}
+where 
+\[
+\lambda = \frac{r(k-1)}{v-1}
+\]
+and 
+\[
+E = \frac{v(k-1)}{k(v-1)}.
+\]
+\begin{eqnarray}
+\bm{q}' \Omega \bm{q} 	&=& y'(I - P_{B}) X[X'(I - P_{B})X]^{-}X'(I - P_{B})y\\
+				&=& y'(I - P_{B}) X \frac{1}{rE}(I-K) X'(I - P_{B})y\\
+				&=& \frac{1}{rE} [y'(I - P_{B}) X X'(I - P_{B})y] - [y'(I - P_{B}) X K X'(I - P_{B})y]\\
+				&=& \frac{1}{E} [y'(I - P_{B}) X\frac{1}{r} X'(I - P_{B})y]\\	
+				&=& \frac{1}{E} [y'(I - P_{B}) X (X'X)^{-1} X'(I - P_{B})y]\\
+				&=& \frac{1}{E} [y'(I - P_{B}) P_{\tau}(I - P_{B})y]\\	
+\end{eqnarray}
+
+For the Between Blocks stratum, 
+
+\begin{eqnarray}
+X'(P_{B} - K)X 	&=& X'Z(Z'Z)^{-1}Z'X - X'KX\\
+				&=& N\left(\frac{1}{k} I \right)N' - rK\\
+				&=& \frac{1}{k}[(r-\lambda)I + \lambda J] - rK\\
+				&=& \frac{r-\lambda}{k} I -\frac{\lambda}{k}- rK\\	
+				&=&  r \left( \frac{v-k}{k(v-1)} I - \frac{v(k-1)}{k(v-1)}K \right) -rK\\
+				&=& r[(1-E)I - EK] - rK \\
+				&=& r(1-E)I - r(1-E)K \\
+				&=& r(1-E)(I - K) \\
+\end{eqnarray}
+
+\begin{eqnarray}
+\bm{q}' \Omega \bm{q} 	&=& y'(P_{B} - K) X[X'(P_{B} - K)X]^{-}X'(P_{B} - K)y\\
+				&=& y'(P_{B} - K) X \frac{1}{r(1-E)}(I - K) X'(P_{B} - K)y\\
+				&=& \frac{1}{1-E} [y'(P_{B} - K) X\frac{1}{r} X'(P_{B} - K)y]\\	
+				&=& \frac{1}{1-E} [y'(P_{B} - K) X (X'X)^{-1} X'(I - P_{B})y]\\
+				&=& \frac{1}{1-E} [y'(P_{B} - K) P_{\tau}(P_{B} - K)y]\\	
+\end{eqnarray}
+
+
+
+
+
+\end{document}

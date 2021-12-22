@@ -1,0 +1,359 @@
+\begin{thebibliography}{}
+
+\bibitem[Bailey, 2008]{Bailey2008}
+Bailey, R.~A. (2008).
+\newblock {\em {Design of comparative experiment}}.
+\newblock Cambridge University Press.
+
+\bibitem[Bailey et~al., 2016]{bailey2016}
+Bailey, R.~A., Brien, C., et~al. (2016).
+\newblock Randomization-based models for multitiered experiments: I. a chain of
+  randomizations.
+\newblock {\em The Annals of Statistics}, 44(3):1131--1164.
+
+\bibitem[Blow, 2002]{Blow2002}
+Blow, D.~M. (2002).
+\newblock {\em {Outline of crystallography for biologists}}.
+\newblock Oxford University Press.
+
+\bibitem[Boehm et~al., 2007]{Boehm2007}
+Boehm, A.~M., P\"{u}tz, S., Altenh\"{o}fer, D., Sickmann, A., and Falk, M.
+  (2007).
+\newblock {Precise protein quantification based on peptide quantification using
+  iTRAQ}.
+\newblock {\em BMC Bioinformatics}, 8:214.
+
+\bibitem[Brien, 1992]{Brien1992}
+Brien, C. (1992).
+\newblock {Factorial linear model analysis}.
+
+\bibitem[Brien, 2011]{Brien2011a}
+Brien, C. (2011).
+\newblock {\em dae: Functions useful in the design and ANOVA of experiments}.
+\newblock R package version 2.1-7.
+
+\bibitem[Brien, 1983]{Brien1983}
+Brien, C.~J. (1983).
+\newblock {Analysis of Variance Tables Based on Experimental Structure}.
+\newblock {\em Biometrics}, 39(1):53--59.
+
+\bibitem[Brien and Bailey, 2006]{Brien2006b}
+Brien, C.~J. and Bailey, R.~A. (2006).
+\newblock {Multiple randomizations}.
+\newblock {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 68(4):571--609.
+
+\bibitem[Brien and Bailey, 2009]{Brien2009}
+Brien, C.~J. and Bailey, R.~A. (2009).
+\newblock {Decomposition tables for experiments I. A chain of randomizations}.
+\newblock {\em The Annals of Statistics}, 37(6B):4184--4213.
+
+\bibitem[Brien and Bailey, 2010]{Brien2010}
+Brien, C.~J. and Bailey, R.~A. (2010).
+\newblock {Decomposition tables for experiments. II. Two--one randomizations}.
+\newblock {\em The Annals of Statistics}, 38(5):3164--3190.
+
+\bibitem[Brien et~al., 2011]{Brien2011}
+Brien, C.~J., Harch, B.~D., Correll, R.~L., and Bailey, R.~a. (2011).
+\newblock {Multiphase Experiments with at Least One Later Laboratory Phase. I.
+  Orthogonal Designs}.
+\newblock {\em Journal of Agricultural, Biological, and Environmental
+  Statistics}, 16(3):422--450.
+
+\bibitem[Brien and Payne, 1999]{Brien1999}
+Brien, C.~J. and Payne, R.~W. (1999).
+\newblock {Tiers, structure formulae and the analysis of complicated
+  experiments}.
+\newblock {\em Journal of the Royal Statistical Society Series D: The
+  Statistician}, 48(1):41--52.
+
+\bibitem[Brien and Payne, 2006]{Brien2006a}
+Brien, C.~J. and Payne, R.~W. (2006).
+\newblock {\em {GenStat Reference Manual Release 9, Part 3, Procedure Library
+  PL 17}}, chapter AMTIER Pro, pages 73--75.
+\newblock VSN International: Hemel Hempstead.
+
+\bibitem[Campbell et~al., 2015]{campbell2015}
+Campbell, J.~D., Liu, G., Luo, L., Xiao, J., Gerrein, J., Juan-Guardela, B.,
+  Tedrow, J., Alekseyev, Y.~O., Yang, I.~V., Correll, M., et~al. (2015).
+\newblock Assessment of microrna differential expression and detection in
+  multiplexed small rna sequencing data.
+\newblock {\em RNA}, 21(2):164--171.
+
+\bibitem[Chang, 2008]{Chang2008}
+Chang, K. (2008).
+\newblock {Protein expression data from MudPIT coupled with iTRAQ$^{\rm TM}$:
+  an experimental design for information decomposition and data analysi.,
+  Honour's Thesis}.
+
+\bibitem[Choe et~al., 2007]{Choe2007}
+Choe, L., D'Ascenzo, M., Relkin, N.~R., Pappin, D., Ross, P., Williamson, B.,
+  Guertin, S., Pribil, P., and Lee, K.~H. (2007).
+\newblock {8-plex quantitation of changes in cerebrospinal fluid protein
+  expression in subjects undergoing intravenous immunoglobulin treatment for
+  Alzheimer's disease}.
+\newblock {\em Proteomics}, 7(20):3651--3660.
+
+\bibitem[Colinge and Bennett, 2007]{Colinge2007}
+Colinge, J. and Bennett, K.~L. (2007).
+\newblock {Introduction to computational proteomics}.
+\newblock {\em PLoS Comput Biol}, 3(7):1151--1160.
+
+\bibitem[Curnow, 1959]{Curnow1959}
+Curnow, R.~N. (1959).
+\newblock {The analysis of a two phase experiment}.
+\newblock {\em Biometrics}, 15(1):60--73.
+
+\bibitem[Eccleston and Hedayat, 1974]{Eccleston1974}
+Eccleston, J.~A. and Hedayat, A. (1974).
+\newblock On the theory of connected designs: Characterization and optimality.
+\newblock {\em The Annals of Statistics}, 2(6):pp. 1238--1255.
+
+\bibitem[Eidhammer et~al., 2007]{Eidhammer2008}
+Eidhammer, I., Flikka, K., Martens, L., and Mikalsen, S.-O. (2007).
+\newblock {\em {Computational Methods for Mass Spectrometry Proteomics}}.
+\newblock Wiley-Interscience.
+
+\bibitem[Fields and Song, 1989]{Fields1989}
+Fields, S. and Song, O. (1989).
+\newblock {A novel genetic system to detect protein-protein interactions}.
+\newblock {\em Nature}, 340(6230):245--246.
+
+\bibitem[Fisher, 1935]{Fisher1935}
+Fisher, R. (1935).
+\newblock {\em The Design of Experiments}.
+\newblock Oliver and Boyd.
+
+\bibitem[Goos, 2012]{goos2012}
+Goos, P. (2012).
+\newblock {\em The optimal design of blocked and split-plot experiments},
+  volume 164.
+\newblock Springer Science \& Business Media.
+
+\bibitem[Hadi, 1996]{Hadi1996}
+Hadi, A.~S. (1996).
+\newblock {\em {Matrix Algebra as a tool}}.
+\newblock Duxbury Press at Wadsworth Publishing Company.
+
+\bibitem[James and Wilkinson, 1971]{James1971}
+James, A.~T. and Wilkinson, G.~N. (1971).
+\newblock {Factorization of the Residual Operator and Canonical Decomposition
+  of Nonorthogonal Factors in the Analysis of Variance}.
+\newblock {\em Biometrika}, 58(2):279.
+
+\bibitem[Jarrett and Ruggiero, 2008]{Jarrett2008}
+Jarrett, R.~G. and Ruggiero, K. (2008).
+\newblock {Design and analysis of two-phase experiments for gene expression
+  microarrays-part $\backslash$textnormal\{I\}}.
+\newblock {\em Biometrics}, 64(1):208--216.
+
+\bibitem[John et~al., 2002]{John2002}
+John, J., Ruggiero, K., and Williams, E. (2002).
+\newblock $\alpha_n$--designs.
+\newblock {\em Australian \& New Zealand Journal of Statistics},
+  44(4):457--465.
+
+\bibitem[John and Whitaker, 1993]{John1993}
+John, J.~A. and Whitaker, D. (1993).
+\newblock {Construction of resolvable row-column designs using simulated
+  annealing}.
+\newblock {\em Australian Journal of Statistics}, 35(August 1991):237--245.
+
+\bibitem[John and Williams, 1995]{John1987}
+John, J.~A. and Williams, E.~R. (1995).
+\newblock {\em {Cyclic and computer generated Designs}}.
+\newblock Chapman \& Hall, second edition.
+
+\bibitem[Kerr and Churchill, 2001a]{KerrChurchill2001a}
+Kerr, M.~K. and Churchill, G.~A. (2001a).
+\newblock Experimental design for gene expression microarrays.
+\newblock {\em Biostatistics}, 2(2):183.
+
+\bibitem[Kerr and Churchill, 2001b]{KerrChurchill2001b}
+Kerr, M.~K. and Churchill, G.~A. (2001b).
+\newblock Statistical design and the analysis of gene expression microarray
+  data.
+\newblock {\em Genetics Research}, 77(2):123 – 128.
+
+\bibitem[Kirkpatrick et~al., 1983]{Kirkpatrick1983}
+Kirkpatrick, S., Gelatt, C.~D., and Vecchi, M.~P. (1983).
+\newblock {Optimization by simulated annealing.}
+\newblock {\em Science (New York, N.Y.)}, 220(4598):671--80.
+
+\bibitem[McIntyre, 1955]{McIntyre1955}
+McIntyre, G.~A. (1955).
+\newblock {Design and Analysis of Two Phase Experiments}.
+\newblock {\em Biometrics}, 11(3):324--334.
+
+\bibitem[Nelder, 1965a]{Nelder1965A}
+Nelder, J.~A. (1965a).
+\newblock {The Analysis of Randomized Experiments with Orthogonal Block
+  Structure. I. Block Structure and the Null Analysis of Variance}.
+\newblock {\em Proceedings of the Royal Society of London. Series A,
+  Mathematical and Physical Sciences}, 283(1393):pp. 147--162.
+
+\bibitem[Nelder, 1965b]{Nelder1965B}
+Nelder, J.~A. (1965b).
+\newblock {The Analysis of Randomized Experiments with Orthogonal Block
+  Structure. II. Treatment Structure and the General Analysis of Variance}.
+\newblock {\em Proceedings of the Royal Society of London. Series A,
+  Mathematical and Physical Sciences}, 283(1393):163--178.
+
+\bibitem[Nesvizhskii and Aebersold, 2005]{Nesvizhskii2005}
+Nesvizhskii, A.~I. and Aebersold, R. (2005).
+\newblock {Interpretation of shotgun proteomic data: the protein inference
+  problem}.
+\newblock {\em Mol Cell Proteomics}, 4(10):1419--1440.
+
+\bibitem[Nunn and Timperman, 2007]{Nunn2007}
+Nunn, B.~L. and Timperman, A.~T. (2007).
+\newblock {Marine proteomics}.
+\newblock {\em Marine Ecology Progress Series}, 332:281--289.
+
+\bibitem[Oberg and Mahoney, 2012]{Oberg2012}
+Oberg, A. and Mahoney, D. (2012).
+\newblock Statistical methods for quantitative mass spectrometry proteomic
+  experiments with labeling.
+\newblock {\em BMC Bioinformatics}, 13(Suppl 16):S7.
+
+\bibitem[Oberg and Vitek, 2009]{Oberg2009}
+Oberg, A.~L. and Vitek, O. (2009).
+\newblock {Statistical design of quantitative mass spectrometry-based proteomic
+  experiments.}
+\newblock {\em Journal of proteome research}, 8(5):2144--56.
+
+\bibitem[Patterson and Thompson, 1971]{Patterson1971}
+Patterson, H.~D. and Thompson, R. (1971).
+\newblock {Recovery of Inter-Block Information when Block Sizes are Unequal}.
+\newblock {\em Biometrika}, 58(3):pp. 545--554.
+
+\bibitem[Payne, 2003]{Payne2003}
+Payne, R.~W. (2003).
+\newblock {General balance, large data sets and extensions to unbalanced
+  treatment structures}.
+\newblock {\em Computational Statistics \& Data Analysis}, 44(1-2):297--304.
+
+\bibitem[Payne and Wilkinson, 1977]{Payne1977}
+Payne, R.~W. and Wilkinson, G.~N. (1977).
+\newblock {A general algorithm for analysis of variance}.
+\newblock {\em Applied Statistics}.
+
+\bibitem[Pierce et~al., 2008]{Pierce2008}
+Pierce, A., Unwin, R.~D., Evans, C.~A., Griffiths, S., Carney, L., Zhang, L.,
+  Jaworska, E., Lee, C.-F., Blinco, D., Okoniewski, M.~J., Miller, C.~J.,
+  Bitton, D.~A., Spooncer, E., and Whetton, A.~D. (2008).
+\newblock {Eight-channel iTRAQ Enables Comparison of the Activity of Six
+  Leukemogenic Tyrosine Kinases}.
+\newblock {\em Mol Cell Proteomics}, 7(5):853--863.
+
+\bibitem[{R Core Team}, 2017]{R2012}
+{R Core Team} (2017).
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria.
+
+\bibitem[Ross et~al., 2004]{Ross2004}
+Ross, P.~L., Huang, Y.~N., Marchese, J.~N., Williamson, B., Parker, K., Hattan,
+  S., Khainovski, N., Pillai, S., Dey, S., Daniels, S., Purkayastha, S.,
+  Juhasz, P., Martin, S., Bartlet-Jones, M., He, F., Jacobson, A., and Pappin,
+  D.~J. (2004).
+\newblock {Multiplexed protein quantitation in Saccharomyces cerevisiae using
+  amine-reactive isobaric tagging reagents.}
+\newblock {\em Mol Cell Proteomics}, 3(12):1154--1169.
+
+\bibitem[Sadygov et~al., 2004]{Sadygov2004}
+Sadygov, R.~G., Cociorva, D., and Yates, J.~R. (2004).
+\newblock {Large-scale database searching using tandem mass spectra: looking up
+  the answer in the back of the book}.
+\newblock {\em Nat Methods}, 1(3):195--202.
+
+\bibitem[Satterthwaite, 1941]{Satterthwaite1941}
+Satterthwaite, F.~E. (1941).
+\newblock Synthesis of variance.
+\newblock {\em Psychometrika}, 6(5):309--316.
+
+\bibitem[{Sciex}, 2004]{Applied2004}
+{Sciex} (2004).
+\newblock {\em {QSTAR\textsuperscript{\textregistered} XL Hybrid LC/MS/MS
+  System}}.
+\newblock Applied Biosystems and MDS Sciex.
+
+\bibitem[Searle, 1982]{Searle1982}
+Searle, S.~R. (1982).
+\newblock {\em {Matrix Algebra Useful for Statistics}}.
+\newblock Wiley-Interscience.
+
+\bibitem[Shah, 1960]{Shah1960}
+Shah, K. (1960).
+\newblock Optimality criteria for incomplete block designs.
+\newblock {\em The Annals of Mathematical Statistics}, pages 791--794.
+
+\bibitem[Shapland et~al., 2015]{Shapland2015}
+Shapland, E.~B., Holmes, V., Reeves, C.~D., Sorokin, E., Durot, M., Platt, D.,
+  Allen, C., Dean, J., Serber, Z., Newman, J., and Chandran, S. (2015).
+\newblock Low-cost, high-throughput sequencing of dna assemblies using a highly
+  multiplexed nextera process.
+\newblock {\em ACS Synthetic Biology}, 4(7):860--866.
+\newblock PMID: 25913499.
+
+\bibitem[Smith et~al., 2010]{smith2010}
+Smith, A.~M., Heisler, L.~E., Onge, R. P.~S., Farias-Hesson, E., Wallace,
+  I.~M., Bodeau, J., Harris, A.~N., Perry, K.~M., Giaever, G., Pourmand, N.,
+  et~al. (2010).
+\newblock Highly-multiplexed barcode sequencing: an efficient method for
+  parallel analysis of pooled samples.
+\newblock {\em Nucleic acids research}, page gkq368.
+
+\bibitem[Thelen and Peck, 2007]{Thelen2007}
+Thelen, J.~J. and Peck, S.~C. (2007).
+\newblock {Quantitative proteomics in plants: choices in abundance}.
+\newblock {\em Plant Cell}, 19(11):3339--3346.
+
+\bibitem[Washburn et~al., 2001]{Washburn2001}
+Washburn, M.~P., Wolters, D., and Yates, J.~R. (2001).
+\newblock {Large-scale analysis of the yeast proteome by multidimensional
+  protein identification technology}.
+\newblock {\em Nat Biotechnol}, 19(3):242--247.
+
+\bibitem[Whitaker et~al., 1990]{whitaker1990}
+Whitaker, D., Triggs, C.~M., and John, J.~A. (1990).
+\newblock {Construction of Block Designs Using Mathematical Programming}.
+\newblock {\em Journal of the Royal Statistical Society Series B
+  (Methodological)}, 52(3):497--503.
+
+\bibitem[Wiese et~al., 2007]{Wiese2006}
+Wiese, S., Reidegeld, K.~A., Meyer, H.~E., and Warscheid, B. (2007).
+\newblock {Protein labeling by iTRAQ: a new tool for quantitative mass
+  spectrometry in proteome research.}
+\newblock {\em Proteomics}, 7(3):340--350.
+
+\bibitem[Wilkinson, 1970]{Wilkinson1970}
+Wilkinson, G.~N. (1970).
+\newblock {A General Recursive Procedure for Analysis of Variance}.
+\newblock {\em Biometrika}, 57(1):19.
+
+\bibitem[Wilkinson and Rogers, 1973]{Wilkinson1973}
+Wilkinson, G.~N. and Rogers, C.~E. (1973).
+\newblock {Symbolic description of factorial models for analysis of variance}.
+\newblock {\em Applied Statistics}, 22(3):392--399.
+
+\bibitem[Williams and John, 1996]{Williams1996}
+Williams, E.~R. and John, J.~A. (1996).
+\newblock {Row-column factorial designs for use in agricultural field trials}.
+\newblock {\em Applied statistics}, 45(1):39--46.
+
+\bibitem[Wood et~al., 1988]{Wood1988}
+Wood, J.~T., William, E.~R., and Speed, T.~P. (1988).
+\newblock {Non-orthogonal block structure in two-phase designs}.
+\newblock {\em Australian \& New Zealand Journal of Statistics}, 30A:225--237.
+
+\bibitem[Yates, 1936]{Yates1936}
+Yates, F. (1936).
+\newblock {Incomplete Randomized Blocks}.
+\newblock {\em Annals of Human Genetics}, 7(2):121--140.
+
+\bibitem[Zeng et~al., 2017]{Zeng2017}
+Zeng, I.~S., Lumley, T., Ruggiero, K., and Middleditch, M. (2017).
+\newblock A bayesian approach to multivariate and multilevel modelling with
+  non-random missingness for hierarchical clinical proteomics data.
+
+\end{thebibliography}

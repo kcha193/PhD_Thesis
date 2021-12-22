@@ -1,0 +1,17 @@
+Run,Ani,Sam,Tag,Trt
+1,A,1,114,healthy
+1,B,1,115,diseased
+1,C,1,116,healthy
+1,D,1,117,diseased
+2,E,1,114,diseased
+2,F,1,115,healthy
+2,G,1,116,diseased
+2,H,1,117,healthy
+3,C,2,114,healthy
+3,D,2,115,diseased
+3,A,2,116,healthy
+3,B,2,117,diseased
+4,G,2,114,diseased
+4,H,2,115,healthy
+4,E,2,116,diseased
+4,F,2,117,healthy

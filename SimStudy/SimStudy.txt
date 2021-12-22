@@ -1,0 +1,191 @@
+\section{Simulation study to confirm the robustness of the objective function}
+The aim of this section is to perform a simulation study to verify the robustness of objective function that we derived. This simulation study composed of first attempting to generate all essentially different Phase 2 designs of a given set of design parameters. We uses a two-phase experiment where the Phase 1 experiment consist of three treatment assigned to 12 plants arranged in two trays with the Phase 2 experiment consists of six runs and labelled by four tags. Once we have a list of designs, we will select a set of design and compare the variances of the treatment comparison from 1000 sets of simulation datasets
+
+\subsection{Phase 1 and Phase 2 experiments}
+Before we decide how to generate these essentially different designs, we need to understand the layout of the experimental structure of the Phase 1 and Phase 2 experiments. The Phase 1 experiment, as shown in Table~\ref{tab:Phase1DesSim}, consists of three treatments assigned to 12 plants in total. Six of 12 plants are allocated to one of two trays. Each sample is then harvested from each of 12 plants and then further subdivided into two sub-sample. Thus, there are total of 24 sub-samples from the Phase 1 experiment to allocated to the Phase 2 experiment. In the Phase 2 experiment, we uses 6 runs and 4-plex labelling system to measure the protein abundances of each sub-sample in the Phase 1 experiment. Before we generate all the essential designs, we can first obtain the optimal design using the objective function described in this chapter. 
+
+\begin{table}[ht]
+\centering
+\caption{Experimental design of Phase 1 plant experiment with $\nu = 3$ treatments (labelled \textit{a}, \textit{b} and \textit{c}) assigned to $n_{p} =12$ plants (labelled \textit{A} to \textit{L}) in $n_b = 2$ trays (labelled $1$ and $2$).}
+\begin{tabular}[t]{|c|cccccc|} \hline
+{\bf Tray 1} & Aa & Bb & Cc & Da & Eb & Fc \\ \hline
+{\bf Tray 2} & Ga & Db & Ic & Ja & Kb & Lc \\  \hline
+\end{tabular} 
+\label{tab:Phase1DesSim}
+\end{table}
+
+Using the objective function and SA algorithm mentioned in Sections~\ref{sec:objFunChap4} and \ref{sec:RCBDsa}, respectively, the optimal design is found and presented in Table~\ref{tab:sim1DesBest}. We first can see that the sub-samples from Tray 1 are labelled by Tags 114 and 115, and the sub-samples from Tray 2 are labelled by Tags 116 and 117, based on the idea of constructing the initial design described in Section~\ref{sec:allocateTray}. The allocation of sub-samples from plants and treatments to runs and tags follows a 2-by-2 Latin Square structure for two pairs of plants and treatments to two runs and two tags. The Treatment effects are confounded with the Run effects as different set of treatments are assigned to different runs, which follows a layout of balanced incomplete block design. However, the Treatment effects are orthogonal to Tag effects, as two of each three treatment groups are assigned to each tag. 
+
+\begin{table}[ht]                                           
+\centering     
+\itshape                                               
+\caption{Optimal design for the Phase 2 experiment showing assignment of trays, plants and treatments to runs and tags, when the Phase~1 experiment consists of $\nu = 3$ treatments assigned to each of $n_p = 12$ plants in each of $n_b = 2$ trays, $n_s = 2$ sub-samples are then taken from each plant and analysed in the Phase 2 MudPIT-iTRAQ$^{\rm TM}$ experiment comprising $n_r = 6$ runs and $n_\gamma = 4$ tags. Numbers denote trays, upper case letters denote plant IDs, while the lower case letters denote the treatments.}               
+\begin{tabular}{c|cc:cc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                       
+\textnormal{1} & 1Aa & 1Bb & 2Lc & 2Hb \\ 
+\textnormal{2} & 1Bb & 1Aa & 2Hb & 2Lc \\ \hdashline
+\textnormal{3} & 1Da & 1Cc & 2Ga & 2Kb \\ 
+\textnormal{4} & 1Cc & 1Da & 2Kb & 2Ga \\ \hdashline
+\textnormal{5} & 1Eb & 1Fc & 2Ja & 2Ic \\ 
+\textnormal{6} & 1Fc & 1Eb & 2Ic & 2Ja \\
+\end{tabular}                                               
+\label{tab:sim1DesBest}                                      
+\end{table} 
+
+
+The ANOVA table of the optimal design, in Table~\ref{tab:sim1DesBest}, is shown in Table~\ref{tab:ANOVABest}. Since there are 24 observations, there are total of 23 DF. This 23 DF is partitioned into 3 DF for the Between Runs stratum and 20 DF for the Within Runs stratum. In the Within Runs stratum, the 20 Df are further partitioned into the Between Trays (1 DF), Between Plants Within Trays (8 DF) and Within Plants Within Trays (9 DF) strata. The Treatment effects are estimated in the Between Plants Within Trays Within Runs stratum with 6 DF associated with the Residual MS for estimating the treatment variances. The F-test for comparing the treatment groups can be performed as the coefficient of variance components in the Between Plants Within Trays Within Runs stratum are identical. The next step is to find a better design than this design from all essential designs of the same set of design parameters.
+
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table of design in Table~\ref{tab:sim1DesBest}.}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\tau}}$}&\multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Plants Within Trays &  &  & & \\ 
+ \quad \quad Treatment & $2$ & $\sigma^2+2\sigma_{p}^2+4\sigma_{r}^2+1/2\theta_{\gamma}$ & & $0.0625$\\ \hline 
+ \quad Within Plants Within Trays& $3$ & $\sigma^2+4\sigma_{r}^2$ & & \\ \hline 
+ Within Runs &  &  & & \\ 
+ \quad Between Tray &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{p}^2+12\sigma_{t}^2+6\theta_{\tau}$ &$1$ & \\ \hline 
+ \quad Between Plants Within Trays &  &  & & \\ 
+ \quad \quad Treatment & $2$ & $\sigma^2+2\sigma_{p}^2+15/2\theta_{\gamma}$ & & $0.9375$\\ 
+ \quad \quad Residual & $6$ & $\sigma^2+2\sigma_{p}^2$ & & \\ \hline 
+ \quad Within Plants Within Trays&  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+6\theta_{\tau}$ &$1$ & \\ 
+ \quad \quad Residual & $7$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:ANOVABest} 
+\end{table} 
+
+
+\subsection{Generate all essential designs} 
+To allocate 24 sub-samples of the Phase 1 experiment to the Phase 2 experiment, there can be $6.2 \times 10^23$ ways, which computationally infeasible to complete. Thus, we need to come up with a more efficient way to generate all these different assignments. 
+
+Instead of determining how to allocate each sub-sample of Phase 1 experiment to the Phase 2 experiment, we can reduce down the number of essential allocations from the relationship between the experiment structures within each Phase of experiment. For example, each tray needs to contain 12 plants, where four of these 12 Plants must be assigned to one of three treatment groups.Thus, the assignment can be partitioned into three steps: first step decide how to assign two trays to runs and tags, second step is to decide the assignment of three treatment groups to 12 units of a single tray, and the last step is to decide the allocation of Plant to each treatment. 
+
+In the first step, we discovered that there can be three basic ways to assign trays to runs and tags. The first way is to assign the trays where Tray effects are intentionally confounded with the Tag effects. The second way is to assign trays where Tray effects are intentionally confounded with the Runs effects. The third way is to assign trays where Trays effects are orthogonal to both Runs and Tray effects. 
+
+Once we have confirmed the allocation of trays to runs and tags, we can then decide how to allocate the treatments groups to 12 units of a single tray. Since each treatment group is replicated four times in a tray, there can be $34650$ unique assignments. However, since the Phase 1 experiment consists of two trays, so there are 600 million ways to pick any two random assignments of treatment groups, out of $34650$, for two different trays. 
+
+Furthermore, there is still one more step to complete the assignment, which is to allocate two plants to four experimental units of each treatment groups. There can only be three ways, which are (\textit{A}, \textit{A}, \textit{D}, \textit{D}), (\textit{A}, \textit{D}, \textit{A}, \textit{D}) and (\textit{A}, \textit{D}, \textit{D}, \textit{A}), where \textit{A} and \textit{D} denotes Plant IDs in one of the treatment group.        
+
+For this study, we focuses on generating two million designs for each of three ways to assign trays to runs and tags: Tray effects are intentionally confounded with the Tag effects, Tray effects are intentionally confounded with the Run effects, and Tray effects are orthogonal to both Runs and Tray effects. We will then compare the Phase 1 Plants average efficiency factors, treatment degrees of freedom, residual degrees of freedom and treatment average efficiency factors between different designs. Note that it takes about 2 hours to generate two million designs, however, we only store up to three million designs at a time in the computer due to the memory issue.  
+
+From the two million designs generated, when trays are assigned to that Tray effects are intentionally confounded with the Tag effects, there are 292 designs with Phase 1 Plants average efficiency factor equals to $1$. Over of these 292 designs, 277 designs has treatment DF equals to 2 in the Between Plants Within Trays Within Runs stratum. From these 277 designs, there are 3 designs with residual DF in the Between Plants Within Trays Within Runs stratum equals to 6 as the other 274 designs has residual DF less than 6. These 3 designs has treatment average efficiency factors of 0.9375, 0.8571 and 0.8571. Note that the optimal design presented in Table~\ref{tab:sim1DesBest} also has the treatment average efficiency factors of 0.9375 and residual DF of 6. The design with treatment average efficiency factors of 0.9375 is presented in Table~\ref{tab:sim1Des}.   
+
+
+\begin{table}[ht]                                           
+\centering     
+\itshape                                               
+\caption{Best design from first set of search.}               
+\begin{tabular}{c|cc:cc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                       
+\textnormal{1} & 1Aa & 1Da & 2Hb & 2Ic \\ 
+\textnormal{2} & 1Cc & 1Bb & 2Lc & 2Ga \\ 
+\textnormal{3} & 1Fc & 1Eb & 2Kb & 2Ja \\ 
+\textnormal{4} & 1Eb & 1Fc & 2Ja & 2Kb \\ 
+\textnormal{5} & 1Bb & 1Cc & 2Ga & 2Lc \\ 
+\textnormal{6} & 1Da & 1Aa & 2Ic & 2Hb \\
+\end{tabular}                                               
+\label{tab:sim1Des}                                      
+\end{table} 
+
+From the two million designs generated, when trays are assigned to that Tray effects are intentionally confounded with the Run effects, there are 3304 designs with Phase 1 Plants average efficiency factor equals to one. There are 3179 out of these 3304 designs that has treatment DF of 2 in the Between Plants Within Trays Within Runs stratum. From these 3179 designs, there are 5 designs has residual DF in the Between Plants Within Trays Within Runs stratum equals to 5, which is the highest DF from these 3179 designs. These 5 designs has treatment average efficiency factors ranging from 0.8705 to 0.5455. In summary, the best design, presented in Table~\ref{tab:sim2Des}, generated from this set has the residual DF of 5 and treatment average efficiency factor of 0.8705, which is not as good as the best design generated from the previous set, when trays are assigned to that Tray effects are intentionally confounded with the Tag effects. 
+
+\begin{table}[ht]                                           
+\centering     
+\itshape                                               
+\caption{Best design from first set of search.}               
+\begin{tabular}{c|cc:cc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                       
+\textnormal{1} & 1Cc & 1Fc & 1Bb & 1Aa \\ 
+\textnormal{2} & 1Eb & 1Da & 1Da & 1Eb \\ 
+\textnormal{3} & 1Aa & 1Bb & 1Fc & 1Cc \\ 
+\textnormal{4} & 2Hb & 2Ga & 2Kb & 2Ic \\ 
+\textnormal{5} & 2Ja & 2Lc & 2Lc & 2Ja \\ 
+\textnormal{6} & 2Ic & 2Kb & 2Ga & 2Hb \\
+\end{tabular}                                               
+\label{tab:sim2Des}                                      
+\end{table} 
+
+
+From the two million designs generated, when trays are assigned to that Tray effects are intentionally confounded with the Run effects, there are 352 designs with Phase 1 Plants average efficiency factor equals to one. There are 313 out of these 352 designs that has treatment DF of 2 in the Between Plants Within Trays Within Runs stratum. From these 313 designs, there are 4 designs has highest residual DF of 5 in the Between Plants Within Trays Within Runs stratum. These 4 designs has treatment average efficiency factors ranging from 0.5237 to 0.75. Thus, the best design, presented in Table~\ref{tab:sim3Des}, generated from this set has the residual DF of 5 and treatment average efficiency factor of 0.75, which is worse than best design generated from the previous two sets, where when trays are assigned to that Tray effects are intentionally confounded with the Tag effects and Run affects. 
+
+\begin{table}[ht]                                           
+\centering     
+\itshape                                               
+\caption{Best design from third set of search.}               
+\begin{tabular}{c|cc:cc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                       
+\textnormal{1} & 1Aa & 2Hb & 1Cc & 2Ga \\ 
+\textnormal{2} & 2Kb & 1Fc & 2Ja & 1Da \\ 
+\textnormal{3} & 1Bb & 2Ic & 1Eb & 2Lc \\ 
+\textnormal{4} & 2Hb & 1Aa & 2Ga & 1Cc \\ 
+\textnormal{5} & 1Fc & 2Kb & 1Da & 2Ja \\ 
+\textnormal{6} & 2Ic & 1Bb & 2Lc & 1Eb \\
+\end{tabular}                                               
+\label{tab:sim3Des}                                      
+\end{table} 
+
+Table~\ref{tab:ANOVACompare} shows the DF and $\bm{E_{\tau}}$ of three designs from the search, which confirms the design in Table~\ref{tab:sim1Des} is the best comparing to the other two designs, as the ANOVA of design in Table~\ref{tab:sim1Des} has both the highest DF and $\bm{E_{\tau}}$. 
+
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table with DF and $\bm{E_{\tau}}$ for designs in Tables~\ref{tab:sim1Des}, ~\ref{tab:sim2Des} and ~\ref{tab:sim3Des} .}
+ \begin{tabular}[t]{lrllllll} 
+ \toprule 
+  &  \multicolumn{2}{c}{\textbf{Design~\ref{tab:sim1Des}}}  & \multicolumn{2}{c}{\textbf{Design~\ref{tab:sim2Des}}}  & \multicolumn{2}{c}{\textbf{Design~\ref{tab:sim3Des}}}    \\  \cline{2-7}
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{$\bm{E_{\tau}}$}  & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{$\bm{E_{\tau}}$}  & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{$\bm{E_{\tau}}$} \\ 
+ \midrule 
+ Between Runs &  &  &  &   &  &  &    \\ 
+ \quad Between Trays &  $0$ &  & $1$ & & $0$ & & \\
+ \quad Between Plants Within Trays&  &  &   & &   & & \\ 
+ \quad \quad Treatment&  $2$ & $0.0625$ &  $2$ & $0.0938$ & $1$   & $0.25$&  \\ 
+ \quad \quad Residual &  $0$ & &  $0$  & & $1$ &  & \\ \hline 
+ \quad Within Plants Within Trays& $3$ &  &  $2$ & & $3$  && \\ \hline 
+ Within Runs&  &  &   & &  &  & \\ 
+ \quad Between Tray &  $0$ & &  $0$ & & $1$ & &\\ \hline 
+ \quad \quad Tag  & $1$ &  &  $0$ &   &  $0$ &  &    \\ 
+ \quad Between Plants Within Trays &  & &   & &  &  &  \\ 
+ \quad \quad Tag&   $0$ &  &  $1$ &  & $1$ &  &  \\ 
+ \quad \quad Treatment & $2$ & $0.9375$ & $2$  & $0.8705$ & $2$ &   $0.75$ &\\ 
+ \quad \quad Residual & $6$ & &  $5$ & & $5$ &  &  \\ \hline 
+ \quad Within Plants Within Trays &  & &   & &  &   & \\ 
+ \quad \quad Tag &  $2$ & &  $2$  & & $2$ &  & \\ 
+ \quad \quad Residual & $7$ & &  $8$  &  & $7$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:ANOVACompare} 
+\end{table} 
+
+
+\subsection{Comparing the variance estimates using simulated datasets}
+Using the best design generated from these three different sets, the next step is then to compare their variances of the treatment comparison from 1000 sets of simulation datasets. Since the treatment comparison has a variance 
+\begin{equation}\label{eq:varTrtSim}
+\operatorname{Var}(\tau) = \dfrac{\sigma^2+2\sigma_{p}^2}{r_\tau E_{\tau}},
+\end{equation}
+where $\sigma^2+2\sigma_{p}^2$ can be estimated from the residual variance in the Between Plants Within Trays Within Runs stratum, the $r_\tau$ denotes the treatment replication which is eight and $E_{\tau}$ denotes treatment average efficiency factor which is different for different designs. 
+
+We used 1000 simulated datasets based $\sigma_{r} = 100$,  $\sigma_{t} = 10$,  $\sigma_{p} = 5$ and $\sigma = 1$. The means of variance estimates are $6.7588$ from the first design, $7.3504$ from the second design and $8.5065$ from the third design. Therefore, the first design is shown to be best design with the lowest variance estimates on the treatment comparison. The plot in Figure~\ref{fig:simstudy} shows the spread of variance estimates of the simulated dataset from the three different designs.  
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1 \textwidth]{Chapter4/image/simStudy.pdf}
+\caption{Box plots of of variance estimates using simulated datasets comparing between three different designs.}
+\label{fig:simstudy}
+\end{figure}
+
+We can thus conclude that the objective function and SA algorithm, presented in Sections~\ref{sec:objFunChap4} and \ref{sec:RCBDsa}, are robust as we cannot find a better design after obtaining 6 million different designs based on the same set of deign parameters.  

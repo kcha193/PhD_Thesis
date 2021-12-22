@@ -1,0 +1,45 @@
+---
+title: "R Notebook"
+output:
+  word_document: default
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(optimTE)
+```
+
+
+#RCBD
+
+```{r, echo=FALSE, results='asis'}
+
+for(i in list.files("OptimalDesigns/RCBD//")){
+  des <- read.csv(paste0("OptimalDesigns/RCBD/", i))
+
+  #interaction(des$Ani, des$Cag)
+  
+  des$ANI <-multiLetters(as.numeric(interaction(des$Ani, des$Cag)))
+  
+  #sort(unique(paste0(des$Cag, des$ANI)))
+  
+  out <- matrix(paste0(des$Cag, des$ANI, des$Trt), ncol = nlevels(factor(des$Tag)), 
+                nrow = max(des$Run), byrow = TRUE)
+  
+  out1 <- matrix(paste0(des$Cag, des$Ani, des$Trt), ncol = nlevels(factor(des$Tag)), 
+                nrow = max(des$Run), byrow = TRUE)
+  
+  cat("##", i, "\n \n")
+  
+  print(knitr::kable(data.frame(out1)))
+  
+  print(knitr::kable(data.frame(out)))
+  
+  
+  cat("\n \n \n \n")
+  
+}
+
+
+```

@@ -1,0 +1,1 @@
+\verb|> design.df = optCRD( nTrt  = 2, bRep  = 2, tRep  = 2, nPlot = 4, iter  = 10000)|^^E^^L 

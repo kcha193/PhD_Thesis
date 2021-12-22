@@ -1,0 +1,174 @@
+
+\subsection{Phase 1 experiment arranged in CRD}
+For the Phase 1 experiment arranged in CRD, the design parameters for this example consists of $v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$. For such experiment, 3 of 18 animals, denoted by A to R, are randomly assigned to each of six treatments, denoted by a to f. The first phase theoretical ANOVA is expressed in Table~\ref{tab:Phase1ANOVAEX2}. All treatment information is in the Between Animals stratum. Since there are 17 DF associated with the Between Animals Stratum, the DF of the residual MS for the Between Animals stratum is 12.
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for the Phase 1 design of the experiment with $v = 6, r_b = 3, n_{A} = 18\; \mathrm{and} \; r_t = 2$.}
+ \begin{tabular}[t]{lrll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\ 
+ \midrule 
+ Between Animals &  &  &\\ 
+ \quad Treatment & $5$ & $\sigma_{A}^2+3\theta_{\gamma}$ &$1$\\ 
+ \quad Residual & $12$ & $\sigma_{A}^2$ &\\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase1ANOVAEX2} 
+\end{table} 
+            
+The allocation of animal is presented in Table~\ref{tab:aniDesEX2}. The animal is disconnected to both runs and tags, because the pairs of animals are allocated to sections of two runs and two tags. Since the number of runs is odd, the last pair of animals are assigned to the last run. From this design, 13 canonical efficiency factors associated with animals effects in the Within Runs stratum. These 13 canonical efficiency factors are all unity, which suggests the test for the treatment effects in the Between Animals Within Runs stratum should be possible.   
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Animal allocation to runs and tags found for Phase 2 experiment with $v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1 & B & M & L & K \\     
+2 & M & B & K & L \\     
+3 & F & G & N & D \\     
+4 & G & F & D & N \\     
+5 & E & J & A & I \\     
+6 & J & E & I & A \\     
+7 & C & R & P & Q \\     
+8 & R & C & Q & P \\     
+9 & O & O & H & H \\                                 
+\end{tabular}                                               
+\label{tab:aniDesEX2}                                      
+\end{table}         
+     
+The allocation of treatments to runs and tags are expressed in Table~\ref{tab:trtDesEX2}. The treatment concurrence matrix with respect to runs is given by
+\[
+\begin{bmatrix} 
+6 & 4 & 2 & 4 & 4 & 4 \\  
+4 & 8 & 4 & 2 & 2 & 4 \\  
+2 & 4 & 8 & 4 & 4 & 2 \\  
+4 & 2 & 4 & 6 & 4 & 4 \\  
+4 & 2 & 4 & 4 & 6 & 4 \\  
+4 & 4 & 2 & 4 & 4 & 6 \\  
+\end{bmatrix}.  
+\]  
+Notices the diagonal elements are generally 6, except for Treatment b and c which are the highest with 8. This is because these two treatments are allocated in the last run of the Phase 2 design. It also affects the off-diagonal element associated with these two treatments, which can be as low as 2. This treatment concurrence matrix is to be used to compare with the optimal design found where the Phase 1 experiment is arranged in RBD. 
+
+\begin{table}[ht]                                           
+\centering                                                  
+\caption{Treatment allocation to runs and tags found for Phase 2 experiment with$v = 6, r_b = 3, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$.}               
+\begin{tabular}[t]{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & 114 & 115 & 116 & 117 \\ \hline                                                      
+1 & b & a & f & e \\
+2 & a & b & e & f \\
+3 & f & a & b & d \\
+4 & a & f & d & b \\
+5 & e & d & a & c \\
+6 & d & e & c & a \\
+7 & c & f & d & e \\
+8 & f & c & e & d \\
+9 & c & c & b & b \\                                       
+\end{tabular}                                               
+\label{tab:trtDesEX2}                                      
+\end{table}   
+
+There are 5 treatment canonical efficiency factors in the Between Animals Within Runs present from this design. These 5 treatment canonical efficiency factors are $\displaystyle \frac{11}{12}, \frac{11}{12}, \frac{8}{9}, \frac{3}{4}$ and $\displaystyle \frac{3}{4}$. The treatment average efficiency factor in the Between Animals Within Runs stratum is then $0.837$ which is slightly higher than the previous design of $0.8204$. Five basic contrasts associated with each of the canoncial efficiency factors can be generated as follows
+\[
+\begin{bmatrix} 
+ 0 &  0.7071 &   0.4082  &  0.4082 &  0  \\ 
+0 & 0 &  -0.4082  &  0 & -0.8165  \\ 
+ 0 &  0 &   0.4082  & -0.8165  & 0  \\ 
+ 0.7071 &  0 &  -0.4082  & 0 &  0.4082  \\ 
+-0.7071 & 0 &  -0.4082  & 0 &  0.4082  \\ 
+ 0 & -0.7071 &   0.4082  &  0.4082 &  0  \\  
+ \end{bmatrix}  
+\]  
+The first contrast is comparing between Treatment d and e, the second contrast is comparing between Treatment a and f, the third contrast is comparing between Treatment a, c, f and b, d, e, the fourth contrast is comparing Treatment a, f and c and the fifth contrast is comparing Treatment d, e and b. Note that the test is based on $\displaystyle \frac{11}{12}, \frac{11}{12}, \frac{8}{9}, \frac{3}{4}$ and $\displaystyle \frac{3}{4}$ of the information of each of these five contrasts.
+
+The Phase 2 theoretical ANOVA table is expressed as in Table~\ref{tab:Phase2ANOVAEX2}. Compare the ANOVA table in Table~\ref{tab:Phase1ANOVAEX2} of the Phase 1 experiment to this Phase 2 theoretical ANOVA table, there are 5 DF associated with the animal effects are lost to Between Runs stratum (4 DF) and tag effects (1 DF). There are still 7 DF associated with residual MS for conducting the test for the treatment effects.  In addition, the amount of treatment information remains for conducting the test is now $0.8370$.
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table with  $v = 6, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$ where the Phase 1 experiment arranged in CRD.}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Animals &  &  & & \\ 
+ \quad \quad Treatment & $4$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+3/4\theta_{\tau}$ & & $1/8$\\ 
+ \quad Residual & $4$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+ Within Runs &  &  & & \\ 
+ \quad Between Animals &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+9\theta_{\gamma}+2/3\theta_{\tau}$ &$1$ & $1/9$\\ 
+ \quad \quad Treatment & $5$ & $\sigma^2+2\sigma_{A}^2+7920/1577\theta_{\tau}$ & & $1320/1577$\\ 
+ \quad \quad Residual & $7$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+9\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $12$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVAEX2} 
+\end{table} 
+
+The five basic contrast described are then fitted to the theoretical ANOVA table. The new theoretical ANOVA table in Table~\ref{tab:Phase2ANOVAEX2trtContr} shows how each canonical efficiency factor corresponds to each basic contrast is separated across strata. The treatment contrasts 1 and 2 both consist of 1/12 and 11/12 of the treatment information in Between Runs and Within Runs strata, respectively. The tag MS in the Between Animals Within Runs stratum contains 1/9 of treatment information from the treatment contrast 3, which mean there is still 8/9 of the pure treatment information remaining. The treatment contrasts 4 and 5 both consist of 1/4 and 3/4 of the treatment information in Between Runs and Within Runs strata, respectively. 
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table with treatment contrasts and consists of $v = 6, n_{A} = 18, r_t = 2, n_R = 9 \; \mathrm{and} \; n_\gamma = 4$ where the Phase 1 experiment arranged in CRD.}
+ \begin{tabular}[t]{lrlllllll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_1}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_2}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_3}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_4}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_5}}$}\\ 
+ \midrule 
+ Between Runs &  &  & &  &  &  &  & \\ 
+ \quad Between Animals &  &  & &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+1/2\theta_{\tau_1}$ & & $1/12$ &  &  &  & \\ 
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+1/2\theta_{\tau_2}$ & &  & $1/12$ &  &  & \\ 
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+3/2\theta_{\tau_4}$ & &  &  &  & $1/4$ & \\ 
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+3/2\theta_{\tau_5}$ & &  &  &  &  & $1/4$\\ 
+ \quad Residual & $4$ & $\sigma^2+4\sigma_{R}^2$ & &  &  &  &  & \\ \hline
+ Within Runs &  &  & &  &  &  &  & \\ 
+ \quad Between Animals &  &  & &  &  &  &  & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+9\theta_{\gamma}+2/3\theta_{\tau_3}$ &$1$ &  &  & $1/9$ &  & \\ 
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+11/2\theta_{\tau_1}$ & & $11/12$ &  &  &  & \\ 
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+11/2\theta_{\tau_2}$ & &  & $11/12$ &  &  & \\ 
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+16/3\theta_{\tau_3}$ & &  &  & $8/9$ &  & \\ 
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+9/2\theta_{\tau_4}$ & &  &  &  & $3/4$ & \\ 
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+9/2\theta_{\tau_5}$ & &  &  &  &  & $3/4$\\ 
+ \quad \quad Residual & $7$ & $\sigma^2+2\sigma_{A}^2$ & &  &  &  &  & \\ \hline
+ \quad Within Animals &  &  & &  &  &  &  & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+9\theta_{\gamma}$ &$1$ &  &  &  &  & \\ 
+ \quad \quad Residual & $12$ & $\sigma^2$ & &  &  &  &  & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVAEX2trtContr} 
+\end{table} 
+
+
+Two different sets of the treatment contrasts are studied. The first set of contrasts is shown as follow 
+\[                                           
+\begin{bmatrix}                              
+ 0.5 &   0.0 &  0.0  &  0.25 &  0.5  \\     
+-0.5 &   0.0 &  0.0  &  0.25 &  0.5  \\     
+ 0.0 &   0.5 &  0.0  &  0.25 & -0.5  \\     
+ 0.0 &  -0.5 &  0.0  &  0.25 & -0.5  \\     
+ 0.0 &   0.0 &  0.5  & -0.50 &  0.0  \\     
+ 0.0 &   0.0 & -0.5  & -0.50 &  0.0  \\     
+\end{bmatrix}.                                
+\]
+This set of contrast composed of pairwise treatment contrasts in the first three contrasts: the first contrast is comparing between Treatment a and b, the second contrast is comparing between Treatment c and d and the third contrast is comparing between Treatment e and f. The last two contrasts need to cover the comparison between the three pairwise treatment contrasts of the first three contrasts. Hence, the fourth contrast is comparing between Treatment a, b, c, d and e, f and the fifth contrast is comparing between Treatment a, b and c, d. 
+
+For the optimal design with 6 residual DF, the efficiency factors for these treatment contrasts are $0.7738095, 0.9075044, 0.7276119, 0.9294013$ and $0.8002052$. The treatment average efficiency factor of these five efficiency factors is still $0.8204481$. For the optimal design with 6 residual DF, the efficiency factors for these treatment contrasts are $0.8256823, 0.9127005, 0.7700973, 0.8784680$ and $0.7801504$. The treatment average efficiency factor of these five efficiency factors is still $0.8298127$. Comparing between these two designs, the optimal design with 6 residual DF has contrast 4 and 5 that has the higher efficiency factors than the optimal design with 5 residual DF. 
+
+Another set of contrasts can be shown as follow,
+\[                                           
+\begin{bmatrix}                              
+  0.5 &   0.25 &   0.5  &  0.25 &  0.5  \\ 
+  0.5 &   0.25 &  -0.5  &  0.25 & -0.5  \\ 
+  0.5 &  -0.50 &   0.0  & -0.50 &  0.0  \\ 
+ -0.5 &   0.25 &   0.5  & -0.25 & -0.5  \\ 
+ -0.5 &   0.25 &  -0.5  & -0.25 &  0.5  \\ 
+ -0.5 &  -0.50 &   0.0  &  0.50 &  0.0  \\ 
+\end{bmatrix}                                
+\] 
+This set of contrasts uses the idea from the $2^K$ experiment, where the first contrast is comparing between Treatment a, b, c and d, e, f, the second contrast is comparing between Treatment a, b, d, e and c, f and the third contrast is comparing between Treatment a, d and b, e. The fourth and fifth contrast are constructed from multiplying the first contrast by the second and third contrasts, respectively. Thus, the fourth contrast is comparing between Treatment a, b, f and c, d, e, and the fifth contrast is comparing between Treatment a, e and b, d. 
+
+For the optimal design with 6 residual DF, the efficiency factors for these treatment contrasts are $0.8697268, 0.8393866, 0.6784083, 0.8864476$ and $0.8688388$. The treatment average efficiency factor of these five efficiency factors is still $0.8204481$. For the optimal design with 6 residual DF, the efficiency factors for these treatment contrasts are $0.8653467, 0.8610804, 0.7705200, 0.7847964$ and $0.8799120$. The treatment average efficiency factor of these five efficiency factors is still $0.8298127$. Comparing between these two designs, the optimal design with 6 residual DF has contrast 1 and 4 that has the higher efficiency factors than the optimal design with 5 residual DF. 

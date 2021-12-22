@@ -1,0 +1,146 @@
+\contentsline {chapter}{Abstract}{iii}{chapter*.2}
+\contentsline {chapter}{Acknowledgement}{iv}{chapter*.3}
+\contentsline {chapter}{Table of contents}{x}{chapter*.4}
+\contentsline {chapter}{List of tables}{xxii}{chapter*.5}
+\contentsline {chapter}{List of figures}{xxiv}{chapter*.6}
+\contentsline {chapter}{List of symbols}{xxv}{chapter*.7}
+\contentsline {chapter}{List of abbreviations}{xxvii}{chapter*.8}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}The introduction of the two-phase experiment}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Analysis of variance tables based on experimental structure}{6}{section.1.2}
+\contentsline {section}{\numberline {1.3}Sweeping operations for two-phase experiments}{9}{section.1.3}
+\contentsline {section}{\numberline {1.4}Work by Brien and Bailey}{11}{section.1.4}
+\contentsline {section}{\numberline {1.5}Systematic approach to design two-phase experiments}{12}{section.1.5}
+\contentsline {section}{\numberline {1.6}Experimental design for multi-plex proteomic experiments}{12}{section.1.6}
+\contentsline {section}{\numberline {1.7}Quantitative proteomics using MudPIT coupled with iTRAQ$^{\rm TM}$}{14}{section.1.7}
+\contentsline {subsection}{\numberline {1.7.1}Proteins and the proteome}{14}{subsection.1.7.1}
+\contentsline {subsection}{\numberline {1.7.2}Multi-dimensional protein identification technology}{15}{subsection.1.7.2}
+\contentsline {subsection}{\numberline {1.7.3}iTRAQ$^{\rm TM}$ for protein quantitation}{16}{subsection.1.7.3}
+\contentsline {subsection}{\numberline {1.7.4}MudPIT coupled with iTRAQ$^{\rm TM}$: laboratory workflow}{18}{subsection.1.7.4}
+\contentsline {subsection}{\numberline {1.7.5}Data generation from MudPIT-iTRAQ$^{\rm TM}$}{21}{subsection.1.7.5}
+\contentsline {section}{\numberline {1.8}Overview of thesis}{23}{section.1.8}
+\contentsline {chapter}{\numberline {2}infoDecompuTE: an R package for constructing theoretical ANOVA tables for two-phase experiments}{25}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introduction}{25}{section.2.1}
+\contentsline {section}{\numberline {2.2}Information decomposition of designed experiments}{28}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}The linear mixed-effects model}{28}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Null ANOVA using projection matrices}{29}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Computing the treatment SS}{31}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Computing the residual SS}{35}{subsection.2.2.4}
+\contentsline {section}{\numberline {2.3}Information decomposition for two-phase experiments}{35}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}The linear mixed-effects model}{36}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Null ANOVA of Phase 2 block structure}{37}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Null ANOVA of Phase 1 block structure}{37}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Computing the treatment SS}{39}{subsection.2.3.4}
+\contentsline {section}{\numberline {2.4}Application to quantitative proteomics experiments}{40}{section.2.4}
+\contentsline {section}{\numberline {2.5}Example of two-phase proteomics experiment}{41}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Phase 1 experiment}{41}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Phase 2 experiment}{42}{subsection.2.5.2}
+\contentsline {section}{\numberline {2.6}InfoDecompuTE}{45}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Installation instructions}{45}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Functions}{45}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Phase 1 experiment}{46}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}Phase 2 experiment}{47}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.5}Crossed or nested}{49}{subsection.2.6.5}
+\contentsline {subsection}{\numberline {2.6.6}Artificial strata or pseudo-factors}{50}{subsection.2.6.6}
+\contentsline {subsection}{\numberline {2.6.7}Manually defined contrasts}{51}{subsection.2.6.7}
+\contentsline {subsection}{\numberline {2.6.8}Mean squares computation}{52}{subsection.2.6.8}
+\contentsline {subsection}{\numberline {2.6.9}Latex output}{53}{subsection.2.6.9}
+\contentsline {subsection}{\numberline {2.6.10}Shiny application}{54}{subsection.2.6.10}
+\contentsline {section}{\numberline {2.7}Example}{54}{section.2.7}
+\contentsline {section}{\numberline {2.8}Conclusion}{57}{section.2.8}
+\contentsline {chapter}{\numberline {3}Optimal designs for two-phase experiments when the Phase 1 experiment is arranged in a completely randomised design}{59}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduction}{59}{section.3.1}
+\contentsline {section}{\numberline {3.2}Design parameters and model}{61}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Linear models}{61}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Linear models in matrix notation}{62}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Information matrix for the objective function}{63}{section.3.3}
+\contentsline {section}{\numberline {3.4}An illustrative example}{65}{section.3.4}
+\contentsline {section}{\numberline {3.5}Optimality criteria}{67}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}A-optimality}{67}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}MS-optimality}{69}{subsection.3.5.2}
+\contentsline {section}{\numberline {3.6}An objective function for identifying optimal designs for the Phase 2 experiment}{70}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Maximising the animal information}{71}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Maximising the treatment information}{73}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Maximising intact Treatment DF}{77}{subsection.3.6.3}
+\contentsline {section}{\numberline {3.7}Construction of the initial design}{82}{section.3.7}
+\contentsline {section}{\numberline {3.8}Simulated annealing}{84}{section.3.8}
+\contentsline {subsection}{\numberline {3.8.1}Acceptance probability}{85}{subsection.3.8.1}
+\contentsline {subsection}{\numberline {3.8.2}Initial and final temperatures}{85}{subsection.3.8.2}
+\contentsline {section}{\numberline {3.9}Nested simulated annealing}{86}{section.3.9}
+\contentsline {section}{\numberline {3.10}Modified simulated annealing}{87}{section.3.10}
+\contentsline {subsection}{\numberline {3.10.1}Swapping method for two or more technical replicates}{87}{subsection.3.10.1}
+\contentsline {subsection}{\numberline {3.10.2}Three-stage swapping method}{87}{subsection.3.10.2}
+\contentsline {section}{\numberline {3.11}An illustrative example using the four-plex iTRAQ$^{\rm TM}$ system}{88}{section.3.11}
+\contentsline {section}{\numberline {3.12}An illustrative example using the eight-plex iTRAQ$^{\rm TM}$ system}{90}{section.3.12}
+\contentsline {section}{\numberline {3.13}Optimal designs for experiments involving two to eight treatments and two technical replicates}{94}{section.3.13}
+\contentsline {subsection}{\numberline {3.13.1}Phase 1 Animal (Experimental unit) effects}{95}{subsection.3.13.1}
+\contentsline {subsection}{\numberline {3.13.2}Treatment effects}{96}{subsection.3.13.2}
+\contentsline {section}{\numberline {3.14}Extension to more than one treatment factor in the Phase\nobreakspace {}1 experiment}{97}{section.3.14}
+\contentsline {subsection}{\numberline {3.14.1}Model and design parameters}{98}{subsection.3.14.1}
+\contentsline {subsection}{\numberline {3.14.2}Information matrix}{99}{subsection.3.14.2}
+\contentsline {subsection}{\numberline {3.14.3}Objective function}{99}{subsection.3.14.3}
+\contentsline {section}{\numberline {3.15}Summary}{100}{section.3.15}
+\contentsline {chapter}{\numberline {4}Optimal designs for two-phase experiments when the Phase 1 experiment is arranged in blocks}{101}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{101}{section.4.1}
+\contentsline {section}{\numberline {4.2}An illustrative example}{102}{section.4.2}
+\contentsline {section}{\numberline {4.3}Design parameters and model}{105}{section.4.3}
+\contentsline {section}{\numberline {4.4}Defining the information matrix}{106}{section.4.4}
+\contentsline {section}{\numberline {4.5}An objective function for identifying optimal designs for the Phase 2 experiment}{107}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Illustrative example applying the old objective function}{108}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}New Objective function and optimisation procedure}{110}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Illustrative example applying new objective function}{112}{subsection.4.5.3}
+\contentsline {section}{\numberline {4.6}Construction of the initial design}{112}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}An initial design where the Tray effects are intentionally confounded with Run effects (better than confounded with Tag effects)}{114}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Performance remains unchanged whether Tray effects are confounded with Tag or Run effects}{117}{subsection.4.6.2}
+\contentsline {section}{\numberline {4.7}Modified simulated annealing for searching for the optimal design}{121}{section.4.7}
+\contentsline {section}{\numberline {4.8}An illustrative example with six treatments}{121}{section.4.8}
+\contentsline {section}{\numberline {4.9}Optimal designs for experiments involving two to eight treatments and two technical replicates}{127}{section.4.9}
+\contentsline {subsection}{\numberline {4.9.1}Phase 1 Block and Plot effects}{127}{subsection.4.9.1}
+\contentsline {subsection}{\numberline {4.9.2}Treatment effects}{128}{subsection.4.9.2}
+\contentsline {section}{\numberline {4.10}Simulation study demonstrating search procedure developed in Sections\nobreakspace {}\ref {sec:objFunChap4} -- \ref {sec:RCBDsa} find optimal designs}{129}{section.4.10}
+\contentsline {subsection}{\numberline {4.10.1}Optimal design for Phase 2 experiment found using RCBD objective function}{129}{subsection.4.10.1}
+\contentsline {subsection}{\numberline {4.10.2}Enumeration of all essentially different Phase 2 designs}{131}{subsection.4.10.2}
+\contentsline {subsection}{\numberline {4.10.3}Simulation study comparing three designs via their recovery of prior assumed model parameters}{136}{subsection.4.10.3}
+\contentsline {section}{\numberline {4.11}Extension when the Phase 1 experiment is arranged in a BIBD}{140}{section.4.11}
+\contentsline {subsection}{\numberline {4.11.1}BIBD example with six treatments}{141}{subsection.4.11.1}
+\contentsline {subsection}{\numberline {4.11.2}Optimal designs when the Phase 1 experiment is a BIBD}{144}{subsection.4.11.2}
+\contentsline {section}{\numberline {4.12}Summary}{145}{section.4.12}
+\contentsline {chapter}{\numberline {5}Estimation of variance components and effective degrees of freedom in two-phase proteomic experiments}{147}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{147}{section.5.1}
+\contentsline {section}{\numberline {5.2}An illustrative example}{148}{section.5.2}
+\contentsline {section}{\numberline {5.3}Estimation of variance components}{150}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Constructing the score function and Fisher information matrix}{150}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Transformation from expected values in {\relax \mathversion {bold}$\xi ^2$} to estimates in {\relax \mathversion {bold}$\varsigma $}}{152}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Estimating VCs in {\relax \mathversion {bold}$\varsigma ^2$}}{153}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}Satterthwaite's approximation in deriving the EDF}{153}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Comparing VCs between LC and REML methods}{154}{subsection.5.4.1}
+\contentsline {section}{\numberline {5.5}EDF when Phase 1 experiment is arrange in a CRD}{155}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Example 1: A CRD with 2 treatments and 12 animals}{155}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Example 2: A CRD with 8 treatments and 16 animals}{157}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Example 3: A CRD with 4 treatments and 24 animals}{160}{subsection.5.5.3}
+\contentsline {section}{\numberline {5.6}Comparing the EDF when Phase 1 experiment is arranged in a RCBD}{163}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Four-plex system}{164}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Eight-plex system}{167}{subsection.5.6.2}
+\contentsline {subsection}{\numberline {5.6.3}Four-plex versus Eight-plex system}{171}{subsection.5.6.3}
+\contentsline {section}{\numberline {5.7}Summary}{171}{section.5.7}
+\contentsline {chapter}{\numberline {6}Discussion}{175}{chapter.6}
+\contentsline {section}{\numberline {6.1}Summary}{175}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future lines of research}{178}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Shiny application for generating optimal designs of Phase 2 experiments}{178}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Effective degrees of freedom versus average treatment efficiency factor}{179}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Missing values}{180}{subsection.6.2.3}
+\contentsline {section}{\numberline {6.3}More general future research directions}{183}{section.6.3}
+\contentsline {chapter}{Appendices}{185}{section*.134}
+\contentsline {chapter}{\numberline {A}Reference manual of infoDecompuTE package}{187}{Appendix.1.A}
+\contentsline {chapter}{\numberline {B}The Information matrix in more detail}{221}{Appendix.1.B}
+\contentsline {chapter}{\numberline {C}Various matrices from the example in Section\nobreakspace {}\ref {sec:theorANOVAtab}}{225}{Appendix.1.C}
+\contentsline {chapter}{\numberline {D}Various matrices from the example in Subsection\nobreakspace {}\ref {sub:compareMSvsA}}{227}{Appendix.1.D}
+\contentsline {chapter}{\numberline {E}Various matrices from the example in Subsection\nobreakspace {}\ref {sub:maxTrtInfo}}{229}{Appendix.1.E}
+\contentsline {chapter}{\numberline {F}Various matrices from the example in Section\nobreakspace {}\ref {sub:trtDF}}{231}{Appendix.1.F}
+\contentsline {chapter}{\numberline {G}Tables of optimal designs when Phase 1 is a CRD}{233}{Appendix.1.G}
+\contentsline {chapter}{\numberline {H}Tables of properties of optimal designs when Phase 1 is a CRD}{249}{Appendix.1.H}
+\contentsline {chapter}{\numberline {I}Tables of optimal designs when Phase 1 is a RCBD}{257}{Appendix.1.I}
+\contentsline {chapter}{\numberline {J}Tables of properties of optimal designs when Phase 1 is a RCBD}{287}{Appendix.1.J}
+\contentsline {chapter}{\numberline {K}Tables of optimal designs when Phase 1 is a BIBD}{299}{Appendix.1.K}
+\contentsline {chapter}{\numberline {L}Tables of properties of optimal designs when Phase 1 is a BIBD}{305}{Appendix.1.L}
+\contentsline {chapter}{Bibliography}{311}{chapter*.135}

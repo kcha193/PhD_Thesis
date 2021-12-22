@@ -1,0 +1,147 @@
+\begin{thebibliography}{}
+
+\bibitem[Bailey, 2008]{Bailey2008}
+Bailey, R.~A. (2008).
+\newblock {\em {Design of comparative experiment}}.
+\newblock Cambridge University Press.
+
+\bibitem[Brien, 2011]{Brien2011a}
+Brien, C. (2011).
+\newblock {\em dae: Functions useful in the design and ANOVA of experiments}.
+\newblock R package version 2.1-7.
+
+\bibitem[Brien, 1983]{Brien1983}
+Brien, C.~J. (1983).
+\newblock {Analysis of Variance Tables Based on Experimental Structure}.
+\newblock {\em Biometrics}, 39(1):53--59.
+
+\bibitem[Brien and Bailey, 2006]{Brien2006b}
+Brien, C.~J. and Bailey, R.~A. (2006).
+\newblock {Multiple randomizations}.
+\newblock {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 68(4):571--609.
+
+\bibitem[Brien and Bailey, 2009]{Brien2009}
+Brien, C.~J. and Bailey, R.~A. (2009).
+\newblock {Decomposition tables for experiments I. A chain of randomizations}.
+\newblock {\em The Annals of Statistics}, 37(6B):4184--4213.
+
+\bibitem[Brien and Bailey, 2010]{Brien2010}
+Brien, C.~J. and Bailey, R.~A. (2010).
+\newblock {Decomposition tables for experiments. II. Two--one randomizations}.
+\newblock {\em The Annals of Statistics}, 38(5):3164--3190.
+
+\bibitem[Brien and Payne, 1999]{Brien1999}
+Brien, C.~J. and Payne, R.~W. (1999).
+\newblock {Tiers, structure formulae and the analysis of complicated
+  experiments}.
+\newblock {\em Journal of the Royal Statistical Society Series D: The
+  Statistician}, 48(1):41--52.
+
+\bibitem[Brien and Payne, 2006]{Brien2006a}
+Brien, C.~J. and Payne, R.~W. (2006).
+\newblock {\em {GenStat Reference Manual Release 9, Part 3, Procedure Library
+  PL 17}}, chapter AMTIER Pro, pages 73--75.
+\newblock VSN International: Hemel Hempstead.
+
+\bibitem[Choe et~al., 2007]{Choe2007}
+Choe, L., D'Ascenzo, M., Relkin, N.~R., Pappin, D., Ross, P., Williamson, B.,
+  Guertin, S., Pribil, P., and Lee, K.~H. (2007).
+\newblock {8-plex quantitation of changes in cerebrospinal fluid protein
+  expression in subjects undergoing intravenous immunoglobulin treatment for
+  Alzheimer's disease}.
+\newblock {\em Proteomics}, 7(20):3651--3660.
+
+\bibitem[Churchill, 2002]{Churchill2002}
+Churchill, G.~A. (2002).
+\newblock Fundamentals of experimental design for cdna microarrays.
+\newblock {\em nature genetics}, 32:490--495.
+
+\bibitem[Florens and Washburn, 2006]{Florens2006a}
+Florens, L. and Washburn, M.~P. (2006).
+\newblock {Proteomic analysis by multidimensional protein identification
+  technology.}
+\newblock {\em Methods Mol Biol}, 328:159--175.
+
+\bibitem[Hadi, 1996]{Hadi1996}
+Hadi, A.~S. (1996).
+\newblock {\em {Matrix Algebra as a tool}}.
+\newblock Duxbury Press at Wadsworth Publishing Company.
+
+\bibitem[Jarrett and Ruggiero, 2008]{Jarrett2008}
+Jarrett, R.~G. and Ruggiero, K. (2008).
+\newblock {Design and analysis of two-phase experiments for gene expression
+  microarrays-part $\backslash$textnormal\{I\}}.
+\newblock {\em Biometrics}, 64(1):208--216.
+
+\bibitem[John and Williams, 1987]{John1987}
+John, J.~A. and Williams, E.~R. (1987).
+\newblock {\em {Cyclic and computer generated Designs}}.
+\newblock Chapman \& Hall, second edition.
+
+\bibitem[McIntyre, 1955]{McIntyre1955}
+McIntyre, G.~A. (1955).
+\newblock {Design and Analysis of Two Phase Experiments}.
+\newblock {\em Biometrics}, 11(3):324--334.
+
+\bibitem[Mead, 1988]{Mead1988}
+Mead, R. (1988).
+\newblock {\em {The Design of Experiments: Statistical Principles for
+  Practical}}.
+\newblock Cambridge University Press.
+
+\bibitem[Nelder, 1965a]{Nelder1965A}
+Nelder, J.~A. (1965a).
+\newblock {The Analysis of Randomized Experiments with Orthogonal Block
+  Structure. I. Block Structure and the Null Analysis of Variance}.
+\newblock {\em Proceedings of the Royal Society of London. Series A,
+  Mathematical and Physical Sciences}, 283(1393):pp. 147--162.
+
+\bibitem[Nelder, 1965b]{Nelder1965B}
+Nelder, J.~A. (1965b).
+\newblock {The Analysis of Randomized Experiments with Orthogonal Block
+  Structure. II. Treatment Structure and the General Analysis of Variance}.
+\newblock {\em Proceedings of the Royal Society of London. Series A,
+  Mathematical and Physical Sciences}, 283(1393):163--178.
+
+\bibitem[Payne, 2003]{Payne2003}
+Payne, R.~W. (2003).
+\newblock {General balance, large data sets and extensions to unbalanced
+  treatment structures}.
+\newblock {\em Computational Statistics \& Data Analysis}, 44(1-2):297--304.
+
+\bibitem[{R Development Core Team}, 2012]{R2012}
+{R Development Core Team} (2012).
+\newblock {\em {R: A Language and Environment for Statistical Computing}}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria.
+
+\bibitem[Ross et~al., 2004]{Ross2004}
+Ross, P.~L., Huang, Y.~N., Marchese, J.~N., Williamson, B., Parker, K., Hattan,
+  S., Khainovski, N., Pillai, S., Dey, S., Daniels, S., Purkayastha, S.,
+  Juhasz, P., Martin, S., Bartlet-Jones, M., He, F., Jacobson, A., and Pappin,
+  D.~J. (2004).
+\newblock {Multiplexed protein quantitation in Saccharomyces cerevisiae using
+  amine-reactive isobaric tagging reagents.}
+\newblock {\em Mol Cell Proteomics}, 3(12):1154--1169.
+
+\bibitem[Searle, 1982]{Searle1982}
+Searle, S.~R. (1982).
+\newblock {\em {Matrix Algebra Useful for Statistics}}.
+\newblock Wiley-Interscience.
+
+\bibitem[Wilkinson and Rogers, 1973]{Wilkinson1973}
+Wilkinson, G.~N. and Rogers, C.~E. (1973).
+\newblock {Symbolic description of factorial models for analysis of variance}.
+\newblock {\em Applied Statistics}, 22(3):392--399.
+
+\bibitem[Wood et~al., 1988]{Wood1988}
+Wood, J.~T., William, E.~R., and Speed, T.~P. (1988).
+\newblock {Non-orthogonal block structure in two-phase designs}.
+\newblock {\em Australian \& New Zealand Journal of Statistics}, 30A:225--237.
+
+\bibitem[Yates, 1936]{Yates1936}
+Yates, F. (1936).
+\newblock {Incomplete Randomized Blocks}.
+\newblock {\em Annals of Human Genetics}, 7(2):121--140.
+
+\end{thebibliography}

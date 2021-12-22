@@ -1,0 +1,30 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Design parameters and model}{}% 2
+\BOOKMARK [1][-]{section.3}{Information matrix for defining design optimality criteria}{}% 3
+\BOOKMARK [1][-]{section.4}{Optimality criteria}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{A-optimality criterion}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{MS-optimality criterion}{section.4}% 6
+\BOOKMARK [1][-]{section.5}{An illustrative example}{}% 7
+\BOOKMARK [1][-]{section.6}{Objective function for identifying two-phase optimal designs}{}% 8
+\BOOKMARK [2][-]{subsection.6.1}{Maximising the animal information}{section.6}% 9
+\BOOKMARK [2][-]{subsection.6.2}{Maximising the treatment information}{section.6}% 10
+\BOOKMARK [2][-]{subsection.6.3}{Maximising the DF associated with the treatment effects}{section.6}% 11
+\BOOKMARK [1][-]{section.7}{Construction of the initial design}{}% 12
+\BOOKMARK [1][-]{section.8}{Simulated annealing}{}% 13
+\BOOKMARK [2][-]{subsection.8.1}{Acceptance probability}{section.8}% 14
+\BOOKMARK [2][-]{subsection.8.2}{Initial and final temperatures}{section.8}% 15
+\BOOKMARK [2][-]{subsection.8.3}{Cooling schedule}{section.8}% 16
+\BOOKMARK [1][-]{section.9}{Modified simulated annealing}{}% 17
+\BOOKMARK [2][-]{subsection.9.1}{Nested simulated annealing}{section.9}% 18
+\BOOKMARK [2][-]{subsection.9.2}{Swapping method for two or more technical replicates}{section.9}% 19
+\BOOKMARK [2][-]{subsection.9.3}{Three-stage swapping method}{section.9}% 20
+\BOOKMARK [1][-]{section.10}{An illustrative example using the four-plex iTRAQ system}{}% 21
+\BOOKMARK [1][-]{section.11}{An illustrative example using the eight-plex iTRAQ system}{}% 22
+\BOOKMARK [1][-]{section.12}{Optimal designs for experiments involving two to eight treatments and two technical replicates}{}% 23
+\BOOKMARK [2][-]{subsection.12.1}{Animal effect}{section.12}% 24
+\BOOKMARK [2][-]{subsection.12.2}{Treatment effect}{section.12}% 25
+\BOOKMARK [1][-]{section.13}{Extension to more than one treatment factor in the Phase 1 experiment}{}% 26
+\BOOKMARK [2][-]{subsection.13.1}{Model and design parameter}{section.13}% 27
+\BOOKMARK [2][-]{subsection.13.2}{Information matrix}{section.13}% 28
+\BOOKMARK [2][-]{subsection.13.3}{Objective function}{section.13}% 29
+\BOOKMARK [1][-]{section.14}{Conclusion}{}% 30

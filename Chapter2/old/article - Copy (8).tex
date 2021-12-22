@@ -1,0 +1,1157 @@
+\documentclass[article]{jss}
+
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{lscape}
+
+\newcommand{\mP}{\mathbf{P}}
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\K}{\mathbf{K}}
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\A}{\mathbf{A}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\mL}{\mathbf{L}}
+
+%\numberwithin{equation}{section}
+%\numberwithin{figure}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{Kevin C. Chang\\University of Auckland,\\ New Zealand \And
+        Richard G. Jarrett\\CSIRO, Adelaide,\\ Australia \And
+        Chris M. Triggs\\University of Auckland,\\ New Zealand \And
+        Katya Ruggiero\\University of Auckland,\\ New Zealand }
+\title{\pkg{InfoDecompuTE}: an \proglang{R} package for information decomposition of two-phase experiments }
+
+%% for pretty printing and a nice hypersummary also set:
+\Plainauthor{Kevin C. Chang, Richard G. Jarrett, Chris M. Triggs, Katya Ruggiero} %% comma-separated
+\Plaintitle{InfoDecompuTE: an R package for information decomposition of two-phase experiments} %% without formatting
+\Shorttitle{{\small\pkg{InfoDecompuTE}: an \proglang{R} package for information decomposition of two-phase experiments}} %% a short title (if necessary)
+
+%% an abstract and keywords
+\Abstract{Studies in which an experimental unit's response to treatment cannot be measured directly are said to be two-phase. In such cases, material harvested from the experimental units requires further processing in a subsequent experiment before measurements can be taken. Consequently, each experimental phase introduces different sources of variation, and how the interaction among these different sources depend on the experimental designs between the phases.
+
+To assess the properties of competing designs for two-phase experiments, it is necessary to examine their theoretical ANOVA tables, which can be a very time-consuming when done manually. We will introduce our flexible R package, \pkg{infoDecompuTE}, which for a given single- or two-phase experiment can quickly construct the ANOVA table, that lists any existing strata, expected mean squares for all sources of variation and average efficiency factors, as appropriate.
+}
+\Keywords{two-phase experiments, experimental design, analysis of variance, \pkg{InfoDecompuTE}}
+\Plainkeywords{keywords, comma-separated, not capitalized, InfoDecompuTE} %% without 
+%% publication information
+%% NOTE: Typically, this can be left commented and will be filled out by the technical editor
+%% \Volume{13}
+%% \Issue{9}
+%% \Month{September}
+%% \Year{2004}
+%% \Submitdate{2004-09-29}
+%% \Acceptdate{2004-09-29}
+\Address{
+  Kevin C. Chang\\
+  Bioinformatics Institute \\
+  School of Biological Sciences\\
+  The University of Auckland\\
+  New Zealand\\
+  E-mail: \email{kcha193@aucklanduni.ac.nz}\\
+  \today\\
+}
+
+%% It is also possible to add a telephone and fax number
+%% before the e-mail in the following format:
+%% Telephone: +43/1/31336-5053
+%% Fax: +43/1/31336-734
+
+%% for those who use Sweave please include the following line (with % symbols):
+%% need no \usepackage{Sweave.sty}
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\section[Introduction]{Introduction}
+A primary objective of comparative experiments is to contrast measurements made on experimental units of material (e.g.\ humans, animals, plants, tissues, cells, etc.) in response to the interventions, or \emph{treatments}, to which they are subjected. Many practical situations arise in which the response variable of interest cannot be measured directly from the experimental units in a single experiment (Phase 1). Instead, the experimental units must be further processed in a subsequent experiment (Phase 2) so that the measurements can be made. Such \emph{two-phase experiments} were introduced by \cite{McIntyre1955} in the context of a study of the effects of four light treatments on the synthesis of tobacco mosaic virus in tobacco leaves. Healthy tobacco plants were inoculated with the virus and subjected to different light treatments (Phase 1 experiment). To measure the disease severity, sap was first expressed from the experimental tobacco plants and then injected into the leaves of specific assay plants (Phase 2 experiment) on which lesions subsequently appeared and were counted. 
+
+Efforts have been made to develop a general theory for the design of two-phase experiments \citep{Brien1983, Wood1988, Brien1999, Jarrett2008}. \cite{Brien1983} defined a set of factors in an experiment as a \emph{tier}. Two-phase experiments involve three tiers of factors: two tiers of block factors and one tier of treatment factors. Consequently, two-phase experiments are also known as \emph{multi-tiered experiments}. Tiers 1 and 2 comprise block factors from the Phase 2 and 1 experiments, respectively, while Tier 3 contains the treatment factors of the overall Phase 2 and 1 experiments. Additionally, the design procedure for the two-phase experiments consists of a two-step process: (1) the allocation of treatments to experimental units in the Phase 1 experiment and (2) the allocation of experimental units from the Phase 1 experiment to the experimental units in the Phase 2 experiment. Hence, the randomisation procedure generally must be preformed twice for both these two allocations. \cite{Brien2006b} thus named the randomisation procedure for the multi-tiered experiments, including the two-phase experiments, \emph{multiple randomisation}, and compared and contrasted six different types of multiple randomisation procedures. The method used to separate the total variability into different sources of variation is known as \emph{information decomposition}. \cite{Brien2009, Brien2010} discussed the decomposition of the data space for different multiple randomisation procedures. \cite{Brien2011} summarised the some previous publications, together with some fundamentals of the design of two-phase experiments. Additionally, \cite{Brien2011} provided a set of basic rules for deriving the \emph{expected mean square} (EMS), but these rules were applied manually and only for the generally balanced design \citep{Payne2003}.  
+
+Two-phase experiments are common in studies that use high-throughput biotechnologies to identify and quantify different intracellular molecular species, such as gene transcripts, proteins, metabolites, etc. \cite{Jarrett2008} conducted a detailed comparative study of the properties of two competing designs, multiple dye-swap and the alternating loop \citep{Churchill2002}, of the same size (i.e. same number of replicates of each treatment) for a two-colour microarray experiment at Phase 2, where the Phase 1 experiment was arranged in a completely randomised design (CRD). By constructing theoretical analysis of variance (ANOVA) tables for these two designs, they demonstrated that the distribution of the treatment information across the strata of the ANOVA table was dependent on the Phase 2 design. Particularly, while the multiple dye-swap design could be analysed using a simple ANOVA, the alternating loop design required a more involved analysis to test for treatment effects. This is a consequence of the sources of variation introduced in the Phase 2 experiment interacting with those introduced in Phase 1. Thus, \cite{Jarrett2008} illustrated the importance of considering the sources of variation introduced at each phase when designing two-phase experiments, and showed that constructing the relevant ANOVA tables is a method to do this.
+
+Construction of ANOVA tables with complete information decomposition, including all known sources variation together with their associated degrees of freedom (DF) and expected mean squares (EMSs), is a laborious manual task, even for small two-phase experiments. The commercial statistical software \proglang{Genstat} can be used to decompose known sources of variation from an experiment into their associate DF in the ANOVA, but only for generally balanced designs that require the use of pseudofactors \citep{Monod1992}. While the \code{AMTIER} procedure available within \proglang{Genstat} eliminates the need for pseuodfactors by enable the fitting of three model formulae, two corresponding to the block structures of the Phase 1 and 2 experiments and one for the treatment structure, it too generates ANOVA tables with only the DF decomposition \citep{Brien2006a}. The limitation of these approaches is that they do not generate the treatment and residual EMSs needed to assess the preferred design(s) from a competing designs. The \code{GLM} procedures in \proglang{JMP} and \proglang{SAS} and the \code{ANOVA} command in \proglang{Minitab} can compute the EMSs, but neither program can do this for two-phase experiments. Meanwhile, the \proglang{R} package \pkg{dae}, developed by \cite{Brien2011a}, can perform information decomposition of a given design. This package can only generate a projection matrix for each factor and perform a decomposition within a single stratum.  Therefore, no existing statistical software package is capable of performing all these tasks simultaneously and straightforwardly. Thus, we introduce an \proglang{R} package called \pkg{infoDecompuTE} for the {\bf info}rmation {\bf decomp}osition of {\bf T}wo-phase {\bf E}xperiments.
+
+Our \pkg{infoDecompuTE} quickly generates complete theoretical ANOVA tables for the designs of any given single- or two-phase experiment, showing the distribution of the known sources of variation in the experiment, and thereby enabling researchers to compare the properties of competing designs. These tables also make it possible to quickly  assess whether a particular design yields a valid F-tests for the treatment comparison of interest.
+
+This article demonstrates the theoretical concepts and methods underlying \pkg{infoDecompuTE} as well as its use. Section~\ref{sec:infoDecomp} explains the information decomposition for a single-phase experiment. Section~\ref{sec:infoiDecompTwoPase} then generalises this to two-phase experiments, showing how this differs to that for a single-phase experiment. Next, Section~\ref{sec:exampleTwoPase} shows an example of a two-phase experiment with the theoretical ANOVA tables. Section~\ref{sec:package} then demonstrates the use of \pkg{infoDecompuTE}. Finally, section~\ref{sec:example} illustrates the application of infoDecompuTE to a two-phase viticulture-sensory evaluation experiment from a seminal paper on two-phase experiments \citep{Brien1999}.
+
+\section{Information decomposition of designed experiments} 
+\label{sec:infoDecomp}
+An experiment's design is intimately linked to the linear model which describes it. More specifically, the linear model describes the relationships between the experimental units (i.e. \emph{block structure}), between the treatments, (i.e. \emph{treatment structure}), and the assignment of treatments to the experimental units. The following considers an arbitrary design involving both block and treatment factors whose relationships can be represented mathematically by a linear \emph{mixed-effects model}. We show how the raw data from such an experiment are decomposed into their constituent components based on their block and treatment structures.
+
+\subsection{The linear mixed-effects model}
+\label{subsec:matrixLMM}
+Consider an experiment involving $V$ treatments and $B$ block factors, where the $i$th treatment and $j$th block factors consist of $v_i$ and $b_j$ levels, respectively. The linear mixed-effects model for such an experiment can be written in matrix notation as
+\begin{equation}\label{eq:matrixLMM}
+\bm{y} = \mathbf{1}\mu + \X \bm{\alpha} + \Z\bm{\beta} + \bm{\epsilon},
+\end{equation}
+where $\bm{y}$ is an $n \times 1$ vector of responses, $\mathbf{1}$ is an $n \times 1$ vector whose elements are all unity, $\mu$ denotes the grand mean of the data, and $\bm{\epsilon}\sim \mathcal{N}(0,\sigma^2 \I)$ is a $n \times 1$ vector of unobserved random experimental errors, where $\I$ denotes the identity matrix. The treatment parameter vector is, therefore, defined as 
+\begin{equation}
+\label{eq:treatPar}
+\bm{\alpha} = (\alpha_{11 \dots 1}, \alpha_{11 \dots 2}, \dots,  \alpha_{1v_2 \dots v_V},\dots,\alpha_{v_1 v_2 \dots v_V}),
+\end{equation}
+where each $\alpha$ has $V$ indexes corresponding to $V$ treatment factors. Each $\alpha$ denotes the effects of a specific treatment combination. The treatment design matrix, $\X$, in (\ref{eq:matrixLMM}) describes the overall allocation of each treatment combination. The dimension of $\X$ comprise $n$ rows and the number of columns is the length of vector $\bm{\alpha}$. As for the vector of block parameters, it is defined as
+\begin{equation}\label{eq:block1Par}
+\bm{\beta} = (\bm{\beta}_1, \bm{\beta}_2, \ldots, \bm{\beta}_B), 
+\end{equation} 
+where
+\[
+\bm{\beta}_i = (\beta_{i1}, \beta_{i2}, \dots, \beta_{i b_i})
+\]
+and 
+$\beta_{ij} ~ \sim \mathcal{N}(0, \sigma_i^2)$ ($i=1,2,\dots,B; j=1,2,\dots, b_i$). The block design matrix, $\Z$, in (\ref{eq:matrixLMM}) can then be expressed as 
+\begin{equation}\label{eq:block1Mat}
+\Z = [\Z_1 \vert \Z_2 \vert \ldots \vert \Z_B ],
+\end{equation}
+where $\Z_i$ is the design matrix corresponding to $\bm{\beta}_i$. Thus, the dimension of $\Z$ consists of $n$ rows and the number of column is the sum of the length of each vector in $\bm{\beta}$, i.e.\
+\[
+\sum^{B}_{i = 1} b_i.
+\]
+
+In summary, this subsection presents a general linear mixed-effect model for a designed experiment. Based on the treatment and block structures of an experiment, the treatment and block design matrices can be defined and shown to be very different. The treatment design matrix describes the allocation of the treatment combinations corresponding to the elements in $\bm{\alpha}$. The block design matrix comprises block design sub-matrices, where the $i$th sub-matrix corresponds to the $i$th vector of the block parameter in $\bm{\beta}$. These two types of design matrix are the essential components in the decomposition method described in the remainder of this section. 
+
+\subsection{Null decomposition using projection matrices}
+\label{subsec:strataDecompProj}
+The vector of response, $\bm{y}$, in (\ref{eq:matrixLMM}) spans an $n$-dimensional Euclidean space, commonly denoted by $\mathbb{R}^n$. A vector space, $\mathbb{V}$, is a \emph{subspace} of $\mathbb{R}^n$, i.e.\ $\mathbb{V} \subset \mathbb{R}^n$, if every vector in $\mathbb{V}$ is also in $\mathbb{R}^n$ \citep{Hadi1996}. The information decomposition of $\bm{y}$ involves its separation from the $\mathbb{R}^n$ space into its constituent vector subspace components. These vector subspaces can be labelled the \emph{strata} of the ANOVA, and can be mathematically expressed as 
+\begin{equation}
+\label{eq:vecSpace}
+\mathbb{R}^n = \mathbb{V}_0 \oplus \mathbb{V}_1 \oplus, \dots , \oplus \mathbb{V}_{B},
+\end{equation} 
+where $\oplus$ denotes the addition operator of the vector spaces, and $\mathbb{V}_i$ denotes the stratum that corresponds to the $i$th block parameters and block design sub-matrices defined in (\ref{eq:block1Par}) and (\ref{eq:block1Mat}), respectively. For any designed experiment, the first element, $\mathbb{V}_0$, in (\ref{eq:vecSpace}) always denotes the grand mean vector subspace.  
+
+Since the decomposition is the separation of the known variation in the data, the variance structure of the data, $\bm{y}$, can be expressed in a spectral form as
+\begin{equation}
+\label{eq:strata}
+\operatorname{Var}(\bm{y}) = \sum_{i=0}^{B} \xi_i \Q_i,
+\end{equation}
+where $\Q_i$ is an $n \times n$ idempotent matrix and thus is the \emph{orthogonal projector} of $\bm{y}$ onto the vector subspace $\mathbb{V}_i$ (i.e.\ stratum $i$) and $\xi_i$ is the $i$th stratum variance (i.e.\ $\xi_i = \operatorname{Var}(\Q_i \bm{y})$).
+
+The matrix $\Q_i$ can also be shown in the decomposition of the total SS, $\bm{y}'\bm{y}$, into $B$ components of the SS, i.e.\ 
+\begin{equation}
+\label{eq:decomp}
+\bm{y}'\bm{y} = \sum_{i=0}^{B}\bm{y}'\Q_i\bm{y},
+\end{equation}
+where $\bm{y}'\Q_i\bm{y}$ denotes the SS of the $i$th stratum.  Equations~(\ref{eq:vecSpace}), (\ref{eq:strata}) and (\ref{eq:decomp}) thus give a basic illustration of decomposition ignoring the treatment, namely the \emph{null decomposition}. The process results from the sequential fitting of the block factors, and from the computation of the SS of each block factor and the sweeping of the computed SS from the total SS. The remainder of this section describes each step of null decomposition.
+
+The initial step of null decomposition is to sweep the grand mean from the raw data, $\bm{y}$. The $\mu$ is a vector of length $1$, and thus the grand mean vector spans a $1$-dimensional grand mean vector subspace, denoted by $\mathbb{V}_0$. To sweep the grand mean from $\bm{y}$, $\bm{y}$ is first projected onto the grand mean vector subspace, which is given by $\Q_{0}\bm{y}$. The grand mean vector subspace can be represented by a $n \times n$ averaging matrix, denoted by $\K_n$ or $\K$, with all elements equal to ${n}^{-1}$. The orthogonal projector of $\mathbb{V}_0$ is then derived by
+\begin{equation}
+\label{eq:vectorProj}
+\Q_{0} = \mP_{\K} = {\K}({\K}'{\K})^{-1}{\K}',
+\end{equation}
+where $\mP_K$ denotes the \emph{projection matrix} of matrix $\K$. The projection matrix of any averaging matrix can be shown to be identical to the averaging matrix, i.e.\ 
+\[\Q_{0} \bm{y} = \mP_{\K} \bm{y} = {\K} \bm{y}.\] 
+
+Next, subtract the grand mean vector, $\K\bm{y}$, from $\bm{y}$, i.e.\
+\[\bm{y} -  \K\bm{y} = (\I-\K)\bm{y},\]
+where $(\I-\K)\bm{y}$ denotes the \emph{mean corrected observational vector}. The $(\I-\K)\bm{y}$ spans $\mathbb{V}^{\perp}_0$ with the dimension of $(n - 1)$. The $\mathbb{V}^{\perp}_0$ also represents the \emph{orthogonal complement} of $\mathbb{V}_0$. Furthermore, the adjusted total SS is obtained by pre-multiplying the $(\I-\K)\bm{y}$ by its transpose, i.e.\
+\begin{equation}
+\label{eq:adjustSS}
+[(\I-\K)\bm{y}]'[(\I-\K)\bm{y}] = \bm{y}'(\I-\K)\bm{y}.
+\end{equation}
+The total adjusted SS can be calculated as
+\[
+\bm{y}'\bm{y} - \bm{y}'\K\bm{y} = \bm{y}'(\I-\K)\bm{y},
+\]
+which is based on \emph{Pythagoras' theorem}.
+
+The $(\I-\K)\bm{y}$ is then projected onto the next vector subspace, $\mathbb{V}_1$, given by $\Q_{1}\bm{y}$, where $\Q_{1}$ is the orthogonal projector of the stratum for the first block parameter, $\bm{\beta}_1$. The vector subspace $\mathbb{V}_1$ is represented by the block design matrix, $\Z_1$, and its projection matrix, $\mP_{\Z_1}$ can be computed from 
+\[\Z_1(\Z_1'\Z_1)^{-1}\Z_1'.\] 
+To project $(\I-\K)\bm{y}$ onto $\mathbb{V}_1$, $(\I-\K)\bm{y}$ is pre-multiplied by $\mP_{\Z_1}$ and can be expressed as
+\begin{equation}\label{eq:projectB}
+\mP_{\Z_1}[(\I-\K)\bm{y}] = (\mP_{\Z_1} - \K)\bm{y} = \Q_{1}\bm{y},
+\end{equation}
+where vector $(\mP_{\Z_1} - \K)\bm{y}$ represents estimates of the vector of block parameters in $\bm{\beta}_1$. The orthogonal complement of $(\mP_{\Z_1} - \K)\bm{y}$ is derived by
+\begin{equation}
+\label{eq:orthComp}
+(\I-\K)\bm{y}- (\mP_{\Z_1} - \K)\bm{y} = (\I -\mP_{\Z_1})\bm{y},
+\end{equation}
+which corresponds to the elimination of the effects in $\bm{\beta}_1$. 
+
+The SS are derived by pre-multiplying the vectors in (\ref{eq:projectB}) and (\ref{eq:orthComp}) by their transpose, as described in (\ref{eq:adjustSS}), i.e.\ 
+\[
+\bm{y}'(\I-\K)\bm{y}- \bm{y}'(\mP_{\Z_1} - \K)\bm{y} = \bm{y}'(\I -\mP_{\Z_1})\bm{y}.
+\]
+
+If the block structure contains additional block factors, e.g.\ plots and/or subplots, the vector $(I - P_{Z_1})\bm{y}$ is further projected onto the next vector subspace, $\mathbb{V}_2$. To summarise, the projection of the raw data vector, $\bm{y}$ from $\mathbb{V}_{i}$ onto $\mathbb{V}_{i + 1}$ can be written as $P_{Z_{i+1}}Q_{i}\bm{y}$. The orthogonal complement of $P_{Z_{i+1}}Q_{i}\bm{y}$ can be derived by subtraction, i.e.\
+\begin{equation}
+\label{eq:orthCompSummary}
+\Q_{i}\bm{y}- \mP_{\Z_{i+1}}\Q_{i}\bm{y} = (\I -\mP_{\Z_{i+1}})\Q_{i}\bm{y} = \Q_{i+ 1}\bm{y}.
+\end{equation}
+The SS thus are derived by pre-multiplying the vectors in (\ref{eq:orthCompSummary}) as 
+\[
+\bm{y}'\Q_{i}\bm{y}- \bm{y}'Q_{i}\mP_{\Z_{i+1}}\Q_{i}\bm{y} = \bm{y}'\Q_{i}(\I -\mP_{\Z_{i+1}})\Q_{i}\bm{y}=\bm{y}'\Q_{i+ 1}\bm{y}.
+\]
+
+Providing the SS for each stratum is defined using the orthogonal projectors, the EMS can be computed for the theoretical ANOVA table. From (\ref{eq:decomp}), the expected sum of squares (ESS) of the $i$th stratum without the treatment effects can be shown as
+\begin{equation}
+\label{eq:ESSQuad}
+\operatorname{E}(\bm{y}'\Q_i\bm{y})= \mathrm{tr}(\Q_i)\operatorname{cov}(\bm{y}),
+\end{equation}
+where $\operatorname{cov}(\bm{y})$ is the variance covariance matrix and $\mathrm{tr}(\Q_i)$ is the \emph{trace} of the matrix $\Q_i$ \citep{Searle1982}. 
+
+Consider an experiment arranged in RCBD, then the null decomposition of the total SS can be expressed as 
+\begin{equation}
+\label{eq:infoDecomp1}
+\bm{y}'\bm{y} = \bm{y}'\K\bm{y} + \bm{y}'(\mP_{\Z_1}-\K)\bm{y} + \bm{y}'(\I - \mP_{\Z_1})\bm{y},
+\end{equation}
+where $K$, $(\mP_{\Z_1}-\K)$ and $(\I - \mP_{\Z_1})$ denote the orthogonal projectors of the grand mean, Between and Within Blocks strata, i.e.\ $\mathbb{V}_0$, $\mathbb{V}_1$ and $\mathbb{V}_2$, respectively. 
+
+Since the SS of the Between Blocks stratum is $\bm{y}'(\mP_{\Z_1}-\K)\bm{y}$, the ESS of the Between Blocks stratum can be shown as 
+\begin{eqnarray}
+\nonumber \operatorname{E}(\bm{y}'(\mP_{\Z_1}-\K)\bm{y}) &=& \mathrm{tr}(\mP_{\Z_1}-K)\operatorname{cov}(\bm{y})\\
+\nonumber &=& \mathrm{tr}(\mP_{\Z_1}-\K)\operatorname{cov}(\bm{\epsilon}) + \mathrm{tr}[\Z'(\mP_{\Z_1}-\K)\Z]\operatorname{cov}(\bm{\beta})\\ 
+\nonumber &=& (b_1 - 1)\sigma^2 + (b_1 - 1)v\sigma^2_1\\
+\label{eq:computRBD} &=& (b_1 - 1)(\sigma^2 +v\sigma^2_1),
+\end{eqnarray}
+where $b_1$ and $v$ denote the block number and block size, respectively. Subsequently, the EMS is calculated by dividing the ESS by the corresponding DF. Hence, the EMS of the Between Blocks stratum is $\sigma^2 +v\sigma^2_1$. Similarly, the EMS of the Within Blocks stratum can be shown as $\sigma^2$. The theoretical ANOVA table without the treatment components for RCBD is shown in Table~\ref{tab:infoDecomp}.
+
+\begin{table}[ht]
+\centering
+\caption{ANOVA with the coefficients of variance components of the EMS from an experiment arranged with RCBD.}
+\begin{tabular}[t]{lllll}
+\toprule
+ \multicolumn{1}{l}{\bf Source of Variation}& \multicolumn{1}{l}{\bf Vector (Sub)space} & \multicolumn{1}{l}{\bf DF} & \multicolumn{1}{l}{\bf SS} & \multicolumn{1}{l}{\bf EMS}\\
+\midrule
+Between Blocks 	& $\mathbb{V}_1$ &$b_1-1$ & $\bm{y}'(\mP_{\Z_1}-\K)\bm{y}$	& $\sigma^2 + v\sigma_{1}^2$\\
+Within Blocks 	& $\mathbb{V}^{\perp}_1 = \mathbb{V}_2$	&$b_1(v - 1)$ & $\bm{y}'(\I - \mP_{\Z_1})\bm{y}$  & $\sigma^2$\\
+\hline
+Adjusted Total	& $\mathbb{V}^{\perp}_0$	& $n - 1$ & $\bm{y}'(\I - \K)\bm{y}$ \\
+\hline
+Grand Mean	& $\mathbb{V}_0$	& $1$ & $\bm{y}'\K\bm{y}$ \\
+\midrule
+Total 	& $\mathbb{R}^n$	& $n$ & $\bm{y}'\bm{y}$ \\
+\bottomrule
+\end{tabular}
+\label{tab:infoDecomp}
+\end{table}
+
+\subsection{Computing the treatment SS}
+\label{subsec:estTrt}
+The previous section presented an overview of the process used to compute the SS and EMS from the null decomposition. The next step is to compute the treatment SS and EMS within each stratum. To compute the treatment SS, the treatment design matrix, $X$, must be defined in (\ref{eq:matrixLMM}) with another set of matrices. This set of matrices are known as the treatment contrast matrices, and are denoted by $\C_x$ \citep{John1987}. These matrices can be generated based on the treatment structure and \emph{yield identity}, which describes how the treatment effects are partitioned into orthogonal components. 
+
+Consider an example where the treatment structure comprises a single treatment factor is denoted by $\alpha_i$, $i= 1,\dots, v$, then the yield identity is given by
+\begin{equation}\label{eq:yieldIdenity}
+\alpha_{i} = \overline{\alpha_{.}}+(\alpha_{i} -\overline{\alpha_{.}})
+\end{equation}
+The dot in the subscript denotes the summation over the subscript it replaces and the over-line, also known as \emph{bar}, indicates the average of the terms associated with the nominal subscript. Thus, $\overline{\alpha_{.}}$ denotes the overall mean of the $\alpha_i$ and $\alpha_{i} -\overline{\alpha_{.}}$, denotes the effect of treatment $i$ corrected for the mean. In matrix notation, (\ref{eq:yieldIdenity}) can be written as 
+\[
+\bm{\alpha} = \C_0 \bm{\alpha} + \C_1 \bm{\alpha}
+\]
+where
+\begin{eqnarray}
+\nonumber \C_0 &=& \K_v\\
+\nonumber \C_1 &=& \I_v - \K_v
+\end{eqnarray}
+where $\I_v$ is the $v \times v$ identity matrix and $\K_v$ is the $v \times v$ averaging matrix. The $\C_0 \bm{\alpha} $, which corresponds to $\overline{\alpha_{.}}$, can be seen as an operation that averages over the $\alpha_i$. The $\C_1\bm{\alpha}$, corresponds to $\alpha_{i} - \overline{\alpha_{.}}$, represents the effect of treatment $i$ after correction for the mean.
+
+Consider a factorial experiment with two factors, $\tau$ and $\gamma$, at levels $v_1$ and $v_2$, where the yield identity of $\alpha_{ij}$ can be written as,
+\begin{equation}
+\label{eq:yieldIdentityFactorial}
+\alpha_{ij} = \overline{\alpha_{..}}+(\overline{\alpha_{i.}} -\overline{\alpha_{..}}) + (\overline{\alpha_{.j}} -\overline{\alpha_{..}}) +(\alpha_{ij} + \overline{\alpha_{i.}} + \overline{\alpha_{.j}} -\overline{\alpha_{..}}),
+\end{equation}
+where $\overline{\alpha_{..}}$ denotes the overall mean of $\alpha_{ij}$, $\overline{\alpha_{i.}} -\overline{\alpha_{..}}$ denotes the main effects of factor $\tau$, $\overline{\alpha_{.l}} -\overline{\alpha_{..}}$ represents the main effects of factor $\gamma$ and $\alpha_{ij} + \overline{\alpha_{i.}} + \overline{\alpha_{.j}} -\overline{\alpha_{..}}$ is the interaction of two treatment factors. In the matrix notation, (\ref{eq:yieldIdentityFactorial})can be written as
+\[
+\bm{\alpha} =  \C_{00} \bm{\alpha} +   \C_{10} \bm{\alpha} +   \C_{01} \bm{\alpha} +   \C_{11} \bm{\alpha} 
+\]
+where
+\begin{eqnarray}
+\nonumber \C_{00} = & \K_{v_1} \otimes \K_{v_2}& = \K_{v_1 v_2}\\
+\nonumber \C_{10} = & \I_{v_1} \otimes \K_{v_2} - \K_{v_1 v_2}& = (\I_{v_1} - \K_{v_1}) \otimes \K_{v_2} \\
+\nonumber \C_{01} = &\K_{v_1} \otimes \I_{v_2} - \K_{v_1 v_2}& =  \K_{v_1} \otimes (\I_{v_2} - \K_{v_2})\\
+\nonumber \C_{11} = &\I_{v_1 v_2}-\I_{v_1} \otimes \K_{v_2} - \K_{v_1} \otimes \I_{v_2} + \K_{v_1 v_2} &= (\I_{v_1} - \K_{v_1}) \otimes (\I_{v_2} - \K_{v_2}),
+\end{eqnarray}
+where denotes $\otimes$ an operator for the Kronecker product. For the experiment with single treatment factor, the $C$ matrix is  
+\begin{equation}
+\label{eq:contrMat}
+\C_{x_i} =
+   \begin{cases}
+       \K_{v_i}, & x_i = 0 \\
+       \I_{v_i} - \K_{v_i}, & x_i = 1,
+    \end{cases}
+\end{equation}
+where $x_i$ is a binary number. For the $v_1 \times v_2$ factorial experiment, the treatment contrast matrix is given by 
+\[
+\C_{x_1 x_2} = \C_{x_1} \otimes \C_{x_2}. 
+\]
+Therefore, the treatment structure of an $V$-factor experiment is given by 
+\begin{equation}
+\bm{\alpha} = \sum_x{\C_x\bm{\alpha}}
+\end{equation}
+where $x$ is a set of binary numbers, $(x_1 x_2 \dots x_{V})$, and 
+\[
+\C_x =  \C_{x_1} \otimes  \C_{x_2} \otimes \dots \otimes  \C_{x_{V}} = \bigotimes^{V} _{i = 1} \C_{x_i},
+\]
+where $\C_{x_i}$ is defined in (\ref{eq:contrMat}) \citep{John1987}.
+
+The reduced normal equations for the treatment parameter can then be defined by eliminating the mean and block parameters from the full set of normal equations~\citep{John1987}. This can be shown as
+\[
+\A_i\bm{\alpha} = \bm{q}_i,
+\]
+where
+\begin{eqnarray*}
+\A_i &=& \mL_{xi} \mL_{xi}' ,\\
+\bm{q}_i &=& \mL_{xi} \bm{y},
+\end{eqnarray*}
+where $\mL_{xi} = \C_x \X' \Q_i$, $\A_i$ denotes the information matrix and $\bm{q}_i$ is the vector of the adjusted treatment totals. Since the main focus of interest is the treatment effects, the equation is rewritten with respect to $\bm{\alpha}$ as
+\begin{equation}
+\label{eq:trtVec}
+\bm{\alpha} = \A_{i}^{-} \bm{q}_i = (\mL_{xi}\mL_{xi}')^{-}\mL_{xi} \bm{y},
+\end{equation}
+where $\A_{i}^{-}$ is a generalised inverse of $\A_{i}$ that satisfied $\A_{i} \A_{i}^{-} \A_{i} = \A_{i}$. The generalised inverse of the matrix is applied, because the information matrix can be a singular matrix, which cannot be inverted using the normal inverse operation. Hence, $\A_{i}^{-} \bm{q}_i$ denotes the treatment vector in the $i$th vector subspace or stratum. The treatment SS for the $i$th stratum is given by
+\begin{equation}
+\label{eq:trtSS}
+\bm{q}_{i}' \A_{i}^{-} \bm{q}_{i}.
+\end{equation}
+Providing the SS of the $i$th stratum is $\bm{q}_{i}'\bm{q}_{i} = \bm{y}' \Q_i\bm{y}$, the residual SS can be computed by subtraction as 
+\begin{equation}
+\label{eq:resSS}
+\bm{q}_{i}'\bm{q}_{i} - \bm{q}_{i}' \A_{i}^{-} \bm{q}_{i} = \bm{q}_{i}' ( \I -\A_{i}^{-}) \bm{q}_{i},
+\end{equation}
+where $\bm{q}_{i}' \A_{i}^{-} \bm{q}_{i}$ and $\bm{q}_{i}' ( \I -\A_{i}^{-}) \bm{q}_i$ can be re-written as $\bm{y}'\mL_{xi}' \A_{i}^{-}\mL_{xi}\bm{y}$ and $\bm{y}\mL_{xi}' ( \I - \A_{i}^{-}) L_{xi}\bm{y}$, respectively. Thus, $\mL_{xi}' \A_{i}^{-}\mL_{xi}$ and $\mL_{xi}' ( \I - \A_{i}^{-}) \mL_{xi}$  are the orthogonal projectors that decompose the unadjusted SS, $\bm{y}' \bm{y}$, to the treatment SS and residual SS in stratum $i$, respectively. These two orthogonal projectors are also used to compute the coefficients of the variance components in the treatment and residual ESS as described in (\ref{eq:ESSQuad}). 
+
+The coefficients of the treatment parameters, commonly denoted by $\theta$, of the treatment EMS can be derived directly from the treatment replication, which is the total number of observations divided by the level of the corresponding treatment factor. If the design consists of a non-orthogonal treatment structure, the \emph{average efficiency factor}, denoted by $E$, which quantifies the proportion of the treatment information across different strata, must be derived \citep{Yates1936}. The Equation~(\ref{eq:trtSS}) can be shown as 
+\begin{equation}\label{eq:projTrtBlock}
+ \bm{q}_{i}' \A_{i}^{-} \bm{q}_{i} = \dfrac{1}{r_t} \sum^{v - 1}_{j = 1} e_j^{-1} (\bm{p}_i' \bm{q}_{i})^2
+\end{equation}
+where $r_t$ denotes the number of treatment replications, $e_j$ denotes the canonical efficiency factor, and $\bm{p}_i$ is the $i$th eigenvector of the treatment information matrix. Given that $\lambda_i$ and $\bm{p}_i$ are the $i$th eigenvalue and eigenvector of the treatment information matrix, the $i$th basic treatment contrast is given by $\bm{p}_i'\bm{\alpha}$ and the $i$th \emph{canonical efficiency factors} is calculated by $\dfrac{\lambda_i}{r_t}$ \citep{John1987}. The harmonic mean of the canonical efficiency factors, i.e.\
+\[
+E = \dfrac{v-1}{\sum^{v - 1}_{j = 1} e_j^{-1}},
+\]
+gives the average efficiency factor. Therefore, Equation~(\ref{eq:trtSS}) is used to estimate the \emph{efficiency factor adjusted treatment SS}.
+
+In summary, this section described the information decomposition of a single phase experiment that involved basic decomposition steps: adjusting for the grand mean, defining the stratum based on the block structures and computing treatment SS based on the treatment structure in each stratum defined. The next section extends the decomposition method to the two-phase experiments.  
+
+\section{Information decomposition of a two-phase experiment} 
+\label{sec:infoiDecompTwoPase}
+The decomposition of the two-phase experiment is more complicated than that of the single phase experiment, because the two-phase experiment involves two sets of block structures from Phase 1 and 2 experiments and the overall treatment structures. The information decomposition of a two-phase experiment starts with adjusting for the raw data vector for the grand mean, after which the strata from the Phase 2 block structure are defined. The Phase 2 strata are always defined before the Phase 1 strata, because the Phase 2 strata always contribute to the outer strata of the ANOVA table. The next step is to define the strata of the Phase 1 block structure from each stratum of the Phase 2 block structure. Meanwhile, the final step is to estimate the treatment effect in the block structure of the Phase 1 experiment. This section describes the information decomposition of the two-phase experiments.
+
+\subsection{The linear mixed-effects model}
+\label{subsec:phase2Model}
+Consider a two-phase experiment that involves $V$ treatments, $B_1$ block factors from the Phase 1 experiment and $B_2$ block factors from Phase 2 experiment, where the $i$th treatment, and the $j$th and $k$th block factors of the Phase 1 and 2 experiments consist of $v_i$, $b1_j$ and $b2_k$ levels, respectively. The general linear mixed-effect model in the matrix notation can be written as
+\begin{equation}
+\label{eq:matrixTwoPhase}
+\bm{y} = \bm{1}\mu + \X\bm{\alpha} + \Z_1\bm{\beta}_1 + \Z_2\bm{\beta}_2 + \bm{\epsilon},
+\end{equation}
+where $\Z_1$ and $\Z_2$ are the block design matrices corresponding to the Phase 1 and Phase 2 experiments, respectively. The block parameters vectors for Phases 1 and 2 are $\bm{\beta}_1$ and $\bm{\beta}_2$, respectively. The $\bm{\beta}_2$ and $\Z_2$ have the same structure as the $\bm{\beta}$ and $\Z$ defined in (\ref{eq:matrixLMM}). Thus, the  $\bm{\beta}_2$ consists of a set of vectors from block parameters and $\Z_2$ comprise a set of sub-matrices. As for $\bm{\beta}_1$ and $\Z_1$, they are constructed in the same way as $\bm{\alpha}$ and $\X$ in (\ref{eq:matrixLMM}). This means the $\bm{\beta}_1$ consists of every combination of the block parameters from the Phase 1 experiments and the $\Z_1$ describes the allocation of the block combinations. 
+
+The block factors from the Phase 1 and 2 experiment are considered separately in the linear mixed-effect model because the allocation of experimental units from the Phase 1 experiment to the experimental units in the Phase 2 experiment can be non-orthogonal. Thus, the block information from Phase 1 experiments may not remain intact within a stratum of the Phase 2 experiments \cite{Wood1988}, and so the decomposition procedure of treatment factors to block factors described in Section~\ref{subsec:estTrt} treats the Phase 1 block structure as the treatment structure. This can help adjust for the efficiency factors, giving the non-orthogonal block structure, while applying the projection from the Phase 1 block vectors onto the Phase 2 block spaces as shown in (\ref{eq:projTrtBlock}). 
+
+\subsection{Null decomposition of Phase 2 block structure}
+The same notation of $\Q_i$ is used to represent the orthogonal projectors of stratum $i$ for the block effects that arise from the Phase 2 experiment. Since the same null decomposition is used to define the orthogonal projectors of each stratum, $\Q_i$ is computed exactly as described in Section~\ref{subsec:strataDecompProj}. Therefore, the $\bm{y}' \Q_i \bm{y}$ denote SS decomposed from total SS, $\bm{y}'\bm{y}$, onto stratum $i$ of the Phase 2 experiment.   
+
+\subsection{Null decomposition of Phase 1 block structure}
+As mentioned in Section~\ref{subsec:phase2Model}, the allocation of experimental units from the Phase 1 experiment to the experimental units in the Phase 2 experiment can be non-orthogonal; so the Phase 1 block structure must be treated as the treatment structure while performing the decomposition. This subsection uses a split-block design to describe the decomposition method, which is similar to that described in Section~\ref{subsec:estTrt}.
+
+Consider an experiment with a split-plot design that involves $b1_1$ blocks, each containing $b1_2$ plots, where the $\bm{\beta}_1$ consists of the effects of plots within blocks as    
+\begin{equation}\label{eq:blockParSplitBlk1}
+ (P_{11}, \dots, P_{b1_1 b1_2}). 
+\end{equation}
+where $P_{ij}$ denotes the effect from plot $j$ within block $i$. The effect from block $i$ is denoted by $\overline{P_{i.}}$. Thus, the block design matrix, $Z_1$, is the design matrix of the plots, denoted by $\Z_P$, which is expressed as $n \times b1_1 b1_2$ matrix. The yield identity of $P_{ij}$ can be written as,
+\begin{equation}
+\label{eq:yieldIdentityNest}
+P_{ij} = \overline{P_{..}}+(\overline{P_{i.}} -\overline{P_{..}}) + (P_{ij} - \overline{P_{i.}}),
+\end{equation}
+where $\overline{P_{..}}$ denotes the overall mean of $P_{ij}$, $\overline{P_{i.}} -\overline{P_{..}}$ denotes the effect from block $i$ and $P_{ij} - \overline{P_{i.}}$ denotes the effect from plot $j$ within block $i$. In the matrix notation, (\ref{eq:yieldIdentityNest}) can be written as 
+\[
+\bm{\beta}_1 = \C_{00} \bm{\beta}_1 + \C_{10}\bm{\beta}_1 + \C_{21}\bm{\beta}_1
+\]
+where
+\begin{eqnarray}
+\nonumber \C_{00} = & \K_{b1_1} \otimes \K_{b1_2}& = \K_{b1_1 b1_2}\\
+\nonumber \C_{10} = & \I_{b1_1} \otimes \K_{b1_2} - \K_{b1_1 b1_2}& = (\I_{b1_1} - \K_{b1_1}) \otimes \K_{b1_2} \\
+\nonumber \C_{21} = & \I_{b1_1 b1_2} - \I_{b1_1} \otimes \K_{b1_2} & =  \I_{b1_1} \otimes (\I_{b1_2} - K_{b1_2}).
+\end{eqnarray}
+Unlike the $x_i$ in $\C_{x_i}$ matrix defined in (\ref{eq:contrMat}) which is a binary number, the block contrast matrix, denoted by $\C_z$, can also consider the nested relationship between the block factors. Hence, the block contrast matrix includes an additional criterion, i.e.\
+\begin{equation}
+\label{eq:contrMat1}
+\C_{z_i} =
+   \begin{cases}
+       \K_{b1_i}, & z_i = 0 \\
+       \I_{b1_i} - \K_{b_i}, & z_i = 1\\
+        \I_{b1_i}, & z_i = 2,
+    \end{cases}
+\end{equation}
+where $z_i$ is a \emph{ternary} number. Since the contrast matrix is expressed by the Kronecker product, not the usual matrix multiplication, the identity matrix cannot be ignored. 
+
+Therefore, the Phase 1 block structure consists of $B1$-factor, and the Phase 1 block parameter is given by, 
+\begin{equation}
+\bm{\beta}_1 = \sum_z{\C_z\bm{\beta}_1}
+\end{equation}
+where the $z$ is a set of ternary numbers, $(z_1 z_2 \dots z_{B})$, and 
+\[
+\C_z =  \C_{z_1} \otimes  \C_{z_2} \otimes \dots \otimes  \C_{z_{B}} = \bigotimes^{B} _{i = 1} \C_{z_i},
+\]
+The $\C_{z}$ matrix should also be applied to treatment contrast matrix $\C_{x}$ defined in (\ref{eq:contrMat} to cover the situation when involving the nested relationship between the treatment factors. 
+
+Providing the SS in stratum $i$ is $\bm{y}' \Q_i\bm{y}$, then the SS in stratum $j$ from the Phase 1 experiment in stratum $i$ from the Phase 2 experiment is given by 
+\[
+ \bm{q}_{i}' \A_{i}^{-} \bm{q}_{i},
+\]
+where
+\begin{eqnarray*}
+\A_i &=& \mL_{zi}\mL_{zi}',\\
+\bm{q}_i &=& \mL_{zi} \bm{y},
+\end{eqnarray*}
+where $\mL_{xi} = \C_z \Z_1' \Q_i$, $\A_i$ denotes the block information matrix and $\bm{q}_i$ is a vector of the adjusted Phase 1 block effects in stratum $i$. The residual SS in stratum $i$ is then derived by subtraction using the same equation in \ref{eq:resSS}, giving $\bm{q}_{i}'(\I- \A_{i}^{-}) \bm{q}_{i}$.
+
+The matrix $\mL_{zi}' \A_{i}^{-}\mL_{zi}$ in $\bm{q}_{i}' \A_{i}^{-} \bm{q}_{i}$ is re-expressed as $\Q_{j(i)}$ which denotes the orthogonal projector of stratum $j$ of the Phase 1 experiment in stratum $i$ of the Phase 2 experiment. The orthogonal projector $\Q_{j(i)}$ is then used to compute the treatment SS in the following subsection.
+
+\subsection{Computing the treatment SS}
+\label{subsec:trtDecomp}
+The next step is the information decomposition with respect to the treatment structure. Since the vector of treatment parameters, $\bm{\alpha}$ consists of the treatment parameters from both the Phase 1 and Phase 2 experiments, the information decomposition procedure is identical to the single phase experiment described earlier. 
+
+If the decomposition is in stratum $j$ from the Phase 1 experiment within stratum $i$ from the Phase 2 experiment, the orthogonal projector is expressed as $\Q_{j(i)}$. The treatment SS can then be shown as
+\[
+\bm{q}_{j(i)}' \A_{j(i)}^{-} \bm{q}_{j(i)},
+\]
+where
+\begin{eqnarray*}
+\A_{j(i)} &=& \mL_{xj(i)}\mL_{xj(i)}',\\
+\bm{q}_{j(i)} &=& \mL_{xj(i)} \bm{y},
+\end{eqnarray*}
+where $\mL_{xj(i)} = \C_x \X' \Q_{j(i)}$, $\A_{j(i)}$ denotes the information matrix and $\bm{q}_{j(i)}$ is the vector of the adjusted treatment totals.
+
+The residual SS can then be computed by subtraction the treatment SS from the SS of the stratum $j$ in the Phase 1 experiment within stratum $i$ in the Phase 2 experiment, denoted by $\bm{q}_{j(i)}'\bm{q}_{j(i)} = \bm{y}' \Q_{j(i)} \bm{y}$, resulting in
+\[
+\bm{q}_{j(i)}' (\I - \A_{j(i)}^{-}) \bm{q}_{j(i)}.
+\]
+The coefficients of the variance and fixed components are then calculated as explained in Section~\ref{sec:infoDecomp}.
+
+In summary, this section describes the information decomposition for the two-phase experiment. The main difference from the single-phase experiment is the additional decomposition procedure of the Phase 1 block factors to the Phase 2 factors. Furthermore, since the block structure can be non-orthogonal, this additional decomposition procedure must be performed in the same way as the decomposition of the treatment factors to block factors of the single-phase experiment. The vector of the block parameters and matrix of the block design for the Phase 1 experiment thus are constructed in the same way as the treatment factors of the single-phase experiment.  
+
+\section{Two-phase proteomics experiment} 
+\label{sec:exampleTwoPase}
+A \emph{quantitative proteomics experiment} aims to identify proteins that are differentially abundant between animals under different conditions of interest. This experiment can be treated as a two-phase experiment, where the animals are randomly perturbed to the conditions of interest in the Phase 1 experiment. Since the abundance of proteins cannot be measured directly from the animals, the Phase 2 experiment uses biotechnologies to measure protein abundance in the samples extracted from the organisms in the Phase 1 experiment. 
+
+One method for measuring protein abundance is \emph{Multi-dimensional Protein Identification Technology} (MudPIT), which involves a series of instruments that separate a protein mixture, based on its chemical properties, before measuring the abundance of each protein specie \citep{Florens2006a}. These series of separations allow more accurate measurement of protein abundance. However, comparison of protein abundances between samples is difficult due to the variability between different MudPIT experiments. This limitation has been resolved by the introduction of \emph{isobaric Tags for Relative and Absolute Quantitation} (iTRAQ$^{\rm TM}$) which enables the simultaneous analysis of up to eight distinct samples within a single MudPIT experiment \citep{Ross2004, Choe2007}. This article refers to each MudPIT experiment as a run and to each iTRAQ$^{\rm TM}$ tag as a tag. The statistical aim is to find the best allocation of the samples generated from the Phase 1 experiment among the runs and tags of the Phase 2 experiment.
+
+For the block and treatment structures of a trivial two-phase proteomics experiment, the Phase 1 block structures comprise Between Animals and Between Samples Within Animals. The Phase 2 block structure consists of Between and Within Runs. The treatment structure has the disease status and tag without the interaction, because the disease status and tag effects are assumed not to interact. 
+
+This section presents an example of a two-phase proteomics experiment where the Phase 1 experiment consists of eight animals randomly assigned to healthy or diseased groups and the Phase 2 experiment consists of four runs and four tags. Both the Phase 1 and Phase 2 experimental designs and their theoretical ANOVA tables are described. 
+
+\subsection{Phase 1 experiment}
+\label{subsec:Phase1Exp}
+The experimental objective of the Phase 1 experiment is to compare treatment groups in the absence of nuisance sources of variation \citep{Mead1988}. Thus, the Phase 1 experiment is arranged in a CRD. As the experiment involves eight animals, four animals can be randomly assigned to either the healthy or diseased group as shown in Table~\ref{tab:phase1Design}. The four animals in each treatment group are used to assess the biological variation and known as \emph{biological replicates}. Note that the Phase 2 experiment uses four runs and four tags; hence, a total of 16 samples are processed. Given that the Phase 1 experiment involves eight animals, each animal is further subdivided into two identical samples which are used to assess the measurement error of the Phase 2 experiment. These identical samples are also known as \emph{technical replicates}.
+
+\begin{table}[ht]
+\centering
+\caption{The Phase 1 design shows the assignment of animals to disease status' groups where the upper case letters denote the animal ID.}
+\begin{tabular}[t]{ccccc}
+\hline 
+Healthy & A & C & E & G \\ 
+Diseased & B & D & F & H \\ 
+\hline 
+\end{tabular} 
+\label{tab:phase1Design}
+\end{table}
+
+Let $y_{ij(k)}$ denote the abundance of a given protein in sample $k$ of rat $i$ under disease status $j$. Then, the linear model of the Phase 1 design is given by
+\begin{equation}\label{eq:phase1Model}
+y_{ij(k)}= \mu + A_{i} + \tau_{j} \; (+ \epsilon_{ijk} ),
+\end{equation}
+where $\mu$ denotes the grand mean from all observations, $\tau_{j}$ denotes the fixed effect of disease status $j$, $j=$ healthy, diseased, and $A_{i}$ denotes the effects from rat $i$, $i=$ A,$\dots$, H. The $\epsilon_{ijk}$ denotes the dummy variable associated with the sample $k$ of rat $i$ under disease status $j$, ($k = 1, 2$). Despite the technical replicate being used to assessing the measurement error of the Phase 2 experiment, the effects between the samples are also considered in the model of the Phase 1 experiment, because the combination of indexes from the Phase 1 experiment must uniquely correspond to those of the Phase 2 experiment. For example, the first sample of rat A under the healthy group can be assigned to run 1 and tag 114. However, the term $\epsilon_{ijk}$ does not contribute to the analysis, because the samples is used to estimate the measurement error in the Phase 2 experiment; hence, $\epsilon_{ijk}$ ans its index are treated as the dummy variable and index with parentheses as shown in the model (\ref{eq:phase1Model}). 
+
+Since the treatments are applied to the animals and since the animals are the smallest units for which responses are measured, the animals are both the experimental and observational units \citep{Bailey2008}. Hence, the animal to animal variation is confounded with the measurement error in this Phase 1 experiment. Furthermore, the animal effects are assumed to be normally distributed with mean zero and variance of $\sigma_{A}^2$.
+
+The theoretical ANOVA table for the Phase 1 experiment is shown in Table~\ref{tab:Phase1ANOVA}. The last column of this theoretical ANOVA table lists the EMS which is the linear combination of the variance components. These EMS are made up of the variation between animals, $\sigma_{A}^2$, and the treatment component for disease statuses, $\theta_{\tau}$. Given that DF$_{\tau}$ denote the DF of disease status, $\theta_{\tau}$ is defined as 
+\[\frac{\displaystyle \sum_{j = healthy, diseased}(\tau_{j} - \overline{\tau_{.}})^2}{\mathrm{DF}_{\tau}}=
+\frac{(\tau_{healthy} - \overline{\tau_{.}})^2 + (\tau_{diseased} - \overline{\tau_{.}})^2}{2-1},\] 
+which is expresses the variances between the treatment means. The coefficients of treatment components can be derived from the numbers of replications of their corresponding treatment factors. 
+
+\begin{table}[ht]
+\centering
+\caption{Phase 1 ANOVA with the coefficients of variance components of the EMS.}
+\begin{tabular}[t]{lrl}
+\toprule
+\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}\\
+\midrule
+Between Animals 		\\
+\hspace{3mm}Disease status 	& $1$ 	& $\sigma_{A}^2 + 4\theta_{\tau}$\\
+\hspace{3mm}Residual		& $6$ 	& $\sigma_{A}^2$\\\hline
+Total 						& $7$    & \\
+\bottomrule
+\end{tabular}
+\label{tab:Phase1ANOVA}
+\end{table}
+
+If the samples are considered, then the Phase 1 experiment involves 16 observations. Since the differences between the samples do not contribute to the analysis, the total number of observations for the Phase 1 experiment is then eight, i.e.\ the number of animals. Hence, the DF associated with the adjusted total of Phase 1 experiment is seven. Since the animals are both experimental and observational units, the Between Animals stratum captured the overall analysis. Furthermore, the Between Animals stratum is further decomposed to 1 and 6 DF for the mean squares (MS) of disease status and residual, respectively. A valid test for disease status effects is present for this Phase 1 experiment, since the coefficients of the variance components of disease status and Residual EMS are identical. Hence, providing the experimental data can be obtained, the F-ratio can be calculated from the disease status and the residual MS. 
+
+\subsection{Phase 2 experiment}
+\label{subsec:Phase2Exp}
+In practice, protein abundances cannot be measured directly from the animals and so the Table~\ref{tab:Phase1ANOVA} cannot be used to test the treatment effects. This makes it necessary to harvest the tissues and extract the proteins from the animals for the subsequent Phase 2 MudPIT-iTRAQ$^{\rm TM}$ experiment. Hence, two additional components are introduced, i.e.\ the variation between runs, $\sigma_{R}^2$, and the difference between tags, $\theta_{\gamma}$. The variation between samples, $\sigma^2$, is used to assess the experimental error. 
+
+This example uses four MudPIT runs with a four-plex iTRAQ$^{\rm TM}$ labelling system to measure the protein abundances; hence, a total of 16 samples are processed. The 16 samples generated from Phase 1 can be directly allocated to MudPIT-iTRAQ$^{\rm TM}$ using a four-by-four grid. The design aims to estimate the differences in protein abundance between the treatment groups as precisely as possible, which is achieved by ensuring the fixed effects can be estimated independently of the random effects, i.e. they are not \emph{confounded} with the random effects.
+
+Disease status is assigned using a Latin square design. However, the experiment involves eight rats and only four MudPIT runs of four-plex iTRAQ$^{\rm TM}$ labelling system, so any assignment of animals is unavoidably confounded with runs and tags. Hence, the assignment aims to minimise the confounding. A tabular representation of the Phase 2 design is shown in Table~\ref{tab:phase2Design}. Confounding of animals with runs occurs when comparing Runs 1, 3 and Runs 2, 4, hence, one DF of animals is confounded with runs. Likewise, the confounding of animals with tags occurs when comparing Tags 114, 116 and Tags 115, 117, and thus one DF for tags is confounded with animals. Table~\ref{tab:Phase2ANOVA} shows the structure of the ANOVA with the DF.
+
+\begin{table}[ht]
+\centering
+\caption{Phase 2 design showing the animal assignment to runs and tags. The letters denote animal ID.}
+\begin{tabular}[t]{c|cccc}
+ & \multicolumn{4}{c}{{\bf Tag}} \\
+{\bf Run}  & 114 & 115 & 116 & 117 \\ 
+\hline 
+1 & A & B & C & D \\ 
+2 & F & E & H & G \\ 
+3 & C & D & A & B \\ 
+4 & H & G & F & E \\ 
+\end{tabular} 
+\label{tab:phase2Design}
+\end{table}
+
+Let $y_{ijk}^{lm}$ denote the abundance of a given protein in sample $k$ from rat $i$ under disease status $j$ and measured from the $l$th MudPIT run with iTRAQ$^{\rm TM}$ tag $m$. The superscript and subscript indexes of the response, $y_{ijk}^{lm}$, correspond to the indexes from the Phase 2 and Phase 1 experiments, respectively. The linear model of the Phase 2 experiment is then given by
+\begin{equation}\label{eq:phase2Model}
+y_{ijk}^{lm}= \mu + R_{l} + A_{i}+ \tau_{j} + \gamma_{m} + \epsilon_{ijk}^{lm},
+\end{equation}
+where $R_{l}$ denotes the random effects from run $l$,  $l=1,\dots, 4$, $\gamma_{m}$ denotes the fixed effects of tag $m$, $m = 114,\dots, 117$, $\epsilon_{ijk}^{lm}$ denotes the effects from sample $k$, $k = 1, 2$, in animal $i$ from run $l$ under disease status $j$ and tag $m$. Additionally, $\epsilon_{ijk}^{lm}$ also denotes an experimental error, because the sample is the smallest unit of the Phase 2 experiment. The remaining terms are defined as in~(\ref{eq:phase1Model}). Furthermore, the run effects and experimental error are assumed to be normally distributed with mean zero and variance of $\sigma_{R}^2$ and $\sigma^2$, respectively. The disease status and tag effects are assumed not to interact. 
+
+Using the information decomposition method described in Section~\ref{sec:infoiDecompTwoPase}, the theoretical ANOVA table of the Phase 2 experiment can be generated and shown in Table~\ref{tab:Phase2ANOVA}. Since there are 16 observations, there are 15 DF. These 15 DF are further broken down into 3 and 12 DF for the Between and Within Runs strata, respectively. The Between Runs stratum is further decomposed into the MS of Between Animals and residual with 1 and 2 DF, respectively. The Within Runs stratum is decomposed into 6 and 6 DF for the Between Animals and Between Samples Within Animals strata, respectively. The Between Animals Within Runs is further decomposed to the MS of disease status (1 DF), tag (1 DF) and residual (4 DF). Notably, all of the disease status information remain intact in the Between Animals Within Runs stratum. Finally, the Between Sample Within Animals Within runs is decomposed to the MS of tag (2 DF) and residual (4 DF).
+
+Comparing this ANOVA table (Table~\ref{tab:Phase2ANOVA}) to that of the Phase 1 experiment (Table~\ref{tab:Phase1ANOVA}), the animals originally have 7 DF; however, 1 DF is now in the Between Runs stratum and another 1 DF is confounded with the tag effects. A valid test for the disease status effect can still be conducted in the Between Animals Within Runs stratum, but the DF of the residual is reduced from 6 to 4, which reduces the statistical power of the detection of a significant differences between the treatment groups. However, this matter is beyond the scope of this paper. 
+
+\begin{table}[ht]
+\centering
+\caption{Phase 2 ANOVA with the coefficients of variance components of EMS.}
+\begin{tabular}[t]{lrl}
+\toprule
+\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}\\
+\midrule
+Between Runs 		\\
+\quad Between Animals & $1$ 	& $\sigma^2 + 2\sigma_{A}^2 + 4\sigma_{R}^2$\\
+\quad Residual		& $2$ 	& $\sigma^2 + 4\sigma_{R}^2$\\
+\hline
+Within runs 				\\
+\quad Between Animals \\
+\quad\quad Disease status  & $1$ 	& $\sigma^2 + 2\sigma_{A}^2 + 8\theta_{\tau}$\\
+\quad\quad Tag				& $1$ 	& $\sigma^2 + 2\sigma_{A}^2 + 4\theta_{\gamma}$\\
+\quad\quad Residual		& $4$ 	& $\sigma^2 + 2\sigma_{A}^2$\\\hline
+\quad Between Samples Within Animals		&\\
+\quad\quad Tag				& $2$ 	& $\sigma^2 + 4\theta_{\gamma}$\\
+\quad\quad Residual		& $4$ 	& $\sigma^2$\\
+\hline
+Total 						& $15$      & \\
+\bottomrule
+\end{tabular}
+\label{tab:Phase2ANOVA}
+\end{table}
+
+
+\section[InfoDecompuTE]{An \proglang{R} package: \pkg{InfoDecompuTE}} \label{sec:package}
+\pkg{InfoDecompuTE} is written in the well known \proglang{R} programming language. This package automatically performs the decomposition procedure, described in Section~\ref{sec:exampleTwoPase}, and produces a theoretical ANOVA table as seem in Table~\ref{tab:Phase2ANOVA}. This package is intended mainly to allow the researchers to rapidly study the properties of the theoretical ANOVA of various experimental designs. This package comprises a series of functions used to construct the theoretical ANOVA tables. This article focuses on two main functions: \code{summaryAovOnePhase} and \code{summaryAovTwoPhase} for single and two-phase experiments, respectively. 
+
+This section first explains the installation procedure of this package and then the arguments necessary for the two functions: \code{summaryAovOnePhase} and \code{summaryAovTwoPhase}.
+
+\subsection{Installation instructions}
+\pkg{InfoDecompuTE} requires a recent version of the \proglang{R} statistical programming environment which is available from the Comprehensive R Archive Network at \url{http://CRAN.R-project.org/} \citep{R2012}. The system requirements for this package depend on the number of factors and observations in the experimental design that the user plans to analyse. This is because the number of factors and observations affects the dimensions of the matrices. \citeauthor{Brien1999}'s \citeyearpar{Brien1999} two-phase experiment can be analysed in under a minute using two-gigabytes of RAM with a Duo Core 3GHz machine running Microsoft Windows 7 (Section~\ref{sec:example}).
+
+Provided that the user has an internet connection, \pkg{infoDecompuTE} can be installed and initiated by typing the following two commands in a new \proglang{R} session: 
+\begin{CodeChunk}
+\begin{CodeInput}
+> install.packages("infoDecompuTE")
+> library("infoDecompuTE")
+\end{CodeInput}
+\end{CodeChunk}
+The package can also be downloaded from \url{http://cran.r-project.org/web/packages/infoDecompuTE/index.html}.
+
+
+\subsection{Functions}
+This section explains the arguments for the two main functions in the \pkg{infoDecompuTE} package. These two functions and their arguments are:
+\begin{CodeChunk}
+\begin{CodeInput}
+summaryAovOnePhase(design.df, blk.str, trt.str, var.comp = NA,
+                trt.contr = NA, contr.matrix = all(is.na(trt.contr)),
+                table.legend = FALSE, response = NA, latex = FALSE,
+                fixed.names = NA)
+                
+summaryAovTwoPhase(design.df, blk.str1, blk.str2, trt.str, var.comp = NA, 
+                blk.contr = NA, trt.contr = NA, 
+                contr.matrix = all(is.na(trt.contr)),  table.legend = FALSE,
+                response = NA, latex = FALSE, fixed.names = NA)
+\end{CodeInput}
+\end{CodeChunk}
+The rest of this section explains each of these arguments using the two-phase experiment example described in Section~\ref{sec:exampleTwoPase}.
+
+\subsection{Design data frame}
+The first argument, \code{design.df}, consists of the experimental design in a data frame format. The class of each vector in the data frame should be a factor. The single-phase and two-phase experimental design in Table~\ref{tab:phase1Design} and \ref{tab:phase2Design} can be shown in two data frames: \code{design1} and \code{design2}. The contents of these two data frames are
+\begin{CodeChunk}
+\begin{CodeInput}
+> design1
+\end{CodeInput}
+\begin{CodeOutput}
+  Ani      Trt
+1   A  healthy
+2   B diseased
+3   C  healthy
+4   D diseased
+5   E diseased
+6   F  healthy
+7   G diseased
+8   H  healthy
+\end{CodeOutput}
+
+\begin{CodeInput}
+> design2
+\end{CodeInput}
+\begin{CodeOutput}
+   Run Ani Sam Tag      Trt
+1    1   A   1 114  healthy
+2    1   B   1 115 diseased
+3    1   C   1 116  healthy
+4    1   D   1 117 diseased
+5    2   E   1 114 diseased
+6    2   F   1 115  healthy
+7    2   G   1 116 diseased
+8    2   H   1 117  healthy
+9    3   C   2 114  healthy
+10   3   D   2 115 diseased
+11   3   A   2 116  healthy
+12   3   B   2 117 diseased
+13   4   G   2 114 diseased
+14   4   H   2 115  healthy
+15   4   E   2 116 diseased
+16   4   F   2 117  healthy
+\end{CodeOutput}
+\end{CodeChunk}
+where \code{Run} denotes MudPIT runs, \code{Ani} denotes animal ID, \code{Sam} denotes samples, \code{Tag} denotes iTRAQ$^{\rm TM}$ tags and \code{Trt} denotes disease status.
+
+\subsection{Block and treatment structures}
+The arguments \code{blk.str} and \code{trt.str} allow the user to input the block and treatment structures, respectively. The \citeauthor{Wilkinson1973}' syntax is used to present these two structures and this presentation is also known as \emph{structure formula} \citep{Wilkinson1973}. The user can also refer to the \code{formula} function in \proglang{R} for further information on the structure formula. 
+ 
+For a single-phase experiment, the relationships between block and treatment factors are represented by two arguments: \code{blk.str} for block factors and \code{trt.str} for treatment factors. For the Phase 1 experiment (Section~\ref{subsec:Phase1Exp}), the structure formula for the block factors is \code{Ani/Sam} which denotes the two technical replicated samples nested from the animals. 
+
+The structure formula for the treatment factor contains a single term for the disease status, \code{Trt}. The output from \code{summaryAovOnePhase} is 
+\begin{CodeChunk}
+\begin{CodeInput}
+> summaryAovOnePhase(design1, blk.str = "Ani", trt.str = "Trt") 
+\end{CodeInput}
+\begin{CodeOutput}
+$ANOVA
+            DF Ani
+Between Ani       
+   Trt      1  1  
+   Residual 6  1  
+
+$EF
+            Trt eff.Trt
+Between Ani            
+   Trt      4   1      
+\end{CodeOutput}
+\end{CodeChunk}
+The output is a list comprising two tables. The first table, denoted by \code{ANOVA}, is the random effects table which gives the DF with the coefficients of the variance components for each source of variation. The \code{Between Ani} denotes Between Animals stratum. The second table, denoted by \code{EF}, is the fixed effects table provides the coefficients of the fixed components with the average efficiency factors. The column name for the average efficiency factor is denoted by \code{eff.Trt}. This example indicates that all the disease status information is in the Between Animals stratum.
+
+The function \code{summaryAovTwoPhase} is used to analyse two-phase experiments. Recall the two-phase experiment from Section~\ref{subsec:Phase2Exp}, the Phase 1 block structure consists of animals and the Phase 2 block structure is MudPIT run. The Phase 1 and 2 block structures are represented by the arguments \code{blk.str1} and \code{blk.str2}, and their structure formulae can be written as \code{Ani} and \code{Run}, respectively.
+
+The treatment structure is defined in the argument \code{trt.str}. Since the diseases status and tag do not interact, the structure formula can be written as \code{Tag + Trt}. The tag effects should always be fitted to the ANOVA model before the disease status effects or any other treatment effects of interest. This is because in the event of confounding between the tag effects and disease status effects, and if the diseases status is fitted before the tags, then some of the tag information will be present in the disease status MS and the accuracy of the test for the disease status effects will suffer. 
+
+The output from the \code{summaryAovTwoPhase} of the two-phase experiment from Section~\ref{subsec:Phase2Exp} is
+\begin{CodeChunk}
+\begin{CodeInput}
+> summaryAovTwoPhase(design2, blk.str1 = "Ani", blk.str2 = "Run", 
++ trt.str = "Tag + Trt")                                      
+\end{CodeInput}
+\begin{CodeOutput}
+$ANOVA
+               DF e Ani Run
+Between Run                
+   Between Ani 1  1 2   4  
+   Within Ani  2  1 0   4  
+Within Run                 
+   Between Ani             
+      Tag      1  1 2   0  
+      Trt      1  1 2   0  
+      Residual 4  1 2   0  
+   Within Ani              
+      Tag      2  1 0   0  
+      Residual 4  1 0   0  
+$EF
+               Tag Trt eff.Tag eff.Trt
+Between Run                           
+   Between Ani                        
+   Within Ani                         
+Within Run                            
+   Between Ani                        
+      Tag      4       1              
+      Trt          8           1      
+   Within Ani                         
+      Tag      4       1              
+\end{CodeOutput}
+\end{CodeChunk}
+The structure of the output is identical to that of the output from \code{summaryAovOnePhase} and is similar to the ANOVA Table~\ref{tab:Phase2ANOVA}. The second column name of the ANOVA table, \code{e}, denotes the variance component of experimental error. Note the \code{Within Run} and \code{Within Ani} denote the Within Runs and Within Animals strata, respectively. 
+
+A more informative way to construct the block structure of the Phase 1 experiment for the current example is to include the sample factor. The Phase 1 block structure is then sample nested from the animals, i.e.\ \code{Ani/Sam} and the output from the \code{summaryAovTwoPhase} becomes
+\begin{CodeChunk}
+\begin{CodeInput}
+> summaryAovTwoPhase(design2, blk.str1 = "Ani/Sam", blk.str2 = "Run", 
++  trt.str = "Tag + Trt")                                    
+\end{CodeInput}
+\begin{CodeOutput}
+$ANOVA
+                   DF Ani:Sam Ani Run
+Between Run                          
+   Between Ani     1  1       2   4  
+   Between Ani:Sam 2  1       0   4  
+Within Run                           
+   Between Ani                       
+      Tag          1  1       2   0  
+      Trt          1  1       2   0  
+      Residual     4  1       2   0  
+   Between Ani:Sam                   
+      Tag          2  1       0   0  
+      Residual     4  1       0   0  
+$EF
+                   Tag Trt eff.Tag eff.Trt
+Between Run                               
+   Between Ani                            
+   Between Ani:Sam                        
+Within Run                                
+   Between Ani                            
+      Tag          4       1              
+      Trt              8           1      
+   Between Ani:Sam                        
+      Tag          4       1               
+\end{CodeOutput}
+\end{CodeChunk}
+The \code{Ani:Sam} in the source of variation and variance component denotes samples within animals. Since samples are the observational units, the samples within animals variance component is identical to the variance component for the experimental error. Thus, the column of the ANOVA table with \code{e} is omitted.
+
+\subsection{Crossed or nested}
+Typically, the output of the \code{terms} function cannot distinguish whether the relationship of two block or treatment factors is nested or crossed. For example, if the sample is assumed to be nested from the animals, then the output from the \code{terms} function gives
+\begin{CodeChunk}
+\begin{CodeInput}
+> attr(terms(~Ani / Sam), "term.labels")
+\end{CodeInput}
+\begin{CodeOutput}
+[1] "Ani"     "Ani:Sam"
+\end{CodeOutput}
+\end{CodeChunk}
+where \code{Ani} denotes the effects of different animals and \code{Ani:Sam} denotes the effects of different samples within animals. If the sample is assumed to be crossed from the animals, then the output from the \code{terms} function gives
+\begin{CodeChunk}
+\begin{CodeInput}
+> attr(terms(~Ani * Sam), "term.labels")
+\end{CodeInput}
+\begin{CodeOutput}
+[1] "Ani"     "Sam"     "Ani:Sam"
+\end{CodeOutput}
+\end{CodeChunk}
+where \code{Ani} and \code{Sam} denotes the effects of different animals and samples, respectively. However, \code{Ani:Sam}, which is identical to the previous output, but denotes the interaction effect between the animals and samples. Thus, to distinguish between the nesting and crossing relationship, the interaction effect between the animals and samples is denoted by \code{Ani*Sam}. 
+
+If the animals and samples are assumed to interact, the Phase 1 block structure becomes \code{Ani*Sam}. The output of \code{summaryAovTwoPhase} can be expressed as
+\begin{CodeChunk}
+\begin{CodeInput}
+> summaryAovTwoPhase(design, blk.str1 = "Ani*Sam", blk.str2 = "Run", 
++ trt.str = "Tag * Trt")                                     
+\end{CodeInput}
+\begin{CodeOutput}
+$ANOVA
+                   DF Ani*Sam Sam Ani Run
+Between Run                              
+   Between Ani     1  1       0   2   4  
+   Between Sam     1  1       8   0   4  
+   Between Ani*Sam 1  1       0   0   4  
+Within Run                               
+   Between Ani                           
+      Tag          1  1       0   2   0  
+      Trt          1  1       0   2   0  
+      Residual     4  1       0   2   0  
+   Between Ani*Sam                       
+      Tag          2  1       0   0   0  
+      Residual     4  1       0   0   0  
+
+$EF
+                   Tag Trt eff.Tag eff.Trt
+Between Run                               
+   Between Ani                            
+   Between Sam                            
+   Between Ani*Sam                        
+Within Run                                
+   Between Ani                            
+      Tag          4       1              
+      Trt              8           1      
+   Between Ani*Sam                        
+      Tag          4       1                  
+\end{CodeOutput}
+\end{CodeChunk}
+The name of the sources of variation and the variance component for the interaction effects of animals and sample is \code{Ani*Sam}. This procedure is also applied to the treatment effects. 
+
+\subsection{Artificial strata}
+The \code{var.comp} argument allows researchers to use the artificial strata to facilitate decomposition. For the example in Section~\ref{subsec:Phase2Exp}, four of eight animals can be grouped as an animal set. Animals in the first and second sets are denoted by 1 and 2, respectively. This new vector of animal set, denoted by \code{AniSet}, can be generated as
+\begin{CodeChunk}
+\begin{CodeInput}
+> AniSet
+\end{CodeInput}
+\begin{CodeOutput}
+ [1] 1 1 1 1 2 2 2 2 1 1 1 1 2 2 2 2
+Levels: 1 2
+\end{CodeOutput}
+\end{CodeChunk}
+
+The Phase 2 block structure is then written as \code{AniSet/Run}, which means MudPIT runs are nested within the animal sets. Since an animal set is intended to create the artificial strata, there should be no variation between the animal sets and zero variance components should be associated with the animal set. Removal of the animal set from the variance component estimate is performed using the \code{var.comp} argument, which contains a vector of characters indicating which variance components should appear in the output table of the random effects. Additionally, the user can also use this argument to define the order of the variance components to appear in the output table, i.e.
+\begin{CodeChunk}
+\begin{CodeInput}
+> summaryAovTwoPhase(design2, blk.str1 = "Ani/Sam", blk.str2 = "AniSet/Run", 
++	trt.str = "Tag + Trt", var.comp = c("Ani:Sam", "Ani", "Run"))                                    
+\end{CodeInput}
+\begin{CodeOutput}
+$ANOVA
+                   DF Ani:Sam Ani Run
+Between AniSet                       
+   Between Ani     1  1       2   4  
+Between AniSet:Run                   
+   Between Ani:Sam 2  1       0   4  
+Within AniSet.Run                    
+   Between Ani                       
+      Tag          1  1       2   0  
+      Trt          1  1       2   0  
+      Residual     4  1       2   0  
+   Between Ani:Sam                   
+      Tag          2  1       0   0  
+      Residual     4  1       0   0  
+
+$EF
+                   Tag Trt eff.Tag eff.Trt
+Between AniSet                            
+   Between Ani                            
+Between AniSet:Run                        
+   Between Ani:Sam                        
+Within AniSet.Run                         
+   Between Ani                            
+      Tag          4       1              
+      Trt              8           1      
+   Between Ani:Sam                        
+      Tag          4       1              
+\end{CodeOutput}
+\end{CodeChunk}
+Note the \code{Within AniSet.Run} denotes Within Runs and Animal Sets where these two factors are connected by a dot.  
+
+\subsection{Manually defined contrasts}
+The contrasts for the Phase 1 block and treatment factors can also be specified using argument \code{blk.contr} and \code{trt.contr}, respectively. The contrasts comprise lists of numeric vectors. The order of factors must be identical to that of the block and treatment factors in the arguments \code{blk.str1} and \code{trt.str}. The example here illustrates the treatment contrasts, where four iTRAQ$^{\rm TM}$ tags can be represented by three orthogonal contrasts from a classical 2$^k$ design. Thus the four iTRAQ$^{\rm TM}$ tags can be represented by three contrast vectors that represent each orthogonal contrast, as shown below
+\begin{CodeChunk}
+\begin{CodeInput}
+> Tag = list(Tag1 = Tag1, Tag2 = Tag2, Tag3 = Tag3)
+> Tag
+\end{CodeInput}
+\begin{CodeOutput}
+$Tag1
+ [1]  1  1 -1 -1  1  1 -1 -1  1  1 -1 -1  1  1 -1 -1
+$Tag2
+ [1]  1 -1  1 -1  1 -1  1 -1  1 -1  1 -1  1 -1  1 -1
+$Tag3
+ [1]  1 -1 -1  1  1 -1 -1  1  1 -1 -1  1  1 -1 -1  1
+$ <- TO REMOVE!!!!!
+\end{CodeOutput}
+\end{CodeChunk}
+ The contrast vector of disease status can be written as
+\begin{CodeChunk}
+\begin{CodeInput}
+> Trt
+\end{CodeInput}
+\begin{CodeOutput}
+ [1] -0.5  0.5 -0.5  0.5  0.5 -0.5  0.5 -0.5 -0.5  0.5 -0.5  0.5  0.5 -0.5  0.5
+[16] -0.5
+\end{CodeOutput}
+\end{CodeChunk}
+Note that it is essential to assign names, i.e. \code{Tag1}, \code{Tag2} and \code{Tag3}, to each of the contrast vectors so they can be identity in the output table.
+
+Using the design described in Section~\ref{subsec:Phase2Exp}, the treatment contrasts can be inputted into the function \code{summaryAovTwoPhase}. The argument \code{contr.matrix} is set to \code{TRUE}, as it indicates that we are working with contrast matrices. The output is shown as follows
+\begin{CodeChunk}
+\begin{CodeInput}
+> summaryAovTwoPhase(design2, blk.str1 = "Ani/Sam", blk.str2 = "Run", 
++ trt.str = "Trt + Tag", 
++ trt.contr = list(Trt = Trt, Tag = list(Tag1 = Tag1, Tag2 = Tag2, Tag3 = Tag3)) 
++ contr.matrix = TRUE)                               
+\end{CodeInput}
+\begin{CodeOutput}
+$ANOVA
+                   DF Ani:Sam Ani Run
+Between Run                          
+   Between Ani     1  1       2   4  
+   Between Ani:Sam 2  1       0   4  
+Within Run                              
+   Between Ani                       
+      Tag          1  1       2   0  
+      Trt          1  1       2   0  
+      Residual     4  1       2   0  
+   Between Ani:Sam                   
+      Tag          2  1       0   0  
+      Residual     4  1       0   0  
+
+$EF
+                   Tag Trt eff.Tag eff.Trt
+Between Run                               
+   Between Ani                            
+   Between Ani:Sam                        
+Within Run                                   
+   Between Ani                            
+      Tag          4       1              
+      Trt              8           1      
+   Between Ani:Sam                        
+      Tag          4       1              
+\end{CodeOutput}
+\end{CodeChunk}
+
+Additionally, it is possible to break the treatment factors into multiple orthogonal contrasts to study how these contrasts contribute to each source of variation. This is achieved by setting the argument \code{contr.matrix} to \code{FALSE}. Using the design described in Section~\ref{subsec:Phase2Exp}, the treatment contrasts can also be inputted into the function \code{summaryAovTwoPhase}, and the output is shown as follows,
+\begin{CodeChunk}
+\begin{CodeInput} 
+> summaryAovTwoPhase(design2, blk.str1 = "Ani/Sam", blk.str2 = "Run", 
++ trt.str = "Tag + Trt", 
++ trt.contr = list(Trt = Trt, Tag = list(Tag1 = Tag1, Tag2 = Tag2, Tag3 = Tag3)),
++ contr.matrix = FALSE, table.legend = TRUE)                                
+\end{CodeInput}
+\begin{CodeOutput}
+$ANOVA
+$ANOVA$VC
+                   DF a b c
+Between Run                
+   Between Ani     1  1 2 4
+   Between Ani:Sam 2  1 0 4
+Within Run                 
+   Between Ani             
+      Tag.TagB     1  1 2 0
+      Trt          1  1 2 0
+      Residual     4  1 2 0
+   Between Ani:Sam         
+      Tag.TagA     1  1 0 0
+      Tag.TagC     1  1 0 0
+      Residual     4  1 0 0
+
+$ANOVA$Legend
+[1] "a = Ani:Sam" "b = Ani"     "c = Run"    
+
+$EF
+$EF$trt
+                   a b c d e f g h
+Between Run                       
+   Between Ani                    
+   Between Ani:Sam                
+Within Run                        
+   Between Ani                    
+      Tag.TagB       4       1    
+      Trt                8       1
+   Between Ani:Sam                
+      Tag.TagA     4       1      
+      Tag.TagC         4       1  
+
+$EF$Legend
+[1] "a = Tag.TagA"     "b = Tag.TagB"     "c = Tag.TagC"    
+[4] "d = Trt"          "e = eff.Tag.TagA" "f = eff.Tag.TagB"
+[7] "g = eff.Tag.TagC" "h = eff.Trt"     
+\end{CodeOutput}
+\end{CodeChunk}
+Having broken down the tag contrasts, the random effects table shows that the tag contrast $2$ is in the Between Animals Within Runs stratum, and tag contrasts $1$ and $3$ are in the Between Samples Within Animals Within Runs stratum.
+
+The argument \code{table.legend} allows users to use letters to represent column names, and then insert a legend at the bottom of the table. In this example, \code{summaryAovTwoPhase} is set to \code{TRUE}, because once the treatment contrasts are fitted separately, the larger number of columns in the table of fixed components make the table difficult to read. 
+
+\subsection{Mean squares computation}
+The argument \code{response} allows the computation of the MS from the experimental data. Using the example of Section~\ref{subsec:Phase2Exp}, the \code{response} argument can be inputted with 16 random numbers corresponding to the 16 observations being drawn from the normal distribution, i.e.\ \code{rnorm(16)}. The output is shown as,
+\begin{CodeChunk}
+\begin{CodeInput} 
+> summaryAovTwoPhase(design2, blk.str1 = "Ani/Sam", blk.str2 = "Run", 
++  trt.str = "Trt + Tag", response = rnorm(16))$ANOVA
+$<- TO REMOVE!!!
+\end{CodeInput}
+\begin{CodeOutput} 
+                   DF Ani:Sam Ani Run MS     
+Between Run                                  
+   Between Ani     1  1       2   4   6.17532
+   Between Ani:Sam 2  1       0   4   0.66664
+Within Run                                   
+   Between Ani                               
+      Tag          1  1       2   0   0.02471
+      Trt          1  1       2   0   1.73347
+      Residual     4  1       2   0   1.08584
+   Between Ani:Sam                           
+      Tag          2  1       0   0   3.28668
+      Residual     4  1       0   0   0.44523
+\end{CodeOutput}
+\end{CodeChunk}  
+Since the fixed effects table is identical to the table without inserting the experimental data, the fixed effects table is omitted from the output shown. The random effects table, however, has an extra column for the mean squares.
+
+\subsection{Latex output}
+The output from \proglang{R} is not always easy to read on the screen. The argument \code{latex} allows the user to transform the \proglang{R} output into {\LaTeX} script. Using the example of Section~\ref{subsec:Phase2Exp}, the \code{latex} of the \code{summaryAovTwoPhase} function is set to \code{TRUE}, i.e.\
+\begin{CodeChunk}
+\begin{CodeInput} 
+> summaryAovTwoPhase(design, blk.str1 = "Ani", blk.str2 = "Run", 
++ trt.str = "Trt + Tag", latex = TRUE, fixed.names = c("\\tau", "\\gamma") ) 
+\end{CodeInput}
+\begin{CodeOutput}
+\begin{table}[ht]
+\centering
+\caption{Theoretical ANOVA table}
+\begin{tabular}[t]{lrlll} 
+\toprule 
+\multicolumn{1}{l}{\textbf{Source of Variation}} & 
+\multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}&
+\multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+\midrule 
+Between Run &  &  & & \\ 
+\quad Between Ani & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2$ & & \\ \hline 
+\quad Within Ani & $2$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline 
+Within Run &  &  & & \\ 
+\quad Between Ani &  &  & & \\ 
+\quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+4\theta_{\gamma}$ &$1$ & \\ 
+\quad \quad Trt & $1$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau}$ & & $1$\\ 
+\quad \quad Residual & $4$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline 
+\quad Within Ani &  &  & & \\ 
+\quad \quad Tag & $2$ & $\sigma^2+4\theta_{\gamma}$ &$1$ & \\ 
+\quad \quad Residual & $4$ & $\sigma^2$ & & \\ 
+\bottomrule 
+\end{tabular} 
+\label{tab:} 
+\end{table} 
+\end{CodeOutput}
+\end{CodeChunk} 
+Table~\ref{tab:ouputFromR} lists the output from the compilation of the {\LaTeX} script. Two {\LaTeX} packages \code{bm} and \code{booktabs} are required to compile the {\LaTeX} script. 
+
+Production of the {\LaTeX} script requires Greek letters to define the fixed effects. Since different experiments can have different sets of Greek letters, users can choose their own sets of Greek letters using the argument \code{fixed.names}. Note that this table not only contains the DF and EMS, but also the average efficiency factors for all the treatment effects in the last two columns. Further modification of this table may still be required, such as adjusting the names in the source of variation, e.g.\ from ``Between Ani'' to ``Between Animals''. However, this additional functionality allows rapid generation of the theoretical ANOVA table from the {\LaTeX} scripts.  
+
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Run &  &  & & \\ 
+ \quad Between Ani & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2$ & & \\ \hline 
+ \quad Within Ani & $2$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline 
+ Within Run &  &  & & \\ 
+ \quad Between Ani &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+4\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Trt & $1$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau}$ & & $1$\\ 
+ \quad \quad Residual & $4$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline 
+ \quad Within Ani &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+4\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $4$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+  \label{tab:ouputFromR} 
+\end{table} 
+
+\section[Example]{Two-phase viticultural experiment using \pkg{InfoDecompuTE}}\label{sec:example}
+This section shows how the function \code{summaryAovTwoPhase} is used to generate the table of EMS for the viticultural experiment described by \cite{Brien1999}. \citeauthor{Brien1999} used the structure formulae to represent the block and treatment structures in their two-phase experiment. The Phase 1 was a viticultural experiment comparing four different types of trellising and two pruning methods. The Phase 2 involved the evaluation of the wines made during the viticultural experiment.
+
+The Phase 1 viticultural experiment was arranged into two adjacent squares, each with three rows and four column blocks. The four trellising methods were assigned to the row blocks as a randomised complete block design and to the column blocks as a BIBD. Furthermore, each plot was halved, and one of two different pruning methods was randomly assigned to each half-plot. The viticultural experiment thus provide 48 observations.
+
+The Phase 2 experiment consisted of six judges evaluating the wines made from the grapes grown in the viticultural experiment. The wines were evaluated on two separate occasions, with wines made from grapes grown within the same square at the Phase 1 being evaluated on the same occasion at the Phase 2. Each occasion was divided into three intervals, with four sittings per interval. At each sitting, each judge was presented with four glasses of duplicate wines from each of two half-plots within the main plots sampled during the Phase 1. \cite{Brien1999} referred to these glasses as the positions. They used the row and column numbers in the viticultural experiment to assign the plots in the evaluation experiment. The two-phase experiment yields a total of 576 measurements.
+
+The structure formulae of Phase 2 and 1 block and the treatment factors are
+\begin{eqnarray}
+\label{eq:stru1}&&\mathrm{((Occasions/Intervals/Sittings)*Judges)/Positions,}\\
+\label{eq:stru2}&&\mathrm{(Rows*(Squares/Columns))/Halfplots}
+\end{eqnarray}
+and
+\begin{equation}\label{eq:stru3}
+\mathrm{Trellis*Method.}
+\end{equation}
+The block structure~(\ref{eq:stru1}) indicates that Sittings are nested within Intervals which are nested within Occasions. However, since all Judges are present at every Sitting, Judges is crossed with Sittings within Intervals within Occasions. Finally, Positions are nested within Judges and Sittings because each Judge evaluated four glasses of wine at each Sitting. The block structure defined in~(\ref{eq:stru2}) for the Phase 1 experiment indicates that the main plots, to which Trellising methods are assigned, are defined as the Rows crossed with the Columns nested within squares, with Half-plots being nested within plots. The treatment structure defined in~(\ref{eq:stru3}) is a 2-by-2 factorial experiment, and thus the Trellising and pruning Methods are crossed.
+
+These three structure formulae and the design are input into the function \code{summaryAovTwoPhase} and the output is as follows:
+\begin{CodeChunk}
+\begin{CodeInput}
+> summaryAovTwoPhase(design, blk.str1 = "(Row*(Squ/Col))/Hal", 
++ blk.str2 = "((Oc/In/St)*Ju)/Pos", trt.str = "Tre*Met", 
++ table.legend = TRUE)
+\end{CodeInput}
+\begin{CodeOutput}
+Note: Complete confounding between Squ and Oc!
+$ANOVA
+$ANOVA$VC
+                              DF  a  b  c  d  e   f   g h i  j  k  l  m  n  
+Between Oc                                                                  
+   Between SquCCW             1   12 24 96 72 288 0   1 4 16 48 0  24 96 288
+Between Oc:In                 4   0  0  0  0  0   0   1 4 16 0  0  24 96 0  
+Between Oc:In:St                                                            
+   Between SquCCW:Col                                                       
+      Tre                     3   4  8  0  24 0   0   1 4 0  0  0  24 0  0  
+      Residual                3   4  8  0  24 0   0   1 4 0  0  0  24 0  0  
+   Within Row.SquCCW.Col.Hal  12  0  0  0  0  0   0   1 4 0  0  0  24 0  0  
+Between Ju                    5   0  0  0  0  0   0   1 4 16 48 96 0  0  0  
+Between Oc*Ju                 5   0  0  0  0  0   0   1 4 16 48 0  0  0  0  
+Between (Oc:In)*Ju                                                          
+   Between Row                2   12 24 96 0  0   192 1 4 16 0  0  0  0  0  
+   Between Row*SquCCW         2   12 24 96 0  0   0   1 4 16 0  0  0  0  0  
+   Within Row.SquCCW.Col.Hal  16  0  0  0  0  0   0   1 4 16 0  0  0  0  0  
+Between (Oc:In:St)*Ju                                                       
+   Between SquCCW:Col                                                       
+      Tre                     3   8  16 0  48 0   0   1 4 0  0  0  0  0  0  
+      Residual                3   8  16 0  48 0   0   1 4 0  0  0  0  0  0  
+   Between Row*(SquCCW:Col)                                                 
+      Tre                     3   12 24 0  0  0   0   1 4 0  0  0  0  0  0  
+      Residual                9   12 24 0  0  0   0   1 4 0  0  0  0  0  0  
+   Within Row.SquCCW.Col.Hal  72  0  0  0  0  0   0   1 4 0  0  0  0  0  0  
+Between Oc:In:St:Ju:Pos                                                     
+   Between Row:SquCCW:Col:Hal                                               
+      Met                     1   12 0  0  0  0   0   1 0 0  0  0  0  0  0  
+      Tre*Met                 3   12 0  0  0  0   0   1 0 0  0  0  0  0  0  
+      Residual                20  12 0  0  0  0   0   1 0 0  0  0  0  0  0  
+   Within Row.SquCCW.Col.Hal  408 0  0  0  0  0   0   1 0 0  0  0  0  0  0  
+
+$ANOVA$Legend
+ [1] "a = Row:SquCCW:Col:Hal" "b = Row*(SquCCW:Col)"   "c = Row*SquCCW"        
+ [4] "d = SquCCW:Col"         "e = SquCCW"             "f = Row"               
+ [7] "g = Oc:In:St:Ju:Pos"    "h = (Oc:In:St)*Ju"      "i = (Oc:In)*Ju"        
+[10] "j = Oc*Ju"              "k = Ju"                 "l = Oc:In:St"          
+[13] "m = Oc:In"              "n = Oc"                
+
+
+$EF
+$EF$trt
+                              a    b   c  d    e f
+Between Oc                                        
+   Between SquCCW                                 
+Between Oc:In                                     
+Between Oc:In:St                                  
+   Between SquCCW:Col                             
+      Tre                     16/3        1/27    
+   Within Row.SquCCW.Col.Hal                      
+Between Ju                                        
+Between Oc*Ju                                     
+Between (Oc:In)*Ju                                
+   Between Row                                    
+   Between Row*SquCCW                             
+   Within Row.SquCCW.Col.Hal                      
+Between (Oc:In:St)*Ju                             
+   Between SquCCW:Col                             
+      Tre                     32/3        2/27    
+   Between Row*(SquCCW:Col)                       
+      Tre                     128         8/9     
+   Within Row.SquCCW.Col.Hal                      
+Between Oc:In:St:Ju:Pos                           
+   Between Row:SquCCW:Col:Hal                     
+      Met                          288         1  
+      Tre*Met                          72        1
+   Within Row.SquCCW.Col.Hal                      
+
+$EF$Legend
+[1] "a = Tre"         "b = Met"         "c = Tre*Met"     "d = eff.Tre"    
+[5] "e = eff.Met"     "f = eff.Tre*Met"
+\end{CodeOutput}
+\end{CodeChunk}
+Three additional features, not discussed in Section~\ref{sec:exampleTwoPase}, can be observed from this output. Since the Occasion factor of the Phase 2 experiment is completely confounded with the Square factor of the Phase 1 experiment, the function first outputs, \code{Note: Complete confounding between Squ and Oc!}, then \code{Squ} is changed to \code{SquCCW}. \code{CCW} stands for "completely confounded with". Furthermore, the parentheses in the structure formula are integrated into these names in the sources of variation and variance component to further clarify the relationship between the treatment or block factors. Lastly, the lowermost stratum, also known as the Within stratum, are always denoted by all block factors, from either the Phase 1 or Phase 2 experiment, and are concatenated with dots. 
+
+\section[Conclusion]{Conclusion}
+\pkg{InfoDecompuTE}, a freely available \proglang{R} package, allows researchers to study any complex single or two-phase experimental design by generating the structure of the theoretical ANOVA table with the coefficients of variance components of the EMS, as shown in Section~\ref{sec:example}. This package allows researchers to study how raw data is decomposed across different strata and sources of variation.
+
+This package can also analyse designs with non-orthogonal block or treatment structures and produce the average efficiency factors for each fixed effect, as shown in Section~\ref{sec:example}. The researcher thus can identify how much treatment information remains when conducting the test for the treatment effects. Additionally, users can fit each block or treatment contrast separately, allowing more flexible analysis, and can clarify how the block or treatment information is split across different strata.
+
+However, this package still has limitations. Currently it can only analyse single and two-phase experiments. If another phase was added, it would increase the computation time from $n^2$ to $n^3$. This is due to an additional for-loop being required to define the block structure of the additional phase. The best solution would be to re-implement the matrix calculation in another programming language such as \proglang{C} to accelerate the computation.
+
+Additionally, users need some understanding of how to build the model using the structure formulae as described by \cite{Wilkinson1973} for block and treatment structures of the two-phase experiments. Nonetheless, \pkg{infoDecompuTE} gives statistical researchers an additional tool to help them better understand experimental designs and construct better experiments.
+
+\section*{Acknowledgement}
+Peter Tsai, Vicky Fan, Emma Marks, Steven Wu and Chew-Seng Chee for proofreading.
+
+\bibliography{ref}
+
+\end{document}

@@ -1,0 +1,11 @@
+name: infoDecompuTE_Shiny
+title: infoDecompuTE_Shiny
+account: kcha193
+server: shinyapps.io
+appId: 161287
+bundleId: 745438
+url: https://kcha193.shinyapps.io/infoDecompuTE_Shiny/
+when: 1489432386.14186
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: input.log

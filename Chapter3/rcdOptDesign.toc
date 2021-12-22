@@ -1,0 +1,28 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2}Design parameters and model}{5}{section.2}
+\contentsline {section}{\numberline {3}Information matrix for defining design optimality criteria}{7}{section.3}
+\contentsline {section}{\numberline {4}Optimality criteria}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}A-optimality criterion}{8}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}MS-optimality criterion}{10}{subsection.4.2}
+\contentsline {section}{\numberline {5}An illustrative example}{11}{section.5}
+\contentsline {section}{\numberline {6}Objective function for identifying two-phase optimal designs}{12}{section.6}
+\contentsline {subsection}{\numberline {6.1}Maximising the animal information}{13}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Maximising the treatment information}{14}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Maximising the DF associated with the treatment effects}{17}{subsection.6.3}
+\contentsline {section}{\numberline {7}Construction of the initial design}{21}{section.7}
+\contentsline {section}{\numberline {8}Simulated annealing}{23}{section.8}
+\contentsline {section}{\numberline {9}Modified simulated annealing}{24}{section.9}
+\contentsline {subsection}{\numberline {9.1}Design parameter specified temperature versus the constant temperature}{25}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}The accelerated versus the standard cooling method}{26}{subsection.9.2}
+\contentsline {subsection}{\numberline {9.3}Modified accelerated cooling method}{29}{subsection.9.3}
+\contentsline {subsection}{\numberline {9.4}Pair swapping method}{30}{subsection.9.4}
+\contentsline {subsection}{\numberline {9.5}Three-stage swapping method versus the standard swapping method}{31}{subsection.9.5}
+\contentsline {subsection}{\numberline {9.6}An illustrative example}{33}{subsection.9.6}
+\contentsline {section}{\numberline {10}An Illustrative example using the eight-plex system}{34}{section.10}
+\contentsline {section}{\numberline {11}Optimal designs for the experiments involving two to eight treatments and two technical replicates}{39}{section.11}
+\contentsline {section}{\numberline {12}Direct computation of the degrees of freedom for each stratum}{40}{section.12}
+\contentsline {section}{\numberline {13}Extension to more than one treatment factor in the Phase\nobreakspace {}1 experiment}{43}{section.13}
+\contentsline {subsection}{\numberline {13.1}Model and design parameter}{43}{subsection.13.1}
+\contentsline {subsection}{\numberline {13.2}Information matrix}{45}{subsection.13.2}
+\contentsline {subsection}{\numberline {13.3}Objective function}{45}{subsection.13.3}
+\contentsline {section}{\numberline {14}Summary and Conclusion}{46}{section.14}

@@ -1,0 +1,19 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{An illustrative example}{}% 2
+\BOOKMARK [1][-]{section.3}{Estimation of the variance components}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Estimation of VCs using the LC method}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Estimation of VCs using the REML method}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Constructing the score function and Fisher information matrix}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Transformation from 2 to }{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Estimating }{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Satterthwaite approximation in deriving the EDF}{}% 9
+\BOOKMARK [1][-]{section.5}{Comparing the EDF of the illustrative example}{}% 10
+\BOOKMARK [2][-]{subsection.5.1}{Comparing EDF between different methods}{section.5}% 11
+\BOOKMARK [1][-]{section.6}{Comparing the EDF when Phase 1 is CRD}{}% 12
+\BOOKMARK [2][-]{subsection.6.1}{First CRD example}{section.6}% 13
+\BOOKMARK [2][-]{subsection.6.2}{Second CRD example}{section.6}% 14
+\BOOKMARK [2][-]{subsection.6.3}{Third CRD example}{section.6}% 15
+\BOOKMARK [1][-]{section.7}{Comparing the EDF when Phase 1 experiment is RCBD}{}% 16
+\BOOKMARK [2][-]{subsection.7.1}{The RCBD example}{section.7}% 17
+\BOOKMARK [1][-]{section.8}{Comparing the EDF when Phase 1 experiment is BIBD}{}% 18
+\BOOKMARK [1][-]{section.9}{Summary and Conclusion}{}% 19

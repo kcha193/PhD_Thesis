@@ -1,0 +1,935 @@
+\chapter{Optimal designs when the Phase 1 experiment is arranged in blocks}
+
+\section{Introduction}
+\label{sec:intro}
+This chapter further develops the method for finding optimal designs of two-phase proteomics experiments using multiplexing technology in particular. While Chapter 3 presented the a methodology used to search for optimal designs where the Phase 1 experiment is arranged in a completely randomised design (CRD), this Chapter considers Phase 1 experiments arranged in randomised complete block design (RCBD) or a balanced incomplete block design (BIBD). 
+
+
+If the Phase 1 experiment is arranged in randomised complete block design (RCBD), then all treatments occur within each block. Thus, the number of the treatment must be the same as the experimental units, i.e. plots, in each block. 
+
+If the Phase 1 experiment is arranged in balanced incomplete block design (BIBD), each block only contains a subset of treatments. In addition, treatment are equally replicated with each pair of treatments occurs together within a block same number of times. Thus, the all treatment comparisons have equal precision. 
+
+The experimental units from the Phase 1 experiment can then be split into multiple sub-samples before assigning them to Phase 2 blocks. The block from the Phase 1 experiment, arranged in BIBD, is referred to as Phase 1 block, the experimental unit is referred to as Phase 1 plot and the sub-sample is referred to as Phase 1 sub-plot.
+
+Before assigning the experimental units of the Phase 1 experiment to blocks of the Phase 2 experiments, the experimental units from the Phase 1 experiment can be split into multiple sub-samples. The block from the Phase 1 experiment, arranged in RCBD or BIBD, is referred to as Phase 1 block, the experimental unit is referred to as Phase 1 plot and the sub-sample is referred to as Phase 1 sub-plot.
+
+
+
+
+This chapter encompasses the following topics: Section~\ref{sec:desParModelChap4} describes the linear models of the Phase 1 and 2 experiments. Section~\ref{sec:RCBDexp} presents an example with the theoretical ANOVA table. Section~\ref{sec:infoMatChap4} defines the information matrix needed to derive the objective functions discussed in Section~\ref{sec:objFunChap4}. Section~\ref{sec:allocateCage} describes the construction of the new initial design considering the additional block component. Section~\ref{sec:RCBDsa} discusses changes to the simulated annealing (SA) algorithm search. Section~\ref{sec:exampleWith6Trt} describes an example of finding optimal designs with 6 treatments. Section~\ref{sec:overSumChap4} summarises the properties of optimal designs that are found. Section~\ref{sec:extBIBD} describes the situation where the Phase 1 experiment arranged in a BIBD and presents another summary of the properties of optimal designs that are found.  The \textbf{infoDecompuTE} package, introduced in Chapter 2, is used consistently to construct the theoretical ANOVA tables to compare the competing designs. 
+
+
+
+
+%and the method used to identify the animals in the model. The animals can be identified based on combinations of treatment and biological replicates or Cage and Animal ID. This chapter uses the latter combination, because the relationship between the cages and the animals is important in the definition of the Between Animals Within Cages in the Within Runs stratum, as shown in Section~\ref{sec:infoMat}.
+
+
+\section{Design parameters and model}
+\label{sec:desParModelChap4}
+The design parameters and linear model closely resemble those in Chapter 3. The only difference is the additional block factor. Consider two-phase experiments where the Phase 1 experiment is arranged in RCBD that consists of $\nu$ treatments, $n_b$ blocks and $n_{p}$ plots in each block. Let $y_{ijk}$ denote the abundance of a given protein from plant $k$ in tray $j$ under treatment $i$. The linear model of the Phase 1 experiment can then be written as 
+\begin{equation}\label{eq:phase1modelChap4}
+y_{ijk} = \mu + \tau_i+ b_{j} + p_{jk},
+\end{equation}
+where $\mu$ denotes the grand mean of all observations, $\tau_i$ denotes the fixed effects of treatment $i$, $b_{j} \sim \mathcal{N}(0, \sigma_{b}^2)$ denotes the random effects from cage $j$, and $p_{jk} \sim \mathcal{N}(0, \sigma_{p}^2)$ denotes the random effects from plot $k$ in block $j$ ($i = 1 \dots \nu$;$j = 1 \dots n_b$; $k = 1 \dots n_p$). 
+
+The Phase~2 experiment is , where the number of MudPIT runs, $n_r$, and iTRAQ$^{\rm TM}$ tags, $n_\gamma$, correspond to the number of blocks and block size, respectively. In addition, there are $r_t$ technical replicates to be used for estimating measurement errors in the Phase~2 experiment. Now let $y_{ijk}^{lmo}$ denote the abundance level of the same protein in (\ref{eq:phase1modelChap4}) from sub-sample $o$ of plot $k$ in block $j$ under treatment $i$ and measured in run $l$ with tag $m$. The linear model of the Phase~2 experiment can then be written as
+\begin{equation}\label{eq:modelChap4}
+y_{ijk}^{lmo} = \mu+ \tau_i+ b_{j} + p_{jk} + \gamma_m + r_l + \epsilon_{ijk}^{lmo},
+\end{equation}
+where $\gamma_m$ denotes the fixed effects of tag $m$, $r_m \sim \mathcal{N}(0, \sigma_r^2)$ denotes the run effects, and $ \epsilon_{ijk}^{lmo}$ denotes an experimental error, ($m = 1 \dots n_\gamma$; $l = 1 \dots n_r$). 
+
+The model~(\ref{eq:modelChap4}) can then be expressed in matrix notation as
+\begin{equation}\label{eq:matrixModelChap4}
+\bm{y} = \bm{1}\mu+ \X_{\tau}\bm{\alpha}_\tau + \X_{\gamma}\bm{\alpha}_\gamma + \Z\bm{u} + \W\bm{v} + \bm{\epsilon},
+\end{equation}
+where $\bm{y}$ is an $n \times 1$ vector of responses, $\bm{1}$ is also an $n \times 1$ vector for which all elements are unity, and $\bm{\epsilon}$ is an $n \times 1$ vector of random error terms. The vectors of treatment and tag parameters are $\bm{\alpha}_\tau$ and $\bm{\alpha}_\gamma$, respectively, and can be further expressed as 
+\[ 
+\bm{\alpha}_\tau = (\tau_1, \dots \tau_{\nu}), \bm{\alpha}_\gamma = (\gamma_1, \dots \gamma_{n_\gamma}). 
+\]
+Matrices $\X_{\tau}$ and $\X_{\gamma}$ are $n \times \nu$ and $n \times n_\gamma$ design matrices of treatment and tag, respectively. Furthermore, the vector of the Phase 1 block parameter, $\bm{\omega}$, is the combination of cages and animals within cages, which is given by
+ \[ 
+\bm{u} = (b_1: p_{11}, b_1: p_{12}, \dots, b_{n_b}: p_{n_b n_{p}}).
+\]
+Thus, the Phase 1 block design matrix is denoted by $\Z$, which is an $n \times n_b n_p$ design matrix of block-plot combination Lastly, the Phase 2 block design matrix is denoted by $\W =\W_{r}$, which is an $n \times n_r$ design matrix of runs. The Phase 2 block parameter is denoted by $\bm{v} = (r_{1}, \dots r_{n_r})$. 
+
+\section{An illustrative example}
+\label{sec:RCBDexp}
+This section presents an example of a MudPIT-iTRAQ$^{\rm TM}$ experiment with $\nu = 2$ treatments, $n_{A(B)} = 2$ animals in each of $n_b = 2$ cages, arranged in an RCBD at Phase 1. The Phase 2 experiment consists of $n_R = 2$ runs and $n_\gamma = 4$ tags. The animal and treatment allocations to cages is presented in Table~\ref{tab:Phase1DesEx}, where the numbers denote the Cage ID, upper case letters denote the Animal within Cage ID, and the lower case letters denote the treatment. This design shows that both cages contain Treatments \textit{a} and \textit{b} which are assigned to Animals A and B, respectively. 
+
+\begin{table}[ht]
+\centering
+\caption{The Phase 1 experimental design.}
+\begin{tabular}[t]{|c|cc|} \hline
+{\bf Tray 1} & Aa & Bb  \\ \hline
+{\bf Tray 2} &Aa & Bb \\  \hline
+\end{tabular} 
+\label{tab:Phase1DesEx}
+\end{table}
+
+\begin{table}[h]
+\centering
+ \caption{Theoretical ANOVA table for the Phase 1 experiment with $\nu = 2$ treatments, $n_{pt} =2$ plants in each of $n_t = 2$ trays.}
+ \begin{tabular}[t]{lrll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Trays & $1$ & $\sigma_{A}^2+4\sigma_{B}^2$ &\\ \hline 
+ Between Plants Within Trays &  &  &\\ 
+ \quad Treatment & $1$ & $\sigma_{A}^2+4\theta_{\tau}$ &$1$\\ 
+ \quad Residual & $1$ & $\sigma_{A}^2$ &\\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase1ANOVAEx} 
+\end{table} 
+
+The structure of the ANOVA table of this Phase 1 experiment consists of Between Trays and Between Animals Within Cages strata (see Table~\ref{tab:Phase1ANOVAEx}). The DF associated with the Between Cages and Between Animals Within Cages strata are $n_B - 1$ and $n_B(n_{A(B)} - 1)$, respectively. Since the experiment consists of two cages each containing two animals, the DF associated with the Between Cages and Between Animals Within Cages strata are $1$ and $2$, respectively. Additionally, there is 1 DF associated with treatment effects; hence, 1 DF remains in the residual to test for the treatment effects. the non-centrality parameter of treatment effects is denoted by $\theta_{\tau}$, and the  variance components of between animals and cage are $\sigma_{A}^2$ and $\sigma_{B}^2$, respectively. Finally, the treatment average efficiency factor, $E_{\tau}$, equals one, which means there is $100\%$ of the treatment effects can be estimated of the Between Animals Within Cages stratum. Therefore, the optimal two-phase design should retain all the DF associated with the treatment effects and the residual in the Between Animals Within Cages stratum in the Within Runs stratum, as well as maximising the treatment information able to be estimated in the Within Runs stratum. 
+
+\begin{table}[ht]
+\centering
+\itshape
+\caption{Cage, animal and treatment allocations to runs and tags for the Phase 2 experiment with $\nu = 2$ treatments, $n_{A(B)} =2$ animals in each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 2$ runs and $n_\gamma = 4$ tags.}
+\begin{tabular}[t]{c|cccc}
+ & \multicolumn{4}{c}{{\bf Tag}} \\
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline
+\textnormal{1} & 2Aa & 2Bb & 1Aa & 1Bb \\  
+\textnormal{2} & 2Bb & 2Aa & 1Bb & 1Aa \\  
+\end{tabular} 
+\label{tab:cagAniDesEx}
+\end{table}
+  
+Table~\ref{tab:cagAniDesEx} shows one way to allocate the cages, animals and treatments to runs and tags. Notice that Cage 1 is present only in Tags 116 and 117, and Cage 2 is present only in Tags 114 and 115. Hence, 1 DF associated with is cage effects are confounded with the tag effects. However, each run contains each of two cages, so the cage effects are orthogonal to the run effects. The allocation of animals follows a Latin square design within 2 runs by 2 tags. Hence, the effects of animals within cages are orthogonal to both run and tag effects. The treatment allocation to runs and tags is generated based on the assignment of treatments to animals and cages in the Phase 1 experiment. Like the allocation of animals to runs and tags, the treatment allocation also follows a Latin square design within 2 runs by 2 tags. Thus, the treatment effects are also orthogonal to both run and tag effects.   
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for the Phase 2 experiment with $\nu = 2$ treatments, $n_{A(B)} =2$ animals in each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 2$ runs and $n_\gamma = 4$ tags.}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+Between Runs & $1$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline 
+ Between Cages &  &  & & \\ 
+ \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{B}^2+2\theta_{\gamma}$ &$1$ & \\ \hline 
+ Between Animals Within Cages &  &  & & \\ 
+ \quad Treatment & $1$ & $\sigma^2+2\sigma_{A}^2+4\theta_{\tau}$ & & $1$\\ 
+ \quad Residual & $1$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline 
+ Within Animals Within Cages &  &  & & \\ 
+ \quad Tag & $2$ & $\sigma^2+2\theta_{\gamma}$ &$1$ & \\ 
+ \quad Residual & $1$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVAEx} 
+\end{table} 
+
+The theoretical ANOVA table of the Phase 2 experiment is shown in Table~\ref{tab:Phase2ANOVAEx}. The variance components of measurement error and between runs are denoted by $\sigma^2$ and $\sigma_{R}^2$, and the non-centrality parameter and the average efficiency factor of tags are denoted by $\theta_{\gamma}$ and $E_{\gamma}$ denote, respectively. There is 1 DF associated with the Between Cages stratum, which is completely confounded with the 1 DF associated with the tag effects. The residual DF in the Between Animals Within Cages stratum remains 1, and is unchanged from the Phase 1 experiment. Further, $100\%$ of the treatment information is preserved from the Phase 1 experiment, and the variance of the treatment effects can be estimated, because the coefficients of $\sigma^2$ and $\sigma_{A}^2$ are identical in the Between Animals Within Cages stratum. Therefore, this two-phase design can be considered the optimal design for the experiment featuring $\nu = 2$ treatments, $n_{A(B)} =2$ animals in each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 2$ runs and $n_\gamma = 4$ tags. 
+
+
+\section{Defining the information matrices}
+\label{sec:infoMatChap4}
+This section defines the information matrices for the objective function. From Table~\ref{tab:Phase2ANOVAEx}, the treatment effects are estimated in the Between Animals Within Cages stratum. Thus, there are two information matrices of interest: animals within cages and the treatment information matrices. The construction of theses two information matrices is less straightforward compared to the experiments with the CRD. This is because the block structure for the CRD includes only the animal factor, whereas for the RCBD it includes the cage and animal within cages factors. 
+
+As explained in Chapter 2, once the strata of the Phase 2 experiment are defined, the decomposition of the Phase 1 block structure is considered as the treatment structure. Thus, the overall block design matrix, $\W$, and the contrast matrices for the cage and animal within cages factors need to be computed. The contrast matrices are constructed from the yield identities associated with the block effects from the Phase 1 experiment, and can be expressed as 
+\[
+\omega_{jk} = \overline{\omega}_{..}+(\overline{\omega}_{j.} - \overline{\omega}_{..}) + (\omega_{jk} - \overline{\omega}_{j.}),
+\]
+where $\overline{\omega}_{..}$ denotes the average over the cage and animal within cages effects, $(\overline{\omega}_{j.} - \overline{\omega}_{..}$ represents the cage effects, and $(\omega_{jk} - \overline{\omega}_{j.})$ represents animal within cages effects. The matrix notation for $(\overline{\omega}_{j.} - \overline{\omega}_{..})$
+can be written as 
+\[( \I_{n_B} \otimes \K_{n_{A(B)}} - \K)\bm{\omega} = [(\I_{n_B} -  \K_{n_B}) \otimes \K_{n_{A(B)}}]\bm{\omega},\]
+and the matrix notation for $(\omega_{jk} - \overline{\omega_{j.}})$ can be written as 
+\[( \I - \I_{n_B} \otimes \K_{n_{A(B)}})\bm{\omega} = [\I_{n_B} \otimes (\I_{n_{A(B)}} -\K_{n_{A(B)}})]\bm{\omega}.\]
+Hence, the contrast matrices for the cage and animal within cages effects, denoted by $\C_B$ and $\C_{A(B)}$, are $(\I_{n_B} -  \K_{n_B}) \otimes \K_{n_{A(B)}}$ and $\I_{n_B} \otimes (\I_{n_{A(B)}} - \K_{n_{A(B)}})$, respectively.
+
+Considering the estimation of the cage effects in the Within Runs and Tags stratum, the reduced normal equations for the $\bm{\omega}_B$ can then be defined as
+\[ \bm{\omega}_B = \A_{B}^{-}\bm{q}_{B},\]
+where
+\begin{eqnarray*}
+\A_{B} &=& \mL_{B} (\I-\mP_{R})( \I - \mP_{\gamma}) \mL_{B}' ,\\
+\bm{q}_{B} &=& \mL_{B} (\I-\mP_{R})( \I - \mP_{\gamma})\bm{y},
+\end{eqnarray*}
+where $\mL_{B} = \C_B \W'$,  $\A_{B}$ denotes the information matrix of cage, vector $\bm{q}_{B}$ denotes the adjusted total associated with the Phase 1 block effects, and $(\I-\mP_{R})( \I - \mP_{\gamma})$ denotes the orthogonal projection matrix that projects $\bm{y}$ onto Within Runs and Tags subspace. The SS of the cages in the Within Runs and Tags stratum can then be written as 
+\[
+ \bm{q}_{B}' \A_{B}^{-} \bm{q}_{B}. 
+\]
+Thus, the orthogonal projection matrix that projects $\bm{y}$ onto Between Cages Within Runs and Tags  subspace, denoted by $\Q_{B}$, is 
+\[ (\I-\mP_{R})( \I - \mP_{\gamma})\mL_{B}'\A_{B}^{-} \mL_{B} (\I-\mP_{R})( \I - \mP_{\gamma}). 
+\] 
+
+The cage information is then swept by deriving the orthogonal projection matrix that projects $\bm{y}$ onto Within Cages Within Runs and Tags subspace, i.e.\ $(\I - \Q_{B})$. Thus, the information matrix for the Animals Within Cages effects, denoted by $\A_{A}$, can be expressed as
+\begin{equation}\label{eq:aniInfoMatChap4}
+\mL_{A}' (\I - \Q_{B}) \mL_{A}, 
+\end{equation}
+where $\mL_{A} = \C_{A(B)} \W'.$
+
+The treatment information matrix can be expressed as 
+\begin{equation}\label{eq:trtInfoMatChap4}
+\X_\tau' \Q_{A} \X_\tau,
+\end{equation} 
+where $\Q_A$ is the projection matrix that projects $\bm{y}$ onto Between Animals Within Cages in Within Runs and Tags subspace and is given by 
+\[ 
+(\I - \Q_{B})\mL_{A}' \A_{A}^{-} \mL_{A}(\I - \Q_{B}). 
+\] 
+
+\section{Objective function}
+\label{sec:objFunChap4}
+In Chapter 3, the objective function used to find the optimal design where the Phase 1 experiment is arranged in CRD was denoted as
+\begin{equation}\label{eq:finalObjFun2}
+0.75 E_A + 0.25 \left(\frac{ E_\tau +\nu_2}{v}\right),
+\end{equation}
+where $E_A$ and $E_\tau$ are the average efficiency factors of animal and treatment effects in the Within Runs stratum, and $\nu_2$ denotes the treatment DF in the Between Animals Within Runs stratum of the current design. 
+
+For the case where the Phase 1 experiment is arranged in RCBD, the estimation of the treatment effects occurs in the Between Animals Within Cages Within Runs stratum; thus, the $E_A$ and $E_\tau$ should be computed in this stratum. The newly developed objective function consists of four parts: (1) the $E_A$, computed from (\ref{eq:aniInfoMatChap4}), must always be 1; (2) the treatment allocation to runs should be connected, i.e. DF associated with treatment effects in the Between Animals Within Cages Within Runs stratum, computed from the trace of (\ref{eq:trtInfoMatChap4}), must equal to $\nu - 1$; (3) the residual DF in the Between Animals Within Cages Within Runs stratum, computed from the trace of (\ref{eq:aniInfoMatChap4}) minus the trace of (\ref{eq:trtInfoMatChap4}), is maximised; and (4) the $E_\tau$ in the Between Animals Within Cages Within Runs stratum, computed from (\ref{eq:trtInfoMatChap4}), is maximised. 
+
+The optimisation procedure for the objective function just mentioned consists of three steps: The first step requires parts (1) and (2) of the objective function to satisfy its criteria; otherwise the objective function output is zero. If a design is found to satisfy the first two parts of the objective function, the optimisation procedure proceeds to the second step, which is the SA search to find the optimal design based on the third part of the objective function. The third step of the optimisation procedure is to find the optimal design for the fourth part of the objective function based on the set of optimal designs found for the third part of the objective function. The last two steps in optimising the objective function is inspired from the method in finding the MS-optimal design. We construct the objective function in this manner to avoid the need to determine the weights of four parts in the objective function. However, this method suffers the drawback that of requiring that SA be performed twice in order to optimise two different objective functions. 
+
+The example presented here consists of $\nu = 3$ treatments, $n_{A(B)} = 6$ animals within each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 6$ runs and $n_\gamma = 4$ tags. The design of the Phase 1 experiment involves six different animals and two sets of three treatments assigned to each of two cages (Table~\ref{tab:Phase1Des2}). Animals \textit{A} and \textit{D} are assigned to Treatment \textit{a}, Animals \textit{B} and \textit{E} are assigned to Treatment \textit{b}, and Animals \textit{C} and \textit{F} are assigned to Treatment \textit{c}.
+
+\begin{table}[ht]
+\centering
+\itshape
+\caption{Phase 1 experimental design showing the assignment of treatments and animals to cages, with $\nu = 3$ treatments and, $n_{A(B)} = 6$ animals within each of $n_B = 2$ cages.}
+\begin{tabular}[t]{|c|ccc|}
+\hline
+\multirow{2}{*}{{\bf Cage 1}} & Aa & Bb & Cc \\
+& Da & Eb & Fc  \\ \hline
+\multirow{2}{*}{{\bf Cage 2}}  & Aa & Bb & Cc \\
+& Da & Eb & Fc    \\   \hline 
+\end{tabular} 
+\label{tab:Phase1Des2}
+\end{table}
+
+The Phase 1 theoretical ANOVA table, shown in Table~\ref{tab:Phase1ANOVA2Chap4}, confirms that the estimation of the treatment effects can be performed with $100\%$ of the treatment information in the Between Animals Within Cages stratum. Additionally, 11 DF are split into Between Cages (1 DF) and Between Animals Within Cages (10 DF) strata. Since the Between Animals Within Cages stratum has 10 DF, 8 DF are associated with residual MS.
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table of the Phase 1 experiment, with $\nu = 3$ treatments and $n_{A(B)} = 6$ animals within each of $n_B = 2$ cages.}
+ \begin{tabular}[t]{lrll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Cages & $1$ & $\sigma_{A}^2+6\sigma_{B}^2$ &\\ \hline
+ Between Animals Within Cages &  &  &\\ 
+ \quad Treatment & $2$ & $\sigma_{A}^2+4\theta_{\tau}$ &$1$\\ 
+ \quad Residual & $8$ & $\sigma_{A}^2$ &\\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase1ANOVA2Chap4} 
+\end{table} 
+
+\begin{table}[ht]                                         
+\centering    
+\itshape                                            
+\caption{Cage, animal and treatment allocations to runs and tags from objective function~(\ref{eq:finalObjFun2}) for the Phase 2 experiment with $\nu = 3$ treatments, $n_{A(B)} = 6$ animals within each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 6$ runs and $ n_\gamma = 4$ tags.}             
+\begin{tabular}[t]{c|cccc}                                   
+ & \multicolumn{4}{c}{{\bf Tag}} \\                       
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                    
+\textnormal{1} & 2Cc & 1Aa & 2Aa & 1Eb \\                                  
+\textnormal{2} & 1Aa & 2Cc & 1Eb & 2Aa \\                                  
+\textnormal{3} & 1Cc & 2Bb & 2Da & 1Fc \\                                  
+\textnormal{4} & 2Bb & 1Cc & 1Fc & 2Da \\                                  
+\textnormal{5} & 2Eb & 1Da & 2Fc & 1Bb \\                                  
+\textnormal{6} & 1Da & 2Eb & 1Bb & 2Fc \\                                  
+\end{tabular}                                             
+\label{tab:cagAniDes3}                                    
+              
+ \caption{Cage, animal and treatment allocations to runs and tags from new objective function for Phase 2 experiment with $\nu = 3$ treatments, $n_{A(B)} = 6$ animals within each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 6$ runs and $ n_\gamma = 4$ tags.}                           
+ \begin{tabular}[t]{c|cccc} 
+ & \multicolumn{4}{c}{{\bf Tag}}\\                                   
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                    
+\textnormal{1} & 2Fc & 2Aa & 1Aa & 1Eb \\                                              
+\textnormal{2} & 2Aa & 2Fc & 1Eb & 1Aa \\                                              
+\textnormal{3} & 2Bb & 2Eb & 1Fc & 1Da \\                                              
+\textnormal{4} & 2Eb & 2Bb & 1Da & 1Fc \\                                              
+\textnormal{5} & 2Da & 2Cc & 1Bb & 1Cc \\                                              
+\textnormal{6} & 2Cc & 2Da & 1Cc & 1Bb \\                                              
+ \end{tabular}         
+ \label{tab:cagAniDes4}    
+ \end{table} 
+ 
+Using the objective function in (\ref{eq:finalObjFun2}), the allocation of animals and cages to runs and tags is given in Table~\ref{tab:cagAniDes3}. The effects of cages are orthogonal to both the effects of runs and tags. As for Animals Within Cages, 2 DF associated with Animals Within Cages are confounded with 1 DF for each of run and tag effects. 
+ 
+The new objective function yields the allocation of cages, animals and treatments to runs and tags shown in Table~\ref{tab:cagAniDes4}. One noticeable feature of the design is that the cage effects are completely confounded with tag effects, as Tags 114 and 115 have Cage 1 and Tags 116 and 117 have Cage 2. 
+
+For both designs, the theoretical ANOVA table shows that the treatment effects can be estimated based on $0.9375$ of pure treatment information, computed from two treatment canonical efficiency factors of $0.9375$ (Tables~\ref{tab:Phase2ANOVA3Chap4} and ~\ref{tab:Phase2ANOVA4Chap4}). However, the residual DF of the Between Animals Within Cages Within Runs stratum is reduced from 8 to 5 for the first design. The theoretical ANOVA Table~\ref{tab:Phase2ANOVA4Chap4} has shown the second design is better, because the residual DF in the Between Animals Within Cages Within Runs stratum is 6. The higher residual DF is due to the 1 DF associated with tag effects in the Between Cages stratum in the second design. 
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table from objective function~(\ref{eq:finalObjFun2}).}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatment & $2$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+0.5\theta_{\tau}$ & & $0.0625$\\ 
+ \quad Residual & $3$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+ Within Runs &  &  & & \\ 
+ \quad Between Cages & $1$ & $\sigma^2+2\sigma_{A}^2+12\sigma_{B}^2$ & & \\ \hline
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Treatment & $2$ & $\sigma^2+2\sigma_{A}^2+ 7.5\theta_{\tau}$ & & $0.9375$\\ 
+ \quad \quad Residual & $5$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+6\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $7$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVA3Chap4} 
+ 
+ \begin{tabular} {l}
+ 	\\
+ \end{tabular} 
+\caption{Theoretical ANOVA table from the new objective function.}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatment & $2$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+ 0.5\theta_{\tau}$ & & $0.0625$\\ 
+ \quad Residual & $3$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+ Within Runs&  &  & & \\ 
+ \quad Between Cages &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+12\sigma_{B}^2+6\theta_{\gamma}$ &$1$ & \\ \hline
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatment & $2$ & $\sigma^2+2\sigma_{A}^2+7.5\theta_{\tau}$ & & $0.9375$\\ 
+ \quad \quad Residual & $6$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+6\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $7$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVA4Chap4} 
+\end{table} 
+                                                  
+
+\section{Construction of the initial design}
+\label{sec:allocateCage}
+Once the objective function is defined, the next step is to construct the initial design for the SA search. Chapter 3 has shown that having a good initial design will allow SA search to locate the optimal design faster. The main challenge here is an additional cage component in the Phase 1 experiment. 
+
+Although the estimation of the treatment effects occurs in the Between Animals Within Cages Within Runs stratum, the construction of the initial design must consider the cage assignment to runs and tags. This is because, based on the example given in Section~\ref{sec:objFunChap4}, the cage effects can be confounded more with either run or tag effects, and this in turn can affect the residual DF in the Between Animals Within Cages Within Runs stratum. \cite{Brien2011} stated that one of the fundamental methods in the design of the two-phase experiment is to confound the highest variation of the block factor from the Phase 1 experiment with that from the Phase 2 experiment. However, since the differences between the tags are not the main interest, the cage effects can be confounded more with tag effects, which may result in an increase in the residual DF.  
+
+Table~\ref{tab:initialCag1} shows an example of cage allocation to runs and tags that gives a higher confounding of cage effects with run effects. Specifically, Runs 1 and 2 contain Cage 1 and Runs 3 and 4 contain Cage 2. Thus, all possible DF associated with cage effects are completely confounded with one of three DF associated with the Between Runs stratum. Additionally, since every tag contains at least one set of two different cages, the tag effects are orthogonal to the cage effects.
+
+Table~\ref{tab:initialCag2} shows an example of cage allocation to runs and tags that gives a higher confounding of cage effects with tag effects. Note that Tags 114 and 115 contain Cage 1 and Tags 116 and 117 contain Cage 2. Thus, one of the three DF associated with tag effects is completely confounded with the Between Cages stratum. Additionally, since every run contains at least one set of two different cages, cage effects are orthogonal to run effects. 
+
+\begin{table}[ht]                                       
+\centering 
+\itshape                                             
+\caption{Cage allocation to runs and tags where cages are confounded more with runs.}               
+\begin{tabular}[t]{c|cccc}                                 
+ & \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                     
+\textnormal{1}  & 1 & 1 & 1 & 1 \\  
+\textnormal{2}  & 1 & 1 & 1 & 1 \\  
+\textnormal{3}  & 2 & 2 & 2 & 2 \\  
+\textnormal{4}  & 2 & 2 & 2 & 2 \\     
+\end{tabular}                                           
+\label{tab:initialCag1}                                  
+                                      
+\caption{Cage allocation to runs and tags where cages are confounded more with tags.}           
+\begin{tabular}[t]{c|cccc}                                 
+ & \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                    
+\textnormal{1}  & 1 & 1 & 2 & 2 \\  
+\textnormal{2}  & 1 & 1 & 2 & 2 \\  
+\textnormal{3}  & 1 & 1 & 2 & 2 \\  
+\textnormal{4}  & 1 & 1 & 2 & 2 \\     
+\end{tabular}                                           
+\label{tab:initialCag2}                                  
+\end{table}    
+
+For MudPIT-iTRAQ$^{\rm TM}$ experiments, the number of tags can only be four or eight; thus, the cage effects can be completely confounded with tag effects only when the number of cages is even. Therefore, for odd numbers of cages, the initial design with cage effects confounded more with run effects must be used. This section presents three different possibilities: (1) a superior initial design in which cage effects confounded are more with tag effects ; (2) a superior initial design in which cage effects are confounded more with run effects; and (3) both initial designs perform the same and neither design is superior. 
+
+\subsection{A superior initial design in which cage effects are confounded more with tag effects}
+The example experiment involves $\nu = 7$ treatments, $n_{A(B)} = 14$ animals in each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 7$ runs and $n_\gamma = 8$ tags. For the Phase 1 experimental design, each cage contains Animals \textit{A} to \textit{N}. Pairs of animals are assigned to each treatment, e.g. Animals \textit{A} and \textit{H} are assigned to Treatment \textit{a}, Animals \textit{B} and \textit{I} are assigned to Treatment \textit{b}, and so on.
+
+The initial two-phase design where the cage effects are confounded more with run effects is presented in Table~\ref{tab:cagDes7}. The allocations of cages and animals in the first runs has the sequence $1A, 1B, 1C, \dots, 1H$, whereas in the second run, it has the sequence $1B, 1A, 1D, \dots, 1G$. Runs 3 and 4 have both Cages 1 and 2 and the remaining runs have only Cage 2. Each of the eight tags has a mixed number of Cages 1 and 2; hence, the cage effects are confounded with the effects of both runs and tags. 
+
+Table~\ref{tab:cagDes8} shows another way to assign the cages to runs and tags. Cage 1 is assigned only in Tags 113 to 116 and Cage 2 is assigned only in Tags 117 to 121. Hence, the Between Cages Within Runs stratum will have one DF associated with tag effects that contains $100\%$ of the tag information. In addition, the cage effects are orthogonal to the run effects, because each runs contains equal numbers of Cages 1 and 2. 
+
+
+\begin{table}[h!]                                            
+\centering 
+\itshape                                                  
+\caption{The initial cage and animal allocations to runs and tags with $\nu = 7$ treatments, $n_{A(B)} = 14$ animals in each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 7$ runs and $n_\gamma = 8$ tags in which cages are confounded more with runs.}                
+\begin{tabular}[t]{c|cccccccc}                                      
+ & \multicolumn{8}{c}{{\bf Tag}} \\                          
+{\bf Run}  &  \textnormal{113} &  \textnormal{114} &  \textnormal{115} &  \textnormal{116} &  \textnormal{117} &  \textnormal{118} &  \textnormal{119} &  \textnormal{121}\\ \hline                                                    
+\textnormal{1} & 1A & 1B & 1C & 1D & 1E & 1F & 1G & 1H \\
+\textnormal{2} & 1B & 1A & 1D & 1C & 1F & 1E & 1H & 1G \\
+\textnormal{3} & 1J & 1K & 1I & 1L & 1N & 2A & 1M & 2B \\
+\textnormal{4} & 1K & 1J & 1L & 1I & 2A & 1N & 2B & 1M \\
+\textnormal{5} & 2E & 2F & 2G & 2H & 2C & 2D & 2J & 2K \\
+\textnormal{6} & 2F & 2E & 2H & 2G & 2D & 2C & 2K & 2J \\
+\textnormal{7} & 2I & 2I & 2L & 2L & 2M & 2M & 2N & 2N \\                                               
+\end{tabular}                                                
+\label{tab:cagDes7}                                       
+ 
+\begin{tabular}{l}
+\\	
+\end{tabular} 
+                                          
+\centering                                                   
+\caption{The initial cage and animal allocations to runs and tags with $\nu = 7$ treatments, $n_{A(B)} = 14$ animals in each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 7$ runs and $n_\gamma = 8$ tags in which the cage effects are confounded more with tag effects.}                
+\begin{tabular}[t]{c|cccccccc}                                      
+ & \multicolumn{8}{c}{{\bf Tag}} \\                          
+{\bf Run}  &  \textnormal{113} &  \textnormal{114} &  \textnormal{115} &  \textnormal{116} &  \textnormal{117} &  \textnormal{118} &  \textnormal{119} &  \textnormal{121}\\ \hline                                                      
+\textnormal{1} & 1A & 1B & 1H & 1I & 2A & 2B & 2H & 2I \\
+\textnormal{2} & 1B & 1A & 1I & 1H & 2B & 2A & 2I & 2H \\
+\textnormal{3} & 1C & 1D & 1J & 1K & 2C & 2D & 2J & 2K \\
+\textnormal{4} & 1D & 1C & 1K & 1J & 2D & 2C & 2K & 2J \\
+\textnormal{5} & 1E & 1F & 1L & 1M & 2E & 2F & 2L & 2M \\
+\textnormal{6} & 1F & 1E & 1M & 1L & 2F & 2E & 2M & 2L \\
+\textnormal{7} & 1G & 1G & 1N & 1N & 2G & 2G & 2N & 2N \\
+\end{tabular}                                                
+\label{tab:cagDes8}                                       
+\end{table}  
+
+The theoretical ANOVA table of the first design (in Table~\ref{tab:Phase2ANOVA7})  shows that the estimation of the treatment effects can be performed with 14 DF associated with residual MS and based on $0.9666$ of treatment information (which is computed from the canonical efficiency factor of $1,1,1, 0.969, 0.969$ and $0.875$). The theoretical ANOVA table of the second design (in Table~\ref{tab:Phase2ANOVA7}) shows that the estimation of the treatment effects can be performed with 15 residual DF and based on $0.9666$ of treatment information. Thus, even though both designs have identical treatment average efficiency factors, the second design, in which cage effects are confounded more with tag effects, has one more residual DF, making it the better design. 
+
+\begin{table}[h!]
+\centering
+ \caption{Theoretical ANOVA table of design 1.}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{A}^2+8\sigma_{R}^2+0.33\theta_{\tau}$ & & $0.0417$\\ 
+ \quad Residual & $3$ & $\sigma^2+8\sigma_{R}^2$ & & \\ \hline
+ Within Runs &  &  & & \\ 
+ \quad Between Cages &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+28\sigma_{B}^2+ 0.71\theta_{\gamma}$ &$0.102$ & \\ \hline
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $3$ & $\sigma^2+2\sigma_{A}^2+6.745\theta_{\gamma}$ &$0.9635$ & \\ 
+ \quad \quad Treatment & $6$ & $\sigma^2+2\sigma_{A}^2+ 7.733\theta_{\tau}$ & & $0.9666$\\ 
+ \quad \quad Residual & $14$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $4$ & $\sigma^2+7\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $21$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVA7} 
+
+\begin{tabular}{l}
+ 	\\	
+ \end{tabular} 
+ 
+ \caption{Theoretical ANOVA table of design 2.}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatments & $3$ & $\sigma^2+2\sigma_{A}^2+8\sigma_{R}^2+0.33\theta_{\tau}$ & & $0.0417$\\ 
+ \quad Residual & $3$ & $\sigma^2+8\sigma_{R}^2$ & & \\ \hline
+ Within Runs &  &  & & \\ 
+ \quad Between Cages &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+28\sigma_{B}^2+7\theta_{\gamma}$ &$1$ & \\ \hline
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+2\sigma_{A}^2+7\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Treatment & $6$ & $\sigma^2+2\sigma_{A}^2+7.733\theta_{\tau}$ & & $0.9666$\\ 
+ \quad \quad Residual & $15$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $4$ & $\sigma^2+7\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $21$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVA8} 
+\end{table} 
+
+
+\subsection{A superior initial design in which cage effects are confounded more with run effects}
+Now consider an experiment with $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 4$ cages, $r_t = 2$ technical replicates, $n_R = 8$ runs and $n_\gamma = 4$ tags. Table~\ref{tab:cagAniDes11} shows the cage allocation to runs and tags, in which the cages are more confounded with runs. Specifically, Runs 1 and 2 contain only Cage 1, Runs 3 and 4 contain only Cage 2, Runs 5 and 6 contain only Cage 3 and Runs 7 and 8 contain only Cage 4. Thus, all 3 DF associated with cage effects are completely confounded with run effects. Additionally, cage effects are orthogonal to tag effects, because each tag contains each of four cages. Table~\ref{tab:cagAniDes12} shows the second cage allocation to runs and tags where cage effects are confounded more with tag effects. Tags 114 and 115 contain Cages 1 and 2, while Tags 116 and 117 contain Cages 3 and 4. In addition, Runs 1 to 4 contain Cages 1 and 3, and Runs 5 to 8 contain Cages 2 and 4. Hence, this design shows cage effects to now confounded with both run and tag effects. 
+
+\begin{table}[ht]                                       
+\centering   
+\itshape                                        
+\caption{The initial cage and animal allocations to runs with $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 4$ cages, $r_t = 2$ technical replicates, $n_R = 8$ runs and $n_\gamma = 4$ tags in which the cage effects are confounded more with run effects.}           
+\begin{tabular}[t]{c|cccc}                                 
+	& \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                   
+	\textnormal{1}  & 1A & 1B & 1C & 1D \\ 
+	\textnormal{2}  & 1B & 1A & 1D & 1C \\ 
+	\textnormal{3}  & 2A & 2B & 2C & 2D \\ 
+	\textnormal{4}  & 2B & 2A & 2D & 2C \\ 
+	\textnormal{5}  & 3C & 3D & 3A & 3B \\ 
+	\textnormal{6}  & 3D & 3C & 3B & 3A \\ 
+	\textnormal{7}  & 4C & 4D & 4A & 4B \\ 
+	\textnormal{8}  & 4D & 4C & 4B & 4A \\         
+\end{tabular}                                           
+\label{tab:cagAniDes11}                                  
+
+\begin{tabular}{l}
+	\\	
+\end{tabular} 
+                                         
+\caption{The initial cage and animal allocations to runs and tags with $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 4$ cages, $r_t = 2$ technical replicates, $n_R = 8$ runs and $n_\gamma = 4$ tags in which the cage effects are confounded more with tag effects.}           
+\begin{tabular}[t]{c|cccc}                                 
+	& \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                   
+	\textnormal{1}  & 1A & 1B & 3A & 3B \\ 
+	\textnormal{2}  & 1B & 1A & 3B & 3A \\ 
+	\textnormal{3}  & 1C & 1D & 3C & 3D \\ 
+	\textnormal{4}  & 1D & 1C & 3D & 3C \\ 
+	\textnormal{5}  & 2A & 2B & 4A & 4B \\ 
+	\textnormal{6}  & 2B & 2A & 4B & 4A \\ 
+	\textnormal{7}  & 2C & 2D & 4C & 4D \\ 
+	\textnormal{8}  & 2D & 2C & 4D & 4C \\            
+\end{tabular}                                           
+\label{tab:cagAniDes12}                                  
+\end{table}   
+
+The theoretical ANOVA table of the first design (in Table~\ref{tab:Phase2ANOVA11}) shows that the estimation of treatment effects can be performed with 8 residual DF and based on $100\%$ of treatment information. The theoretical ANOVA table of the second design (in Table~\ref{tab:Phase2ANOVA12}) shows that the estimation of the treatment effects can be performed with 7 residual DF and based on $100\%$ of treatment information. Hence, even though both designs have identical treatment average efficiency factors, the first design, in which cage effects are confounded more with run effects, has one more residual DF than the second design. Thus, the first design is the better design. 
+
+%The theoretical ANOVA Table (in Table~\ref{tab:Phase2ANOVA11}) shows 3 DF associated with the Between Cages are in the Between Runs stratum due to the confounding of cages with runs. The remaining 4 DF associated with runs are orthogonal to animals within cages, because every run contains all four animals within the same cages. In the ``Between Animals Within Cages Within Runs stratum'', one DF associated with tag effects is responsible for the tag contrast of ``Tags 114 and 115'' versus ``Tags 116 and 117''. This tag contrast compares different sets of animals within the same tags. All 3 DF associated with treatment effects with $100\%$ of treatment information remain in the Between Animals Within Cages Within Runs stratum. Hence, 8 DF associated with the residual MS remain for testing for the treatment effects. Recall that 9 DF were associated with the residual MS in the Phase 1 experiment, which is one more than in the present design. That missing 1 DF is associated with the tag effects in the ``Between Animals Within Cages Within Runs stratum''.
+
+%The first objective function now converges at seven, which is one less than in the previous design. Meanwhile, the second objective function still converges at $100\%$. Table~\ref{tab:finalCagAniDes12} shows the identified optimal design. Table~\ref{tab:Phase2ANOVA12} shows the theoretical ANOVA Table of the optimal design. The confounding of the cages and runs reflects the 1 DF associated with Between Cages in the Between Runs stratum. The confounding of the tags and cages reflects the 1 DF associated with tag effects in the Between Cages Within Runs stratum. The most notable difference between this theoretical ANOVA table and the previous one is that 2 DF associated with Between Animals Within Cages are in the Between Runs stratum. These 2 DF come from the comparison of ``Runs 1 and 2'' versus ``Runs 3 and 4'' and ``Runs 5 and 6'' versus ``Runs 7 and 8''. These two contrasts compare different set of animals within same cages. 
+
+%Demonstrating that 12 DF are associated with animals with cages from the Phase 1 experiment, 10 DF are now associated with Between Animals Within Cages Within Runs for the Phase 2 experiment. Thus, 7 DF are now associated with the residual MS in the Between Animals Within Cages Within Runs stratum. Therefore, despite the absence of tag effects in the Between Animals Within Cages stratum in the latter design, the DF associated with the residual MS are reduced. Hence, the previous design should be used to test for the treatment effects. Thus, given both treatment and cage numbers are even, the initial design with higher confounding of cages with runs should be considered.
+
+
+\begin{table}[ht]
+	\centering
+	\caption{Theoretical ANOVA table for the Phase 2 experiment with $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 4$ cages, $r_t = 2$ technical replicates, $n_R = 8$ runs and $n_\gamma = 4$ tags.}
+	\begin{tabular}[t]{lrlll}
+		\toprule
+		\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\
+		\midrule
+		Between Runs &  &  & & \\
+		\quad Between Cages & $3$ & $\sigma^2+2\sigma_{A}^2+8\sigma_{C}^2+4\sigma_{R}^2$ & & \\
+		\quad Residual & $4$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+		Within Runs &  &  & & \\
+		\quad Between Animals Within Cages &  &  & & \\
+		\quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\gamma}$ &$1$ & \\
+		\quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau}$ & & $1$\\
+		\quad \quad Residual & $8$ & $\sigma^2+2\sigma_{A}^2$ & & \\\hline
+		\quad Within Animals Within Cages &  &  & & \\
+		\quad \quad Tag & $2$ & $\sigma^2+8\theta_{\gamma}$ &$1$ & \\
+		\quad \quad Residual & $10$ & $\sigma^2$ & & \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:Phase2ANOVA11} 
+ 
+ \begin{tabular}{l}
+ 	\\	
+ \end{tabular} 
+ 
+	\caption{Theoretical ANOVA table for the Phase 2 experiment with $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 4$ cages, $r_t = 2$ technical replicates, $n_R = 8$ runs and $n_\gamma = 4$ tags.}
+	\begin{tabular}[t]{lrlll}
+		\toprule
+		\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\
+		\midrule
+		Between Runs &  &  & & \\
+		\quad Between Cages & $1$ & $\sigma^2+2\sigma_{A}^2+8\sigma_{C}^2+4\sigma_{R}^2$ & & \\
+		\quad Between Animals Within Cages & $2$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2$ & & \\
+		\quad Residual & $4$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+		Within Runs &  &  & & \\
+		\quad Between Cages &  &  & & \\
+		\quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+8\sigma_{C}^2+8\theta_{\gamma}$ &$1$ & \\
+		\quad \quad Residual & $1$ & $\sigma^2+2\sigma_{A}^2+8\sigma_{C}^2$ & & \\ \hline
+		\quad Between Animals Within Cages &  &  & & \\
+		\quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{A}^2+8\theta_{\tau}$ & & $1$\\
+		\quad \quad Residual & $7$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+		\quad Within Animals Within Cages &  &  & & \\
+		\quad \quad Tag & $2$ & $\sigma^2+8\theta_{\gamma}$ &$1$ & \\
+		\quad \quad Residual & $10$ & $\sigma^2$ & & \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:Phase2ANOVA12} 
+\end{table}
+
+
+\subsection{Performance remains unchanged whether cage effects are confounded with tag or run effects}
+In some cases, the optimal design remains the same for either initial design. One such case involves $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 4$ runs and $n_\gamma = 4$ tags. The cage allocation for the design where cage effects are confounded more with run effects, was previously presented in Table~\ref{tab:initialCag1}, where Runs 1 and 2 contain only Cage 1 and Runs 3 and 4 contain only Cage 2. However, cage effects are orthogonal to tag effects, because each tag contains two of Cages 1 and 2. Table~\ref{tab:initialCag2} shows the cage allocation where cage effects are confounded more with tag effects. The difference from the previous design is that Tags 114 and 115 contain Cage 1 and Tags 116 and 117 contain Cage 2, meaning tag effects are confounded with cage effects. However, since every run contains both cages, cage effects are orthogonal to run effects. 
+
+\begin{table}[ht]                                       
+\centering           
+\itshape                            
+\caption{The final allocation of animals and cages to runs and tags with $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 4$ runs and $n_\gamma = 4$ tags, where cages are more confounded with runs.}           
+\begin{tabular}[t]{c|cccc}                                 
+& \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                  
+\textnormal{1}  & 1B & 1A & 1D & 1C \\  
+\textnormal{2}  & 1A & 1B & 1C & 1D \\  
+\textnormal{3}  & 2C & 2D & 2A & 2B \\  
+\textnormal{4}  & 2D & 2C & 2B & 2A \\          
+\end{tabular}                                           
+\label{tab:cagAniDes13}                                  
+
+\begin{tabular}{l}
+\\	
+\end{tabular} 
+
+\caption{Allocation of animals and cages to runs and tags with $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 4$ runs and $n_\gamma = 4$ tags, where cages are confounded more with tags.}           
+\begin{tabular}[t]{c|cccc}                                 
+& \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                   
+\textnormal{1}  & 1A & 1B & 2D & 2C \\
+\textnormal{2}  & 1B & 1A & 2C & 2D \\
+\textnormal{3}  & 1C & 1D & 2B & 2A \\
+\textnormal{4}  & 1D & 1C & 2A & 2B \\        
+\end{tabular}                                           
+\label{tab:cagAniDes14}                                  
+\end{table} 
+
+The theoretical ANOVA tables of the first and second designs (in Tables ~\ref{tab:Phase2ANOVA13} and \ref{tab:Phase2ANOVA14}) show that the estimates of the treatment effects are both performed with 2 residual DF and are based on $100\%$ of treatment information. Therefore, the estimation of the treatment effects will be the same for both designs.
+
+%The theoretical ANOVA table shows 1 DF associated with Between Cages is in the Between Runs stratum. In the ``Between Animals Within Cages Within Runs stratum'', 1 DF and 3 DF are still associated with the tag effects and treatment effects, respectively. Hence, 2 DF are still associated with residual MS for conducting the test for the treatment effects in the ``Between Animals Within Cages Within Runs stratum''.  Due to the confounding of animals within cages with runs, the theoretical ANOVA table shows 1 DF associated with the Between Animals Within Cages Between Runs stratum. The 1 DF associated with tag effects belongs to the Between Cages Within Runs stratum, because that one contrast associated with tags is confounded with 1 DF associated with cages. Thus, the tags are orthogonal to animals within cages, because every tag contains all four animals. There are still 2 DF associated with the residual MS for testing for the treatment effects in the Between Animals Within Cages Within Runs stratum. Therefore, the tests for the treatment effects should yield identical results with both designs. 
+
+\begin{table}[ht]
+	\centering
+	\caption{Theoretical ANOVA table with $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 4$ runs and $n_\gamma = 4$ tags where cages are confounded more with runs.}
+	\begin{tabular}[t]{lrlll}
+		\toprule
+		\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\
+		\midrule
+		Between Runs &  &  & & \\ 
+		\quad Between Cages & $1$ & $\sigma^2+2\sigma_{A}^2+8\sigma_{B}^2+4\sigma_{R}^2$ & & \\
+		\quad Residual & $2$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+		Within Runs &  &  & & \\ 
+		\quad Between Animals Within Cages &  &  & & \\
+		\quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+4\theta_{\gamma}$ &$1$ & \\
+		\quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{A}^2+4\theta_{\tau}$ & & $1$\\
+		\quad \quad Residual & $2$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+		\quad Within Animals Within Cages &  &  & & \\
+		\quad \quad Tag & $2$ & $\sigma^2+4\theta_{\gamma}$ &$1$ & \\
+		\quad \quad Residual & $4$ & $\sigma^2$ & & \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:Phase2ANOVA13}
+	
+	\begin{tabular}{l}
+		\\	
+	\end{tabular} 
+	
+	\caption{Theoretical ANOVA table with $\nu = 4$ treatments, $n_{A(B)} = 4$ animals within each of $n_B = 2$ cages, $r_t = 2$ technical replicates, $n_R = 4$ runs and $n_\gamma = 4$ tags where cages are confounded more with tags.}
+	\begin{tabular}[t]{lrlll}
+		\toprule
+		\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\
+		\midrule
+		Between Runs &  &  & & \\
+		\quad Between Animals Within Cages & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2$ & & \\ 
+		\quad Residual & $2$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+		Within Runs &  &  & & \\ 
+		\quad Between Cages &  &  & & \\
+		\quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+8\sigma_{B}^2+4\theta_{\gamma}$ &$1$ & \\ \hline
+		\quad Between Animals Within Cages &  &  & & \\
+		\quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{A}^2+4\theta_{\tau}$ & & $1$\\
+		\quad \quad Residual & $2$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+		\quad Within Animals Within Cages &  &  & & \\
+		\quad \quad Tag & $2$ & $\sigma^2+4\theta_{\gamma}$ &$1$ & \\
+		\quad \quad Residual & $4$ & $\sigma^2$ & & \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:Phase2ANOVA14}
+\end{table}
+
+In summary, this section has shown that an initial design in which cages are confounded more with runs or tags can affect the residual DF of the ANOVA tables. Specifically, the initial design where cage effects are confounded more with tag effects and the DF associated with the tag effects can be pushed from the Between Animals Within Cages Within Runs stratum into the Between Cages Within Runs stratum. Consequently, the DF associated with residual MS in the Between Animals Within Cages Within Runs stratum increase. Thus, an initial design where cage effects are confounded with tag effects should be used in most of cases. However, some exceptions do exist, as shown in the second case in which the design with higher confounding of cage effects with run effects must be used. Therefore, the suggestion here is to test both initial designs and compare the optimal designs they yield. 
+
+\section{Modified simulated annealing for searching the optimal design}
+\label{sec:RCBDsa}
+The simulated annealing (SA) algorithm from Chapter 2 comprised two components: temperature control and swapping method. The temperature control determines the temperature ranges and the method of temperature reduction. The method described in Chapter 2 for computing the initial and end temperatures and the modified accelerated cooling can still be used, because the temperature range is still determined from the numeric value generated by the objective function. 
+
+The three-stage swapping procedure can still be used to reduce the size of search space when finding for the optimal design. However, the three-stage swapping procedure needs to be adjusted to preserve the structure of the initial design in which cage effects are confounded more with tag effects. For example, if the design parameters comprise $\nu = 3$ treatments, $n_{A(B)} = 3$ animals within each of $n_B = 4$ cages, $r_t = 2$ technical replicates, $n_R = 6$ runs and $n_\gamma = 4$ tags, then the initial design is one where cage effects are confounded more with tag effects. If Animal \textit{A} in Cage 1 is swapped with Animal \textit{B} in Cage 2, the resulting design still has Tags 114 and 115 containing Cages 1 and 2, and Tags 116 and 117 containing Cages 3 and 4. Thus, the swapping of samples are only between different runs, but within the same tags. 
+
+\begin{table}[ht]                                       
+\centering  
+\itshape                                            
+\caption{Showing the swapping between Cage-Animal 1A and 2B on the initial allocation of animals and cages to runs and tags with $\nu = 3$ treatments, $n_{A(B)} = 3$ animals within each of $n_B = 4$ cages, $r_t = 2$ technical replicates, $n_R = 6$ runs and $n_\gamma = 4$ tags.}           
+\begin{tabular}{c|cccc}                                 
+ & \multicolumn{4}{c}{{\bf Tag}} \\                     
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                  
+\textnormal{1}  & $\bm{1A}$ & 1B & 3A & 3B \\  
+\textnormal{2}  & 1B & $\bm{1A}$ & 3B & 3A \\  
+\textnormal{3}  & 1C & 2A & 3C & 4A \\  
+\textnormal{4}  & 2A & 1C & 4A & 3C \\  
+\textnormal{5}  & $\bm{2B}$ & 2C & 4B & 4C \\  
+\textnormal{6}  & 2C & $\bm{2B}$ & 4C & 4B \\        
+\end{tabular}                                           
+\label{tab:iniCagAniDesEXSwap}                                  
+\end{table}    
+
+%For cases involving initial designs in which cage effects are confounded more with run effects, this includes the cases where the Phase 1 experiment involves with odd number of cages.  the three-stage swapping procedure still applies. This is because this initial deign covers all remaining cases. These cases included the Phase 1 experiment involves with odd number of cages, where the effects of cages cannot be completely confounded with run effects; thus, the SA search must cover all three different subspaces.   
+
+Finally, since the cage component increases the complexity of the search space, the optimal design can also be harder to locate. Increasing the number of iterations, which will increase the search path while running the SA, can offset this difficulty. It increases the chance of locating a better design with a longer search path. 
+
+\section{An illustrative example with 6 treatments}
+\label{sec:exampleWith6Trt}
+This section presents an example of finding the optimal design using the objective function and SA method described above. Consider an experiment with $\nu = 6$ treatments, $n_{A(B)} = 6$ animals in each of  $n_B = 3$ cages, $r_t = 2$ technical replicates, $n_R = 9$ runs and $n_\gamma = 4$ tags. For the Phase 1 experiment arranged in RCBD, each of three cages contains six animals with all six different treatments assigned. The Phase 1 theoretical ANOVA table (in Table~\ref{tab:Phase1ANOVAEX}) showed all the treatment information in the Between Animals Within Cages stratum. A total of 17 DF are split into 2 DF for the Between Cages stratum and 15 DF for the Between Animals Within Cages stratum. 
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table of Phase 1 experiment.}
+ \begin{tabular}{lrll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Cages & $2$ & $\sigma_{A}^2+6\sigma_{B}^2$ &\\ \hline
+ Between Animals Within Cages &  &  &\\ 
+ \quad Treatment & $5$ & $\sigma_{A}^2+3\theta_{\tau}$ &$1$\\ 
+ \quad Residual & $10$ & $\sigma_{A}^2$ &\\ 
+  \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase1ANOVAEX} 
+\end{table} 
+
+Since the number of cages is odd, the initial allocation can only have cage effects that are confounded more with run effects. Using the objective function and SA method mentioned in Sections~\ref{sec:objFunChap4} and \ref{sec:RCBDsa}, respectively, an allocation of cages, animals and treatments have been found and are shown in Table~\ref{tab:cagAniDesEX1}. Cage effects are confounded with run effects, because Runs 3, 4, 5, 6, 7 and 8 contain Cages 2 and 3, whereas Runs 1, 2 and 9 contain only Cage 1. 
+
+\begin{table}[ht]                                           
+\centering     
+\itshape                                               
+\caption{Animal and cage allocations to runs and tags found for the Phase 2 experiment with $\nu = 6$ treatments, $n_{A(B)} = 6$ animals in each of  $n_B = 3$ cages, $r_t = 2$ technical replicates, $n_R = 9$ runs and $n_\gamma = 4$ tags.}               
+\begin{tabular}{c|cccc}                                     
+ & \multicolumn{4}{c}{{\bf Tag}} \\                         
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline                                                       
+\textnormal{1} & 1Dd & 1Cc & 1Aa & 1Ff \\     
+\textnormal{2} & 1Cc & 1Dd & 1Ff & 1Aa \\     
+\textnormal{3} & 3Dd & 2Ee & 2Aa & 3Ff \\     
+\textnormal{4} & 2Ee & 3Dd & 3Ff & 2Aa \\     
+\textnormal{5} & 3Aa & 2Cc & 3Ee & 2Bb \\     
+\textnormal{6} & 2Cc & 3Aa & 2Bb & 3Ee \\     
+\textnormal{7} & 2Ff & 3Bb & 3Cc & 2Dd \\     
+\textnormal{8} & 3Bb & 2Ff & 2Dd & 3Cc \\     
+\textnormal{9} & 1Ee & 1Ee & 1Bb & 1Bb \\                                       
+\end{tabular}                                               
+\label{tab:cagAniDesEX1}                                      
+\end{table} 
+     
+The Phase 2 theoretical ANOVA table is expressed in Table~\ref{tab:Phase2ANOVAEX1}. In the Between Runs stratum, there are 1 DF for the Between Cages stratum and 3 DF for the Between Animals Within Cages stratum. The 3 DF associated with the Between Animals Within Cages stratum are confounded with 3 DF associated with treatment effects based on $0.1667$ of treatment information. In the Within Runs stratum, there are 1 DF associated the Between Cages stratum, 12 DF with the Between Animals Within Cages stratum, and 14 DF with the Within Animals Within Cages stratum. Since there is 1 DF associated with tag effects in the Between Animals Within Runs stratum, there are still 6 DF associated with the residual MS for estimating the treatment effects. In addition, the amount of treatment information remaining is $0.8204$, compared to $100\%$ in the Phase 1 experiment.
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for an experiment with $\nu = 6$ treatments, $n_{A(B)} = 6$ animals in each of  $n_B = 3$ cages, $r_t = 2$ technical replicates, $n_R = 9$ runs and $n_\gamma = 4$ tags.}
+ \begin{tabular}{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Cages & $1$ & $\sigma^2+2\sigma_{A}^2+12\sigma_{B}^2+4\sigma_{R}^2$ & & \\ \hline
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau}$ & & $0.1667$\\ 
+ \quad Residual & $4$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline
+ Within Runs &  &  & & \\ 
+ \quad Between Cages & $1$ & $\sigma^2+2\sigma_{A}^2+12\sigma_{B}^2$ & & \\ \hline
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+9\theta_{\gamma}+ 0.67\theta_{\tau}$ &$1$ & $ 0.1111$\\ 
+ \quad \quad Treatment & $5$ & $\sigma^2+2\sigma_{A}^2+4.923\theta_{\tau}$ & & $ 0.8204$\\ 
+ \quad \quad Residual & $6$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline
+ \quad Within Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+9\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $12$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVAEX1} 
+\end{table} 
+
+The treatment canonical efficiency factors associated with the treatment effects in the Between Animals Within Cages Within Runs stratum are $1, 0.894, 0.889, 0.833$ and $0.606$; thus $E_\tau = 0.8204$. The basic contrasts associated with each of these treatment canonical efficiency factors are also generated as
+\[
+\kbordermatrix{~&1&2&3&4&5\cr 
+a & 0.2887 & -0.5577 &  0.4082  & -0.5 & -0.1494  \cr
+b & 0.2887 &  0.1494 &  0.4082  &  0.5 &  0.5577 \cr
+c &-0.2887 & -0.5577 & -0.4082  &  0.5 & -0.1494 \cr
+d & 0.5774 &  0.4082 & -0.4082  &  0 & -0.4082  \cr
+e &-0.2887 &  0.1494 & -0.4082  & -0.5 &  0.5577  \cr
+f &-0.5774 &  0.4082 &  0.4082  &  0 & -0.4082 \cr}.
+\]  
+The first contrast compares Treatments \textit{a}, \textit{b} and \textit{d} with \textit{c}, \textit{e}, \textit{f}; the second contrast compares Treatments \textit{b}, \textit{d}, \textit{e} and \textit{f} with \textit{a} and \textit{c}; the third contrast compares Treatments \textit{a}, \textit{b} and \textit{f} with \textit{c}, \textit{d} and \textit{e}; the fourth contrast compares Treatments \textit{b} and \textit{c} with \textit{a} and \textit{e}; and the fifth contrast compares Treatments \textit{b} and \textit{e} with \textit{a}, \textit{c}, \textit{d} and \textit{f}. 
+
+These five basic treatment contrasts are used to the theoretical ANOVA table and given in Table~\ref{tab:Phase2ANOVAEX1trtContr}. This ANOVA table shows the amount of the treatment information for each of the five orthogonal treatment contrasts. Treatment contrast 1 has all its information in the Between Animals Within Cages Within Runs stratum. The tag MS in the Between Animals Within Cages Within Runs stratum contains $0.111$ of treatment information from treatment contrast 3, which means there is still $0.889$ of treatment information remaining. Treatment contrasts 2, 4 and 5 have $0.1057, 0.167$ and $0.3943$ of treatment information in the Between Animals Within Cages Between Runs stratum, respectively. The harmonic mean of $0.1057, 0.167$ and $0.3943$ is $0.167$. This is also shown in the theoretical ANOVA table in Table~\ref{tab:Phase2ANOVAEX1}, which has $0.167$ of treatment information in the Between Animals Within Cages Between Runs stratum. The amount of treatment information remaining for treatment contrasts 1, 2, 3, 4 and 5 are $1, 0.894, 0.889, 0.833$ and $0.606$, respectively. Thus, $E_\tau = 0.8204$.
+
+\begin{landscape}
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table with treatment contrasts for an experiment with $\nu = 6$ treatments, $n_{A(B)} = 6$ animals in each of  $n_B = 3$ cages, $r_t = 2$ technical replicates, $n_R = 9$ runs and $n_\gamma = 4$ tags.}
+ \begin{tabular}{lrlllllll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_1}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_2}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_3}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_4}}$}&\multicolumn{1}{l}{$\bm{E_{\tau_5}}$}\\ 
+ \midrule 
+ Between Runs &  &  & &  &  &  &  & \\ 
+ \quad Between Cages & $1$ & $\sigma^2+2\sigma_{A}^2+12\sigma_{C}^2+4\sigma_{R}^2$ & &  &  &  &  & \\ \hline
+ \quad Between Animals Within Cages &  &  & &  &  &  &  & \\ 
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+265/418\theta_{\tau_2}$ & &  & $0.1057$ &  &  & \\ 
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+\theta_{\tau_4}$ & &  &  &  & $1/6$ & \\ 
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+1351/571\theta_{\tau_5}$ & &  &  &  &  & $0.3943$\\ 
+ \quad Residual & $4$ & $\sigma^2+4\sigma_{R}^2$ & &  &  &  &  & \\ \hline
+ Within Runs &  &  & &  &  &  &  & \\ 
+ \quad Between Cages & $1$ & $\sigma^2+2\sigma_{A}^2+12\sigma_{C}^2$ & &  &  &  &  & \\ \hline
+ \quad Between Animals Within Cages &  &  & &  &  &  &  & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{A}^2+9\theta_{\gamma}+2/3\theta_{\tau_3}$ &$1$ &  &  & $1/9$ &  & \\ 
+ \quad \quad Treatment contrast 1 & $1$ & $\sigma^2+2\sigma_{A}^2+6\theta_{\tau_1}$ & & $1$ &  &  &  & \\ 
+ \quad \quad Treatment contrast 2 & $1$ & $\sigma^2+2\sigma_{A}^2+3064/571\theta_{\tau_2}$ & &  & $0.8943$ &  &  & \\ 
+ \quad \quad Treatment contrast 3 & $1$ & $\sigma^2+2\sigma_{A}^2+16/3\theta_{\tau_3}$ & &  &  & $8/9$ &  & \\ 
+ \quad \quad Treatment contrast 4 & $1$ & $\sigma^2+2\sigma_{A}^2+5\theta_{\tau_4}$ & &  &  &  & $5/6$ & \\ 
+ \quad \quad Treatment contrast 5 & $1$ & $\sigma^2+2\sigma_{A}^2+1519/418\theta_{\tau_5}$ & &  &  &  &  & $0.6057$\\ 
+ \quad \quad Residual & $6$ & $\sigma^2+2\sigma_{A}^2$ & &  &  &  &  & \\ \hline
+ \quad Within Animals Within Cages &  &  & &  &  &  &  & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+9\theta_{\gamma}$ &$1$ &  &  &  &  & \\ 
+ \quad \quad Residual & $12$ & $\sigma^2$ & &  &  &  &  & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVAEX1trtContr} 
+\end{table} 
+\end{landscape}
+
+\section{Optimal designs for experiments involving two to eight treatments and two technical replicates}
+\label{sec:overSumChap4}
+Using the objective function described in Section~\ref{sec:objFunChap4} and the simulated annealing algorithm described in Section~\ref{sec:RCBDsa}, a set of optimal designs were found and presented online at \url{http://kcha193.droppages.com/}. This set of optimal designs are for experiments featuring $\nu = 2,\dots,8$ treatments, $r_b = 2,\dots, 8$ biological replicates, $n_B = 2, \dots, 10$ cages, $r_t = 2$ technical replicates, $n_\gamma = 4, 8$ tags, and $n_R = n/n_\gamma$ runs. If a biologist has an experiment with this set of design parameters, they can use the given design for their experiment. A set of tables, summarising the properties of the theoretical ANOVA table for each optimal Phase 2 design, are presented in the Appendix. This section discusses the properties of the optimal designs found.  
+
+With the addition of the cage components from the Phase 1 experiment, the residual DF in the Between Animals Within Cages Within Runs stratum decrease. This is because more DF are associated with the Between Cages stratum, which reduces the DF remaining in the Between Animals Within Cages stratum. 
+
+As described in Chapter 3 where the Phase 1 experiment is arranged in CRD, there are always 1 and 3 DF associated with tag effects in the Between Animals Within Cages stratum for the four-plex and eight-plex experiments, respectively. However, these DF can be reduced with designs in which cage effects are completely confounded with tag effects as shown in an example of Section~\ref{sec:allocateCage}. However, there is also a case using the designs in which cage effects are completely confounded with run effects is better. Further, there is another case in which neither design affects the finding of the optimal design. Thus, it is important to search for the optimal design using both initial designs and to compare the final resultant designs to determine the optimal design. 
+
+As described in Chapter 3 where the Phase 1 experiment is arranged in CRD, confounding of treatment effects with either tag or run effects, or both, does occur in the optimal design. More specifically, the treatment effects can be confounded with the tag effects if the number of runs is not divisible by the number of treatments. Moreover, the treatment effects can also be confounded with the run effects when the number of tags is not divisible by the number of treatments. In most cases, either type of confounding results in the treatment canonical efficiency factors not being identical, but the resultant treatment average efficiency factor of the optimal design is still fairly high. An example of the canonical efficiency factors not being identical is presented in Section~\ref{sec:exampleWith6Trt}. The appendix presents the treatment average and canonical efficiency factors of every optimal design found. 
+  
+Based on the identified optimal designs, the treatment average efficiency factors are either the same as or less than those for the optimal designs found where the Phase 1 experiment is CRD, given the same set of design parameters. Hence, to accelerate the optimisation procedure, the treatment average efficiency factors found from the optimal designs where the Phase 1 experiment is CRD can be used as the stopping criterion of the second objective function.
+
+%For these optimal designs, there will be some DF associated with animal and treatment effects in the Between Runs stratum. We can compare the $E_\tau$ of the optimal design where the Phase 1 experiment is arranged with CRD For both four-plex and eight-plex experiments with $v = 2,3,4,5$, the treatment average efficiency factors of the optimal design are identical to those of the optimal designs where the Phase 1 experiment is CRD. Thus, besides cases where $v = 2, 4$, the eight-plex experiment generally yields higher $E_\tau$. As for the experiments with $v=6,7$ and $8$, the $E_\tau$ also generally exceeds the eight-plex experiment. However, due to the cage component, the $E_\tau$ can be lower than the optimal designs where the Phase 1 experiment is CRD, but the differences are minimal. 
+
+%To summarise, based on the identified optimal designs, the treatment average efficiency factors are either the same as or less than for the optimal designs found where the Phase 1 experiment is CRD given the same set of design parameters. Hence, to accelerate the optimisation procedure, the treatment average efficiency factor found from the optimal designs where the Phase 1 experiment is CRD can be used as the stopping criteria of the second objective function. Comparing the four-plex and eight-plex experiments, as with CRD, the four-plex experiment is only better when there are less than 16 animals. The same special cases exist when the cage number is 4 or 8, and the eight-plex system can perform the same as the four-plex system using the initial design where the cage is confounded more with tags, even when the number of animals is less than 16.
+
+
+\section{Extension when the Phase 1 experiment is a BIBD}
+\label{sec:extBIBD}
+When the number of treatments exceeds the number of plots in a block, the design is known as an incomplete block design. A particular type of incomplete block design occurs when all blocks are of equal size and all treatments are equally replicated. All treatment comparisons should also be of equal efficiency, and hence the canonical efficiency factors of all treatment contrasts should be identical. Such a design is known as the balanced incomplete block design (BIBD) \citep{John1987}. Since the treatment information of all treatment contrasts is split evenly across the Between Cages and Within Cages strata, the amount of treatment information in the Within Cages stratum is decreased.
+
+From the optimal design found, where the Phase 1 experiment is either CRD or RCBD, it has shown that the amount of treatment information can be diluted in the Phase 2 experiment. Thus, when allocating the samples from the Phase 1 experiment arranged in BIBD to be measured in the Phase 2 experiment, the amount of treatment information is likely to be further diluted. 
+
+Since the Phase 1 experiment still comprises a block structure of cages and animals within cages, the procedure for finding the optimal design is the same as that described in this chapter where the Phase 1 experiment is RCBD. 
+
+\subsection{BIBD example with six treatments}
+\label{sec:exp6TrtBIBD}
+Consider an example with $\nu = 6$ treatments, $n_{A(B)} = 5$ animals within each of $n_B = 6$ cages, $r_t = 2$ techincal replicates, $n_R = 15$ runs, and $n_\gamma = 4$ tags. Table~\ref{tab:Phase1DesBIBD} illustrates the design of the Phase 1 experiment, where each cage contains 5 animals (\textit{A}, \dots, \textit{E}) with different combinations of 6 treatments (\textit{a}, \dots, \textit{f}). 
+
+\begin{table}[ht]
+\centering
+\itshape
+\caption{Phase 1 experimental design with $\nu = 6$ treatments $n_{A(B)} = 5$ animals within each of $n_B = 6$ cages.}
+\begin{tabular}[t]{|c|ccccc|} \hline
+{\bf Cage 1} & Ab & Bc & Cd & De & Ef   \\ \hline
+{\bf Cage 2} & Ac & Bd & Ce & Df & Ea  \\  \hline
+{\bf Cage 3} & Ad & Be & Cf & Da & Eb  \\  \hline
+{\bf Cage 4} & Ae & Bf & Ca & Db & Ec  \\  \hline
+{\bf Cage 5} & Af & Ba & Cb & Dc & Ed  \\  \hline
+{\bf Cage 6} & Aa & Bb & Cc & Dd & Ee  \\  \hline
+\end{tabular} 
+\label{tab:Phase1DesBIBD}
+\end{table}
+
+Table~\ref{tab:Phase1ANOVAEx3} shows the theoretical ANOVA table of the Phase 1 experiment in Table~\ref{tab:Phase1DesBIBD}. Since the decomposition of the DF involves a total of 30 observations, the DF associated with the total adjusted MS is 29. These 29 DF are split into Between Cages (5 DF) and Between Animals Within Cages (24 DF) strata. Since there are 5 DF associated with treatment effects in the Between Animals Within Cages stratum, the residual DF is further reduced to 19. Due to the confounding of treatment effects with cage effects, all 5 DF associated with the Between Cages strata are confounded with the 5 DF associated with the treatment effects. As for the amount of treatment information, it is split between $0.04$ and $0.96$ in the Between Cages and Between Animals Within Cages strata, respectively.  The amount of treatment information in the Between Animals Within Cages stratum can be calculated directly by 
+\[\frac{n_B(n_{A(B)} - 1)}{ (n_B - 1)n_{A(B)}} = \frac{6(5-1)}{(6-1)5} =0.96.\]
+ 
+\begin{table}[ht]
+\centering
+\caption{Theoretical ANOVA table of the Phase 1 experiment arranged in BIBD with $\nu = 6$ treatments $n_{A(B)} = 5$ animals within each of $n_B = 6$ cages.}
+\begin{tabular}[t]{lrll} 
+\toprule 
+\multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}\\ 
+\midrule 
+Between Cages &  &  &\\ 
+\quad Treatments & $5$ & $\sigma_{A}^2+5\sigma_{B}^2+ 0.2\theta_{\gamma}$ &$0.04$\\ \hline 
+Between Animals Within Cages &  &  &\\ 
+\quad Treatments & $5$ & $\sigma_{A}^2+ 4.8\theta_{\gamma}$ &$0.96$\\ 
+\quad Residual & $19$ & $\sigma_{A}^2$ &\\ 
+\bottomrule 
+\end{tabular} 
+\label{tab:Phase1ANOVAEx3} 
+\end{table} 
+
+Table~\ref{tab:cagAniDesEx3} shows the optimal allocation of cages and animals to runs and tags. Cages 1, 2 and 3 are assigned to Tags 114 and 115, while Cages 4, 5 and 6 are assigned to Tags 116 and 117. Additionally, Runs 1 to 10 have Cages 1, 2, 4 and 5, while Runs 11 to 15 contain only Cages 3 and 6. Hence, the cage effects are confounded with run and tag effects. The treatment allocation to runs and tags can be generated based on the assignment of treatments to animals and cages in the Phase 1 experiment (Table~\ref{tab:cagAniDesEx3}). One of 3 DF of treatment effects are confounded with tag effects, because two sets of treatments can be assigned to the first and last two tags separately. 
+
+\begin{table}[ht]
+\centering
+\itshape
+\caption{Cage, animal and treatment allocations to runs and tags for the Phase 2 experiment with $\nu = 6$ treatments, $n_{A(B)} = 5$ animals within each of $n_B = 6$ cages, $r_t = 2$ technical replicates, $n_R = 15$ runs and $n_\gamma = 4$ tags.}
+\begin{tabular}[t]{c|cccc}
+ & \multicolumn{4}{c}{{\bf Tag}} \\
+{\bf Run}  & \textnormal{114} & \textnormal{115} & \textnormal{116} & \textnormal{117} \\ 
+\hline 
+\textnormal{1} & 1Bc & 1Cd & 5Cb & 5Af \\
+\textnormal{2} & 1Cd & 1Bc & 5Af & 5Cb \\
+\textnormal{3} & 2Ac & 2Ce & 4Bf & 4Ca \\
+\textnormal{4} & 2Ce & 2Ac & 4Ca & 4Bf \\
+\textnormal{5} & 1De & 1Ef & 4Ec & 4Db \\
+\textnormal{6} & 1Ef & 1De & 4Db & 4Ec \\
+\textnormal{7} & 2Bd & 2Df & 5Dc & 5Ba \\
+\textnormal{8} & 2Df & 2Bd & 5Ba & 5Dc \\
+\textnormal{9} & 2Ea & 1Ab & 4Ae & 5Ed \\
+\textnormal{10}& 1Ab & 2Ea & 5Ed & 4Ae \\
+\textnormal{11}& 3Be & 3Da & 6Bb & 6Cc \\
+\textnormal{12}& 3Da & 3Be & 6Cc & 6Bb \\
+\textnormal{13}& 3Cf & 3Eb & 6Aa & 6Dd \\
+\textnormal{14}& 3Eb & 3Cf & 6Dd & 6Aa \\
+\textnormal{15}& 3Ad & 3Ad & 6Ee & 6Ee \\
+\end{tabular} 
+\label{tab:cagAniDesEx3}
+\end{table}
+
+Table~\ref{tab:Phase2ANOVABIBD} shows the theoretical ANOVA table of the Phase 2 experiment. The treatment effects in the Between Animals Within Cages Within Runs stratum can be estimated with $0.8606$ of treatment average efficiency factor, which is computed from five treatment canonical efficiency factors of $0.9383, 0.9, 0.8736, 0.8217$ and $0.7864$. This amount of treatment information is significantly smaller than that which can be yielded from the Phase 1 experiment of $0.96$. Since this design is constructed from the initial design where the cage effects are confounded more with tag effects, 1 DF associated with tag effects is in the Between Cages stratum. The residual DF in the Between Animals Within Cages Within Runs stratum is reduced from 19 to 13 in the Phase 1 experiment. This design can be compared to the two-phase optimal design where Phase 1 is CRD and RCBD with $\nu = 6$ treatments and $r_b = 5$ biological replicates. For the optimal design where the Phase 1 experiment is arranged with CRD, the residual DF is 16 and $E_\tau = 0.8686$. For the optimal design where the Phase 1 experiment is arranged with RCBD and with $n_B = 5$ cages, the residual DF is 14 and $E_\tau = 0.8650$. The optimal design of both cases has a very similar performance to this two-phase optimal design where the Phase 1 is BIBD. 
+
+\begin{table}[ht]
+\centering
+ \caption{Theoretical ANOVA table for the Phase 2 experiment with $\nu = 6$ treatments, $n_{A(B)} = 5$ animals within each of $n_B = 6$ cages, $r_t = 2$ technical replicates, $n_R = 15$ runs and $n_\gamma = 4$ tags.}
+ \begin{tabular}[t]{lrlll} 
+ \toprule 
+ \multicolumn{1}{l}{\textbf{Source of Variation}} & \multicolumn{1}{l}{\textbf{DF}} & \multicolumn{1}{l}{\textbf{EMS}}& \multicolumn{1}{l}{$\bm{E_{\gamma}}$}&\multicolumn{1}{l}{$\bm{E_{\tau}}$}\\ 
+ \midrule 
+ Between Runs &  &  & & \\ 
+ \quad Between Cages &  &  & & \\ 
+ \quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{A}^2+6\sigma_{B}^2+4\sigma_{R}^2+0.0667\theta_{\tau}$ & & $0.0667$\\ \hline 
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatment & $3$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2+ 1.098\theta_{\tau}$ & & $0.1098$\\ 
+ \quad \quad Residual & $1$ & $\sigma^2+2\sigma_{A}^2+4\sigma_{R}^2$ & & \\ \hline 
+ \quad Within Animals Within Cages & $7$ & $\sigma^2+4\sigma_{R}^2$ & & \\ \hline 
+ Within Runs &  &  & & \\ 
+ \quad Between Cages &  &  & & \\ 
+ \quad \quad Tag & $1$ & $\sigma^2+2\sigma_{B}^2+10\sigma_{B}^2+15\theta_{\gamma}+0.4\theta_{\tau}$ &$1$ & $0.04$\\ 
+ \quad \quad Treatment & $1$ & $\sigma^2+2\sigma_{A}^2+10\sigma_{B}^2+0.4\theta_{\tau}$ & & $0.04$\\ 
+ \quad \quad Residual & $2$ & $\sigma^2+2\sigma_{A}^2+6\sigma_{B}^2$ & & \\ \hline 
+ \quad Between Animals Within Cages &  &  & & \\ 
+ \quad \quad Treatment & $5$ & $\sigma^2+2\sigma_{A}^2+8.606\theta_{\tau}$ & & $ 0.8606$\\ 
+ \quad \quad Residual & $13$ & $\sigma^2+2\sigma_{A}^2$ & & \\ \hline 
+ \quad Within Animals Within Cages &  &  & & \\ 
+ \quad \quad Tag & $2$ & $\sigma^2+15\theta_{\gamma}$ &$1$ & \\ 
+ \quad \quad Residual & $21$ & $\sigma^2$ & & \\ 
+ \bottomrule 
+ \end{tabular} 
+ \label{tab:Phase2ANOVABIBD} 
+\end{table} 
+
+\subsection{Optimal designs where the Phase 1 experiment is a BIBD}
+\label{sec:overSumBIBD}
+Using the objective function described in Section~\ref{sec:objFunChap4} and the simulated annealing algorithm described in Section~\ref{sec:RCBDsa}, a set of optimal designs were found and presented online at \url{http://kcha193.droppages.com/}. This set of optimal designs are for experiments with $\nu = 4,\dots,8$ treatment, $r_b = \nu -1$ biological replicates, $n_B =\nu $ cages, $r_t = 2$ technical replicates, $n_\gamma = 4, 8$ tags and $n_R = n/n_\gamma$ runs. If a biologist has an experiment with this set of design parameters, they can use the given design for their experiment. A table, summarising the properties of the theoretical ANOVA for each optimal Phase 2 design, is presented in the Appendix. This section discusses the properties of the optimal designs found. 
+
+If the number of cages is even, the initial design in which cage effects are confounded more with the tag effects must be used. An example can be observed in Section~\ref{sec:exp6TrtBIBD}, where Cages 1, 2 and 3 are assigned to Tags 114 and 115, while Cages 4, 5 and 6 are assigned to Tags 116 and 117. This is because the DF associated with tag effects is now in the Between Cages Within Runs stratum, which results in more residual DF for estimating the treatment effects in the Between Animals Within Cages Within Runs stratum. 
+
+A four-plex system must be used for experiments with $\nu = 6$ treatments and $r_b = 5$ biological replicates, and $\nu = 7$ treatments and $r_b = 6$ biological replicates. Due to the confounding of cage effects with both run and treatment effects, the $E_\tau$ and residual DF are lower than the $E_\tau$ and residual DF of the Phase 1 experiment. 
+
+For Phase 1 experiments with $\nu = 4$ treatments and $r_b = 3$ biological replicates, $\nu = 5$ treatments and $r_b = 4$ biological replicates, $\nu = 7$ treatments and $r_b = 4$ biological replicates, and $\nu = 8$ treatments and $r_b = 7$ biological replicates, we can compare their optimal design between the four-plex and eight-plex systems. The treatment average efficiency factors, $E_\tau$, are identical between the four-plex and eight-plex systems for the experiments with $\nu = 4$ treatments and $r_b = 3$ biological replicates, $\nu = 5$ treatments and $r_b = 4$ biological replicates, and $\nu = 7$ treatments and $r_b = 4$ biological replicates. For the experiment with $\nu = 8$ treatments and $r_b = 7$ biological replicates, the $E_\tau$ is higher for the eight-plex system. Comparing the residual DF, the eight-plex experiment yields higher residual DF for experiments involve with 4 or 8 treatments, whereas the four-plex experiment yield higher residual DF for experiments involve with 5 or 7 treatments.
+
+\section{Summary and Conclusion}
+\label{sec:conclusionChap4}
+This chapter presented a method for finding optimal designs for a two-phase experiment with a randomised complete block design and a balanced incomplete block design. The method presented generates the optimal designs for the two-phase experiments with $\nu = 2,\dots,8$ treatments, $r_b = 2,\dots,8$ biological replicates, $n_B = 2,\dots,8$ cages, $r_t = 2$ technical replicates, $n_\gamma = 4,8$ tags and $n_R = n/n_\gamma$ runs. 
+
+This chapter first established a new objective function for the two-phase experiment, where the Phase 1 experiment is arranged in RCBD. This new objective function comprised a new information matrix associated with effects between treatments and animals within cages. Additionally, an extra component in the residual DF is shown to benefit the design with higher residual DF. The single objective function is split into two objective functions, where the first is to find a design that maximises the residual DF, and the second is to find a design that maximises the treatment average efficiency factor.    
+
+Even though the treatment effects are estimated in the Within Cages stratum, the construction of the initial design must take cages into account. This is because the allocation of cages has been shown to affect the DF of the residual in the Between Animals Within Cages stratum. Thus, the cage can be allocated such that it is confounded with both runs and tags. The advantage is that the confounding of Animals Within Cages Within Runs and Tags is then minimised. Hence, the residual DF in the Between Animals Within Cages Within Runs stratum is increased. 
+
+Finally, this chapter also showed that the same method can be used where the Phase~1 experiment uses a BIBD. Since the block structures are identical in such design, the objective function and the components of the simulated annealing algorithm should not require adjustment. The main issue is that the treatment information has already been diluted since some of the treatment information is in the Between Cages stratum; hence, the focus becomes the degree to which treatment information will be further diluted in the Phase 2 experimental design.
+
+
+
+%The next chapter demonstrates the method of estimating the effective degrees of freedom with different ranges of estimated variance component to further determine the effectiveness of the identified optimal design.  
+

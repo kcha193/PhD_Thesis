@@ -1,0 +1,122 @@
+%This subsection is to compare the VCs estimates between the LC and the REML method described in this section using the example described in Section~\ref{sec:expDes}. The nine different simulated data sets were generated with te variance components set to $\sigma^2 = 1$, $\sigma_a^2 = (1, 2, 10)$ and $\sigma_r^2 = (1,5, 20)$. Table~\ref{tab:simVCResult} presents both the actual and estimate of VCs which shows the REML method did not improve the estimation from the LC method. This the optimal design presented in Section~\ref{sec:expDes}. the there isn’t much difference. This is a finding in itself. It says that the optimal designs you are generating are robust to the method of VC estimation. And then you can say that your methods are robust to the VC estimation procedure. From this point on you can then go on and just choose to display one of the methods, but you need to explain why you are doing so.
+%
+%\begin{table}[!ht]
+%\caption{Comparing the true VCs and those estimated from the simulated data using LC and REML methods.}
+%\begin{center}\begin{tabular}{| r | r | r | r | r | r | r | r | r |}
+%\hline
+% \multicolumn{3}{|c|}{Actual} & \multicolumn{3}{|c|}{Estimated by LC}  & \multicolumn{3}{|c|}{Estimated by REML} \\ \hline
+% $\sigma^2$ & $\sigma_a^2$ & $\sigma_r^2$ &  $\hat{\sigma}^2$ & $\hat{\sigma}_a^2$ & $\hat{\sigma}_r^2$ &  $\hat{\sigma}^2$ & $\hat{\sigma}_a^2$ & $\hat{\sigma}_r^2$ \\ \hline
+%    1.0000 & 0.0001 & 0.0000 & 1.0237 & 0.2290 & 0.1344 & 0.9907 & 0.1967 & 0.1101 \\ 
+%    1.0000 & 1.0000 & 0.0000 & 1.0237 & 1.0948 & 0.1344 & 1.0071 & 1.0505 & 0.1499 \\ 
+%    1.0000 & 10000.0000 & 0.0000 & 1.0237 & 9960.4080 & 0.1344 & 1.0237 & 10092.0651 & 0.1344 \\ 
+%   1.0000 & 0.0001 & 1.0000 & 1.0237 & 0.2290 & 1.0673 & 1.0069 & 0.2458 & 1.0315 \\ 
+%   1.0000 & 1.0000 & 1.0000 & 1.0237 & 1.0948 & 1.0673 & 1.0235 & 1.0760 & 1.1133 \\ 
+%    1.0000 & 10000.0000 & 1.0000 & 1.0237 & 9960.4080 & 1.0673 & 1.0237 & 10092.0670 & 1.0683 \\ 
+%    1.0000 & 0.0001 & 100.0000 & 1.0237 & 0.2290 & 100.1942 & 1.0228 & 0.2304 & 101.8816 \\ 
+%    1.0000 & 1.0000 & 100.0000 & 1.0237 & 1.0948 & 100.1942 & 1.0237 & 1.1072 & 101.9030 \\ 
+%     1.0000 & 10000.0000 & 100.0000 & 1.0237 & 9960.4080 & 100.1942 & 1.0237 & 10067.3688 & 122.1513 \\  \hline
+%\end{tabular}
+% \end{center}
+% \label{tab:simVCResult}
+%\end{table}
+
+%The next step is to compare the EDF associated with the residual MS for estimating the treatment effects, i.e.\ in the Between Animals Within Runs stratum. Study of the theoretical ANOVA in Table~\ref{tab:Phase2ANOVAChap5} reveals 2 residual DF for estimating the treatment effects. If all the information associated with the animals can be recovered from the Between Runs stratum, the residual DF can be as high as 3. Notably, no treatment effects can be recovered from the Between Runs stratum in this case, because all the treatment information is in the Within Runs stratum. 
+%The EDF are shown to differ depending on whether they are derived using the LC or REML method. Additionally, whether the negative VCs estimates are adjusted to zero can affect the resulting EDF. Two figures displaying EDF plots with unadjusted and adjusted VCs are produced, as shown in Figures~\ref{fig:EDFadjusted} and \ref{fig:EDFunadjusted}, respectively. These EDF plots are arranged in six panels corresponding to the simulated datasets generated from six different Between Runs VCs. Within each panel, the x-axis and y-axis correspond to the Between Animals VCs and EDF, respectively. 
+%$R_r$, $R_a$, 
+%The EDF plots of the adjusted VCs show that the EDF are higher when using the LC method compared to the REML method. If the VCs stays unadjusted, the EDF are only higher using the LC method compared to the REML method when Between Runs and Between Animals VCs estimates are low. The EDF from the adjusted VCs are always bound between 2 and 3, whereas the EDF from the unadjusted VCs can be as high as 3.18 if using the REML method at $\sigma^2_R = 0$ and $\sigma^2_A = 1$. The EDF from the unadjusted VCs always exceed the EDF from using adjusted VCs. This is because once the negative VCs are adjusted to zero, the estimated VCs can exceed expectations. The EDF can then be computed to be lower than expected. However, in theory, the EDF in the current example considered should not exceed 3, which is the maximum DF associated with the Between Animals stratum from the Phase 1 experiment. 
+%In conclusion, using the adjusted VCs is more accurate theoretically, because the EDF are always bounded within the expected range. However, the EDF can be skewed by the peak where the estimated $\sigma_a^2$ and $\sigma_r^2$ are both zero. For practical purposes, using the EDF with unadjusted VCs is better, because the average of the adjusted VCs estimates tends to be higher than that of the unadjusted VCs estimates.  However, negative VCs estimates can cause the EDF to significantly exceed expectations, and thus the EDF will not be bounded within the expected range, as shown in Figure~\ref{fig:EDFunadjusted}.
+%\section{Comparing the EDF of the illustrative example}
+%\label{sec:edfExample}
+%This section uses the example from Section~\ref{sec:expDes} and compares the EDF computed from the VCs which are estimated using the LC method. Simulated studies are performed based on the assumption that MS of the ANOVA table have a $\chi_{\upsilon}^2$ distribution. Thus, the MS can be simulated from the $\chi_{\upsilon}^2$ with the $\upsilon$ DF of the associated MS. This method is much faster than using the simulated datasets generated from the normal distribution, because the MS does not need to be calculated. These simulated MS are still referred to as simulated datasets. 
+
+%The simulated datasets are generated with the ratios of Between Runs VCs, $\sigma_r^2$, and measurement error, $\sigma^2$, are set to $0, 0.25, 1, 5, 100$, and as well as having the effect of run is fixed. Moreover, $17$ simulated datasets are generated using 17 different ratios of Between Animals VCs, $\sigma_a^2$, to the $\sigma^2$ in the range $10^{-4}$ to $10^4$. Since the $\sigma^2$ is set to 1, these two ratios $\sigma_r^2/\sigma^2$ and $\sigma_a^2/\sigma^2$ are identical to the corresponding $\sigma_r^2$ and $\sigma_a^2$, respectively. 
+
+
+
+%This case is very common when the Phase 1 experiment is CRD. This is because the four-plex experiments generally have 1 DF associated with Tag effects in the Between Animals stratum, whereas the eight-plex experiments generally have 3 DF associated with Tag effects in the Between Animals stratum. Hence, the EDF for the four-plex experiments can be up to 2 DF higher than for the eight-plex experiments for estimating the Residual MS in the Between Animals strata. Therefore, for general cases, the four-plex experiments are better than the eight-plex experiments.
+%When the comparisons can be done, the experiment using the four-plex system tends to have higher EDF, because fewer Between Animals DF are confounded with tag effects; thus as the variation Between Animals becomes much larger than that Between Runs, the EDF also increases. 
+
+
+%This type of situation occurs given Phase 1 experiment involving high biological replicates. Due to the disconnectedness in the allocation of animals to runs, some DF associated with the Between Animals stratum can be in the Between Runs stratum. As the $r_b$ increases, the four-plex experiments will have more DF associated with animals in the Between Runs stratum than the eight-plex experiments do. This is because each run of the four-plex experiment can measure only up to 4 samples. 
+
+%However, the residual DF increases with an increase in the biological replicate. For this example with $\nu = 4, r_b = 6$ and $r_t = 2$, the critical F-ratios for $(3,19)$ and $(3,14)$ DF are 3.12735 and 3.343889, respectively, at a significance level at 0.05. Thus, the power of the F-test should not differ significantly between these two designs. Therefore, these two designs should be equally effective under different Between Runs and Between Animals VCs.
+
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=.6 \textwidth]{Chapter5/Graph/RBD442Tag4EDFRun0.pdf}
+%\caption{Plots of EDF where the Between Runs VCs is zero for the RCBD experiments with $\nu = 4, r_b = 4$ and $n_B = 4$ comparing different Between Trays VCs estimates as between an initial design where cages are confounded more with tags, and one where cages are confounded more with runs.}
+%\label{fig:RCBD442Tag4EDFRun0}
+%\end{figure}
+%
+%Comparing the initial designs with the four-plex experiment (see Figure~\ref{fig:RCBD442Tag4vsTag8}), the design where the cage effects are confounded more with run effects has higher EDF of 8, when Between Plants VCs are low and Between Runs VCs are high. If the VCs of Between Plants are high and the Between Runs is low, the design where cage effects are confounded more with tag effects has the higher EDF of 9.
+%
+%Figure~\ref{fig:RCBD442Tag4vsTag8} also includes the EDF from the eight-plex experiments and compares the EDF among the four designs. The two straight lines shows the EDF are fixed at $8$ and $7$ from the designs where the cage effects are confounded more with run effects in four-plex and eight-plex experiments, respectively. Hence, no animal information can be recovered from the Between Runs stratum. As for the designs where cage effects are confounded more with tag effects, the EDF can be as high as 9, because the animal information can be recovered from the Between Run stratum. Among these four designs, the one in which cage effects are confounded more with tags and using the eight-plex experiment is better, because the EDF are at least 8 under different VCs, and can reach up to 9 as the Between Plants VCs increase.    
+%
+
+%
+%This section shows that tray (Phase 1 block) allocation can affect EDF. If the number of cages is even, using the design in which the cage effects are confounded more with tag effects is better, because it allows more DF to be associated with tag effects in the Between Trays stratum. Thus, it maximises the overall DF associated with the Between Plants Within Trays stratum in both the Between and Within Runs strata. However, if the cage number is odd, no initial design where the cage effects are confounded more with tag effects can be generated. Thus, the guidelines followed in cases where the Phase 1 experiment is CRD can be used.  
+
+%The previous section showed that the experiments with the four-plex system generally have 1 DF associated with tag effects in the Between Animals Within Runs stratum, whereas those with the eight-plex system generally have 3 DF associated with tag effect in the Between Animals stratum. The eight-plex experiments can have higher EDF than the four-plex experiments only in situations involving 4 or 8 cages. This is because the cages can confound all 3 DF of the tag effects and maximise the overall DF associated in the Between Animals Within Trays stratum, as shown from the example given. As for experiments involving an even number of cages,  the four-plex system should be considered. 
+
+%I found that the VCs Between Trays does not affect the EDF. This is because the animals are nested from cages, and thus when the EMS consists of VCs of Between Trays, it should also consist of between animal VCs.
+%More specifically, when using experiments that involve even numbers of cages, but not those with 4 or 8 cages, the four-plex system is better than the eight-plex system. This is because only 1 DF associated with cages can be confounded with the tag effects. If the four-plex system is used, it is possible to confound the cages with the 1 DF associated with the tag effects, in which case the animals are then orthogonal to tags. If the eight-plex system is used, at least 2 DF are associated with the tag effects in the Between Animals Within Trays Within Runs stratum - e.g. $\nu = 2, r_b = 6, n_B  = 2, n_\gamma = 4$, where EDF is between 7 and 9. Moreover, $n_\gamma = 8$, where EDF is between 6 and 7. 
+
+%\section{Comparing the EDF when Phase 1 experiment is BIBD}
+%The case where the Phase 1 experiment is arranged with BIBD follows the same guidelines as case where the Phase 1 experiment is arranged with RCBD. For the experiments comparing 4 and 8 treatments, the eight-plex experiment is better than the four-plex experiment, because these two experiments use 4 and 8 cages, respectively. For the experiments comparing 5 and 7 treatments, since the experiment cannot use an even number of cages, the guideline of CRD is used, which means the four-plex experiment generates higher EDF than the eight-plex experiment. 
+
+
+
+%This chapter is giving another property of EDF to compare designs of Phase 2 experiments. We used the 
+
+%As shown the REML method described here did not improve the approximation of the EDF. This is due to the optimal designs we found are robust to VCs approximation. 
+
+%Then remainder of this chapter was to compare the EDF between the design of using 4plex and 8plex having the same Phase 1 design. For the case where 0
+
+%a given Phase 1 design, you cocmpared the optimal four- and eight-plex designs of the same size for the Phase 2 experiment. When the Phase 1 experiement was a RCBD or BIBD, you further looked at two different confounding strategies for finding optimal 4- and 8-plex designs, as discussed in whatever sections you did in Ch4. In these cases the Phase 1 design introduced an additional blocking factor, thereby requiring modification of the EDF due to the additional VC associated this blocking factor. 
+
+
+%We described three cases of  where the phase 1 design is CRD. one case has one design is a clear winner. One design has structure where the EDF is always the same under different ranges of vc. The last case 
+
+%This chapter has presented the LC and REML methods for estimating the VCs. With the given VCs estimates, the method used to derive the EDF has then been shown.
+
+%The EDF are then compared between different optimal designs found where the Phase 1 experiment is arranged in CRD, RCBD and BIBD. When the Phase 1 experiment is arranged in CRD, the EDF are better when using the four-plex system than the eight-plex system, because the four-plex system contributes fewer DF associated with tag effects within the Between Animals Within Runs stratum. The eight-plex system is only better when comparing 8 treatment, because the treatment does not confound with animals in the Between Runs stratum. 
+
+%When the Phase 1 experiment uses RCBD or BIBD, the four-plex systems still tend to have higher EDF. The eight-plex system is still better only when comparing eight treatments, for the reasons described in the example with CRD. The Phase 1 experiment also introduces an additional cage component. The RCBD example in Section~\ref{sec:expRCBD} shows that it is best to allocate the cages that are confounded more with tag effects, because this minimises the confounding of the animal effects with tag effects. 
+
+%Furthermore, when the Phase 1 experiment involves 4 or 8 cages, the eight-plex system is shown to be best, as in the example presented the cages completely confounded 3 DF associated with tag effects that were in the Between Animals stratum.   
+
+%This chapter only presented the recovery of random information from the Between Runs stratum, but it is also possible to recover treatment information. However, the optimal designs found for all cases have at least $80\%$ of the treatment average efficiency factor for estimating the treatment effects. Hence, recovery of treatment information from the Between Runs stratum is unnecessary.
+
+%The R function getVcEDF() for estimating the VCs and the EDF has developed.
+
+%Furthermore, the facto that you have already said that Table 5.2 has an extra column MS which are estimates of the EMS, you need to tell your reader at THAT point (1) what the si2 are. You would benefit at this point to write out specifically what each si2 equals so your reader is absoutely clear. Importantly, you need to make clear to your hat the thing you want to estimate is the var(\tau_i) = \sigma^2 + 2\sigma_A^2 and you can do this because you have pure error in Bw An wi Runs residual EMS. And, in fact, we have some extra info about \sigma^2 and \sigma_A^2 in the other residual EMS.\\
+
+%The total of 11 DF are partitioned into 2 DF of Between Runs and 9 DF of Within Runs strata. The Between Runs stratum (2 DF) is further separated into Between Animals (1 DF) and Within Animals (1 DF) strata. The Within Runs stratum (9 DF) is partitioned into Between Animals (4 DF) and Within Animals (5 DF) strata, where the Treatment effects are estimated in the Between Animals Within Runs stratum. 
+
+%estimate is the var(\tau_i) = \sigma^2 + 2\sigma_A^2 there are some extra info about \sigma^2 and \sigma_A^2 in the other residual EMS
+
+%we subtract eq #1 from eq #2 and solve for \sigma_A^2. 
+
+%These properties of the optimal design of the two-phase experiment is shown in the theoretical ANOVA in Table~\ref{tab:Phase2ANOVAChap5}. 
+%The VCs are estimated by equating the Residual EMS to its estimate MS.
+%Since the VCs are estimated from the residual MS, this theoretical ANOVA table contains four MS of interest, denoted by $s_i^2, \; (i = 1,\dots, 4).$ 
+%The vectors of MS and EMS, denoted by $\bm{s^2}$ and $\bm{\xi^2}$, respectively, illustrate the estimation of the VCs and EDF in Section~\ref{sec:estVC}.
+
+%The EDF tells us how effectively we are estimating the variance of the treatment effects. You need to explain to your reader in the first of your examples that the variance you are trying to estimate is var(difference between a pair of means). Have a look at equation (5) of J & R where they explain this. You should do the same. The EDF tells us how well we are doing at estimating the numerator of equation (5) and this numerator is the residual variance in the stratum where the treatment effects are being estimated. The higher the EDF the better this variance is estimated and also we have more power for the test. I have attached a copy of J & R with a few parts marked with yellow highlighter to get you focused on where you might find explanations and to help you with wording. 
+
+%To use the linear combination method to estimate VCs, it is essential to know the coefficient of VCs in the EMS of the theoretical ANOVA table (see Table~\ref{tab:Phase2ANOVAChap5}). Using the example in Section~\ref{sec:expDes}, the VC of measurement error, $\hat{\sigma^2}$, is the same as the residual MS in the Within Animals Within Runs stratum. Thus, $\hat{\sigma^2} = s_4^2.$  The EMS of the residual MS in the Between Animals Within Runs stratum is $\sigma^2 + 2\sigma_a^2$, so the Between Animals VC, $\hat{\sigma_a}^2$, is calculated by subtracting the residual MS of Within Animals Within Runs stratum from the residual MS of Between Animals Within Runs stratum and dividing by the coefficient of $\sigma_a^2$, i.e.\ $(s_3^2 - s_4^2)/2$. Finally, the Between Runs VC, $\hat{\sigma_r^2}$, is calculated by subtracting the residual MS of Within Animals Within Runs stratum from the residual MS of Between Runs stratum and dividing by the coefficient of $\sigma_r^2$, i.e.\ $(s_2^2 - s_4^2)/4.$ Therefore, to use the LC method to estimate VCs, it is essential to construct the theoretical ANOVA table and then examine the structure of the EMS of the residual MS. 
+%s42 = \hat{\sigma}^2 [ kevin please note your hat position - it should be over \sigma, not the whole thing otherwise it is too small]. This information should have come teh first time you introduced the si^2 in the anova table. Instead you are jumping around, giving me pieces of information here and there. KEEP LIKE WITH LIKE.
+  
+
+% real goal is to find out whether we can get more information about the VCs that contribute to this variance which is of interest so that we can get a better estimate of it. The more DF (the larger the EDF) the better we are doing at estimating this variance. 
+%This section illustrates the estimation of the VCs using
+% and REML methods based on the example presented in Section~\ref{sec:expDes}. Thus, the VCs to be estimated are those of measurement error, $\hat{\sigma}^2$, Between Animals, $\hat{\sigma_a}^2$ and Between Runs, $\hat{\sigma_r}^2$. The methods presented are readily applicable to other two-phase experiments with different sets of design parameters. 
+%1. we want to estimate the VCs
+%2. but we only have linear combinations of the VCs in the form of EMS's
+%3. we know that the estimated value of EMSi which we are denoting by si2 has a chi-squared distribution
+%4. this tells us we can get the score function and Fisher information matrix for the si2 
+%5. our next step is to transform our solution in 4 from something in terms of si2's to something in terms of the VCs
+%6. once we have 5 we can apply the fisher scoring algorithm
+
+

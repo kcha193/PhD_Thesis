@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Design parameters and model}{}% 2
+\BOOKMARK [1][-]{section.3}{An illustrative example}{}% 3
+\BOOKMARK [1][-]{section.4}{Defining the information matrices}{}% 4
+\BOOKMARK [1][-]{section.5}{Objective function}{}% 5
+\BOOKMARK [1][-]{section.6}{Construction of the initial design}{}% 6
+\BOOKMARK [2][-]{subsection.6.1}{A superior initial design in which cage effects are confounded more with tag effects}{section.6}% 7
+\BOOKMARK [2][-]{subsection.6.2}{A superior initial design in which cage effects are confounded more with run effects}{section.6}% 8
+\BOOKMARK [2][-]{subsection.6.3}{Performance remains unchanged whether cage effects are confounded with tag or run effects}{section.6}% 9
+\BOOKMARK [1][-]{section.7}{Modified simulated annealing for searching the optimal design}{}% 10
+\BOOKMARK [1][-]{section.8}{An illustrative example with 6 treatments}{}% 11
+\BOOKMARK [1][-]{section.9}{Optimal designs for experiments involving two to eight treatments and two technical replicates}{}% 12
+\BOOKMARK [1][-]{section.10}{Extension when the Phase 1 experiment is a BIBD}{}% 13
+\BOOKMARK [1][-]{section.11}{BIBD example with six treatments}{}% 14
+\BOOKMARK [1][-]{section.12}{Optimal designs when the Phase 1 experiment is a BIBD}{}% 15
+\BOOKMARK [1][-]{section.13}{Summary and Conclusion}{}% 16

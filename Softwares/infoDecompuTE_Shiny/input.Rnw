@@ -1,0 +1,28 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{lscape}
+\usepackage{caption}
+\usepackage[margin = 1.5cm, noheadfoot]{geometry}
+
+\captionsetup[table]{labelformat=empty}
+
+\renewcommand{\baselinestretch}{1.5}
+\begin{document}
+%\begin{landscape}
+
+<< results="asis", echo = FALSE>>=
+cat(input$latexOutput)
+@
+
+%\end{landscape}
+
+\end{document}
+
+
+
