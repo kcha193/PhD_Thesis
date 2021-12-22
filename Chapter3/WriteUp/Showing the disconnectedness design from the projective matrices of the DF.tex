@@ -1,0 +1,282 @@
+% == UNREGISTERED! == GrindEQ Word-to-LaTeX 2012 == 
+
+\noindent Showing the disconnectedness design from the projective matrices of the DF
+
+\noindent The orthogonal projector of Between Runs stratum can be written as 
+\[P_R-K\] 
+where $P_R$ denotes the projection matrix of runs and can be computed from $Z_R{(Z^'_RZ_R)}^{-1}Z_R'$. The matrix $K$is the n-by-n averaging matrix where all elements contain 1/n. 
+
+\noindent The orthogonal projector of Within Runs stratum can be written as 
+\[I-\ P_R\] 
+where I is the n-by-n identity matrix. 
+
+\noindent The degrees of freedom (DF) associated with each of these two stratum can be computed from their trace, i.e. the DF associated with Between Runs stratum is 
+\[{tr(P}_R-K)=n_R-1,\] 
+where $n_R$ denotes the total number of runs. The DF associated with Within Runs stratum is 
+\[tr\left(I-\ P_R\right)=n-\ n_R.\] 
+
+
+\noindent The orthogonal projector of the Between Animals Between Runs stratum can be written as 
+\[P_A\left(P_R-K\right)P_A.\] 
+The DF of the Between Animals Between Runs stratum can then be computed as
+\[tr\left(P_A\left(P_R-K\right)P_A\right)=tr\left(P_AP_R-K\right)=tr\left(P_AP_R\right)-1.\] 
+The orthogonal projector of the Between Animals Within Runs stratum can be written as 
+\[P_A\left(I-P_R\right)P_A.\] 
+The DF of the Between Animals Between Runs stratum can then be computed as
+\[tr\left(P_A\left(I-P_R\right)P_A\right)=tr\left(P_A-P_AP_R\right)=n_A-\ tr\left(P_AP_R\right),\] 
+where $tr\left(P_AP_R\right)$ can be expanded as 
+\[tr\left(P_AP_R\right)=\ tr\left(Z_A{(Z^'_AZ_A)}^{-1}Z_A'Z_R{(Z^'_RZ_R)}^{-1}Z_R'\right)=\frac{tr(Z_A'Z_RZ_R'Z_A)}{r_tk}=\frac{tr(NN')}{r_tk}\ \] 
+where $N$ denotes the animal incidence matrix with respect to runs, $NN'$is animal concurrence matrix with respect to runs,  $r_t$ denotes number of technical replicates and $k$ denotes the block size. 
+
+\noindent If the allocation of animals to runs is binary, i.e. every element in $N$ is one or zero, then $\ tr(NN')$ should equal $r_tn_A$ and 
+\[tr\left(P_AP_R\right)=\frac{n_A}{k}.\] 
+Hence, the DF of the Between Animals Between Runs stratum and Within Runs are
+\[\frac{n_A}{k}-1\] 
+and  
+\[n_A-\ \frac{n_A}{k},\] 
+respectively. 
+
+\noindent For the cases of $n_A=k$, DF of the Between Animals Between Runs stratum and Within Runs are 0 and $n_A-1,$ respectively. This means the allocation of animals to runs is connected where all the information associated with animals are in the Within Runs stratum. Note that, this case is an example of completely randomised block design. 
+
+\noindent In addition, for the cases of $n_A=2k$, and the allocation of animals to runs is still binary. The DF of the Between Animals Between Runs stratum and Within Runs are then becomes 1 and $\left(n_A-2\right)$. This means the allocation of animals to runs is now disconnected, where one of $(n_A-1)$ DF associated with Animals is in the Between Runs stratum. This also shows that even if the allocation is binary, it can also disconnected if $n_A$is devisable by $k$.
+
+\noindent 
+
+\noindent If the allocation of animals to runs is non-binary, i.e. some elements in $N$ is larger than one; and$\ tr(NN')$ should be larger than $r_tn_A$.  
+
+\noindent \eject 
+
+\noindent For example, if the design is with $n_A=k=n_R=4$ and the allocation of animals to run is binary. The design of animal allocation to runs and tags can be express in a table as follows
+
+\begin{tabular}{|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|} \hline 
+Runs & \multicolumn{4}{|p{1.3in}|}{Tag} \\ \hline 
+ & 114 & 115 & 116 & 117 \\ \hline 
+1 & A & B & C & D \\ \hline 
+2 & B & C & D & A \\ \hline 
+3 & C & D & A & B \\ \hline 
+4 & D & A & B & C \\ \hline 
+\end{tabular}
+
+where the upper case letter denotes animal ID. The animal incidence matrix with respect to runs is
+\[\left( \begin{array}{cccc}
+1 & 1 & 1 & 1 \\ 
+1 & 1 & 1 & 1 \\ 
+1 & 1 & 1 & 1 \\ 
+1 & 1 & 1 & 1 \end{array}
+\right)\] 
+and the animal occurrence matrix with respect to runs is then 
+\[\left( \begin{array}{cccc}
+4 & 4 & 4 & 4 \\ 
+4 & 4 & 4 & 4 \\ 
+4 & 4 & 4 & 4 \\ 
+4 & 4 & 4 & 4 \end{array}
+\right)\] 
+the trace of this matrix is 16.
+
+\noindent If the allocation of animals to runs is non-binary, then the design of animal allocation to runs and tags can be express in a table as follows
+
+\begin{tabular}{|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|} \hline 
+Runs & \multicolumn{4}{|p{1.3in}|}{Tag} \\ \hline 
+ & 114 & 115 & 116 & 117 \\ \hline 
+1 & A & B & A & B \\ \hline 
+2 & B & A & B & A \\ \hline 
+3 & C & D & C & D \\ \hline 
+4 & D & C & D & C \\ \hline 
+\end{tabular}
+
+The animal incidence matrix with respect to runs is
+\[\left( \begin{array}{cccc}
+2 & 2 & 0 & 0 \\ 
+2 & 2 & 0 & 0 \\ 
+0 & 0 & 2 & 2 \\ 
+0 & 0 & 2 & 2 \end{array}
+\right)\] 
+and the animal occurrence matrix with respect to runs is then 
+\[\left( \begin{array}{cccc}
+8 & 8 & 0 & 0 \\ 
+8 & 8 & 0 & 0 \\ 
+0 & 0 & 8 & 8 \\ 
+0 & 0 & 8 & 8 \end{array}
+\right)\] 
+the trace of this matrix is 32, which is larger than the 16 of the previous binary design.
+
+\noindent If $n_A$is larger and not devisable by $k$, there can be two cases on whether the allocation of animals to runs is binary or non-binary. 
+
+\noindent For example, if the design is with $n_A=6,\ k=4$ and $n_R=3$. The allocation of animals to run is binary. The design of animal allocation to runs and tags can be express in a table as follows
+
+\begin{tabular}{|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|} \hline 
+Runs & \multicolumn{4}{|p{1.3in}|}{Tag} \\ \hline 
+ & 114 & 115 & 116 & 117 \\ \hline 
+1 & A & B & C & D \\ \hline 
+2 & E & F & A & B \\ \hline 
+3 & C & D & E & F \\ \hline 
+\end{tabular}
+
+ The animal incidence matrix with respect to runs is   
+
+[,1] [,2] [,3]
+
+\noindent [1,]    1    1    0
+
+\noindent [2,]    1    1    0
+
+\noindent [3,]    1    0    1
+
+\noindent [4,]    1    0    1
+
+\noindent [5,]    0    1    1
+
+\noindent [6,]    0    1    1
+
+\noindent and the animal occurrence matrix with respect to runs is then 
+
+   [,1] [,2] [,3] [,4] [,5] [,6]
+
+\noindent [1,]    2    2    1    1    1    1
+
+\noindent [2,]    2    2    1    1    1    1
+
+\noindent [3,]    1    1    2    2    1    1
+
+\noindent [4,]    1    1    2    2    1    1
+
+\noindent [5,]    1    1    1    1    2    2
+
+\noindent [6,]    1    1    1    1    2    2
+
+\noindent the trace of this matrix is 12 which is not divisible by $r_tk$ = 8. The next divisible number by 8 is 16. 
+
+\noindent If the allocation of animals to runs is non-binary, and example of a design of animal allocation to runs and tags can be express in a table as follows
+
+\begin{tabular}{|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|} \hline 
+Runs & \multicolumn{4}{|p{1.3in}|}{Tag} \\ \hline 
+ & 114 & 115 & 116 & 117 \\ \hline 
+1 & A & B & C & D \\ \hline 
+2 & B & A & D & C \\ \hline 
+3 & E & F & E & F \\ \hline 
+\end{tabular}
+
+
+
+\noindent \eject 
+
+\noindent Run 1 and 2 contain Animal A, B, C and D and Run 3 contains Animal E and F. The animal incidence matrix with respect to runs is
+
+\noindent     [,1] [,2] [,3]
+
+\noindent [1,]    1    1    0
+
+\noindent [2,]    1    1    0
+
+\noindent [3,]    1    1    0
+
+\noindent [4,]    1    1    0
+
+\noindent [5,]    0    0    2
+
+\noindent [6,]    0    0    2
+
+\noindent 
+
+\noindent and the animal occurrence matrix with respect to runs is then 
+
+     [,1] [,2] [,3] [,4] [,5] [,6]
+
+\noindent [1,]    2    2    2    2    0    0
+
+\noindent [2,]    2    2    2    2    0    0
+
+\noindent [3,]    2    2    2    2    0    0
+
+\noindent [4,]    2    2    2    2    0    0
+
+\noindent [5,]    0    0    0    0    4    4
+
+\noindent [6,]    0    0    0    0    4    4
+
+\noindent 
+
+\noindent The trace of this matrix is 16 and it is divisible by 8. Using the equations described earlier. DF associated with the Between Animal Between and Within Runs strata are  
+\[\frac{tr(NN')}{r_tk}-1=\ \frac{16}{8}-1=1\] 
+and
+\[n_A-\frac{tr\left(NN^'\right)}{r_tk}=6-\frac{16}{8}=4.\ \] 
+The design can be disconnected even more giving
+
+\begin{tabular}{|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|p{0.3in}|} \hline 
+Runs & \multicolumn{4}{|p{1.3in}|}{Tag} \\ \hline 
+ & 114 & 115 & 116 & 117 \\ \hline 
+1 & A & B & A & B \\ \hline 
+2 & C & D & C & D \\ \hline 
+3 & E & F & E & F \\ \hline 
+\end{tabular}
+
+
+
+\noindent Run 1 only contains Animal A and B, Run 2 only contains Animal C and D and Run 3 contains Animal E and F. 
+
+\noindent \eject 
+
+\noindent The animal incidence matrix with respect to run can be shown as follows
+
+     [,1] [,2] [,3]
+
+\noindent [1,]    2    0    0
+
+\noindent [2,]    2    0    0
+
+\noindent [3,]    0    2    0
+
+\noindent [4,]    0    2    0
+
+\noindent [5,]    0    0    2
+
+\noindent [6,]    0    0    2
+
+\noindent 
+
+\noindent and the animal occurrence matrix with respect to runs is then 
+
+     [,1] [,2] [,3] [,4] [,5] [,6]
+
+\noindent [1,]    4    4    0    0    0    0
+
+\noindent [2,]    4    4    0    0    0    0
+
+\noindent [3,]    0    0    4    4    0    0
+
+\noindent [4,]    0    0    4    4    0    0
+
+\noindent [5,]    0    0    0    0    4    4
+
+\noindent [6,]    0    0    0    0    4    4
+
+\noindent 
+
+\noindent The trace of this matrix is 24 and it is divisible by 8. Using the equations described earlier. DF associated with the Between Animal Between and Within Runs strata are  
+\[\frac{tr(NN')}{r_tk}-1=\ \frac{24}{8}-1=2\] 
+and
+\[n_A-\frac{tr\left(NN^'\right)}{r_tk}=6-\frac{24}{8}=3.\ \] 
+
+
+\noindent In summary, the formula for computing the DF associated with the Between Animal Between and Within Runs strata are  
+\[\frac{tr(NN')}{r_tk}-1\] 
+and 
+\[n_A-\frac{tr\left(NN^'\right)}{r_tk}\] 
+where $N=Z^'_AZ_R$.
+
+\noindent If the number of animals is divisible by the tag number, then the DF associated with the Between Animals Between Runs and Within Runs can be derived directly from 
+\[\frac{n_A}{k}-1\] 
+and  
+\[n_A-\ \frac{n_A}{k}.\] 
+Otherwise, if the number of animals is not divisible by the tag number, then we can use the ceiling of number of animals divided by the tag number, i.e. 
+\[\left\lceil \frac{n_A}{k}\right\rceil -1\] 
+and  
+\[n_A-\ \left\lceil \frac{n_A}{k}\right\rceil .\] 
+It is also important to examine the level of connectedness on the allocation of animals to runs. This has shown that can affect the structure of the occurrence matrix and its trace, which is used to determine the DF associated with the Between Animals Between Runs and Within Runs.
+
+\noindent 
+
+\noindent 
+
+% == UNREGISTERED! == GrindEQ Word-to-LaTeX 2012 ==
+
